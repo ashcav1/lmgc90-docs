@@ -1,0 +1,62 @@
+# Settling a granular bed
+
+The bed is the terrain every impact lands on. Settling it once, correctly,
+turned out to be the hardest part of the pipeline. What follows is the
+recipe that works and the evidence behind each rule.
+
+## Recipe
+
+1. **Deposit real shapes, densely.** Drop each grain's own polyhedron onto
+   the height map of what is already there, at the lowest of ~64 random
+   candidate spots. The loose column is then ~1.7× the final layer. Proxy
+   spheroids gave 5–6× columns (a 12-vertex 1:0.7:0.5 grain fills a quarter
+   of its spheroid) and a night of settling that never finished.
+2. **Gap law for boulders, velocity law for pairs with fines**
+   ([Contact laws](contact-laws.md)).
+3. **Cap speeds while depositing** (`RBDY3_PartialDamping(1, vmax)` every
+   step): 0.3 m/s at dt = 2 ms keeps every grain within 0.6 mm per step,
+   well inside the alert distance. On a 0.9 m-thick test layer, 0.3 m/s
+   rested in 6,800 steps and 1.5 m/s in 10,000: harder landings agitate the
+   pile longer.
+4. **Never lift the cap.** A pile at rest under the cap (max speed 8 mm/s
+   against 0.3 m/s — the clip is inert) blew apart to 1–3 m/s within 500
+   steps of removing it, four times, with any solver budget. The uncapped
+   contact dynamics of a deep polyhedral pile are unstable; the cap is a
+   harmless stabiliser at rest, so it stays through the final phase.
+5. **One time step for the whole settle.** Changing dt at release (4 → 2 ms)
+   threw 100 of 116 resting boulders to 1–6 m/s: stored reactions scale
+   with dt.
+6. **Full NLGS budget on thick layers** (`max_checks` 1000 × 10 sweeps).
+   A 1,000-iteration budget reached rest just as fast and was *not* the
+   cause of the explosions, but the final state should be a converged one.
+7. **Rest is structural, not a velocity threshold.** A pile several grains
+   deep chatters at cm/s indefinitely (the common-plane contact set flickers
+   by ±5 contacts per 50 steps in a resting bed of 1,400 contacts) while its
+   geometry is static. Declare rest when the median grain moved < 1 mm over
+   the last second of simulated time, 95 % < 2 cm, none > 10 cm — or when
+   99 % are below 2 mm/s. Then a final phase under the full solver must pass
+   the same test again.
+8. **Hard invariants, not warnings:** no grain outside the box; at least one
+   grain–grain contact per grain; a layer that lost > 40 % of its expected
+   height has fallen through itself. All three were silent once.
+
+## Costs (laptop, M4 Pro, one process)
+
+| bed | grains | contacts | ms per step | steps to rest |
+|---|---|---|---|---|
+| 0.9 m square, 15 cm layer | 232 | 1,400 | 27–34 | 1,700–3,300 |
+| 1.5 m square, 0.9 m layer | 116 | 600 | 6 (budget 1,000 it.) / ~15 (full) | 5,100–6,800 |
+| 3 m square, 0.9 m layer | 463 | 3,300 | 55–80 (budget) / 150–200 (full) | 5,500 |
+
+Vertices: 20-vertex grains settle in the same number of steps as 12 at
+~1.4× the cost per step; 8-vertex grains chatter longer. A 1 ms time step
+does not reach rest sooner in simulated time and doubles the steps.
+Friction 0.3 settles in more steps (grains roll further); 0.9 diverged once.
+
+## What the metrics file holds
+
+Every `check_every` steps: max / mean / 99th-percentile grain speed, the
+phase flag, number of grains faster than 2 cm/s, max spin, deepest overlap,
+overlapping pairs, escaped grains, and the median / 95th / 99th-percentile /
+max displacement over the last second. The `settle` figure of a bed draws
+them; the overnight status reads them in words.

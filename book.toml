@@ -1,0 +1,15 @@
+[book]
+title = "LMGC90 for granular asteroid surfaces"
+authors = ["Ashish Cavale"]
+description = "A working guide to LMGC90 (pylmgc90 pre + chipy) for rigid polyhedral grains: decks, detection, contact laws, settling, impacts, post-processing, and the failures we hit."
+language = "en"
+src = "src"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/ashcav1/lmgc90-docs"
+site-url = "/lmgc90-docs/"
+
+[output.html.search]
+enable = true
