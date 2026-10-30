@@ -63,7 +63,8 @@ set and the restitution by 5–30 %: the contact physics is not a speed knob.
 
 The craft–rock pair governs the first bounce; the rock–rock restitution
 hardly matters, friction and cohesion stiffen the bed. And the bed itself
-matters most: the same drop on a bed generated with 20-vertex grains
-(a different random realisation) gave e = 0.506 — a larger change than
-any contact-law arm. Where the craft lands dominates what it does, which
+matters most: the same drop on beds generated with 8 / 12 / 20-vertex
+grains (three random realisations) gave e = 0.17 / 0.40 / 0.51 — the first
+one hit fines and slid out of the crop, the others hit a boulder — a larger
+spread than any contact-law arm. Where the craft lands dominates what it does, which
 is why the study sweeps landing spots on one bed before anything else.
