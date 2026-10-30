@@ -49,7 +49,9 @@ steps, θ = 1 at ~7,500, scrambled Gauss–Seidel order at ~6,800, a 1 ms
 time step at ~21,000. Lifting the cap, switching the solver budget or
 changing dt only trigger it sooner. The one variant that held the whole
 window was **tolerance 1e-4** (rest at 7,700, then 20,000 steps at 1 mm/s;
-~8× the cost per step). That is the mechanism: residual penetrations
+~8× the cost per step); 3e-4 is not enough, and a second baseline run held
+where the first had exploded — at 1e-3 the hold is a coin flip. A larger
+time step (3–4 ms) or a gentler cap (0.15 m/s) explode as well. That is the mechanism: residual penetrations
 within the tolerance are ejected at `gap/dt` every step, and in a deep
 pile the kicks accumulate faster than friction removes them unless they
 are made ten times smaller. Consequences:
