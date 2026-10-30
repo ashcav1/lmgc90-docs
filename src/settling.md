@@ -40,6 +40,24 @@ recipe that works and the evidence behind each rule.
    grain–grain contact per grain; a layer that lost > 40 % of its expected
    height has fallen through itself. All three were silent once.
 
+## Rest under the gap law is metastable — save it when you have it
+
+Held at rest for longer (a 20,000-step confirmation window on the 0.9 m
+test layer), every variant eventually burst and blew apart with nothing
+changed in the run: the baseline at ~9,600 steps, θ = 1 at ~7,500,
+scrambled Gauss–Seidel order at ~6,800, a 1 ms time step at ~21,000.
+Lifting the cap, switching the solver budget or changing dt only trigger
+it sooner. The mechanism is the gap law itself: residual penetrations
+within the NLGS tolerance are ejected at `gap/dt` every step; in a deep
+pile the kicks accumulate faster than friction removes them. Consequences:
+
+- declare rest by the structural test and **save the state immediately**;
+  a short confirmation window (500 steps) is fine, a long one is not;
+- never change anything between phases;
+- the impact decks are immune: they use the velocity law, which never
+  ejects an overlap, start with zeroed velocities at micro-g, and their
+  free grains move < 15 µm before the craft arrives (measured).
+
 ## Costs (laptop, M4 Pro, one process)
 
 | bed | grains | contacts | ms per step | steps to rest |

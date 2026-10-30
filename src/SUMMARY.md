@@ -38,6 +38,7 @@
 - [Impacts on a settled bed](impacts.md)
 - [Post-processing: files, units, probes](postpro.md)
 - [Parameters for Dimorphos-like regolith](parameters.md)
+- [A pipeline on top: the Milani bounce study](pipeline-api.md)
 
 # When it goes wrong
 

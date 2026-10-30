@@ -38,6 +38,13 @@ rest (below 2 mm/s for 10 s), captured (fastest point below 10 % of the
 arrival speed for 10 s — friction at 5e-5 m/s² takes minutes to stop a
 creep), left the free core, or the time cap.
 
+## The settle's instability does not reach the impact deck
+
+Impact decks use `RST_CLB` for grain pairs: it never ejects a residual
+overlap, so the gap-law metastability of a settled pile is absent. Measured:
+108 free grains moved a median 0.13 µm (max 14 µm) in the 0.42 s before the
+craft's first contact at 5e-5 m/s²; after the bounce, up to 19 mm.
+
 ## Time step for impacts
 
 An automatic rule from arrival speed and the smallest grain keeps travel per
@@ -55,4 +62,8 @@ set and the restitution by 5–30 %: the contact physics is not a speed knob.
 | cohesive bed, 10 Pa / 100 Pa | 0.455 / 0.457 |
 
 The craft–rock pair governs the first bounce; the rock–rock restitution
-hardly matters, friction and cohesion stiffen the bed.
+hardly matters, friction and cohesion stiffen the bed. And the bed itself
+matters most: the same drop on a bed generated with 20-vertex grains
+(a different random realisation) gave e = 0.506 — a larger change than
+any contact-law arm. Where the craft lands dominates what it does, which
+is why the study sweeps landing spots on one bed before anything else.
