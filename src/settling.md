@@ -43,16 +43,21 @@ recipe that works and the evidence behind each rule.
 ## Rest under the gap law is metastable — save it when you have it
 
 Held at rest for longer (a 20,000-step confirmation window on the 0.9 m
-test layer), every variant eventually burst and blew apart with nothing
-changed in the run: the baseline at ~9,600 steps, θ = 1 at ~7,500,
-scrambled Gauss–Seidel order at ~6,800, a 1 ms time step at ~21,000.
-Lifting the cap, switching the solver budget or changing dt only trigger
-it sooner. The mechanism is the gap law itself: residual penetrations
-within the NLGS tolerance are ejected at `gap/dt` every step; in a deep
-pile the kicks accumulate faster than friction removes them. Consequences:
+test layer), every variant at the usual NLGS tolerance (Quad 1e-3) burst
+and blew apart with nothing changed in the run: the baseline at ~9,600
+steps, θ = 1 at ~7,500, scrambled Gauss–Seidel order at ~6,800, a 1 ms
+time step at ~21,000. Lifting the cap, switching the solver budget or
+changing dt only trigger it sooner. The one variant that held the whole
+window was **tolerance 1e-4** (rest at 7,700, then 20,000 steps at 1 mm/s;
+~8× the cost per step). That is the mechanism: residual penetrations
+within the tolerance are ejected at `gap/dt` every step, and in a deep
+pile the kicks accumulate faster than friction removes them unless they
+are made ten times smaller. Consequences:
 
 - declare rest by the structural test and **save the state immediately**;
-  a short confirmation window (500 steps) is fine, a long one is not;
+  a short confirmation window (500 steps) is fine, a long one is not —
+  unless the tolerance is 1e-4, which is the option when a bed must be
+  held or built on;
 - never change anything between phases;
 - the impact decks are immune: they use the velocity law, which never
   ejects an overlap, start with zeroed velocities at micro-g, and their
