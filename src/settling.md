@@ -99,10 +99,14 @@ does not reach rest sooner in simulated time and doubles the steps.
 Friction 0.3 settles in more steps (grains roll further); 0.9 diverged once.
 The gap law on fines pairs removes the overlap the velocity law leaves
 (7.8 mm → 0.0 on the fines-only beds, QA PASS) at ~3× the step cost on a
-thin layer, ~9× on a 25 cm pile (0.7 ms per body-step — the gap law's
+thin layer and ~9× on a 25 cm pile (0.7 ms per body-step — the gap law's
 price on any pile several grains deep, boulders included; the velocity
-law's is ~0.08) and ~7× on fines poured over boulders, where they drain
-through the pores for thousands of steps.
+law's is ~0.08). On fines poured over boulders it is unusable: 5,800 steps
+at 4–6 s/step (10×) without rest, the fines flickering between the
+boulders at a median 10 mm/s for ever. The velocity law's failing overlap
+there is the boulder–fines pairs (−20 mm; fines–fines only −8 mm), so the
+split to try is the gap law for boulder–fines pairs and the velocity law
+among fines (`boulder_fines_law` in the Milani pipeline).
 
 ## What the metrics file holds
 
