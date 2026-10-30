@@ -90,6 +90,7 @@ between machines.
 | 3 m square, 1.2 m layer, tolerance 1e-4 | 463 | — | 875 (full) | 5,100 (window held) |
 | 4 m square, 0.9 m layer | 821–827 | — | 550–590 (full) | 9,200–9,400 (window exploded, snapshot used) |
 | 1 m square, 10 cm of 4–8 cm fines only | 353 | — | 19 (velocity law) / 51 (gap law) | 1,000 / 1,300 |
+| 1 m square, 25 cm of 4–8 cm fines only | 882 | — | 70 (velocity law) / 656 (gap law) | 1,400 / 3,500 |
 | 2 m square, 0.5 m boulders + 10 cm fines | 327 + 1,415 | 10,460 | 588 (fines stage, velocity law) / 4,000–4,400 (gap law, still draining) | 5,100 / — |
 
 Vertices: 20-vertex grains settle in the same number of steps as 12 at
@@ -97,9 +98,11 @@ Vertices: 20-vertex grains settle in the same number of steps as 12 at
 does not reach rest sooner in simulated time and doubles the steps.
 Friction 0.3 settles in more steps (grains roll further); 0.9 diverged once.
 The gap law on fines pairs removes the overlap the velocity law leaves
-(7.8 mm → 0.0 on the fines-only bed) at ~3× the step cost on a thin layer
-and ~7× on fines poured over boulders, where they drain through the pores
-for thousands of steps.
+(7.8 mm → 0.0 on the fines-only beds, QA PASS) at ~3× the step cost on a
+thin layer, ~9× on a 25 cm pile (0.7 ms per body-step — the gap law's
+price on any pile several grains deep, boulders included; the velocity
+law's is ~0.08) and ~7× on fines poured over boulders, where they drain
+through the pores for thousands of steps.
 
 ## What the metrics file holds
 
