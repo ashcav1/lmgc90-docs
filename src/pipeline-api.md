@@ -49,6 +49,13 @@ pre.writeDatbox(3, mats, mods, bodies, tacts, table.to_pre(pre, laws), post=...,
 
 Every pair that must interact is listed; frozen–frozen pairs are not.
 
+## The bed library
+
+`runs/beds/<id>/` + `LIBRARY.json` + a `MANIFEST.json` of checksums per bed;
+`lab.py beds` lists / verifies / exports / imports; `@name` or an id in a
+campaign pins the folder; `ensure_bed` verifies the manifest and refuses a
+modified bed.
+
 ## The scripting layer
 
 ```python

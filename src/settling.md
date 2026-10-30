@@ -63,6 +63,17 @@ are made ten times smaller. Consequences:
   ejects an overlap, start with zeroed velocities at micro-g, and their
   free grains move < 15 µm before the craft arrives (measured).
 
+## Keep what you settled
+
+A settled bed is the expensive asset; impacts are cheap and only read it.
+Keep beds as immutable, checksummed folders (the state file, the deck, the
+geometry, the height map, the card), make them read-only, register them in
+a library by name and id, and let every consumer verify the checksums
+before use. Name beds by id in campaigns — an id that hashes the settle
+settings is exactly what makes a bed invisible after a default changes,
+so pin the folder, not the config. Export/import as a tar to move beds
+between machines.
+
 ## Costs (laptop, M4 Pro, one process)
 
 | bed | grains | contacts | ms per step | steps to rest |
