@@ -45,3 +45,4 @@
 - [Failure modes catalogue](failure-modes.md)
 - [Crash & divergence field guide](crash-guide.md)
 - [FAQ: priority questions answered](faq.md)
+- [Glossary (plain words)](glossary.md)
