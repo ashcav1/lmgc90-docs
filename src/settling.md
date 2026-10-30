@@ -58,10 +58,12 @@ are made ten times smaller. Consequences:
 
 - declare rest by the structural test and **save the state immediately**;
   a short confirmation window (500 steps) can follow, but the instability
-  can strike inside it (a 4 m bed did, 400 steps in), so keep the
-  first-rest snapshot and fall back to it if the window explodes — unless
-  the tolerance is 1e-4, which is the option when a bed must be held or
-  built on;
+  can strike inside it (a 4 m bed did, 400 steps in, for both seeds), so
+  keep the first-rest snapshot and fall back to it if the window explodes —
+  unless the tolerance is 1e-4 (a 3 m, 463-boulder bed then held its window
+  at ~3× the step cost: on a deep pile the full solve at 1e-3 already runs
+  hundreds of iterations, so the 8× seen on a thin bed shrinks), which is
+  the option when a bed must hold its window, be held, or be built on;
 - never change anything between phases;
 - the impact decks are immune: they use the velocity law, which never
   ejects an overlap, start with zeroed velocities at micro-g, and their
@@ -85,11 +87,19 @@ between machines.
 | 0.9 m square, 15 cm layer | 232 | 1,400 | 27–34 | 1,700–3,300 |
 | 1.5 m square, 0.9 m layer | 116 | 600 | 6 (budget 1,000 it.) / ~15 (full) | 5,100–6,800 |
 | 3 m square, 0.9 m layer | 463 | 3,300 | 55–80 (budget) / 150–200 (full) | 5,500 |
+| 3 m square, 1.2 m layer, tolerance 1e-4 | 463 | — | 875 (full) | 5,100 (window held) |
+| 4 m square, 0.9 m layer | 821–827 | — | 550–590 (full) | 9,200–9,400 (window exploded, snapshot used) |
+| 1 m square, 10 cm of 4–8 cm fines only | 353 | — | 19 (velocity law) / 51 (gap law) | 1,000 / 1,300 |
+| 2 m square, 0.5 m boulders + 10 cm fines | 327 + 1,415 | 10,460 | 588 (fines stage, velocity law) / 4,000–4,400 (gap law, still draining) | 5,100 / — |
 
 Vertices: 20-vertex grains settle in the same number of steps as 12 at
 ~1.4× the cost per step; 8-vertex grains chatter longer. A 1 ms time step
 does not reach rest sooner in simulated time and doubles the steps.
 Friction 0.3 settles in more steps (grains roll further); 0.9 diverged once.
+The gap law on fines pairs removes the overlap the velocity law leaves
+(7.8 mm → 0.0 on the fines-only bed) at ~3× the step cost on a thin layer
+and ~7× on fines poured over boulders, where they drain through the pores
+for thousands of steps.
 
 ## What the metrics file holds
 
