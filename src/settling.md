@@ -55,9 +55,11 @@ pile the kicks accumulate faster than friction removes them unless they
 are made ten times smaller. Consequences:
 
 - declare rest by the structural test and **save the state immediately**;
-  a short confirmation window (500 steps) is fine, a long one is not —
-  unless the tolerance is 1e-4, which is the option when a bed must be
-  held or built on;
+  a short confirmation window (500 steps) can follow, but the instability
+  can strike inside it (a 4 m bed did, 400 steps in), so keep the
+  first-rest snapshot and fall back to it if the window explodes — unless
+  the tolerance is 1e-4, which is the option when a bed must be held or
+  built on;
 - never change anything between phases;
 - the impact decks are immune: they use the velocity law, which never
   ejects an overlap, start with zeroed velocities at micro-g, and their
