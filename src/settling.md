@@ -105,6 +105,8 @@ between machines.
 | 3 m square, 1.2 m layer, tolerance 1e-4 | 463 | — | 875 (full) | 5,100 (window held) |
 | 4 m square, 0.9 m layer | 821–827 | — | 550–590 (full) | 9,200–9,400 (uncapped window exploded, snapshot used) |
 | 3 m square, 0.9 m layer, cap kept, rest at 3 mm/s | 463 | — | 215 (full) | 4,300 (window held, QA PASS) |
+| 4.5 m square, 0.9 m uniform layer (production bed 1), cap kept, 3 mm/s | 1,043 | — | 585 (laptop, shared) | 4,500 (window held, QA PASS) |
+| 3 m square, 0.9 m **Weibull** layer, cap kept, 3 mm/s | 934 | — | 480–1,100 (laptop, shared) | ~13,700 (median move 4–8 mm/s from 5,000 to 13,000: the whole pile churns; window held, QA PASS) |
 | 6 m square, 0.9 m layer (lab Mac, 6 beds at once) | 1,853 | 13,000 | 2,800 (full, ~1,000 iterations) | 19,800 at 1 mm/s (6,600 at 3 mm/s); uncapped window exploded |
 | 6 m square, 0.9 m Weibull layer (lab Mac) | 3,729 | 25,500 | 8,500 (~1,300 iterations) | not reached in 6,800 steps (16.7 h) |
 | 6 m square, 1.5 m Weibull layer (lab Mac) | 6,214 | 32,000 | 13,000 (~1,500 iterations) | not reached in 4,600 steps |
@@ -114,6 +116,8 @@ between machines.
 | 1 m square, 10 cm of 4–8 cm fines only | 353 | — | 19 (velocity law) / 51 (gap law) | 1,000 / 1,300 |
 | 1 m square, 25 cm of 4–8 cm fines only | 882 | — | 70 (velocity law) / 656 (gap law) | 1,400 / 3,500 |
 | 2 m square, 0.5 m boulders + 10 cm fines | 327 + 1,415 | 10,460 | 588 (fines stage, velocity law) / 4,000–4,400 (gap law, still draining) | 5,100 / — |
+
+A polydisperse (Weibull) pile takes ~3x the steps of a uniform one to reach the same median move: it churns in bursts under the gap law's kicks, and not only its small grains — the median of the load-bearing half tracks the overall one (deterministic twin with the extra columns, 2026-10-31). Budget for it; a gentler cap only slows the rain-down.
 
 The lab Mac rows show the scaling that matters for production: the NLGS
 iteration count grows with the pile, so the cost per step grows as about
