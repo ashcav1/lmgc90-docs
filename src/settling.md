@@ -109,6 +109,8 @@ between machines.
 | 6 m square, 0.9 m Weibull layer (lab Mac) | 3,729 | 25,500 | 8,500 (~1,300 iterations) | not reached in 6,800 steps (16.7 h) |
 | 6 m square, 1.5 m Weibull layer (lab Mac) | 6,214 | 32,000 | 13,000 (~1,500 iterations) | not reached in 4,600 steps |
 | 6 m square, 30 cm of 5–10 cm fines, velocity law (lab Mac) | 19,502 | 110,800 | 2,900 (10–20 iterations) | 3,100 |
+| 2 m square, 30 cm of 5–10 cm fines + 0.9 m Weibull boulders, velocity law on boulder–fines | 2,167 + 418 | 18,900 | 1,000–1,900 | not in 3,000 (boulders 67 mm into the fines) |
+| the same with the gap law on boulder–fines pairs only | 2,167 + 418 | 18,900 | 1,000–3,100 | ~4,000 at 1 mm/s median move (boulder–fines overlap 0.0 mm, fines–fines 16 mm) |
 | 1 m square, 10 cm of 4–8 cm fines only | 353 | — | 19 (velocity law) / 51 (gap law) | 1,000 / 1,300 |
 | 1 m square, 25 cm of 4–8 cm fines only | 882 | — | 70 (velocity law) / 656 (gap law) | 1,400 / 3,500 |
 | 2 m square, 0.5 m boulders + 10 cm fines | 327 + 1,415 | 10,460 | 588 (fines stage, velocity law) / 4,000–4,400 (gap law, still draining) | 5,100 / — |
@@ -119,6 +121,16 @@ grains^1.3, and the steps to rest as about sqrt(grains); in a mixed deck the
 gap-law boulder pairs set the iteration count and the cheap fines contacts
 are swept 1,000+ times too. A 6 m bed of 3,700 boulders is 2–3 days on one
 core; the same terrain at 4.5 m is 8 h.
+
+Boulders deposited on a velocity-law fines bed sink into it: 9 cm in the
+first second on the 2 m probe, 67 mm left at the end — the law only stops
+approach once a pair overlaps, and a heavy boulder pressing into a soft
+fines bed outruns the detection. The gap law on the boulder–fines pairs
+alone (velocity law kept among the fines, where the gap law never rests
+over boulders) leaves that overlap at zero and the pile rests. What remains
+is the fines among themselves, 0.5 of their smallest semi-axis into each
+other in a loaded substrate: a 1 g artefact, graded in our QA only where
+the craft can reach the pair and reported for buried pairs.
 
 One more LMGC90 trap in mixed decks: a POLYR whose radius exceeds
 `POLYR_SetThresholdBigPolyr` (default 4) times the deck's *mean* radius is
