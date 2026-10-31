@@ -38,6 +38,27 @@ rest (below 2 mm/s for 10 s), captured (fastest point below 10 % of the
 arrival speed for 10 s — friction at 5e-5 m/s² takes minutes to stop a
 creep), left the free core, or the time cap.
 
+Two lessons about "clear ballistic path" from 36 drops on a 4 m bed
+(2026-10-31):
+
+- **Spheres are the wrong obstacle.** A look-ahead that keeps the craft's
+  vertices away from every grain's circumsphere never clears a 1.47 m craft
+  skimming 20 cm above a boulder field: it sits inside those spheres until
+  it has risen above the tallest one, a minute at micro-g. Vertical drops
+  hovered for 40–100 s, or drifted out of the 1.2 m crop first and were
+  voided. Use the bed's height map — the real top envelope of the grains,
+  raised by the largest grain displacement since the impact — as the
+  obstacle, and keep the sphere test only as a second way to pass.
+- **Rotate the craft along the path.** A craft that bounces with a slow
+  spin (0.05–0.1 rad/s) has a wing coming down within seconds; a
+  translation-only look-ahead declared it detached 0.5 s after the first
+  touch and cut off the 3–6-touch tumble that follows (first-touch e of
+  0.31–0.35 against 0.21–0.26 at the end of the landing). Propagate the
+  vertices with the spin (Rodrigues) over at least half a turn.
+- A craft that crosses the crop edge airborne and rising, after the
+  detachment time, has completed its bounce: call it detached with the exit
+  state of its last contact. On the ground it has left the patch.
+
 ## The settle's instability does not reach the impact deck
 
 Impact decks use `RST_CLB` for grain pairs: it never ejects a residual
