@@ -121,7 +121,7 @@ the same 20 drops with patches of 0.9, 1.2 and 1.45 m (panels open) and
 | Its 36 drops | laptop | re-simulated 1 Nov and checked: 20 last contacts confirmed, 11 next touch off the patch, 1 long hop back onto it, 4 left the patch | In the [drop reel](drop-reel.md). |
 | The 4 m and 3 m test sets | laptop | re-simulated 1 Nov and checked: 4 m 24 confirmed + 8 off the patch, 3 m 30 + 2; no drop in any set ended too early | In the reel. |
 | The quick 2 m bed with small stones | laptop | 12 drops, all checked | In the reel. |
-| Bed 1's boulders with a thin top layer, 3 m | laptop | settling: grains still moving 12 mm/s against the 3 mm/s rest test, 11.5 s per step | Reaches rest around 5 am Monday at this pace; its 36 drops start on their own. |
+| Bed 1's boulders with a thin top layer, 3 m | laptop | settling: grains still moving 12 mm/s against the 3 mm/s rest test (falling about 8 % per 300 steps), 11.5 s per step | Reaches rest around 10 am Monday at this pace; its 36 drops start on their own. |
 | Friction test: does settling at higher friction help? | laptop | **done: no.** Every run at friction 0.8 or 0.9 made the solver fail, and the one that finished took half again as many steps | Settling stays at friction 0.6, the same as the drops. |
 | Patch-size test (is the patch big enough?) | laptop | **done**: with the panels open the 1.2 m patch is enough and the 4.5 m beds stay; with them folded single drops are very sensitive | 3 m laptop beds only for comparing beds. |
 
