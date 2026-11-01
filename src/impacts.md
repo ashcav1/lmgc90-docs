@@ -1,13 +1,13 @@
 # Impacts on a settled bed
 
-## Crop, don't simulate the whole bed
+## Patch, don't simulate the whole bed
 
 A run takes the settled bed, keeps the grains within a radius of the aim
 point as **free**, holds the grains that touch them as **frozen** (driven
 with zero velocity), and drops the walls. Frozen–frozen and frozen–floor
 pairs get **no** contact rule (two fixed bodies with a rule give `Wnn = 0`
 and a NaN). Reactions on frozen bodies are meaningless as loads (rigid
-grains wedged between driven bodies carry arbitrary self-stress); crop
+grains wedged between driven bodies carry arbitrary self-stress); patch
 adequacy is graded kinematically from the speed of the free grains at the
 edge.
 
@@ -15,7 +15,7 @@ edge.
 
 Read the settled stage back with `pre.readDatbox(…, hfile="state.h5",
 step=-1)`, call `updateReferenceConfig()` on each avatar and zero its dofs,
-select the crop, add the spacecraft (one avatar, one or several `POLYR`
+select the patch, add the spacecraft (one avatar, one or several `POLYR`
 contactors with explicit volume / inertia / shift), build the see table with
 one law for rock–rock and one for craft–rock, and `writeDatbox`. The
 round trip reproduces every vertex to < 10 µm.
@@ -35,7 +35,7 @@ Ray-cast every vertex of the craft along its approach against the bed's
 height map and start 2 cm before first contact; at 6 cm/s that is 0.3 s of
 free flight. End on: detached (below), rest (below 2 mm/s for 10 s),
 captured (fastest point below 10 % of the arrival speed for 10 s — friction
-at 5e-5 m/s² takes minutes to stop a creep), left the free core, or the
+at 5e-5 m/s² takes minutes to stop a creep), left the patch, or the
 time cap.
 
 **Detached is decided on the craft's exact free flight.** A free craft
@@ -49,17 +49,17 @@ the grains are convex polyhedra, and the distance between two convex hulls
 is a small bounded least-squares problem (closest convex combinations).
 Keep simulating while the flight comes back to a grain the simulation can
 move (allowing for the grains' own speed); otherwise the drop is over, and
-the predicted next touch (on the frozen ring, the bed beyond the crop, or
+the predicted next touch (on the fixed ring, the bed beyond the patch, or
 none before the craft leaves the bed) is recorded. What did not work
 (2026-10-31):
 
-- **A look-ahead with a fixed spin axis** missed a wing-tip graze 19 s
+- **A look-ahead with a fixed spin axis** missed a panel tip graze 19 s
   later: a free asymmetric body's spin axis wobbles.
 - **Spheres as obstacles** (each grain's circumsphere, or a sphere of the
   craft's reach against the height map) are proofs, but a 1.47 m craft
   skimming 20 cm above boulders stays inside them for minutes at micro-g.
-- **"Airborne over the crop edge" as an end** ignores a wing still over the
-  crop.
+- **"Airborne over the patch edge" as an end** ignores a solar panel still over the
+  patch.
 
 **Multi-piece bodies are centred on their volume, not their mass.**
 `read_bodies` in mod_RBDY3 puts a body with several contactors at the
@@ -67,11 +67,11 @@ volume-weighted centroid of their geometric volumes and keeps the principal
 inertia it is given. pre's per-contactor `volume=` / `I=` / `shift=` set the
 mass properties pre writes, but LMGC90 recomputes each POLYR's volume from
 its vertices. A craft whose pieces differ in density (a 10.8 kg bus with two
-0.6 kg wings) therefore turns about the wrong point (10.2 mm off for
-Milani). Fix: an extra contactor inside the bus whose volume moves the
+0.6 kg solar panels) therefore turns about the wrong point (10.2 mm off for
+Milani). Fix: an extra contactor inside the craft's body whose volume moves the
 geometric centroid onto the centre of mass, density = mass / total
 geometric volume, and in pre a near-zero volume and an inertia just above
-pre's 1e-6 "not given" threshold (taken off the bus). Check it in every run:
+pre's 1e-6 "not given" threshold (taken off the craft's body). Check it in every run:
 read the craft's vertices back (`POLYR_GetVertex`) and compare with the
 design.
 
@@ -89,7 +89,7 @@ step small against the alert distance (5 ms at cm/s on decimetre grains).
 Detecting contacts every 2 or 4 steps or doubling dt changed the contact
 set and the restitution by 5–30 %: the contact physics is not a speed knob.
 
-## Sensitivity (one drop, 5 cm/s, 20°, stowed 12 kg box, 2.4 m bed)
+## Sensitivity (one drop, 5 cm/s, 20°, panels folded 12 kg box, 2.4 m bed)
 
 | arm | e = speed out / in |
 |---|---|
@@ -102,6 +102,6 @@ The craft–rock pair governs the first bounce; the rock–rock restitution
 hardly matters, friction and cohesion stiffen the bed. And the bed itself
 matters most: the same drop on beds generated with 8 / 12 / 20-vertex
 grains (three random realisations) gave e = 0.17 / 0.40 / 0.51 — the first
-one hit fines and slid out of the crop, the others hit a boulder — a larger
+one hit small stones and slid out of the patch, the others hit a boulder — a larger
 spread than any contact-law arm. Where the craft lands dominates what it does, which
 is why the study sweeps landing spots on one bed before anything else.

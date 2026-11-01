@@ -248,7 +248,7 @@ Appendix has the exhaustive per-module lists. §7 has our case studies.)*
 | `error allocating this` / `ialeat` / `Xvlton` … | `mod_nlgs_3D.f90:538-589` | `this(nb_CDAN)` ≈ ≥480 B/contact etc. — RAM | smaller scene or ELG (helps Wab only); check contact count isn't pathological (exploded bed) |
 | `mismatch in the entity connectivity for entity …` | `mod_nlgs_3D.f90:688`, `:832` | detection/entity-list bookkeeping inconsistency (see §6.5 — damage may already be done) | call-order audit: `overall_InitEntityList` vs `LoadTactors`; report upstream |
 | `default select case <lawty>` | `mod_nlgs_3D.f90:2547` | a law in TACT_BEHAV.DAT that nlgs_3D doesn't implement | fix the law name/deck |
-| `this contact element doesn t work with<lawty>` | `mod_nlgs_3D.f90:1483` | `IQS_MOHR_DS_CLB` (Mstck status) on a contactor pair outside its 10-type whitelist | our SPSPx/SPPLx/SPPRx fines pairs are all whitelisted; would only fire on an exotic pairing |
+| `this contact element doesn t work with<lawty>` | `mod_nlgs_3D.f90:1483` | `IQS_MOHR_DS_CLB` (Mstck status) on a contactor pair outside its 10-type whitelist | our SPSPx/SPPLx/SPPRx small-stone pairs are all whitelisted; would only fire on an exotic pairing |
 | `Wnn(<ik>) = … < 1.D-18` / `det(<ik>) = … < 1.D-25` (logmes — **invisible to us**) | `mod_nlgs_3D.f90:1014`, `:2565`, `:2614` | degenerate local operator | not fatal itself — it's the NaN precursor (§2); if seen with logs on, the named body/contact is the culprit |
 
 ### 6.2 Contact detection (PRPRx / SPSPx / SPPLx / SPPRx)
@@ -257,7 +257,7 @@ Appendix has the exhaustive per-module lists. §7 has our case studies.)*
 |---|---|---|---|
 | banner `ERROR filling this … PRPRx_LowSizeArrayPolyr(sizefactor) …` + faterr `Error` | `mod_PRPRx.f90:3419` (Cundall, our default path), `:5844` (nc), `:6673`/`:7886`/`:13035` (f2f/wti/STO) | more contact points than `size_factor × max(nb_POLYR, nb_rough_pairs)` — the classic dense-bed abort | raise `PRPRx_LowSizeArrayPolyr` (v4 already sets **100**, default 4). NB the arg is unvalidated — 0/negative = instant nonsense |
 | `issue filling boxes` (after `body POLYR <i> out of boxes`) | `mod_PRPRx.f90:2119-2132` (SPSPx twin `:563-570`) | a body's coordinates left the broad-phase AABB **this step** — it exploded / NaN'd / flew unbounded | the detection error is the messenger; autopsy the dynamics (last DOF state, gravity, teleport step) |
-| `Estimated max popul limit reached.` | `mod_SPSPx.f90:575` | int32 overflow: `maxpopul = 4(1+Lbox/minray)³` with **no negative guard** (PRPRx/SPPLx have one) — extreme sphere radius ratio | keep fines SFD bounded (our stratified fines are); if hit, narrow the radius span |
+| `Estimated max popul limit reached.` | `mod_SPSPx.f90:575` | int32 overflow: `maxpopul = 4(1+Lbox/minray)³` with **no negative guard** (PRPRx/SPPLx have one) — extreme sphere radius ratio | keep small stones SFD bounded (our stratified small stones are); if hit, narrow the radius span |
 | `Distance between cd <i> and an <j> … is <tiny>` + `ERROR` / `center of spher <i> within 1.e-18 …` | `mod_PRPRx.f90:3222`, `mod_SPSPx.f90:1178` | two body centres coincident — one tunneled inside another (bad restart, explosion, double-placed grain) | inspect the named pair in the last state; check deposit/registry for duplicates |
 | `error allocating box` / `box(...)%which` | `mod_PRPRx.f90:2079`, `mod_SPSPx.f90:542` | broad-phase grid = `Π(1+extent/Lbox)` cells — huge domain + small cells = multi-GB | domain sanity: usually a stray body at huge coordinates inflating the AABB |
 | `nickname <behav> … unknown in lawty` | `mod_SPPLx.f90:1499` and peers | a see row names a law that is not defined | define the law; note the `Unknown visibility table` faterr at `mod_SPPLx.f90:1484` is DEAD CODE (no caller) — a pair with no see row is simply never detected, in every module (this is how walls are made invisible to the spacecraft) |
@@ -291,7 +291,7 @@ Appendix has the exhaustive per-module lists. §7 has our case studies.)*
 | symptom | source | cause | response |
 |---|---|---|---|
 | **random SIGBUS** (exit −10), `Fatal Python error: Bus error` in `PRPRx_SelectProxTactors`; macOS crash report shows `polytopes_intersection_wc <- planplan <- detection_common_plane <- wcp_compute_contact_prprx` | `Core/shared/mod_DiscreteGeometry.f90:4572` | `area = sum(carea(1:nb_pts))` indexes the per-POLYGON area array by the number of POINTS → out-of-bounds read on every face-to-face contact; fatal when the tiny C allocation ends a memory page. Same inputs crash or not at random | `python3 lab.py patch-lmgc90` (one-line fix `area = sum(carea)`; value unused, physics unchanged — verified bit-identical). Simulations refuse to start without it |
-| spheres sink into polyhedra (LMGC gap ≈ −radius, confirmed by exact hull distance) with no error | `mod_SPPRx.f90` DETECTION_SPPRx → `node_HE_Hdl_proximity` | sphere–polyhedron detection projects from the sphere toward the polyhedron CENTRE and misses approaching contacts on large faces | use polyhedral fines (the pipeline does); never mix SPHER grains with POLYR boulders in this build |
+| spheres sink into polyhedra (LMGC gap ≈ −radius, confirmed by exact hull distance) with no error | `mod_SPPRx.f90` DETECTION_SPPRx → `node_HE_Hdl_proximity` | sphere–polyhedron detection projects from the sphere toward the polyhedron CENTRE and misses approaching contacts on large faces | use polyhedral small stones (the pipeline does); never mix SPHER grains with POLYR boulders in this build |
 | `make` fails installing Clipper into `/usr/local/lib` after a `cmake .` re-run | LMGC90 `CMakeLists.txt` VENV_LAST logic | the venv install prefix is applied only on the FIRST configure | re-configure with `-DCMAKE_INSTALL_PREFIX=<venv>` (the patch tool does) |
 | `git branch changed... please rerun cmake to confirm` during `make` | `src/get_git_branch.cmake.in` | the build records the git branch of the enclosing checkout | `cmake .` in the build dir (harmless; the patch tool does it) |
 
@@ -364,7 +364,7 @@ machinery already assumes exactly that.
    occasional NaN divergence + unattended runs having no restart
    automation. v4's answer: heartbeats, `last.h5` checkpoints, retry
    ladder, resumable queue.
-3. **"0.03 m fines — error"** (Laney's slides): most plausibly the deposit
+3. **"0.03 m small stones — error"** (Laney's slides): most plausibly the deposit
    layer's polydispersity/neighbour limits or detection-scale issues, not
    NLGS proper. v4's own depositor + D5 resolution gate cover this axis.
 4. **Restart-integrity family**: corrupt `last.h5` after kill-mid-write

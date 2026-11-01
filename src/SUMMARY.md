@@ -10,7 +10,7 @@
 - [How each number is computed](project/methods.md)
 - [Lab notebook](project/notebook.md)
   - [31 October: impacts, movies, the detachment fix](project/notebook/2026-10-31.md)
-  - [29-30 October: settling, fines, tolerance](project/notebook/2026-10-29.md)
+  - [29-30 October: settling, small stones, tolerance](project/notebook/2026-10-29.md)
   - [The six-bed study](project/notebook/bed-study.md)
   - [Failure modes, as they happened](project/notebook/failure-modes.md)
   - [Decision log](project/notebook/decisions.md)

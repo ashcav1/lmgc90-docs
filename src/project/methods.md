@@ -1,14 +1,14 @@
 # How each number is computed
 
-Every number in the [drop reel](../drops/index.html) and the run log, defined: what it is, why it can be trusted (or where it cannot), and the code that computes it. File and line refer to the project's code repository at the time this page was generated (2026-10-31 23:59); the excerpts are copied from that code, not paraphrased.
+Every number in the [drop reel](../drops/index.html) and the run log, defined: what it is, why it can be trusted (or where it cannot), and the code that computes it. File and line refer to the project's code repository at the time this page was generated (2026-11-01 16:48); the excerpts are copied from that code, not paraphrased.
 
 ## The craft model
 
-**Definition.** Milani is rigid convex boxes: a 13 x 24.6 x 36.6 cm bus of 10.8 kg and, deployed, two solar wings 1 cm thick and 59 x 36.6 cm, 0.6 kg each: 12 kg in all. The stowed craft is the bus alone at 12 kg. Mass, centre of mass and inertia come from the pieces' own masses. Inside the deployed bus sits a massless ballast box (3.9 x 24 x 36 cm, 3 mm inside every wall): LMGC90 places a body made of several pieces at the centre of their volumes rather than of their masses (mod_RBDY3, reading the bodies), and the ballast's volume moves that point onto the centre of mass.
+**Definition.** Milani is rigid convex boxes: a 13 x 24.6 x 36.6 cm body of 10.8 kg and, with the panels open, two solar panels 1 cm thick and 59 x 36.6 cm, 0.6 kg each: 12 kg in all. With the panels folded it is the body alone at 12 kg. Mass, centre of mass and inertia come from the pieces' own masses. Inside the body (panels open) sits a massless ballast box (3.9 x 24 x 36 cm, 3 mm inside every wall): LMGC90 places a body made of several pieces at the centre of their volumes rather than of their masses (mod_RBDY3, reading the bodies), and the ballast's volume moves that point onto the centre of mass.
 
-**Why it can be trusted.** Without it the deployed craft turned about a point 10.2 mm from its centre of mass: the wings are far lighter for their volume than the bus. Found on 1 November by comparing the craft in the simulation's own frames with its design. Every drop now checks that the simulated craft sits within 0.1 mm of its design (it does, to 1e-11 m). No grain can reach the ballast without pushing 3 mm into the bus first.
+**Why it can be trusted.** Without it the craft with open panels turned about a point 10.2 mm from its centre of mass: the panels are far lighter for their volume than the body. Found on 1 November by comparing the craft in the simulation's own frames with its design. Every drop now checks that the simulated craft sits within 0.1 mm of its design (it does, to 1e-11 m). No grain can reach the ballast without pushing 3 mm into the body first.
 
-**Limits.** Drops before 1 November (the first laptop sets, the lab Mac's weekend drops) have the 10 mm offset and are re-simulated (lab.py campaign rerun --stale). On one 4 m bed drop the fix moved e from 0.300 to 0.329; the stowed craft is unaffected.
+**Limits.** Drops made before 1 November have the 10 mm offset: the laptop's were re-simulated on 1 November, the lab Mac's weekend drops still need it (lab.py campaign rerun --stale). On one 4 m bed drop the fix moved e from 0.300 to 0.329; with the panels folded the craft is one piece and was never affected.
 
 `src/milani/impactors.py`, line 159:
 
@@ -150,11 +150,11 @@ def _craft_info(spec: ImpactorSpec, pcs, R, centre, av, rho, ballast=None) -> di
 
 ## Bounced off: when a drop is over
 
-**Definition.** A drop ends as 'bounced off' when the craft has been free for 0.5 s, is rising, and its exact free flight (next entry) does not come back down on a grain the simulation can move, the free crop, within the time the run could still take (up to 300 s). Until that holds the simulation goes on and the solver decides, also when the craft's centre has crossed the crop's edge but a wing is still over it. The flight is checked against the whole bed: 'clear' if it touches nothing in that time, 'beyond' if its next touch is on the frozen ring or the bed outside the crop; the prediction is stored with the drop.
+**Definition.** A drop ends as 'bounced off' when the craft has been free for 0.5 s, is rising, and its exact free flight (next entry) does not come back down on a grain the drop can move, the patch, within the time the drop could still take (up to 300 s). Until that holds the simulation goes on and the solver decides, also when the craft's centre has crossed the patch's edge but a panel is still over it. The flight is checked against the whole bed: 'clear' if it touches nothing in that time, 'beyond' if its next touch is on the fixed ring or the rest of the bed; the prediction is stored with the drop.
 
-**Why it can be trusted.** Once the craft is free nothing acts on it but gravity, so its future is known exactly: nothing is left to simulate unless it comes back down on grains the simulation can move. The two tests this replaced both failed on bed 1. On 31 October a 3-30 s look-ahead of the tumbling craft missed a wing-tip graze 19 s after a drop was declared over. On 1 November the exact check showed 'flying out over the crop edge' had ended drop b955841420ca while a wing was still over the crop: it touches a free grain 0.58 m from the target 4 s later. The exact test also ends drops sooner: a 4 m-bed drop now stops 0.5 s after its last touch instead of 31 s later, with an identical result, at a seventh of the computing.
+**Why it can be trusted.** Once the craft is free nothing acts on it but gravity, so its future is known exactly: nothing is left to simulate unless it comes back down on grains the drop can move. The test it replaced, a 3-30 s look-ahead of the tumbling craft, missed a panel-tip graze 19 s after a drop on bed 1 had been declared over (31 October). The exact test also ends drops sooner: a 4 m-bed drop now stops 0.5 s after its last touch instead of 31 s later, with the same result, at a seventh of the computing.
 
-**Limits.** The free grains are taken at their pose when the test is made; a grain still creeping (mm/s) could move into the path afterwards. The replay in the last-contact check covers that wherever the flight passes within 5 cm of a free grain.
+**Limits.** The patch's grains are taken at their pose when the test is made, and a grain still moving could come into the path afterwards. The test allows for it (its 1 cm margin grows by the fastest grain's speed times the time ahead), and the replay in the last-contact check covers the rest wherever the flight passes within 5 cm of a grain that can move.
 
 `src/milani/impact.py`, line 295:
 
@@ -194,19 +194,36 @@ def _craft_info(spec: ImpactorSpec, pcs, R, centre, av, rho, ballast=None) -> di
                     return "detached"
 ```
 
-`src/milani/flight.py`, line None:
+`src/milani/flight.py`, line 600:
 
 ```python
-(not found: def decide(self, x, v, M_rows, w_body, C, axes, t_now: float, horizon: float):)
+    def decide(self, x, v, M_rows, w_body, C, axes, t_now: float, horizon: float,
+               grain_speed: float = 0.0):
+        """None: keep simulating (the craft's next touch is on a free grain,
+        or its flight passes within margin + grain_speed * t of one).
+        Otherwise how the drop ends: "clear" (no touch on the bed within the
+        horizon) or "beyond" (the next touch is on the frozen ring or the
+        bed outside the simulation). self.last holds the scan."""
+        if self._cache is None or float(np.abs(C[self.free_index] - self._cache[0]).max()) > 1e-3:
+            self._cache = (C[self.free_index].copy(), self.base.with_free(self.free_meshes(C, axes)))
+        r = scan(self.shape, x, v, matrix_to_quat(np.asarray(M_rows).T), w_body, self.g, self._cache[1],
+                 free_margin=self.margin, free_rate=float(grain_speed), max_s=max(0.0, horizon))
+        r["grain_speed_m_s"] = float(f"{grain_speed:.3g}")
+        r["decided_at_t"] = round(float(t_now), 4)
+        r["touch_at_t"] = round(float(t_now) + r["end_s"], 4) if r["touch"] else None
+        self.last = r
+        if not r["touch"]:
+            return "clear"
+        return None if r["layer"] == "free" else "beyond"
 ```
 
 ## Exact free flight
 
-**Definition.** From any free state the craft's motion is computed exactly: its centre of mass on the ballistic arc, its rotation from Euler's equations for a torque-free body (the spin axis wobbles because the craft's three moments of inertia differ), integrated by 4th-order Runge-Kutta in steps of at most 0.02 s. The craft is then moved along that flight over the bed in two stages. Points every 2 cm on its surface are compared with the bed's top surface (1 cm grid, each cell raised to its highest neighbour); wherever a point comes within 2 cm, the exact distance between the craft's pieces (three convex boxes when deployed) and every grain nearby (convex polyhedra) decides. A touch is an exact distance under 1 mm. Near a grain every step is the longest in which no point of the craft could close that distance (conservative advancement), so a touch cannot fall between two tests.
+**Definition.** From any free state the craft's motion is computed exactly: its centre of mass on the ballistic arc, its rotation from Euler's equations for a torque-free body (the spin axis wobbles because the craft's three moments of inertia differ), integrated by 4th-order Runge-Kutta in steps of at most 0.02 s. The craft is then moved along that flight over the bed in two stages. Points every 2 cm on its surface are compared with the bed's top surface (1 cm grid, each cell raised to its highest neighbour); wherever a point comes within 2 cm, the exact distance between the craft's pieces (three convex boxes with the panels open) and every grain nearby (convex polyhedra) decides. A touch is an exact distance under 1 mm. Near a grain every step is the longest in which no point of the craft could close that distance (conservative advancement), so a touch cannot fall between two tests.
 
 **Why it can be trusted.** It is the physics LMGC90 itself integrates for a free body, gyroscopic torque included, so it can be checked against the simulation: over the recorded free flights of bed 1 (10-70 s each) the predicted centre stays within 0.001 mm and the orientation within 0.06 degrees of the simulation's. The exact distance is the closest pair of points of two convex hulls, a small least-squares problem; on 1000 pairs of boxes with known distances its worst error is 2e-13 m.
 
-**Limits.** The crop's grains are taken as they stand (the run's last frame for the check, the current pose in the end-of-drop test). Outside the crop the bed is as settled, which is what an undisturbed bed would be.
+**Limits.** The patch's grains are taken as they stand (the drop's last frame for the check, the current pose in the end-of-drop test). Outside the patch the bed is as settled, which is what an undisturbed bed would be.
 
 `src/milani/flight.py`, line 77:
 
@@ -258,11 +275,11 @@ def hull_distance(A, B, w: float = 1.0e3):
 
 ## Last-contact check
 
-**Definition.** Every bounced-off drop is checked after it has finished, two ways. First, the exact free flight from its last touch over the whole bed: until the run's end against the grains outside the simulation (inside it the solver has already decided), after it against the free grains at their final pose, the frozen ring and the rest of the bed, until the craft has left the bed. Second, where that flight passes within 5 cm of a grain that can move, a replay of the drop with the end-of-drop test switched off, continued until the craft leaves the crop, stops, or 150 s past the original end. The replay is deterministic, so up to the original end it is the original run, and it includes the grains' own motion.
+**Definition.** Every bounced-off drop is checked after it has finished, two ways. First, the exact free flight from its last touch over the whole bed: until the run's end against the grains outside the simulation (inside it the solver has already decided), after it against the patch's grains at their final pose, the fixed ring and the rest of the bed, until the craft has left the bed. Second, where that flight passes within 5 cm of a grain that can move, a replay of the drop with the end-of-drop test switched off, continued until the craft leaves the patch, stops, or 10-150 s past the original end. The replay is deterministic, so up to the original end it is the original run, and it includes the grains' own motion.
 
-**Why it can be trusted.** Verdicts: last contact confirmed (no touch anywhere on the bed after the last touch); next touch off the patch (no later touch on the free crop; the next one, shown with when and where, is the landing of a new hop on the frozen ring or the bed beyond); lands back on the patch (a long hop back onto the crop after the run's 300 s limit); touched again (a touch the run should have simulated: it ended too early).
+**Why it can be trusted.** Verdicts: last contact confirmed (no touch anywhere on the bed after the last touch); next touch off the patch (no later touch on the patch; the next one, shown with when and where, is the landing of a new hop on the fixed ring or the rest of the bed); touched the fixed ring as predicted (the replay runs into the touch the flight predicted there); lands back on the patch (a long hop back onto it after the drop's 300 s limit); touched again (a touch the drop should have simulated: it ended too early). On the 3 m set, replaying every drop gave the same verdicts as replaying only those within 5 cm of a grain that can move (1 November).
 
-**Limits.** Drops checked before 1 November had only the replay, which cannot follow a craft out over the crop's edge; they show 'left over the crop edge' until re-checked.
+**Limits.** Drops checked before 1 November had only the replay, which cannot follow a craft out over the patch's edge; they show 'left over the patch edge' until re-checked.
 
 `src/milani/checks.py`, line 169:
 
@@ -311,8 +328,8 @@ def _combine(rec: dict, fl: dict, rv: str | None, max_t: float) -> tuple[str, di
     fv = fl.get("verdict", "")
     if fl.get("touch"):
         cl = fl.get("closest") or {}
-        nxt = {"where": {"free": "the free crop", "frozen": "the frozen ring",
-                         "bed": "the bed beyond the simulation"}.get(fl.get("layer"), fl.get("layer")),
+        nxt = {"where": {"free": "the patch", "frozen": "the fixed ring",
+                         "bed": "the rest of the bed"}.get(fl.get("layer"), fl.get("layer")),
                "t": fl.get("touch_t"),
                "after_last_contact_s": round(float(fl["touch_t"]) - t_last, 2),
                "distance_from_target_m": cl.get("distance_from_target_m")}
@@ -409,7 +426,7 @@ def energy_kept(rec: dict):
 
 ## Outcomes
 
-**Definition.** bounced off: see above. left the patch: the craft's centre left the free crop while on or near the ground, and its flight (if it was airborne) does not come back down on the crop (the result is cut off). came to rest: slower than 2 mm/s and 0.01 rad/s for 10 s in contact. captured: its fastest point stayed below 10 % of the arrival speed for 10 s (at micro-g friction takes minutes to stop a creep). time limit: 300 s simulated.
+**Definition.** bounced off: see above. left the patch: the craft's centre left the patch while on or near the ground, and its flight (if it was airborne) does not come back down on the patch (the result is cut off). came to rest: slower than 2 mm/s and 0.01 rad/s for 10 s in contact. captured: its fastest point stayed below 10 % of the arrival speed for 10 s (at micro-g friction takes minutes to stop a creep). ran out of time: 300 s simulated.
 
 `src/milani/detectors.py`, line 46:
 
@@ -487,7 +504,7 @@ def energy_kept(rec: dict):
 
 ## What touched first
 
-**Definition.** The craft piece (bus, wing) and the kind of feature from the contact points of the first touch: 3 or more points a face, 2 an edge, 1 a corner (by where it lies on the box); a wing touch is 'wing'.
+**Definition.** The craft piece (body or solar panel) and the kind of feature from the contact points of the first touch: 3 or more points a face, 2 an edge, 1 a corner (by where it lies on the box); a panel touch is 'wing' in the records.
 
 `src/milani/impact.py`, line 47:
 
@@ -540,11 +557,11 @@ def _contact_geometry(rows, craft: int, x_craft, M, verts, piece_of=None):
         max_grain_disp=float(disp.max()) if disp.size else 0.0,
 ```
 
-## Crop-edge disturbance
+## Grain motion at the patch edge
 
-**Definition.** The fastest free grain in the crop's outer band (width: half the crop radius or two largest grain radii, whichever is smaller) divided by the arrival speed.
+**Definition.** The fastest grain in the patch's outer band (width: half the patch radius or one largest grain length, whichever is smaller) divided by the arrival speed.
 
-**Why it can be trusted.** If the impact moves grains at the crop's edge, a larger crop could change the result. Measured on the grains' motion, not on forces: rigid grains wedged against the frozen ring carry arbitrary internal stress.
+**Why it can be trusted.** If the impact moves grains at the patch's edge, a larger patch could change the result. Measured on the grains' motion, not on forces: rigid grains wedged against the fixed ring carry arbitrary internal stress.
 
 `src/milani/impact.py`, line 181:
 

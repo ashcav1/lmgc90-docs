@@ -24,7 +24,7 @@ time:
 per-polygon array on every face-to-face polyhedron contact. The result is a
 random SIGBUS in `PRPRx_SelectProxTactors` — about one settle in two on a
 230-grain bed. The fix is `area = sum(carea)`; physics is unchanged
-(bit-identical results). Apply it before any production work.
+(bit-identical results). Apply it before any study work.
 
 ## Python side
 

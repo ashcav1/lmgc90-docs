@@ -36,7 +36,7 @@ grain–grain contact per grain.
 
 The see-table `alert` is the detection radius: pairs closer than it become
 candidates. Too small and a fast body steps past its neighbour before being
-detected (then the gap law ejects it); too large and the candidate lists
+detected (then the position rule ejects it); too large and the candidate lists
 explode. We use a tenth of the smallest semi-axis of the kind involved and
 cap speeds while a layer deposits so that no grain moves more than 0.4 of
 that per step.

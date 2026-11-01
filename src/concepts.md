@@ -5,7 +5,7 @@
 A **body** (`RBDY3` for 3-D rigids) carries mass, inertia and a frame. A
 **contactor** is the geometry attached to it that can touch things:
 `POLYR` (convex polyhedron), `PLANx` (a thick plane), `SPHER`, `CYLND`, …
-A body can carry several contactors (a spacecraft bus plus two wings as one
+A body can carry several contactors (a spacecraft bus plus two solar panels as one
 rigid body: three `POLYR` on one `RBDY3`, each with its own volume, inertia
 and shift so the rigid properties stay exact).
 

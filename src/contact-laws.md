@@ -15,7 +15,7 @@ contact at the *beginning* of the step (`gapTTbegin ≤ 0`) and then imposes
   it drift 5–16 mm into each other and no time step, tolerance or alert
   distance removes it (our bed QA fails at > 0.1 × smallest semi-axis).
   Use it for the spacecraft–rock pair and for pairs involving small grains
-  where the gap law is worse (see below); not for settling boulders.
+  where the position rule is worse (see below); not for settling boulders.
 
 ## `GAP_SGR_CLB` — gap-level Signorini + Coulomb
 
@@ -25,8 +25,8 @@ the next (at `gap/dt`). Measured overlap after settling: ~1e-19 m.
 - The reference law for settling rigid boulders.
 - `pre` whitelists it only for deformable contactors; the kernel is generic,
   so our deck writer admits it for rigid pairs.
-- Small grains under the gap law **drain through the pores** of an
-  overlap-free boulder packing for thousands of steps; fines pairs stay on
+- Small grains under the position rule **drain through the pores** of an
+  overlap-free boulder packing for thousands of steps; small-stone pairs stay on
   `RST_CLB`.
 - Friction 0.9 with this law on rigid polyhedra made the NLGS diverge (NaN)
   once; keep settle friction ≤ 0.7.
