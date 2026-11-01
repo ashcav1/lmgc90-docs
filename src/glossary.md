@@ -16,3 +16,5 @@
 | **crop / frozen shell** | the part of a settled bed an impact simulates (free grains around the landing spot) and the ring of grains held fixed around it |
 | **QA** | the automatic checks on a bed or run — overlaps, escaped grains, contacts per grain, layer height, crop-edge disturbance; PASS / WARN / FAIL |
 | **restitution (e)** | speed out ÷ speed in of the body that bounced |
+
+{{#include project/generated/glossary.md}}

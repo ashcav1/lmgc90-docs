@@ -1,5 +1,9 @@
 # Introduction
 
+> **Following the Milani bounce study?** Start at [Where things stand](project/state.md):
+> what the project is doing, the state of every run, what comes next, and links to the
+> [drop reel](project/drop-reel.md) with a movie of every simulated drop.
+
 LMGC90 is an open-source contact-dynamics code (Non-Smooth Contact Dynamics,
 NSCD) developed at LMGC, Université de Montpellier. It integrates collections
 of rigid or deformable bodies with unilateral contact and Coulomb friction
