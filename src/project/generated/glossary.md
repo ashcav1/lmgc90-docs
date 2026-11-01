@@ -10,6 +10,10 @@ _The same definitions as in the drop reel's Terms panel._
 
 The compass direction of the approach, in degrees from the bed's +x axis.
 
+### ballast
+
+A massless box inside the deployed craft's bus. LMGC90 turns a body made of several pieces about the centre of their volumes, not of their masses; the ballast's volume moves that point onto the craft's true centre of mass.
+
 ### bed
 
 A patch of simulated terrain: grains dropped into a square box and left to settle under gravity, saved once, then reused by every drop on it. Its 'footprint' is the box's side (4.5 m for production beds).
@@ -22,13 +26,25 @@ The six beds of the study, each one change from the last: 1 uniform boulders; 2 
 
 The large grains: long semi-axis 0.10-0.35 m (0.2-0.7 m across). On Dimorphos they cover most of the surface.
 
+### centre of mass
+
+The point a free body turns about and whose path is a ballistic arc. For the deployed craft it lies 6 mm from the bus centre toward the wings.
+
 ### confirmation window
 
 500 more settle steps after the first rest with nothing changed, to show the bed stays at rest. If it blows up anyway, the state saved at the first rest is the bed (card: rest_window WARN).
 
+### conservative advancement
+
+Moving a body forward in steps no longer than its distance to the nearest obstacle divided by the speed of its fastest point, so it cannot pass through anything between two tests.
+
 ### contact law
 
 The rule LMGC90 applies at each pair of touching bodies. All use Coulomb friction (friction 0.6 while settling). The gap law (GAP_SGR_CLB) pushes overlapping bodies apart; the velocity law (RST_CLB) only stops them moving into each other and gives a bounce restitution.
+
+### convex
+
+A shape without dents: the straight line between any two of its points stays inside it. Every grain and every piece of the craft is convex, which makes the exact distance between two of them a small, reliable calculation.
 
 ### crop
 
@@ -58,6 +74,10 @@ Mechanical energy of the craft when it left, divided by its energy on arrival (k
 
 The small grains between and on the boulders: long semi-axis 4-10 cm. On Dimorphos this is everything below DART's ~3 cm image resolution, so how much there is, and where, is an assumption the beds vary.
 
+### free flight
+
+The craft between touches or after its last one. Only gravity acts on it, and gravity exerts no torque, so its path and its tumbling can be computed exactly into the future.
+
 ### frozen ring
 
 The grains just outside the free crop, held still so the crop does not spill out. They are part of the terrain the craft can hit, but they cannot move.
@@ -82,6 +102,10 @@ Short for the tiny surface gravity of Dimorphos (5e-5 m/s^2) used in every drop.
 
 The 12 kg CubeSat (6U) that ESA's Hera mission releases at the Didymos system. Its bus is a 13 x 25 x 37 cm box; with its two solar wings unfolded it is 1.47 m across. At the end of its mission it may touch down on Dimorphos: these simulations ask how it bounces.
 
+### next touch
+
+Where and when the craft would touch the bed again after a drop has ended, from its exact free flight. 'Off the patch': on the frozen ring or the bed beyond the free crop, the landing of a new hop.
+
 ### NLGS
 
 Non-linear Gauss-Seidel, the iterative solver LMGC90 uses each time step to find all contact forces at once. It sweeps the contacts until the forces stop changing (to a tolerance) or a budget of sweeps runs out ('solver steps at budget').
@@ -92,7 +116,7 @@ Non-smooth contact dynamics, LMGC90's method: rigid bodies, contacts that either
 
 ### outcome
 
-How a drop ended: bounced off (left the surface for good), left the patch (slid or hopped out of the free crop on the ground: the result is cut off), captured (stayed down, creeping), came to rest, or time limit (300 s).
+How a drop ended: bounced off (left the surface; its exact free flight comes back down on none of the grains the simulation moves), left the patch (slid or hopped out of the free crop on the ground: the result is cut off), captured (stayed down, creeping), came to rest, or time limit (300 s).
 
 ### ParaView
 

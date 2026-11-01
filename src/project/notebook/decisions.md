@@ -481,6 +481,96 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   needs ~2.5x the steps of a uniform one to reach 3 mm/s (3 m twin: past
   11,500 against 4,500 for the 4.5 m uniform bed 1), which the estimator
   now carries. Not hashed (a stopping rule, like the window fix).
+- 2026-10-31 (evening) — **A drop is over only when no point of the craft
+  can reach the terrain over the crop** (detectors.reach_clear, impact.py
+  clear_ahead; `lab.py check-last-contact`; `lab.py campaign rerun`).
+  Replaying a bed-1 drop that had been declared "detached" at 1.3 s, with
+  detachment switched off, showed a wing tip grazing a boulder at 20.5 s
+  (1.6 N for one step, horizontal speed -6 %). The look-ahead had projected
+  the craft's vertices 3-30 s ahead assuming a constant spin axis; a free
+  asymmetric body's axis precesses, and over 19 s the wing tip drifted the
+  few centimetres between "clear" and a graze. The new test needs no
+  rotation model: the craft is inside a sphere of its circumradius (0.76 m
+  deployed, 0.23 m stowed) about its centre of mass, which moves on an
+  exact ballistic arc when free; the sphere must stay above the bed's
+  height map (+ largest grain displacement so far + 1 cm + half a sample
+  step of travel) from now until the centre leaves the free crop, checked
+  every 0.5 s of free flight. It is a proof of no contact over the crop up
+  to the height map's resolution and later grain creep; the replay check
+  tests those directly, drop by drop (verdicts in last_contact_check.json).
+  Consequence: bounced-off drops run longer (the craft must climb clear of
+  the boulders or reach the crop edge: tens of seconds to minutes of
+  simulated time at micro-g), and every laptop drop set has been
+  re-simulated in place (`campaign rerun`; old records in
+  superseded/). Also: "energy kept" counted potential energy from the box
+  floor (energy_ratio ~6 % high on a 1 m bed); now from the first-contact
+  height, old records recomputed exactly (outcome.energy_kept). And the
+  contact-frame normal restitution is reported only for single-touch drops.
+- 2026-11-01 — **The deployed craft turns about its centre of mass: an
+  internal ballast** (impactors.ballast_piece; impact.py records
+  `setup.craft_geometry_error_m` for every drop). LMGC90 places a body made
+  of several contactors at the volume-weighted centroid of their GEOMETRIC
+  volumes (mod_RBDY3 read_bodies: OG = sum(v_i shift_i) / sum(v_i)) and keeps
+  the principal inertia it is given; the per-piece "effective volumes" that
+  make pre's centre of mass right never reach LMGC90. The deployed craft
+  (bus 10.8 kg, wings 0.6 kg each, wings far lighter for their volume) so
+  turned about a point 10.2 mm from its centre of mass in every drop until
+  now; the stowed box (one piece) was right. Found by comparing the craft in
+  the run's ParaView frames with craft.json: a constant 10.172 mm offset
+  along the bus x axis. The fix adds a box inside the bus (3.9 x 24 x 36 cm,
+  3 mm inside every wall: no grain can reach it before the bus) whose
+  volume moves the geometric centroid onto the centre of mass, and sets the
+  density to 12 kg / total geometric volume. In pre the ballast is massless:
+  pre takes a contactor's volume and inertia as given only when an inertia
+  entry exceeds 1e-6 (rigidContactor3D), so the ballast gets 2e-6 and the
+  bus 2e-6 less; build_avatar asserts pre's centre and inertia equal the
+  intended ones. Its interactions are excluded from the craft's contacts.
+  Verified in a run: the simulated craft within 1.6e-11 m of craft.json,
+  inertia 0.4535 / 0.1531 / 0.3387 kg m^2 (intended 0.4534 / 0.1531 /
+  0.3386). One 4 m-bed drop: e 0.300 -> 0.329. Ids are unchanged (the bed
+  ids must survive); records carry `impact_model` (milani.IMPACT_MODEL) and
+  `lab.py campaign rerun NAME --stale` re-simulates older ones in place.
+- 2026-11-01 — **A drop ends on the craft's exact free flight**
+  (flight.py; impact.py ahead; detectors.py). Once free, the craft feels
+  only gravity: centre on a ballistic arc, rotation by the torque-free
+  Euler equations (RK4), validated against the recorded free flights of
+  bed 1 to 0.001 mm and 0.06 degrees over 10-70 s, every surface point
+  within 0.015 mm after 48 s. When the craft has been free 0.5 s and is
+  rising, its flight is scanned over the whole bed, which is kept as three
+  layers: the crop's free grains at their current pose, the frozen ring and
+  the unsimulated bed as settled. Coarse test: surface points every 2 cm
+  against each layer's dilated 1 cm top surface; decision: the exact
+  distance between the craft's convex pieces and the grains' convex
+  polyhedra (closest points of two hulls, bounded least squares; 2e-13 m
+  worst error on 1000 box pairs), with conservative-advancement steps so no
+  touch falls between two tests. The drop goes on while the flight comes
+  within 1 cm + (fastest free grain's surface speed) x (time ahead) of a
+  free grain in the time the run could still take: the solver decides
+  those, also after the centre crossed the crop edge with a wing still over
+  it. Otherwise it ends: `detached_how = "clear"` (no touch on the bed) or
+  `"beyond"` (the next touch is on the frozen ring or the bed outside the
+  crop; the prediction is stored in `contact.flight`). Replaces reach_clear
+  (a sphere of the craft's reach: a proof, but it kept drops running for
+  minutes) and the patch-edge rule. Same results, far less computing: a 4 m
+  drop now ends 0.5-1 s after its last touch instead of 31 s later.
+- 2026-11-01 — **The last-contact check is the exact flight over the whole
+  bed, plus a replay where it can add something** (checks.py,
+  `lab.py check-last-contact --replay near|all|none`). The flight from the
+  last contact is scanned until the run's end against the unsimulated bed
+  only (inside the simulation the solver decided), after it against all
+  three layers (free grains from the run's last ParaView frame; impact.py
+  now writes a frame at the very end) until the craft leaves the bed; a
+  touch is an exact distance under 1 mm. The replay (detachment off,
+  150 s more) runs where the flight passes within 5 cm of a free grain
+  after the end, because only there can the grains' own later motion
+  matter; `all` replays every drop that ended over the crop. Verdicts:
+  confirmed / next touch off the patch / lands back on the patch (after
+  the time limit) / touched again / touched unsimulated terrain. Seconds
+  per drop instead of minutes, so the lab Mac's sets can all be checked.
+  Re-checking the 93 bounced-off drops made before tonight (with the craft
+  where LMGC90 had it): 75 touch nothing on the bed again, 17 next touch
+  the frozen ring or the bed beyond 34-290 s later (a new hop), 1 comes
+  back down on the crop after 547 s; none ended too early.
 - OPEN GATES: D1 (parameter provenance — provisional regolith_v1), D2 (Milani
   contact model if panels deployed), D5 (fines resolution / SFD), D7 (budget
   from pilot timing), D8 (MASCOT benchmark — re-derive the target CoR values

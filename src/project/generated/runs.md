@@ -32,6 +32,7 @@ Generated from the reports in the code repository; see [Where things stand](stat
 | `exp_4m_capwin` seed 1 | 4 m bed 1 geometry, cap kept through the window, rest at 3 mm/s | 4.0 m | 824 | 5,700 steps, 0.8 h | PASS |
 | `exp_base_v12` seed 1 | thick-layer test: 1.5 m footprint, 0.9 m of bed-1 boulders | 1.5 m | 116 | 5,500 steps, 0.1 h | PASS |
 | `exp_bed2_3m` seed 1 | bed 2 at 3 m: 90 cm of Weibull boulders | 3.0 m | 932 | 15,100 steps, 4.7 h | PASS |
+| `exp_bed4q_2m` seed 1 | quick fines bed at 2 m: 50 cm of 0.10-0.25 m boulders + 8 cm fines veneer, split law | 2.0 m | 1,132 | 14,100 steps, 6.6 h | WARN (overlap_rel_fines WARN, solver_unconverged_fraction WARN, fines_coverage WARN) |
 | `exp_fines` seed 1 | experiment: fines veneer cost and overlap | 2.0 m | 1,415 | 12,200 steps, 1.1 h | FAIL (overlap_rel_fines FAIL) |
 | `exp_fines_only` seed 1 | experiment: fines-only layer, velocity rule vs gap rule | 1.0 m | 353 | 1,500 steps, 0.0 h | WARN (overlap_rel_fines WARN, bare_floor_fraction WARN) |
 | `exp_fines_only_gap` seed 1 | experiment: fines-only layer, velocity rule vs gap rule | 1.0 m | 353 | 1,800 steps, 0.0 h | WARN (bare_floor_fraction WARN) |
@@ -77,7 +78,6 @@ Stopped on purpose, failed, settled before bed cards existed, still running, or 
 | `bed2_3m_b.toml` | bed 2 at 3 m: 90 cm of Weibull boulders |
 | `bed2_3m_cap015.toml` | bed 2 at 3 m with the speed cap at 0.15 m/s: does a gentler cap end the churn sooner? |
 | `bed4_3m.toml` | bed 4 at 3 m: bed 2's boulders + 8 cm fines veneer, split law |
-| `bed4q_2m.toml` | quick fines bed at 2 m: 50 cm of 0.10-0.25 m boulders + 8 cm fines veneer, split law |
 | `bed4u_3m.toml` | bed 4 on uniform boulders at 3 m: 90 cm of 0.15-0.35 m boulders + 8 cm fines veneer, split law |
 | `bigpolyr_probe.toml` | 2 m fines substrate + Weibull boulders: mean radius 0.09 m, boulders above 4x it (big POLYR) |
 | `bigpolyr_repro.toml` | 2 m: 4-8 cm fines substrate + Weibull boulders: mean radius 0.08 m, largest 4.6x it (big POLYR at the default ratio) |
@@ -95,10 +95,11 @@ Stopped on purpose, failed, settled before bed cards existed, still running, or 
 | drop set | machine | what it is for | drops | outcomes | median e | CPU time | in the reel |
 |---|---|---|---|---|---|---|---|
 | `exp_battery_4m` | laptop | study drop set on bed 1: 9 spots x 2 speeds x 2 angles, fixed pose | 8 | 7 detached, 1 left patch | 0.425 | 0.3 h |  |
-| `exp_battery_L1_s1` | laptop | the standard 36 drops on bed 1 (uniform boulders 0.15-0.35 m, 0.9 m deep) | 36 | 34 detached, 2 left patch | 0.349 | 1.1 h |  |
+| `exp_battery_L1_s1` | laptop | the standard 36 drops on bed 1 (uniform boulders 0.15-0.35 m, 0.9 m deep) | 36 | 32 detached, 4 left patch | 0.342 | 2.3 h | [open](../drops/index.html#set-exp_battery_L1_s1) |
 | `exp_drops_4m_capwin` | laptop | standard drops on the 4 m capped-window bed: 9 spots (+-0.05 m) x 2 speeds x 2 angles | 36 | 34 detached, 2 left patch | 0.312 | 0.8 h |  |
-| `exp_drops_4m_capwin_r2` | laptop | the 36 drops again under the rotation-aware look-ahead and the patch-edge rule (2026-10-31) | 36 | 35 detached, 1 left patch | 0.299 | 0.6 h | [open](../drops/index.html#set-exp_drops_4m_capwin_r2) |
-| `exp_drops_bed2_3m` | laptop | standard drops on the 3 m bed-2 twin (bare Weibull boulders): 9 spots (+-0.05 m) x 2 speeds x 2 angles, 0.7 m crop — the pair of exp_drops_bed4_3m on the same boulders | 36 | 33 detached, 3 left patch | 0.432 | 0.3 h | [open](../drops/index.html#set-exp_drops_bed2_3m) |
+| `exp_drops_4m_capwin_r2` | laptop | the 36 drops again under the rotation-aware look-ahead and the patch-edge rule (2026-10-31) | 36 | 32 detached, 4 left patch | 0.303 | 2.1 h | [open](../drops/index.html#set-exp_drops_4m_capwin_r2) |
+| `exp_drops_bed2_3m` | laptop | standard drops on the 3 m bed-2 twin (bare Weibull boulders): 9 spots (+-0.05 m) x 2 speeds x 2 angles, 0.7 m crop — the pair of exp_drops_bed4_3m on the same boulders | 36 | 32 detached, 4 left patch | 0.432 | 0.6 h | [open](../drops/index.html#set-exp_drops_bed2_3m) |
+| `exp_drops_bed4q_2m` | laptop | stowed-craft drops on the 2 m quick fines bed: the centre spot x 2 speeds x 2 angles x 3 azimuths, 0.45 m crop | 12 | 8 detached, 4 left patch | 0.307 | 0.4 h | [open](../drops/index.html#set-exp_drops_bed4q_2m) |
 | `smoke` | laptop | 8-run engine drill on the smoke bed (not science) | 8 | 5 detached, 3 left patch | 0.186 | 0.1 h |  |
 
 ## Single test drops

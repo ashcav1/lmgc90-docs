@@ -33,31 +33,47 @@ moment of inertia.
 
 Ray-cast every vertex of the craft along its approach against the bed's
 height map and start 2 cm before first contact; at 6 cm/s that is 0.3 s of
-free flight. End on: detached (rising with a clear ballistic path for 0.5 s),
-rest (below 2 mm/s for 10 s), captured (fastest point below 10 % of the
-arrival speed for 10 s — friction at 5e-5 m/s² takes minutes to stop a
-creep), left the free core, or the time cap.
+free flight. End on: detached (below), rest (below 2 mm/s for 10 s),
+captured (fastest point below 10 % of the arrival speed for 10 s — friction
+at 5e-5 m/s² takes minutes to stop a creep), left the free core, or the
+time cap.
 
-Two lessons about "clear ballistic path" from 36 drops on a 4 m bed
+**Detached is decided on the craft's exact free flight.** A free craft
+feels only gravity: its centre of mass follows a ballistic arc and its
+rotation the torque-free Euler equations, which LMGC90 integrates too (the
+explicit gyroscopic term in `comp_Fext_RBDY3`). Integrated by RK4 they
+reproduce LMGC90's free flights to 0.001 mm and 0.06° over 10–70 s. When
+the craft has been free for 0.5 s and is rising, move it along that flight
+over the bed and stop at the first exact contact: the craft's pieces and
+the grains are convex polyhedra, and the distance between two convex hulls
+is a small bounded least-squares problem (closest convex combinations).
+Keep simulating while the flight comes back to a grain the simulation can
+move (allowing for the grains' own speed); otherwise the drop is over, and
+the predicted next touch (on the frozen ring, the bed beyond the crop, or
+none before the craft leaves the bed) is recorded. What did not work
 (2026-10-31):
 
-- **Spheres are the wrong obstacle.** A look-ahead that keeps the craft's
-  vertices away from every grain's circumsphere never clears a 1.47 m craft
-  skimming 20 cm above a boulder field: it sits inside those spheres until
-  it has risen above the tallest one, a minute at micro-g. Vertical drops
-  hovered for 40–100 s, or drifted out of the 1.2 m crop first and were
-  voided. Use the bed's height map — the real top envelope of the grains,
-  raised by the largest grain displacement since the impact — as the
-  obstacle, and keep the sphere test only as a second way to pass.
-- **Rotate the craft along the path.** A craft that bounces with a slow
-  spin (0.05–0.1 rad/s) has a wing coming down within seconds; a
-  translation-only look-ahead declared it detached 0.5 s after the first
-  touch and cut off the 3–6-touch tumble that follows (first-touch e of
-  0.31–0.35 against 0.21–0.26 at the end of the landing). Propagate the
-  vertices with the spin (Rodrigues) over at least half a turn.
-- A craft that crosses the crop edge airborne and rising, after the
-  detachment time, has completed its bounce: call it detached with the exit
-  state of its last contact. On the ground it has left the patch.
+- **A look-ahead with a fixed spin axis** missed a wing-tip graze 19 s
+  later: a free asymmetric body's spin axis wobbles.
+- **Spheres as obstacles** (each grain's circumsphere, or a sphere of the
+  craft's reach against the height map) are proofs, but a 1.47 m craft
+  skimming 20 cm above boulders stays inside them for minutes at micro-g.
+- **"Airborne over the crop edge" as an end** ignores a wing still over the
+  crop.
+
+**Multi-piece bodies are centred on their volume, not their mass.**
+`read_bodies` in mod_RBDY3 puts a body with several contactors at the
+volume-weighted centroid of their geometric volumes and keeps the principal
+inertia it is given. pre's per-contactor `volume=` / `I=` / `shift=` set the
+mass properties pre writes, but LMGC90 recomputes each POLYR's volume from
+its vertices. A craft whose pieces differ in density (a 10.8 kg bus with two
+0.6 kg wings) therefore turns about the wrong point (10.2 mm off for
+Milani). Fix: an extra contactor inside the bus whose volume moves the
+geometric centroid onto the centre of mass, density = mass / total
+geometric volume, and in pre a near-zero volume and an inertia just above
+pre's 1e-6 "not given" threshold (taken off the bus). Check it in every run:
+read the craft's vertices back (`POLYR_GetVertex`) and compare with the
+design.
 
 ## The settle's instability does not reach the impact deck
 
