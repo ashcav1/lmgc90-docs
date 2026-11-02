@@ -4,8 +4,9 @@
 > what the project is doing, the state of every run, and links to the
 > [drop reel](project/drop-reel.md) with a movie of every simulated drop.
 > [The plan](project/plan.md) says where the study is going: the standard beds
-> (bare boulders, and boulders buried in small stones), the one problem left
-> (small-stone beds settle too slowly), and the steps to the paper.
+> (bare boulders, and boulders buried in small stones), the two problems left
+> (small-stone beds settle too slowly, and poured stones drain into the
+> boulders instead of burying them), and the steps to the paper.
 
 LMGC90 is an open-source contact-dynamics code (Non-Smooth Contact Dynamics,
 NSCD) developed at LMGC, Université de Montpellier. It integrates collections
