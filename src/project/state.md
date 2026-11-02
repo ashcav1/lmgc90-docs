@@ -14,7 +14,7 @@ measure how it bounces.
   long to come to rest. Five tests run tonight to fix that.
 - **How buried are the boulders today?** Barely: on the only settled bed
   with a thin top layer, small stones cover 24 % of the surface and the
-  boulders that show stand a median 8 cm above them.
+  boulders that show stand a median 9 cm above them.
 - **The end of a drop is now exact,** and a centre-of-mass error in every
   drop with the panels open was found and fixed. All 108 laptop drops were
   re-simulated.
@@ -23,10 +23,11 @@ measure how it bounces.
 - **How big a bed must be**, worked out and tested: the study beds' 4.5 m is
   right; bigger buys nothing, and 2 m is too small for drops (below).
 
-The lab Mac has been settling the six study beds since Friday, but has sent
-nothing to GitHub since Friday morning. Its beds with small stones (4-6)
-should be stopped: they would take days to a week, with settings that never
-rested on the laptop.
+**The lab Mac's weekend** (59 hours, reported Sunday 21:19): study bed 1
+settled three times (1.5-4 hours each) and 46 of its drops ran. Study bed 2
+settled once, after 52 hours; everything else is still settling. So slow
+settling is the problem for every bed except bed 1, not only for small
+stones. Its unfinished settles should be stopped on Monday morning.
 
 ## At a glance (regenerated)
 
@@ -68,11 +69,11 @@ would take millions of grains.
 |---|---|---|---|
 | **standard bed A** | 4.5 m x 4.5 m | study bed 2's boulders: 0.9 m, 20-70 cm long, realistic size mix | planned: lab Mac, three seeds, once the settling method is chosen |
 | **standard bed B** | 4.5 m x 4.5 m | bed A's boulders buried in small stones: at least 70 % of the surface small stones, boulders standing 5 cm or less above them | planned: layer thickness measured first (15, 25 or 35 cm) |
-| **study bed 1** | 4.5 m x 4.5 m | 0.9 m of boulders 30-70 cm long, [even size mix](../glossary.md#even-size-mix) (every length equally likely) | lab Mac, settling. A laptop copy is settled and has its 36 drops |
-| **study bed 2** | 4.5 m x 4.5 m | 0.9 m of boulders 20-70 cm long, [realistic size mix](../glossary.md#realistic-size-mix) (many small, few big, as measured on Dimorphos) | lab Mac, settling |
-| **study bed 3** | 4.5 m x 4.5 m | bed 2, 1.5 m deep | lab Mac, settling |
+| **study bed 1** | 4.5 m x 4.5 m | 0.9 m of boulders 30-70 cm long, [even size mix](../glossary.md#even-size-mix) (every length equally likely) | lab Mac: **three seeds settled** (1.5, 2.8, 4 hours), 46 of 108 drops ran. A laptop copy is settled and has its 36 drops |
+| **study bed 2** | 4.5 m x 4.5 m | 0.9 m of boulders 20-70 cm long, [realistic size mix](../glossary.md#realistic-size-mix) (many small, few big, as measured on Dimorphos) | lab Mac: **seed 2 settled after 52 hours**; seeds 1 and 3 still settling after 59; to be stopped |
+| **study bed 3** | 4.5 m x 4.5 m | bed 2, 1.5 m deep | lab Mac, all three seeds still settling after 59 hours; to be stopped |
 | **study bed 4** | 4.5 m x 4.5 m | bed 2 + a [thin top layer](../glossary.md#thin-top-layer) of small stones (8 cm, about one stone deep: boulder tops stick out) | lab Mac, settling; to be stopped |
-| **study bed 5** | 4.5 m x 4.5 m | a [bottom layer](../glossary.md#bottom-layer) of small stones (30 cm, stones 10-20 cm long), then bed 4 on top | lab Mac, settling; to be stopped |
+| **study bed 5** | 4.5 m x 4.5 m | a [bottom layer](../glossary.md#bottom-layer) of small stones (30 cm, stones 10-20 cm long), then bed 4 on top | lab Mac: failed in its first 84 minutes (its log is on the lab Mac) |
 | **study bed 6** | 4.5 m x 4.5 m | bed 2 + a [thick top layer](../glossary.md#thick-top-layer) of small stones (25 cm) | lab Mac, settling; to be stopped (bed B replaces it) |
 | laptop: bed 1 at 4 m | 4 m x 4 m | bed 1's recipe | settled, 36 drops |
 | laptop: bed 2's boulders at 3 m | 3 m x 3 m | bed 2's boulders, no small stones | settled, 36 drops (panels folded) |
@@ -128,8 +129,8 @@ the same 20 drops with patches of 0.9, 1.2 and 1.45 m (panels open) and
 
 | piece of work | where | state | what happens next |
 |---|---|---|---|
-| The six study beds, three seeds each for beds 1-4 | lab Mac | settling since Fri 30 Oct, about 11:15. **Nothing pushed to GitHub since Fri 07:57.** Its 60-hour limit ends about 23:15 Sunday: nothing new starts after that, work already going runs on, and each window pushes its notes when it ends | Windows with nothing left to run should push overnight. If nothing has arrived by Monday morning: are the windows running, and does `python3 lab.py sync --reports-only` push? Stop the windows still settling beds 4-6 (below). |
-| The 36-drop sets on the lab Mac's beds | lab Mac | start on their own as each bed settles | Made with Friday's code: the open-panel craft's centre of mass is off and the end-of-drop test is the old one. After `git pull`, re-simulate each drop set when it finishes (commands below). |
+| The six study beds, three seeds each for beds 1-4 | lab Mac | weekend run Fri 10:15 - Sun 21:15 (59 hours). Settled: bed 1 seeds 1-3, bed 2 seed 2. Still settling at 21:19: bed 2 seeds 1 and 3, bed 3 seeds 1-3, bed 4 seeds 1-3, bed 6. Bed 5 failed | Stop the unfinished settles on Monday morning (commands below). |
+| The 36-drop sets on the lab Mac's beds | lab Mac | bed 1: 46 of 108 drops ran (32 bounced off, 11 left the patch, 2 came to rest, 1 ran out of time). Bed 2's set needs all three seeds, so it never started | Made with Friday's code: re-simulate the 46 and run the other 62 with the new code (commands below). |
 | Study bed 1, laptop copy (same bed ID as the lab Mac's) | laptop | settled 31 Oct, passed the quality checks | The laptop's reference for checking the lab Mac's result. |
 | Its 36 drops | laptop | re-simulated 1 Nov and checked: 20 last contacts confirmed, 11 next touch off the patch, 1 long hop back onto it, 4 left the patch | In the [drop reel](drop-reel.md). |
 | The 4 m and 3 m test sets | laptop | re-simulated 1 Nov and checked: 4 m 24 confirmed + 8 off the patch, 3 m 30 + 2; no drop in any set ended too early | In the reel. |
@@ -199,14 +200,16 @@ From the re-simulated laptop drops (medians):
 ## What is next
 
 1. **Monday morning, at the lab Mac:**
-   - `python3 lab.py sync --reports-only`, so its weekend shows up here.
-   - Stop the windows still settling study beds 4, 5 or 6 (Ctrl+C in the
-     window), unless the window's last progress line ends in "confirmation
-     window": that is the last 500 steps before rest.
-   - When no simulation is running: `git pull`, then for each finished
-     drop set `python3 lab.py campaign rerun battery_L1 --stale --workers 8`
-     and `python3 lab.py check-last-contact battery_L1 --workers 8` (and the
-     same for `battery_L2`, `battery_L3`), then `python3 lab.py site --publish`.
+   - Stop every window still settling (Ctrl+C in the window), unless its
+     last progress line ends in "confirmation window": that is the last 500
+     steps before rest, minutes to go. The windows are bed 2 seeds 1 and 3,
+     bed 3 seeds 1-3, bed 4 seeds 1-3 and bed 6. Each window then reports
+     and closes.
+   - `git pull`, then
+     `python3 lab.py campaign rerun battery_L1 --stale --workers 16`
+     (the 46 drops, new code), `python3 lab.py campaign start battery_L1 --workers 16`
+     (the other 62), `python3 lab.py check-last-contact battery_L1 --workers 16`,
+     and `python3 lab.py site --publish`.
 2. **Monday:** the settling tests pick the settling method; the lab Mac
    settles standard bed A (three seeds) and measures how thick the small
    stones must be for bed B (2 m beds with 15, 25 and 35 cm).

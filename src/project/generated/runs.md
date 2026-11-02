@@ -4,12 +4,28 @@ Generated from the reports in the code repository; see [Where things stand](stat
 
 ## Beds settled on the lab Mac
 
+### Study beds
+
+| bed | what it is for | size | grains | settle | QA |
+|---|---|---|---|---|---|
+| study bed 1 (`ladder_L1_uniform`) seed 1 | boulders 30-70 cm long, even size mix, 0.9 m deep | 4.5 m × 4.5 m | 1,043 | 5,000 steps, 1.4 h | PASS |
+| study bed 1 (`ladder_L1_uniform`) seed 2 | boulders 30-70 cm long, even size mix, 0.9 m deep | 4.5 m × 4.5 m | 1,046 | 7,900 steps, 2.8 h | WARN (stage1_rest_window WARN) |
+| study bed 1 (`ladder_L1_uniform`) seed 3 | boulders 30-70 cm long, even size mix, 0.9 m deep | 4.5 m × 4.5 m | 1,044 | 10,000 steps, 4.0 h | WARN (stage1_rest_window WARN) |
+| study bed 2 (`ladder_L2_weibull`) seed 2 | boulders 20-70 cm long, realistic size mix, 0.9 m deep | 4.5 m × 4.5 m | 2,116 | 26,400 steps, 52.3 h | WARN (stage1_rest_window WARN) |
+
+### Experiment beds
+
+| bed | what it is for | size | grains | settle | QA |
+|---|---|---|---|---|---|
+| `exp_fines_split_substrate` seed 1 | experiment: 2 m bed, 30 cm bottom layer of small stones under 0.5 m of boulders (bed 5 structure), position rule for boulder–stone pairs only | 2.0 m × 2.0 m | 328 | 7,200 steps, 3.2 h | FAIL (stage2_rest_window WARN, overlap_rel_fines FAIL) |
+
 ### Test beds (smoke checks)
 
 | bed | what it is for | size | grains | settle | QA |
 |---|---|---|---|---|---|
 | `micro` seed 1 | test-only: ~40 boulders, settles in seconds | 0.9 m × 0.9 m | 232 | 3,300 steps, 0.0 h | PASS |
 | `micro` seed 1 | test-only: ~40 boulders, settles in seconds | 0.9 m × 0.9 m | 232 | 1,400 steps, 0.0 h | PASS |
+| `micro_layers` seed 1 | test-only: bottom layer of small stones + boulders + thin top layer, 0.7 m × 0.7 m (~1,000 grains) | 0.7 m × 0.7 m | 209 | 3,000 steps, 0.1 h | WARN (overlap_rel_fines WARN) |
 | `smoke` seed 1 | 8-run engine drill on the smoke bed (not science) | 2.4 m × 2.4 m | 419 | 4,000 steps, 0.1 h | WARN (overlap_rel_fines WARN) |
 | `smoke` seed 1 | 8-run engine drill on the smoke bed (not science) | 2.4 m × 2.4 m | 827 | 7,700 steps, 0.2 h | WARN (overlap_rel_fines WARN) |
 
@@ -88,7 +104,6 @@ Stopped on purpose, failed, settled before bed cards existed, still running, or 
 | `dt1.toml` | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders |
 | `fines_gap.toml` | experiment: thin top layer of small stones cost and overlap |
 | `fines_split.toml` | experiment: 2 m layered bed, position rule for boulder–stone pairs only, speed rule among small stones |
-| `fines_split_substrate.toml` | experiment: 2 m bed, 30 cm bottom layer of small stones under 0.5 m of boulders (bed 5 structure), position rule for boulder–stone pairs only |
 | `fines_split_thick.toml` | experiment: 2 m layered bed, 25 cm thin top layer of small stones (bed 6 top layer), position rule for boulder–stone pairs only |
 | `fric09.toml` | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders |
 | `patch_deployed_r090.toml` | patch-size test: craft with panels open, patch radius 0.90 m, bed 1, 5 spots x 2 speeds x 2 angles |
@@ -102,12 +117,17 @@ Stopped on purpose, failed, settled before bed cards existed, still running, or 
 | `settle_budget_g1.toml` | settling-speed test, 2 m x 2 m, bed 1's boulders + a thin top layer: iteration budget and 1 m/s2 together |
 | `settle_budget_quench.toml` | settling-speed test, 2 m x 2 m, bed 1's boulders + a thin top layer: iteration budget, and every grain's speed set to zero every 200 steps until the first rest (quench_every = 200) |
 | `settle_g1.toml` | settling-speed test, 2 m x 2 m, bed 1's boulders + a thin top layer: settled at 1 m/s2 instead of 9.81 (the end state is the same kind under the scaling with gravity; weight-driven overlap is 10x smaller) |
+| `settle_rmix_base.toml` | settling-speed test, 2 m x 2 m, study bed 2's boulders: settled the old way (as on the lab Mac) |
+| `settle_rmix_budget.toml` | settling-speed test, 2 m x 2 m, study bed 2's boulders: with at most 1,000 solver passes per step |
+| `settle_rmix_budget_t15.toml` | settling-speed test, 2 m x 2 m, study bed 2's boulders: with the solver budget and 15 cm of small stones 8-16 cm long on top |
+| `settle_rmix_budget_t25.toml` | settling-speed test, 2 m x 2 m, study bed 2's boulders: with the solver budget and 25 cm of small stones 8-16 cm long on top (study bed 6's layer) |
 | `v8.toml` | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders |
 
 ## Drop sets
 
 | drop set | machine | what it is for | drops | outcomes | median e | CPU time | in the reel |
 |---|---|---|---|---|---|---|---|
+| `battery_L1` | lab Mac | the 36-drop set on study bed 1 (boulders 30-70 cm long, even size mix, 0.9 m deep) | 46 | 1 capped, 32 detached, 11 left patch, 2 rest | 0.244 | 6.1 h |  |
 | `exp_battery_4m` | laptop | the 36-drop set on study bed 1's recipe at 4 m x 4 m: 9 spots x 2 speeds x 2 angles, panels open | 8 | 7 detached, 1 left patch | 0.425 | 0.3 h |  |
 | `exp_battery_L1_s1` | laptop | the 36-drop set on study bed 1 (boulders 30-70 cm long, even size mix, 0.9 m deep) | 36 | 32 detached, 4 left patch | 0.342 | 2.3 h |  |
 | `exp_drops_4m_capwin` | laptop | the 36-drop set on bed 1's recipe at 4 m x 4 m (speed limit kept while settling): 9 spots (+-0.05 m) x 2 speeds x 2 angles, panels open | 36 | 34 detached, 2 left patch | 0.312 | 0.8 h |  |
@@ -129,6 +149,9 @@ Sensitivity tests and smoke checks, one drop each (29-30 October).
 | drop | machine | outcome | QA | e |
 |---|---|---|---|---|
 | `2026-10-29_smoke_A` | lab Mac | captured | WARN | 0.031 |
+| `2026-10-30_smoke_A` | lab Mac | captured | WARN | 0.031 |
+| `2026-10-30_smoke_A_2` | lab Mac | captured | WARN | 0.031 |
+| `2026-10-30_smoke_B` | lab Mac | left patch | WARN | 0.248 |
 | `2026-10-29_example_2` | laptop | detached | PASS | 0.276 |
 | `2026-10-29_froude_g1e-4` | laptop | detached | PASS | 0.400 |
 | `2026-10-29_froude_g2.5e-5` | laptop | detached | PASS | 0.400 |
@@ -165,8 +188,8 @@ Sensitivity tests and smoke checks, one drop each (29-30 October).
 | terminal | started | how it ended |
 |---|---|---|
 | job-01 | bed ladder_L1_uniform seed 1 | STOPPED by Ctrl+C |
-| job-02 | bed ladder_L2_weibull seed 1 | START  bed ladder_L2_weibull seed 1 |
-| job-03 | bed ladder_L3_deep seed 1 | START  bed ladder_L3_deep seed 1 |
+| job-02 | bed ladder_L2_weibull seed 1 | STOPPED by Ctrl+C |
+| job-03 | bed ladder_L3_deep seed 1 | STOPPED by Ctrl+C |
 | job-04 | bed ladder_L4_veneer seed 1 | STOPPED by Ctrl+C |
 | job-05 | bed ladder_L5_substrate seed 1 | DONE   terminal 5 |
 | job-06 | bed ladder_L6_thick seed 1 | STOPPED by Ctrl+C |
@@ -180,6 +203,27 @@ Sensitivity tests and smoke checks, one drop each (29-30 October).
 | job-14 | — | DONE   terminal 14 |
 | job-15 | — | DONE   terminal 15 |
 | job-16 | — | DONE   terminal 16 |
+
+### 2026-10-30_1015 (lab Mac)
+
+| terminal | started | how it ended |
+|---|---|---|
+| job-01 | bed ladder_L1_uniform seed 1; campaign battery_L1 shard 1/16 | DONE   terminal 1 |
+| job-02 | bed ladder_L1_uniform seed 2; campaign battery_L1 shard 2/16 | DONE   terminal 2 |
+| job-03 | bed ladder_L1_uniform seed 3; campaign battery_L1 shard 3/16 | DONE   terminal 3 |
+| job-04 | bed ladder_L2_weibull seed 1 | START  bed ladder_L2_weibull seed 1 |
+| job-05 | bed ladder_L2_weibull seed 2; campaign battery_L1 shard 5/16 | DONE   terminal 5 |
+| job-06 | bed ladder_L2_weibull seed 3 | START  bed ladder_L2_weibull seed 3 |
+| job-07 | bed ladder_L3_deep seed 1 | START  bed ladder_L3_deep seed 1 |
+| job-08 | bed ladder_L3_deep seed 2 | START  bed ladder_L3_deep seed 2 |
+| job-09 | bed ladder_L3_deep seed 3 | START  bed ladder_L3_deep seed 3 |
+| job-10 | bed ladder_L4_veneer seed 1 | START  bed ladder_L4_veneer seed 1 |
+| job-11 | bed ladder_L4_veneer seed 2 | START  bed ladder_L4_veneer seed 2 |
+| job-12 | bed ladder_L4_veneer seed 3 | START  bed ladder_L4_veneer seed 3 |
+| job-13 | bed ladder_L5_substrate seed 1; campaign battery_L1 shard 13/16 | DONE   terminal 13 |
+| job-14 | bed ladder_L6_thick seed 1 | START  bed ladder_L6_thick seed 1 |
+| job-15 | campaign battery_L1 shard 15/16 | WAIT   bed(s) still settling for:battery_L2 battery_L3 battery_L4 battery_L6 battery_L5 — next check in 10 min |
+| job-16 | campaign battery_L1 shard 16/16 | DONE   terminal 16 |
 
 ### rehearsal_2026-10-29_1416 (laptop)
 
