@@ -11,6 +11,7 @@ Generated from the reports in the code repository; see [Where things stand](stat
 | study bed 1 (`ladder_L1_uniform`) seed 1 | boulders 30-70 cm long, even size mix, 0.9 m deep | 4.5 m × 4.5 m | 1,043 | 5,000 steps, 1.4 h | PASS |
 | study bed 1 (`ladder_L1_uniform`) seed 2 | boulders 30-70 cm long, even size mix, 0.9 m deep | 4.5 m × 4.5 m | 1,046 | 7,900 steps, 2.8 h | WARN (stage1_rest_window WARN) |
 | study bed 1 (`ladder_L1_uniform`) seed 3 | boulders 30-70 cm long, even size mix, 0.9 m deep | 4.5 m × 4.5 m | 1,044 | 10,000 steps, 4.0 h | WARN (stage1_rest_window WARN) |
+| study bed 2 (`ladder_L2_weibull`) seed 1 | boulders 20-70 cm long, realistic size mix, 0.9 m deep | 4.5 m × 4.5 m | 2,097 | 35,600 steps, 68.6 h | WARN (stage1_rest_window WARN) |
 | study bed 2 (`ladder_L2_weibull`) seed 2 | boulders 20-70 cm long, realistic size mix, 0.9 m deep | 4.5 m × 4.5 m | 2,116 | 26,400 steps, 52.3 h | WARN (stage1_rest_window WARN) |
 
 ### Experiment beds
@@ -212,7 +213,7 @@ Sensitivity tests and smoke checks, one drop each (29-30 October).
 | job-01 | bed ladder_L1_uniform seed 1; campaign battery_L1 shard 1/16 | DONE   terminal 1 |
 | job-02 | bed ladder_L1_uniform seed 2; campaign battery_L1 shard 2/16 | DONE   terminal 2 |
 | job-03 | bed ladder_L1_uniform seed 3; campaign battery_L1 shard 3/16 | DONE   terminal 3 |
-| job-04 | bed ladder_L2_weibull seed 1 | START  bed ladder_L2_weibull seed 1 |
+| job-04 | bed ladder_L2_weibull seed 1 | DONE   terminal 4 |
 | job-05 | bed ladder_L2_weibull seed 2; campaign battery_L1 shard 5/16 | DONE   terminal 5 |
 | job-06 | bed ladder_L2_weibull seed 3 | START  bed ladder_L2_weibull seed 3 |
 | job-07 | bed ladder_L3_deep seed 1 | START  bed ladder_L3_deep seed 1 |

@@ -634,8 +634,7 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   way's overrun). No small-stone stage reached the 3 mm/s rest in 20,000
   steps (budget 6.4, budget + quench 4.6 mm/s, level since ~15,000). 1 m/s²
   slower (out), quench marginal (off), 10-20 cm stones non-finite at step
-  2,100 twice (unusable until understood). Bed A = `standard_A` (study bed 2
-  + budget), drops `battery_A`.
+  2,100 twice (unusable until understood).
 - 2026-11-02 — **Small stones drain into coarse boulder layers; bed B's pour
   is decided by thickness tests.** On bed 1's boulders (30-70 cm, 0.9 m) an
   8 cm pour ended 92 % in the lower half, 34 % on the floor, 1 % cover; on
@@ -645,6 +644,15 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   (thickness, and a possible 6 mm/s rest test for its stones, user's call)
   on 4 Nov. Estimated bed B cost at 4.5 m with 25 cm: ~30 s/step, ~a week
   per seed for 20,000 steps.
+- 2026-11-02 (10:00) — **Study bed 2 as settled IS standard bed A; bed 3
+  keeps running; beds 4 and 6 stop.** Lab Mac: L2 seeds 1 and 2 settled (35,600
+  and 26,400 steps, QA WARN only for the overrun 500-step check), seed 3
+  confirming at step 36,100, so re-settling three seeds with the budget buys
+  nothing the drops see. Bed B copies these boulders: needs a stage_key change
+  (the budget on a boulders-only stage must not change the key; existing keys
+  stay valid since L2 has the default) when its recipe is fixed. Bed 3 keeps
+  its three cores: idle otherwise, and a stopped settle loses 72 h each.
+  `standard_A` / `battery_A` (written that morning, never run) deleted.
 - OPEN GATES: D1 (parameter provenance — provisional regolith_v1), D2 (Milani
   contact model if the panels are open), D5 (small stones resolution / SFD), D7 (budget
   from pilot timing), D8 (MASCOT benchmark — re-derive the target CoR values

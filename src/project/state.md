@@ -31,11 +31,11 @@ measure how it bounces.
 - **How big a bed must be**, worked out and tested: the study beds' 4.5 m is
   right; bigger buys nothing, and 2 m is too small for drops (below).
 
-**The lab Mac's weekend** (59 hours, reported Sunday 21:19): study bed 1
-settled three times (1.5-4 hours each) and 46 of its drops ran. Study bed 2
-settled once, after 52 hours; everything else is still settling. So slow
-settling is the problem for every bed except bed 1, not only for small
-stones. Its unfinished settles should be stopped on Monday morning.
+**The lab Mac, Monday 10:00:** study bed 1 settled three times (1.5-4 hours
+each) and 46 of its drops ran. Study bed 2 settled twice (52 and 69 hours)
+and its third seed is in its last check, so **bed 2 becomes standard bed A**
+and needs no second settling. Bed 3 is still settling and keeps going; beds
+4 and 6 should be stopped.
 
 ## At a glance (regenerated)
 
@@ -75,11 +75,11 @@ would take millions of grains.
 
 | bed | box | what is in it | where, state |
 |---|---|---|---|
-| **standard bed A** | 4.5 m x 4.5 m | study bed 2's boulders: 0.9 m, 20-70 cm long, realistic size mix | planned: lab Mac, three seeds, once the settling method is chosen |
+| **standard bed A** | 4.5 m x 4.5 m | study bed 2 as it stands: 0.9 m of boulders 20-70 cm long, realistic size mix | lab Mac: two seeds settled, the third in its last check on Monday 10:00 |
 | **standard bed B** | 4.5 m x 4.5 m | bed A's boulders buried in small stones: at least 70 % of the surface small stones, boulders standing 5 cm or less above them | planned: layer thickness measured first (15, 25 or 35 cm) |
 | **study bed 1** | 4.5 m x 4.5 m | 0.9 m of boulders 30-70 cm long, [even size mix](../glossary.md#even-size-mix) (every length equally likely) | lab Mac: **three seeds settled** (1.5, 2.8, 4 hours), 46 of 108 drops ran. A laptop copy is settled and has its 36 drops |
-| **study bed 2** | 4.5 m x 4.5 m | 0.9 m of boulders 20-70 cm long, [realistic size mix](../glossary.md#realistic-size-mix) (many small, few big, as measured on Dimorphos) | lab Mac: **seed 2 settled after 52 hours**; seeds 1 and 3 still settling after 59; to be stopped |
-| **study bed 3** | 4.5 m x 4.5 m | bed 2, 1.5 m deep | lab Mac, all three seeds still settling after 59 hours; to be stopped |
+| **study bed 2** | 4.5 m x 4.5 m | 0.9 m of boulders 20-70 cm long, [realistic size mix](../glossary.md#realistic-size-mix) (many small, few big, as measured on Dimorphos) | lab Mac: **seeds 1 and 2 settled** (69 and 52 hours), seed 3 in its last check; it is now standard bed A |
+| **study bed 3** | 4.5 m x 4.5 m | bed 2, 1.5 m deep | lab Mac, all three seeds still settling (72 hours, step 17,000, 6.5 mm/s); keeps going, roughly three more days |
 | **study bed 4** | 4.5 m x 4.5 m | bed 2 + a [thin top layer](../glossary.md#thin-top-layer) of small stones (8 cm, about one stone deep: boulder tops stick out) | lab Mac, settling; to be stopped |
 | **study bed 5** | 4.5 m x 4.5 m | a [bottom layer](../glossary.md#bottom-layer) of small stones (30 cm, stones 10-20 cm long), then bed 4 on top | lab Mac: failed in its first 84 minutes (its log is on the lab Mac) |
 | **study bed 6** | 4.5 m x 4.5 m | bed 2 + a [thick top layer](../glossary.md#thick-top-layer) of small stones (25 cm) | lab Mac, settling; to be stopped (bed B replaces it) |
@@ -207,7 +207,7 @@ From the re-simulated laptop drops (medians):
 - **2 Nov morning: the settling tests, and stones that drain away.** The
   solver budget (at most 1,000 solver passes per time step instead of
   10,000) settles a bed the same way at a quarter of the cost, and is now
-  used for every new bed (`standard_A`). Nothing else helped: settling at
+  used for every new bed. Nothing else helped: settling at
   1 m/s² is slower, zeroing every speed now and then changes little, and
   10-20 cm stones crashed. No small-stone layer came to rest, and on study
   bed 1's boulders the stones fell into the gaps instead of covering them:
@@ -217,39 +217,33 @@ From the re-simulated laptop drops (medians):
 
 ## What is next
 
-1. **Monday morning, at the lab Mac:**
-   - Stop every window still settling (Ctrl+C in the window), unless its
-     last progress line ends in "confirmation window": that is the last 500
-     steps before rest, minutes to go. The windows are bed 2 seeds 1 and 3,
-     bed 3 seeds 1-3, bed 4 seeds 1-3 and bed 6. Each window then reports
-     and closes.
-   - `git pull`, then
-     `python3 lab.py campaign rerun battery_L1 --stale --workers 16`
-     (the 46 drops, new code), `python3 lab.py campaign start battery_L1 --workers 16`
-     (the other 62), `python3 lab.py check-last-contact battery_L1 --workers 16`,
-     and `python3 lab.py site --publish`.
-2. **Then, at the lab Mac, one window each** (a Terminal window per
-   command, each in `~/Projects/CSML_LMGC90`), so six settle at once:
-   - standard bed A, three seeds: `python3 lab.py bed --bed standard_A --seed 1`
-     (and `--seed 2`, `--seed 3`), about a day and a half;
-   - the thickness tests: `python3 lab.py bed --bed configs/experiments/settle_rmix_budget_t15.toml`
-     (and `_t25`, `_t35`), about 15, 25 and 35 hours. Each ends with "BED
-     FAILED: did not reach rest" if its stones never rest; that is
-     expected, and the end state is saved. Then
-     `python3 lab.py burial <bed id>` (the id is in the window's last
-     lines) for each, `python3 lab.py sync`, and I read the result.
-3. **As bed A lands:** `python3 lab.py campaign start battery_A --workers 16`.
-4. **Wednesday:** bed B's recipe from the thickness tests (how thick a
+1. **Monday, at the lab Mac:**
+   - Ctrl+C once in the `overnight` windows 10, 11, 12 and 14 (beds 4 and
+     6). Leave window 6 (bed 2 seed 3, in its last check) and windows 7-9
+     (bed 3).
+   - `pkill -INT -f "lab.py bed .*fines_split"`: two old small-stone tests
+     have been holding two cores.
+   - `git pull`, then in one window each, `python3 lab.py bed --bed
+     configs/experiments/settle_rmix_budget_t15.toml` (and `_t25`, `_t35`),
+     about 15, 25 and 35 hours. Each ends with "BED FAILED: did not reach
+     rest" if its stones never rest; that is expected, and the end state is
+     saved. Then `python3 lab.py burial <bed id>` for each and
+     `python3 lab.py sync --reports-only -m "thickness tests"`.
+   - `python3 lab.py campaign rerun battery_L1 --stale --workers 9`, then
+     `python3 lab.py campaign start battery_L1 --workers 9`.
+2. **When window 6 says DONE:** `python3 lab.py campaign start battery_L2
+   --workers 9`, then `python3 lab.py check-last-contact battery_L1 --workers 9`
+   (and `battery_L2`) and `python3 lab.py site --publish`.
+3. **Wednesday:** bed B's recipe from the thickness tests (how thick a
    pour, and whether its stones need a looser rest test); then bed B,
    three seeds, about a week on three cores.
-5. **When bed B lands:** A against B, then the position study.
+4. **When bed B lands:** A against B, then the position study.
 
 ## Decisions that need you
 
 - **The plan's four questions** ([the plan](plan.md#decisions-that-need-you)):
   is "buried" right (70 % small stones, boulders 5 cm or less above them);
-  stop the lab Mac's unfinished settles; bed A in the even size mix if
-  the realistic one is not at rest in a day and a half; a looser rest test
+  stop beds 4 and 6 and keep bed 3; a looser rest test
   for bed B's small stones if a thick layer never rests; the position
   study's landing area. (The stone size is settled for now: the 10-20 cm
   stones crashed.)
