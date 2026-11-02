@@ -1,6 +1,6 @@
 # Where things stand
 
-_Written Sunday 1 November 2026, evening. This page is rewritten at the end
+_Written Sunday 1 November 2026, 22:00. This page is rewritten at the end
 of every work session; the tables marked "regenerated" are rebuilt from the
 code repository each time the site is published._
 
@@ -115,13 +115,13 @@ the same 20 drops with patches of 0.9, 1.2 and 1.45 m (panels open) and
 
 | piece of work | where | state | what happens next |
 |---|---|---|---|
-| The six study beds, three seeds each for beds 1-4 | lab Mac | settling since Fri 30 Oct, about 11:15. **Nothing pushed to GitHub since Fri 07:57** | First look when you are there: are the windows running, and does `python3 lab.py sync --reports-only` push? |
+| The six study beds, three seeds each for beds 1-4 | lab Mac | settling since Fri 30 Oct, about 11:15. **Nothing pushed to GitHub since Fri 07:57.** Its 60-hour limit ends about 23:15 Sunday: nothing new starts after that, work already going runs on, and each window pushes its notes when it ends | Windows with nothing left to run should push overnight. If nothing has arrived by Monday morning: are the windows running, and does `python3 lab.py sync --reports-only` push? |
 | The 36-drop sets on the lab Mac's beds | lab Mac | start on their own as each bed settles | Made with Friday's code: the open-panel craft's centre of mass is off and the end-of-drop test is the old one. After `git pull`, re-simulate each drop set when it finishes (commands below). |
 | Study bed 1, laptop copy (same bed ID as the lab Mac's) | laptop | settled 31 Oct, passed the quality checks | The laptop's reference for checking the lab Mac's result. |
 | Its 36 drops | laptop | re-simulated 1 Nov and checked: 20 last contacts confirmed, 11 next touch off the patch, 1 long hop back onto it, 4 left the patch | In the [drop reel](drop-reel.md). |
 | The 4 m and 3 m test sets | laptop | re-simulated 1 Nov and checked: 4 m 24 confirmed + 8 off the patch, 3 m 30 + 2; no drop in any set ended too early | In the reel. |
 | The quick 2 m bed with small stones | laptop | 12 drops, all checked | In the reel. |
-| Bed 1's boulders with a thin top layer, 3 m | laptop | settling: grains still moving 12 mm/s against the 3 mm/s rest test (falling about 8 % per 300 steps), 11.5 s per step | Reaches rest around 10 am Monday at this pace; its 36 drops start on their own. |
+| Bed 1's boulders with a thin top layer, 3 m | laptop | settling: at step 9,600 (Sunday 22:00) the median grain still moves 11 mm/s against the 3 mm/s rest test. The fall has slowed from about 8 % to about 2 % per 300 steps; 11.6 s per step | **Not at rest by Monday morning.** At this pace about three more days; a sudden drop like the 2 m bed's (step 5,100) would bring it sooner. A stopped settle cannot be resumed, so it keeps running while the laptop is free; its 36 drops start on their own. |
 | Friction test: does settling at higher friction help? | laptop | **done: no.** Every run at friction 0.8 or 0.9 made the solver fail, and the one that finished took half again as many steps | Settling stays at friction 0.6, the same as the drops. |
 | Patch-size test (is the patch big enough?) | laptop | **done**: with the panels open the 1.2 m patch is enough and the 4.5 m beds stay; with them folded single drops are very sensitive | 3 m laptop beds only for comparing beds. |
 
@@ -185,8 +185,9 @@ From the re-simulated laptop drops (medians):
      `python3 lab.py campaign rerun battery_L1 --stale --workers 8`, then
      `python3 lab.py check-last-contact battery_L1 --workers 8`
    - Then `python3 lab.py site --publish`.
-2. Tonight on the laptop: the 3 m bed with a thin top layer settles, then
-   its 36 drops run, are checked and get movies.
+2. On the laptop: the 3 m bed with a thin top layer keeps settling (about
+   three more days at its current pace), then its 36 drops run, are checked
+   and get movies.
 3. Through the week: the lab Mac's beds finish and their drop sets run.
    Then compare the beds: which change moves the bounce, by how much, at
    what cost.
