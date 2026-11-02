@@ -11,9 +11,9 @@ bounces. The study now has one job: settle [three standard beds](beds.md), run
 {{#include generated/status.md}}
 
 **What the lab Mac is doing.** It runs by itself. It settles the three beds (three
-seeds each) and two small test beds. When all of a bed's seeds have settled, its
-drops start, then the last-contact check, the movies, the reports and the
-[drop reel](drop-reel.md). Everything is pushed to GitHub when a step ends, whether
+seeds each) and two small test beds. No impact is simulated until all nine beds have
+settled. Then the drops start, followed by the last-contact check, the movies, the
+reports and the [drop reel](drop-reel.md). Everything is pushed to GitHub when a step ends, whether
 it succeeded or failed, and every 2 hours while it runs.
 
 **What we know so far:**
