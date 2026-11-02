@@ -66,13 +66,21 @@ The part of LMGC90 that finds every contact force in a time step. It sweeps over
 
 A shape without dents: the straight line between any two of its points stays inside it. Every grain and every piece of the craft is convex, which makes the exact distance between two of them a small, reliable calculation.
 
+### Didymos
+
+The 780 m asteroid that Dimorphos orbits. Half of the standard beds take their drops at its gravity.
+
+### Didymos gravity
+
+About 2e-4 m/s^2, about 4 times Dimorphos's. It varies over the surface because Didymos spins fast, and this value, for mid latitudes, is provisional.
+
 ### Dimorphos
 
 The 150 m moon of the asteroid Didymos, hit by NASA's DART spacecraft in 2022. Its surface is a pile of boulders, with smaller stones and finer material between and on them.
 
 ### Dimorphos gravity
 
-5e-5 m/s^2, 200 000 times weaker than Earth's, used in every drop. A craft leaving the surface at 1 cm/s rises for 200 s before it falls back. (Also written micro-g.)
+5e-5 m/s^2, 200 000 times weaker than Earth's, used in the drops on Dimorphos's beds. A craft leaving the surface at 1 cm/s rises for 200 s before it falls back. (Also written micro-g.)
 
 ### drop
 

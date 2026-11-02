@@ -4,34 +4,29 @@ _Written 2 November 2026. The tables are regenerated from what the lab Mac pushe
 to GitHub._
 
 **The short version.** We simulate Hera's [Milani](../glossary.md#milani) CubeSat
-landing on ground like [Dimorphos](../glossary.md#dimorphos)'s and measure how it
-bounces. The study now has one job: settle [three standard beds](beds.md), run
-[the same drops](results.md) on each, and compare.
+landing on ground like [Dimorphos](../glossary.md#dimorphos)'s and
+[Didymos](../glossary.md#didymos)'s, and measure how it bounces. The study now has one job:
+settle [six standard beds](beds.md), run [the same drops](results.md) on each, and compare.
 
 {{#include generated/status.md}}
 
-**What the lab Mac is doing.** It runs by itself. All three beds have settled, so the next
-start runs the drops, followed by the last-contact check, the movies, the reports and the
-[drop reel](drop-reel.md). Everything is pushed to GitHub when a step ends, whether it succeeded
-or failed, and every 2 hours while it runs.
+**What the lab Mac is doing.** It runs by itself. It is settling the beds, with no drops: three kinds of ground,
+each poured twice, and three versions of bed 2 to choose from. Everything is pushed to GitHub when a step ends, whether it
+succeeded or failed, and every 2 hours while it runs.
 
 **What we know so far:**
 
-- **All three beds have settled, each in under 4 hours.** No drop has run on them yet.
-
-| bed | what settled | time | steps | tilt | what the surface is |
-|---|---|---|---|---|---|
-| 1, boulder field | 1,289 boulders | 3 h 32 min | 9,400 | 0.7° | all boulders |
-| 2, embedded boulders | 295 boulders, then 7,533 stones | 3 h 48 min | 1,700, then 2,000 | 0.3° | stones on 98 %; the boulders that show have tops a median 6 cm below the stones around them |
-| 3, stone blanket | 22,572 stones | 1 h 45 min | 1,900 | 0.0° | all stones |
-
-- **Bed 2 met its target:** at least 70 % stones on top, and boulders 5 cm or less above them.
-- **"Failed" in the table above means one [quality check](../glossary.md#quality-checks-qa)**, on
-  beds 2 and 3 and the two test beds. Small stones sink slightly into each other while settling,
-  and the worst pair's overlap was over the old limit of 50 % of the thinnest stone's half-thickness:
-  79 % (2.4 cm) on bed 2, 73 % (1.9 cm) on bed 3. The limit is now 100 %, with a warning that stays
-  on the bed ([why](plan.md)). The table changes when the run restarts; those beds are then graded
-  again without settling again. Bed 1 has no small stones and passed every check.
+- **The first three beds settled in under 4 hours each, and were replaced.** Their bed 2 buried the boulders: stones
+  covered 98 % of the surface and no rock stuck out, because the boulders lay in one layer with tops at a median 15 cm under
+  38 cm of stones.
+- **The new bed 2 has boulders two deep and far fewer stones.** In short tests on 1.5 m x 1.5 m, stones on top
+  went from 43 % to 67 % to 86 % as the stones increased, and rocks stuck out by up to about 20 cm at the low end and not at all
+  at the high end. A bed that small holds only a few rocks, so these are rough. The full beds decide.
+- **Boulders will be most of bed 2's volume, about 70-85 %, not 40 %.** A study of the DART impact infers at most about 40 % near
+  the surface, but in a bed this shallow, 40 % leaves almost no rock showing.
+- **Rounder grains help.** On a 1 m test, 20-cornered stones used 568 grains instead of 1,058, took 101 s instead of 154 s, and
+  their worst overlap fell from 33 % to 12 % of the thinnest stone's half-thickness.
+- **Gravity does not change a settled pile**, so [each body's gravity goes into its drops](beds.md).
 
 **What's next:** [the plan](plan.md).
 

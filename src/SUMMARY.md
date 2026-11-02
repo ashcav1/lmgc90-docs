@@ -6,7 +6,7 @@
 
 - [Where things stand](project/state.md)
 - [The plan](project/plan.md)
-- [The three beds](project/beds.md)
+- [The beds](project/beds.md)
 - [Drop results](project/results.md)
 - [The drop reel](project/drop-reel.md)
 - [The bed library](project/library.md)

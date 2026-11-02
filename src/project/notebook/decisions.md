@@ -674,6 +674,17 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   no drop has tested this on these beds yet. Rejected: gap law among stones, 25x the cost and it never rested on a mixed
   bed. Bed 2 stays as settled in its pilot, 96 % stones with boulder tops a median 5 cm below (user), though from above it
   may look much like bed 3.
+- 2026-11-02 (evening, user) — **Beds settled again: bed 2's rocks must stick out, six beds, three for each body's gravity.** Reverses "embedded, not
+  protruding" (the first bed 2 had no rock standing 5 cm clear: one boulder layer, tops median 15 cm, stones to 38.5 cm). User left the details to Claude.
+  (a) Bed 2: boulders 0.30 m (two deep), stones 8-16 cm, thickness 0.08 / 0.06 (A, B), and r_max 0.60 with 0.10 (C); picked after settling: stones on 40-70 % of
+  the surface, at least 2 rocks/m2 sticking out by at least 8 cm (`surface_burial` `rocks`). 1.5 m tests with 10-20 cm stones at 0.06 / 0.10 / 0.15 gave 43 / 67 / 86 % stones on
+  top, 2.4 / 1.2 / 0 rocks/m2; 8-16 cm stones at 0.06 gave 38 %, the same rocks. Boulders become about 70-85 % of the volume, above the 40 % bound; at 40 % rock shows on about 1 %.
+  (b) All grains 20 vertices. 1 m stones test against 10 vertices: 568 vs 1,058 stones, 101 s vs 154 s, overlap 0.12 vs 0.33. Boulders 0.30 m, 2.5 m: 143 vs 216, 48 s vs 53 s.
+  (c) Settling gravity stays 9.81: rigid cohesionless grains under any constant g follow the same paths with time rescaled. Same pours at g x 0.16, dt x 2.5, cap and rest speeds x 0.4: mean surface
+  0.190 / 0.189 and 0.194 / 0.192 m, 2 pours each. So "six beds" = three recipes x two pours (seed 1 Dimorphos, seed 2 Didymos), gravity entering in the drops. Separate pours replicate terrain,
+  which one pour can't, and since gravity is self-similar (Froude, 0.1 % on one drop, 2026-10) a paired check on one pile can confirm that part.
+  (d) Rejected: finer stones in bed 3 (drops now double), gap law on stones (25x, and at step 500 of a new small test already 2x per step). (e) `hold_drops` until bed 2 is picked. Didymos drop gravity about 2e-4 m/s2 (GM about 40 m3/s2, R about 380 m, rotation at mid latitude),
+  provisional. Same-pile Didymos speeds at 2x Dimorphos's would repeat those drops exactly, so its speeds need choosing with that in mind. (f) Resume settles again a bed whose recipe changed (`runner.made_from`).
 - OPEN GATES: D1 (parameter provenance — provisional regolith_v1), D2 (Milani
   contact model if the panels are open), D5 (small stones resolution / SFD), D7 (budget
   from pilot timing), D8 (MASCOT benchmark — re-derive the target CoR values
