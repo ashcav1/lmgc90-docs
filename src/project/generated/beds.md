@@ -1,4 +1,4 @@
-_Last report from the lab Mac: 2026-11-02 13:03 PST._
+_Last report from the lab Mac: 2026-11-02 14:52 PST._
 
 ## Bed 1
 
@@ -6,7 +6,17 @@ standard bed 1, boulder field: boulders 20-70 cm long, realistic size mix, 0.7 m
 
 | seed | state | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | median move, mm/s |
 |---|---|---|---|---|---|---|---|---|
-| 1 | settling | — | 5900 | 2.0 h | 0.6° | 0% | — | 5.2 |
+| 1 | settled, QA PASS | 1,289 | 9,400 | 3.5 h | 0.7° | 0% | — | — |
+
+Seed 1:
+
+![surface of seed 1](generated/images/bed1_boulders-s1-d196b6fc/surface.webp)
+
+![section of seed 1](generated/images/bed1_boulders-s1-d196b6fc/section.webp)
+
+![scene3d of seed 1](generated/images/bed1_boulders-s1-d196b6fc/scene3d.webp)
+
+![settle of seed 1](generated/images/bed1_boulders-s1-d196b6fc/settle.webp)
 
 ## Bed 2
 
@@ -14,7 +24,17 @@ standard bed 2, embedded boulders: 40 % boulders by volume in stones 10-20 cm lo
 
 | seed | state | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | median move, mm/s |
 |---|---|---|---|---|---|---|---|---|
-| 1 | settling | — | 1000 | 2.0 h | — | — | — | 4.1 |
+| 1 | settled, QA FAIL | 7,533 | 3,700 | 3.8 h | 0.3° | 98% | -6 cm | — |
+
+Seed 1:
+
+![surface of seed 1](generated/images/bed2_embedded-s1-d9a1e23a/surface.webp)
+
+![section of seed 1](generated/images/bed2_embedded-s1-d9a1e23a/section.webp)
+
+![scene3d of seed 1](generated/images/bed2_embedded-s1-d9a1e23a/scene3d.webp)
+
+![settle of seed 1](generated/images/bed2_embedded-s1-d9a1e23a/settle.webp)
 
 ## Bed 3
 

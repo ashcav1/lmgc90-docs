@@ -45,4 +45,6 @@ code.
 
 ## Every settled bed
 
-No settled beds yet.
+| bed id | machine | size | grains | settling time | QA | whole-bed tilt |
+|---|---|---|---|---|---|---|
+| `bed1_boulders-s1-d196b6fc` | lab Mac | 4 m × 4 m | 1,289 | 3.5 h | PASS | 0.7° |
