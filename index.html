@@ -1,0 +1,812 @@
+<meta charset="utf-8">
+<title>Milani Drop Reel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a reel you can re-shelve. One control bar (organize by, filters), an overview (matrix of bed type x
+   start conditions, an explorer, a landing-spot map), then the drops grouped two levels deep. A drop opens into
+   its movie with charts that follow the video. Methods and terms live in side drawers, one click from any number. */
+:root {
+  --bg: #eceff2; --surface: #ffffff; --sunk: #f4f6f8; --ink: #15191e; --muted: #5a636e; --line: #d4d9df;
+  --accent: #b97c0c; --accent-soft: #f6e7c8; --screen: #131519;
+  --detached: #2a66c9; --stuck: #23845f; --left: #b9502a; --capped: #6f7781;
+  --c1: #2a66c9; --c2: #c2410c; --c3: #0f8a6d; --c4: #7c3aed; --c5: #b91c1c; --c6: #6b7f12; --c7: #0e7490;
+  --heat-lo: #e7edf6; --heat-hi: #1c4a95; --focus: #2a66c9; --chart-grid: #e3e7ec; --contact: rgba(185, 124, 12, 0.16);
+  --f-display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1215; --surface: #171b20; --sunk: #12161a; --ink: #e5e8eb; --muted: #98a2ad; --line: #29303a;
+    --accent: #f0b23c; --accent-soft: #3a2f17; --detached: #6ea2f2; --stuck: #5cc49a; --left: #ee8a62; --capped: #8c949d;
+    --c1: #6ea2f2; --c2: #fb923c; --c3: #34d399; --c4: #a78bfa; --c5: #f87171; --c6: #bef264; --c7: #67e8f9;
+    --heat-lo: #1b2230; --heat-hi: #6ea2f2; --focus: #6ea2f2; --chart-grid: #232a33; --contact: rgba(240, 178, 60, 0.18);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1215; --surface: #171b20; --sunk: #12161a; --ink: #e5e8eb; --muted: #98a2ad; --line: #29303a;
+  --accent: #f0b23c; --accent-soft: #3a2f17; --detached: #6ea2f2; --stuck: #5cc49a; --left: #ee8a62; --capped: #8c949d;
+  --c1: #6ea2f2; --c2: #fb923c; --c3: #34d399; --c4: #a78bfa; --c5: #f87171; --c6: #bef264; --c7: #67e8f9;
+  --heat-lo: #1b2230; --heat-hi: #6ea2f2; --focus: #6ea2f2; --chart-grid: #232a33; --contact: rgba(240, 178, 60, 0.18);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.5 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 56px; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+.wrap { max-width: 1320px; margin: 0 auto; }
+h1, h2, h3, h4 { font-family: var(--f-display); font-weight: 700; letter-spacing: 0.01em; text-wrap: balance; margin: 0; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.mono, dd, td.num { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+a { color: var(--detached); }
+.label { font: 600 12px/1.2 var(--f-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+
+/* header */
+header.top { padding-block: 26px 14px; display: grid; gap: 8px; }
+.eyebrow { font: 600 13px/1 var(--f-display); text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); }
+header.top h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1; }
+header.top p { margin: 0; max-width: 78ch; color: var(--muted); }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 18px; font: 500 13px/1.4 var(--f-mono); color: var(--muted); }
+.toplinks { display: flex; flex-wrap: wrap; gap: 8px; }
+.linkbtn { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 12px; cursor: pointer; font: 600 14px/1.2 var(--f-display); letter-spacing: 0.03em; text-decoration: none; color: var(--ink); }
+.linkbtn:hover { border-color: var(--ink); }
+.term { border-bottom: 1px dotted currentColor; cursor: help; }
+.info { border: 0; background: none; padding: 0 2px; cursor: pointer; color: var(--muted); font: 600 12px/1 var(--f-mono); vertical-align: 1px; }
+.info:hover { color: var(--accent); }
+
+/* control bar */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; padding-block: 10px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.seg button { border: 0; background: none; padding: 6px 12px; cursor: pointer; font: 600 14px/1.2 var(--f-display); letter-spacing: 0.03em; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.bar input[type="search"] { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 6px 10px; min-width: 0; width: 220px; max-width: 100%; }
+.bar select { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 6px 8px; font: 500 13px/1.2 var(--f-mono); }
+.count { margin-left: auto; font: 500 13px/1 var(--f-mono); color: var(--muted); }
+.active-filters { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
+.active-filters:empty { display: none; }
+.afchip { border: 1px solid var(--accent); background: var(--accent-soft); color: var(--ink); border-radius: 999px; padding: 2px 10px; cursor: pointer; font: 500 12.5px/1.4 var(--f-mono); }
+
+/* layout: facets + main */
+.layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 22px; padding-top: 16px; align-items: start; }
+.facets { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 64px); max-height: calc(100vh - 80px); overflow: auto; display: grid; gap: 14px; padding-right: 4px; }
+.facet h4 { font: 600 12px/1.2 var(--f-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: flex; justify-content: space-between; }
+.facet .opts { display: grid; gap: 3px; }
+.opt { display: flex; justify-content: space-between; gap: 8px; align-items: center; border: 1px solid transparent; background: none; border-radius: 6px; padding: 3px 6px; cursor: pointer; text-align: left; font-size: 14px; }
+.opt:hover { background: var(--surface); }
+.opt[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
+.opt .n { font: 500 12px/1 var(--f-mono); color: var(--muted); }
+.opt[disabled] { opacity: 0.4; cursor: default; }
+.spotgrid { display: grid; gap: 4px; }
+.spotgrid button { aspect-ratio: 1; border: 1px solid var(--line); background: var(--surface); border-radius: 4px; cursor: pointer; font: 500 10px/1 var(--f-mono); color: var(--muted); padding: 0; }
+.spotgrid button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--ink); }
+.facets .clear { justify-self: start; }
+.filtertoggle { display: none; }
+
+/* overview */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+.ovhead { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.ovhead h2 { font-size: 24px; }
+.subtabs { display: inline-flex; gap: 2px; flex-wrap: wrap; }
+.subtabs button { border: 0; border-bottom: 2px solid transparent; background: none; padding: 4px 10px; cursor: pointer; font: 600 15px/1.2 var(--f-display); color: var(--muted); }
+.subtabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.scrollx { overflow-x: auto; }
+table.matrix { border-collapse: separate; border-spacing: 3px; min-width: 100%; font-size: 13px; }
+.matrix th { font: 600 12.5px/1.2 var(--f-display); letter-spacing: 0.04em; color: var(--muted); text-align: left; padding: 4px 6px; vertical-align: bottom; }
+.matrix th.col { text-align: center; cursor: pointer; }
+.matrix th.row { cursor: pointer; max-width: 260px; }
+.matrix th.row small { display: block; font: 500 11.5px/1.3 var(--f-mono); color: var(--muted); letter-spacing: 0; }
+.matrix td { border-radius: 6px; padding: 6px 8px; text-align: center; cursor: pointer; min-width: 86px; font-family: var(--f-mono); }
+.matrix td.empty { background: var(--sunk); color: var(--muted); cursor: default; }
+.matrix td b { display: block; font-size: 16px; font-weight: 500; }
+.matrix td small { font-size: 11px; opacity: 0.85; }
+.obar { display: flex; height: 4px; border-radius: 2px; overflow: hidden; margin-top: 4px; background: rgba(127,127,127,0.25); }
+.obar span { display: block; height: 100%; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--muted); margin-top: 8px; align-items: center; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+.exctl { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-bottom: 8px; font-size: 13px; align-items: center; }
+.exctl select { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 4px 6px; font: 500 13px/1.2 var(--f-mono); }
+svg text { fill: var(--muted); font: 500 11px var(--f-mono); }
+svg .axis { stroke: var(--line); }
+svg .grid { stroke: var(--chart-grid); }
+.pt { cursor: pointer; stroke: var(--surface); stroke-width: 1; }
+.pt:hover { stroke: var(--ink); stroke-width: 2; }
+.tip { position: fixed; z-index: 60; pointer-events: none; background: var(--ink); color: var(--bg); border-radius: 6px; padding: 6px 9px; font: 500 12px/1.45 var(--f-mono); max-width: 320px; }
+.tip[hidden] { display: none; }
+
+/* groups and cards */
+.group { margin-top: 22px; }
+.ghead { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; border-bottom: 2px solid var(--ink); padding: 0 0 6px; cursor: pointer; background: none; border-top: 0; border-left: 0; border-right: 0; width: 100%; text-align: left; }
+.ghead h2 { font-size: 26px; }
+.ghead .gsum { font: 500 13px/1.4 var(--f-mono); color: var(--muted); }
+.ghead .chev { margin-left: auto; font: 600 14px var(--f-mono); color: var(--muted); }
+.sub { margin-top: 14px; }
+.sub h3 { font-size: 18px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.sub h3 .gsum { font: 500 12.5px/1.4 var(--f-mono); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 14px; padding-top: 10px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: grid; min-width: 0; }
+.screen { background: var(--screen); aspect-ratio: 16 / 9; position: relative; max-width: 100%; }
+.screen video { width: 100%; height: 100%; display: block; background: var(--screen); }
+.nomovie { position: absolute; inset: 0; display: grid; place-items: center; color: #9aa3ad; font: 500 12.5px/1.4 var(--f-mono); text-align: center; padding: 12px; }
+.cbody { padding: 10px 12px 12px; display: grid; gap: 8px; min-width: 0; }
+.chead { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.chead h4 { font-size: 18px; line-height: 1.1; }
+.chead .s { font: 500 12px/1.4 var(--f-mono); color: var(--muted); margin-top: 2px; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 8px; margin: 0; }
+.stats dt { font: 600 10.5px/1.2 var(--f-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.stats dd { margin: 1px 0 0; font-size: 14px; }
+.stats small { color: var(--muted); font-size: 11px; }
+.cfoot { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.badge { font: 500 11.5px/1.3 var(--f-mono); border-radius: 4px; padding: 2px 6px; background: var(--sunk); border: 1px solid var(--line); color: var(--muted); }
+.badge.ok { color: var(--stuck); border-color: currentColor; }
+.badge.bad { color: var(--left); border-color: currentColor; }
+.btn { border: 1px solid var(--ink); background: transparent; border-radius: 6px; padding: 5px 11px; cursor: pointer; font: 600 14px/1.2 var(--f-display); letter-spacing: 0.04em; }
+.btn:hover { background: var(--ink); color: var(--bg); }
+.btn[disabled] { opacity: 0.35; cursor: default; background: none; color: inherit; }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 2px 9px 2px 7px; border-radius: 999px; font: 600 12.5px/1.3 var(--f-display); letter-spacing: 0.04em; text-transform: uppercase; background: var(--sunk); border: 1px solid var(--line); white-space: nowrap; }
+.pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.o-detached { color: var(--detached); } .o-captured, .o-rest { color: var(--stuck); } .o-left_patch { color: var(--left); } .o-capped, .o-no_contact { color: var(--capped); }
+table.list { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+.list th { font: 600 12px/1.2 var(--f-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); cursor: pointer; white-space: nowrap; background: var(--surface); }
+.list td { padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.list tbody tr { cursor: pointer; }
+.list tbody tr:hover { background: var(--sunk); }
+.empty { padding: 30px 0; color: var(--muted); }
+
+/* sets */
+.sets { display: grid; gap: 16px; margin-top: 30px; }
+.setcard h3 { font-size: 22px; }
+.setcard p { margin: 6px 0; max-width: 80ch; }
+.facts { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 3px 14px; margin: 8px 0 0; font-size: 13.5px; }
+.facts dt { color: var(--muted); } .facts dd { margin: 0; font-size: 12.5px; overflow-wrap: anywhere; }
+.cfigs { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(210px, 260px); gap: 10px; overflow-x: auto; padding-block: 10px 4px; }
+.cfig { margin: 0; background: var(--sunk); border: 1px solid var(--line); border-radius: 6px; padding: 6px; cursor: zoom-in; }
+.cfig img { width: 100%; height: 130px; object-fit: contain; background: #fff; border-radius: 3px; display: block; }
+.cfig figcaption { font: 600 12px/1.2 var(--f-display); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 5px; color: var(--muted); }
+
+/* detail */
+dialog { padding: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); }
+dialog::backdrop { background: rgba(8, 10, 12, 0.66); }
+#detail { width: min(1300px, calc(100vw - 20px)); max-height: calc(100vh - 20px); }
+.dhead { position: sticky; top: 0; z-index: 3; background: var(--surface); display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.dhead h3 { font-size: 22px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.dhead .s { font: 500 12.5px/1.4 var(--f-mono); color: var(--muted); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.chip { font: 500 12px/1.4 var(--f-mono); border: 1px solid var(--line); border-radius: 999px; padding: 1px 9px; background: var(--sunk); }
+.dnav { display: flex; gap: 6px; flex-shrink: 0; }
+.dbody { padding: 14px; display: grid; gap: 16px; }
+.dtop { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.dtop .screen { border-radius: 8px; overflow: hidden; }
+.verdict { border: 1px solid var(--line); border-left: 4px solid var(--capped); border-radius: 8px; padding: 10px 12px; background: var(--sunk); }
+.verdict.ok { border-left-color: var(--stuck); } .verdict.bad { border-left-color: var(--left); } .verdict.edge { border-left-color: var(--accent); }
+.verdict h4 { font-size: 17px; margin-bottom: 4px; }
+.verdict p { margin: 4px 0; font-size: 14px; }
+.keynums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 12px 0 0; }
+.keynums div { background: var(--sunk); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; min-width: 0; }
+.keynums dt { font: 600 10.5px/1.2 var(--f-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.keynums dd { margin: 2px 0 0; font-size: 17px; }
+.charts { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px 4px; min-width: 0; }
+.chartbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.readout { font: 500 12px/1.4 var(--f-mono); color: var(--muted); min-height: 1.4em; width: 100%; }
+.chartrow { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 12px; align-items: start; }
+#chartsvg { width: 100%; display: block; cursor: crosshair; touch-action: none; }
+#pathsvg { width: 100%; max-width: 260px; display: block; }
+.groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 14px; }
+.groups section { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; min-width: 0; }
+.groups h4 { margin: 0 0 6px; font: 600 13px/1 var(--f-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.groups dl { display: grid; grid-template-columns: minmax(0, 1fr) max-content; gap: 3px 10px; margin: 0; font-size: 13.5px; }
+.groups dt { color: var(--muted); } .groups dd { margin: 0; text-align: right; }
+.figs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 14px; }
+.figs figure { margin: 0; border: 1px solid var(--line); border-radius: 6px; padding: 8px; background: var(--sunk); min-width: 0; }
+.figs img { width: 100%; height: auto; background: #fff; border-radius: 3px; display: block; cursor: zoom-in; }
+.figs figcaption { font-size: 13px; color: var(--muted); margin-top: 6px; }
+.figs figcaption b { font: 600 13px/1 var(--f-display); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); margin-right: 6px; }
+#zoom { width: min(1500px, calc(100vw - 20px)); }
+#zoom img { width: 100%; height: auto; display: block; background: #fff; }
+#zoom p { margin: 0; padding: 10px 14px 14px; color: var(--muted); font-size: 14px; }
+
+/* drawers */
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(560px, 100vw); z-index: 70; background: var(--surface); border-left: 1px solid var(--line);
+  box-shadow: -12px 0 32px rgba(0,0,0,0.18); display: grid; grid-template-rows: auto minmax(0, 1fr); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px); }
+.drawer[hidden] { display: none; }
+.drawer header { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.drawer header h2 { font-size: 24px; }
+.drawer .dscroll { overflow: auto; padding: 12px 16px 30px; }
+.drawer input[type="search"] { width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; background: var(--sunk); margin-bottom: 10px; }
+.method, .gterm { border-bottom: 1px solid var(--line); padding: 12px 0; }
+.method h3, .gterm h3 { font-size: 19px; margin-bottom: 4px; }
+.method p, .gterm p { margin: 4px 0; font-size: 14.5px; }
+.method .k { font: 600 11.5px/1.2 var(--f-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-right: 6px; }
+.method pre { background: var(--sunk); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; overflow-x: auto; font: 400 12px/1.45 var(--f-mono); margin: 6px 0 0; }
+.method .file { font: 500 12px/1.4 var(--f-mono); color: var(--muted); margin-top: 8px; }
+.flash { animation: flash 1.6s ease-out 1; }
+@keyframes flash { from { background: var(--accent-soft); } to { background: transparent; } }
+
+@media (max-width: 980px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .facets { position: static; max-height: none; display: none; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+  .facets.open { display: grid; }
+  .filtertoggle { display: inline-block; }
+  .dtop, .chartrow { grid-template-columns: minmax(0, 1fr); }
+  .count { margin-left: 0; }
+  .keynums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) { .flash { animation: none; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">LMGC90 · Dimorphos rubble · Hera's Milani CubeSat</div>
+    <h1>Milani Drop Reel</h1>
+    <p>Every simulated drop of the <span class="term" data-term="Milani">Milani</span> CubeSat onto settled rubble <span class="term" data-term="bed">beds</span>, with its movie rendered by <span class="term" data-term="ParaView">ParaView</span> from the simulation's own frames, its numbers, its time series and its figures. Organize the drops by bed type, by <span class="term" data-term="start conditions">start conditions</span>, by drop set or by outcome; every number says how it was computed.</p>
+    <div class="meta" id="meta"></div>
+    <div class="toplinks">
+      <a class="linkbtn" href="https://ashcav1.github.io/lmgc90-docs/project/state.html">Where things stand</a>
+      <button class="linkbtn" type="button" data-open-drawer="methods">How each number is computed</button>
+      <button class="linkbtn" type="button" data-open-drawer="glossary">Terms</button>
+      <a class="linkbtn" href="https://ashcav1.github.io/lmgc90-docs/">The LMGC90 guide</a>
+    </div>
+  </header>
+
+  <div class="bar" id="bar">
+    <span class="label">Organize by</span>
+    <div class="seg" id="organize" role="group" aria-label="Organize drops by">
+      <button type="button" data-org="bed" aria-pressed="true">Bed type</button>
+      <button type="button" data-org="cond" aria-pressed="false">Start conditions</button>
+      <button type="button" data-org="set" aria-pressed="false">Drop set</button>
+      <button type="button" data-org="outcome" aria-pressed="false">Outcome</button>
+    </div>
+    <div class="seg" id="view" role="group" aria-label="Show drops as">
+      <button type="button" data-view="cards" aria-pressed="true">Cards</button>
+      <button type="button" data-view="table" aria-pressed="false">Table</button>
+    </div>
+    <select id="sort" aria-label="Sort drops within a group">
+      <option value="spot">sort: landing spot</option><option value="e">sort: speed ratio e, high first</option>
+      <option value="touch">sort: contact time, long first</option><option value="kept">sort: energy kept, high first</option>
+      <option value="touches">sort: touches, most first</option>
+    </select>
+    <input type="search" id="q" placeholder="find a drop id or word" aria-label="Find drops">
+    <button class="linkbtn filtertoggle" type="button" id="filtertoggle" aria-expanded="false">Filters</button>
+    <span class="count" id="count"></span>
+    <div class="active-filters" id="active"></div>
+  </div>
+
+  <div class="layout">
+    <aside class="facets" id="facets" aria-label="Filters"></aside>
+    <main id="main">
+      <section class="panel" id="overview">
+        <div class="ovhead">
+          <h2>Overview</h2>
+          <div class="subtabs" role="tablist" id="ovtabs">
+            <button role="tab" type="button" data-ov="matrix" aria-selected="true">Bed type x start conditions</button>
+            <button role="tab" type="button" data-ov="explore" aria-selected="false">Explorer</button>
+            <button role="tab" type="button" data-ov="spots" aria-selected="false">Landing spots</button>
+          </div>
+        </div>
+        <div id="ovbody"></div>
+      </section>
+      <div id="groups"></div>
+      <section class="sets" id="sets"></section>
+    </main>
+  </div>
+</div>
+
+<dialog id="detail" aria-labelledby="dtitle"></dialog>
+<dialog id="zoom"></dialog>
+<aside class="drawer" id="drawer-methods" hidden aria-label="How each number is computed">
+  <header><h2>How each number is computed</h2><button class="btn" type="button" data-close-drawer>Close</button></header>
+  <div class="dscroll" id="methods"></div>
+</aside>
+<aside class="drawer" id="drawer-glossary" hidden aria-label="Terms">
+  <header><h2>Terms</h2><button class="btn" type="button" data-close-drawer>Close</button></header>
+  <div class="dscroll"><input type="search" id="gq" placeholder="find a term" aria-label="Find a term"><div id="glossary"></div></div>
+</aside>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const OUTCOME = { detached: "bounced off", left_patch: "left the patch", captured: "captured", rest: "came to rest", capped: "ran out of time", no_contact: "no contact" };
+const OCOLOR = { detached: "--detached", left_patch: "--left", captured: "--stuck", rest: "--stuck", capped: "--capped", no_contact: "--capped" };
+const FIGNAME = { overview: "overview", kinematics: "kinematics", path: "path", contacts: "contacts", force_chains: "force chains",
+  energy_budget: "energy budget", bed_response: "bed response", scene3d: "3-D scene", solver: "solver", bounce_map: "bounce map",
+  restitution: "restitution", exit_state: "exit state", energy: "energy", sites: "sites", terrain: "terrain", contact: "contact", qa: "QA" };
+const HOW = { clear: "its exact flight touches nothing more", beyond: "its next touch is outside the patch", patch_edge: "flew out over the patch edge (rule before 1 November)", ballistic: "look-ahead (before 31 October)" };
+const CHECK = { "confirmed": "last contact confirmed", "next touch off the patch": "next touch off the patch", "lands back on the patch": "lands back on the patch later", "touched again": "touched again (ended too early)", "touched unsimulated terrain": "touched the rest of the bed", "unchecked": "not checked", "left the patch at detachment": "left over the patch edge", "not applicable": "did not bounce off" };
+const METRICS = {
+  e: { label: "speed ratio e", d: 3 }, v_out: { label: "exit speed (cm/s)", d: 2 }, spin_out: { label: "exit spin (rad/s)", d: 3 },
+  exit_elev: { label: "exit elevation (°)", d: 1 }, episodes: { label: "touches", d: 0 }, contact_s: { label: "first to last touch (s)", d: 2 },
+  energy_kept: { label: "energy kept", d: 3 }, slope: { label: "site slope (°)", d: 1 }, roughness: { label: "site roughness (m)", d: 3 },
+  grains_moved: { label: "grains moved", d: 0 }, speed: { label: "arrival speed (cm/s)", d: 1 }, angle: { label: "angle from vertical (°)", d: 0 },
+  azimuth: { label: "approach direction (°)", d: 0 }, x: { label: "spot x (m)", d: 2 }, y: { label: "spot y (m)", d: 2 }, sim_s: { label: "simulated time (s)", d: 1 },
+};
+const S = { site: null, drops: [], sets: {}, beds: {}, org: "bed", view: "cards", sort: "spot", q: "", ov: "matrix",
+  ex: { x: "angle", y: "e", c: "bedgroup" }, filters: {}, collapsed: new Set(), openId: null, order: [], tsort: { k: "e", dir: -1 } };
+const $ = (s, el = document) => el.querySelector(s), $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmt = (v, d = 3) => (v === null || v === undefined || Number.isNaN(v)) ? "—" : Number(v).toFixed(d);
+const sgn = v => (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(2);
+const med = a => { const s = a.filter(x => x !== null && x !== undefined).sort((x, y) => x - y); if (!s.length) return null; const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const pill = o => `<span class="pill o-${esc(o)}" title="${esc(o)}">${esc(OUTCOME[o] || o)}</span>`;
+const store = { get(k, d) { try { const v = localStorage.getItem("reel." + k); return v === null ? d : JSON.parse(v); } catch { return d; } }, set(k, v) { try { localStorage.setItem("reel." + k, JSON.stringify(v)); } catch {} } };
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+// ---------------------------------------------------------------- facets and groups
+const spotKey = d => `${d.x},${d.y}`;
+const bedGroup = d => `${d.bed_type}|${d.footprint}|${d.craft}`;
+const condKey = d => `${d.speed}|${d.angle}`;
+const bedTypeLabel = key => (S.beds[key] || {}).label || key;
+const craftName = k => k === "deployed" ? "panels open" : k === "stowed" ? "panels folded" : k;
+function bedGroupLabel(k) { const [bt, fp, cr] = k.split("|"); return `${bedTypeLabel(bt)} · ${fp} m × ${fp} m · ${craftName(cr)}`; }
+function condLabel(k) { const [s, a] = k.split("|"); return `${s} cm/s · ${a}° from vertical`; }
+const FACETS = [
+  { key: "bed_type", label: "Bed type", term: "bed", val: d => d.bed_type, name: v => bedTypeLabel(v) },
+  { key: "footprint", label: "Bed size", term: "bed size", val: d => d.footprint, name: v => `${v} m × ${v} m`, num: true },
+  { key: "craft", label: "Craft", term: "panels open / folded", val: d => d.craft, name: v => craftName(v) },
+  { key: "speed", label: "Arrival speed", val: d => d.speed, name: v => `${v} cm/s`, num: true },
+  { key: "angle", label: "Angle from vertical", term: "angle from vertical", val: d => d.angle, name: v => `${v}°`, num: true },
+  { key: "azimuth", label: "Approach direction", term: "approach direction", val: d => d.azimuth, name: v => `${v}°`, num: true },
+  { key: "spot", label: "Landing spot", term: "landing spot", val: spotKey, spot: true },
+  { key: "outcome", label: "How it ended", term: "how a drop ends", val: d => d.outcome, name: v => OUTCOME[v] || v },
+  { key: "check", label: "Last-contact check", method: "check", val: d => d.check || "not run yet", name: v => CHECK[v] || v },
+  { key: "set", label: "Drop set", term: "drop set", val: d => d.set, name: v => (S.sets[v] || {}).label || v },
+];
+const ORG = {
+  bed: { g1: bedGroup, l1: bedGroupLabel, g2: condKey, l2: condLabel },
+  cond: { g1: condKey, l1: condLabel, g2: bedGroup, l2: bedGroupLabel },
+  set: { g1: d => d.set, l1: k => (S.sets[k] || {}).label || k, g2: condKey, l2: condLabel },
+  outcome: { g1: d => d.outcome, l1: k => OUTCOME[k] || k, g2: bedGroup, l2: bedGroupLabel },
+};
+function matches(d, except = []) {
+  for (const f of FACETS) {
+    if (except.includes(f.key)) continue;
+    const sel = S.filters[f.key]; if (sel && sel.size && !sel.has(String(f.val(d)))) return false;
+  }
+  if (S.q) { const q = S.q.toLowerCase(); const hay = `${d.id} ${bedTypeLabel(d.bed_type)} ${craftName(d.craft)} ${OUTCOME[d.outcome]} ${(S.sets[d.set] || {}).label} ${d.feature} ${d.check}`.toLowerCase(); if (!hay.includes(q)) return false; }
+  return true;
+}
+const visible = (except = []) => S.drops.filter(d => matches(d, except));
+
+// ---------------------------------------------------------------- boot
+async function getJSON(u) { const r = await fetch(u); if (!r.ok) throw new Error(`${u}: ${r.status}`); return r.json(); }
+async function boot() {
+  try { S.site = await getJSON("data/site.json"); }
+  catch (e) { $("#groups").innerHTML = `<p class="empty">The drop data did not load (${esc(e.message)}). Open this page from the documentation site or a web server; a file opened from disk cannot load its data.</p>`; return; }
+  for (const s of S.site.sets) { S.sets[s.key] = s; S.beds[s.bed_type.key] = s.bed_type; }
+  const lists = await Promise.all(S.site.sets.map(s => getJSON(`data/${s.key}.json`).catch(() => [])));
+  S.drops = lists.flat();
+  FACETS.forEach(f => S.filters[f.key] = new Set());
+  S.org = store.get("org", "bed"); S.view = store.get("view", "cards"); S.sort = store.get("sort", "spot");
+  const nb = new Set(S.drops.map(bedGroup)).size;
+  const pl = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+  $("#meta").innerHTML = [pl(S.drops.length, "drop"), pl(S.site.sets.length, "drop set"), pl(nb, "bed and craft combination"),
+    pl(S.drops.filter(d => d.movie).length, "movie"), `${S.drops.filter(d => d.check === "confirmed" || d.check === "next touch off the patch").length} last contacts on the patch confirmed`, `updated ${S.site.built}`]
+    .map(x => `<span>${esc(x)}</span>`).join("");
+  renderMethods(); renderGlossary(); renderSets(); wire(); render(); route();
+}
+function wire() {
+  $("#organize").onclick = e => { const b = e.target.closest("button"); if (!b) return; S.org = b.dataset.org; store.set("org", S.org); render(); };
+  $("#view").onclick = e => { const b = e.target.closest("button"); if (!b) return; S.view = b.dataset.view; store.set("view", S.view); render(); };
+  $("#sort").onchange = e => { S.sort = e.target.value; store.set("sort", S.sort); render(); };
+  let qt; $("#q").oninput = e => { clearTimeout(qt); qt = setTimeout(() => { S.q = e.target.value.trim(); render(); }, 150); };
+  $("#filtertoggle").onclick = e => { const f = $("#facets"); f.classList.toggle("open"); e.target.setAttribute("aria-expanded", f.classList.contains("open")); };
+  $("#ovtabs").onclick = e => { const b = e.target.closest("button"); if (!b) return; S.ov = b.dataset.ov; renderOverview(); };
+  document.addEventListener("click", e => {
+    const t = e.target.closest(".term"); if (t) { e.preventDefault(); openDrawer("glossary", t.dataset.term); return; }
+    const m = e.target.closest("[data-method]"); if (m) { e.preventDefault(); openDrawer("methods", m.dataset.method); return; }
+    const od = e.target.closest("[data-open-drawer]"); if (od) { openDrawer(od.dataset.openDrawer); return; }
+    if (e.target.closest("[data-close-drawer]")) $$(".drawer").forEach(d => d.hidden = true);
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") $$(".drawer").forEach(d => d.hidden = true); });
+  $("#gq").oninput = e => renderGlossary(e.target.value.trim());
+  window.addEventListener("hashchange", route);
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { if (S.ov === "explore") renderOverview(); if ($("#detail").open && S.openId) drawChartsFor(S.openId); }, 200); });
+}
+function route() {
+  const h = decodeURIComponent(location.hash.slice(1)); if (!h || h === S.openId) return;
+  if (h.startsWith("m-")) return openDrawer("methods", h.slice(2));
+  if (h.startsWith("g-")) { const k = Object.keys(S.site.glossary).find(t => slug(t) === h.slice(2)); return openDrawer("glossary", k); }
+  if (h.startsWith("set-")) { const el = document.getElementById(h); if (el) el.scrollIntoView({ block: "start" }); return; }
+  if (S.drops.some(d => d.id === h)) openDrop(h);
+}
+
+// ---------------------------------------------------------------- render: bar, facets, groups
+function render() {
+  $$("#organize button").forEach(b => b.setAttribute("aria-pressed", b.dataset.org === S.org));
+  $$("#view button").forEach(b => b.setAttribute("aria-pressed", b.dataset.view === S.view));
+  $("#sort").value = S.sort;
+  renderFacets(); renderActive(); renderOverview(); renderGroups();
+}
+function renderFacets() {
+  const html = FACETS.map(f => {
+    const pool = visible([f.key]), all = [...new Set(S.drops.map(d => String(f.val(d))))];
+    if (all.length < 2 && !S.filters[f.key].size) return "";
+    all.sort((a, b) => f.num ? Number(a) - Number(b) : String(f.name ? f.name(a) : a).localeCompare(String(f.name ? f.name(b) : b)));
+    const tip = f.term ? `<button class="info term" type="button" data-term="${esc(f.term)}" aria-label="What is ${esc(f.label)}?">ⓘ</button>` : f.method ? `<button class="info" type="button" data-method="${f.method}" aria-label="How is it computed?">ⓘ</button>` : "";
+    const head = `<h4><span>${esc(f.label)} ${tip}</span>${S.filters[f.key].size ? `<button class="info" type="button" data-clearf="${f.key}">clear</button>` : ""}</h4>`;
+    if (f.spot) return `<div class="facet">${head}${spotPicker(pool, all)}</div>`;
+    const opts = all.map(v => { const n = pool.filter(d => String(f.val(d)) === v).length, on = S.filters[f.key].has(v);
+      return `<button class="opt" type="button" data-f="${f.key}" data-v="${esc(v)}" aria-pressed="${on}" ${!n && !on ? "disabled" : ""}><span>${esc(f.name ? f.name(v) : v)}</span><span class="n">${n}</span></button>`; }).join("");
+    return `<div class="facet">${head}<div class="opts">${opts}</div></div>`;
+  }).join("");
+  $("#facets").innerHTML = html + `<button class="linkbtn clear" type="button" id="clearall">Clear all filters</button>`;
+  $("#facets").onclick = e => {
+    if (e.target.closest(".term, [data-method]")) return;
+    const c = e.target.closest("[data-clearf]"); if (c) { S.filters[c.dataset.clearf].clear(); render(); return; }
+    if (e.target.id === "clearall") { FACETS.forEach(f => S.filters[f.key].clear()); S.q = ""; $("#q").value = ""; render(); return; }
+    const b = e.target.closest("[data-f]"); if (!b || b.disabled) return; const s = S.filters[b.dataset.f]; s.has(b.dataset.v) ? s.delete(b.dataset.v) : s.add(b.dataset.v); render();
+  };
+}
+function spotPicker(pool, all) {
+  const pts = all.map(k => k.split(",").map(Number)), xs = [...new Set(pts.map(p => p[0]))].sort((a, b) => a - b), ys = [...new Set(pts.map(p => p[1]))].sort((a, b) => b - a);
+  if (xs.length * ys.length > 81) return `<p class="label">${all.length} spots</p>`;
+  const cells = ys.map(y => xs.map(x => { const k = `${x},${y}`; if (!all.includes(k)) return `<span></span>`;
+    const n = pool.filter(d => spotKey(d) === k).length, on = S.filters.spot.has(k);
+    return `<button type="button" data-f="spot" data-v="${k}" aria-pressed="${on}" title="spot (${sgn(x)}, ${sgn(y)}) m: ${n} drops" ${!n && !on ? "disabled" : ""}>${n}</button>`; }).join("")).join("");
+  return `<div class="spotgrid" style="grid-template-columns:repeat(${xs.length}, minmax(0, 1fr));max-width:${Math.min(220, 40 * xs.length)}px">${cells}</div><p class="label" style="margin:4px 0 0">seen from above: up = +y, right = +x</p>`;
+}
+function renderActive() {
+  const chips = [];
+  FACETS.forEach(f => S.filters[f.key].forEach(v => chips.push(`<button class="afchip" type="button" data-f="${f.key}" data-v="${esc(v)}" title="remove">${esc(f.label)}: ${esc(f.spot ? `(${v})` : f.name ? f.name(v) : v)} ✕</button>`)));
+  if (S.q) chips.push(`<button class="afchip" type="button" data-q="1">“${esc(S.q)}” ✕</button>`);
+  $("#active").innerHTML = chips.join("");
+  $("#active").onclick = e => { const b = e.target.closest("button"); if (!b) return; if (b.dataset.q) { S.q = ""; $("#q").value = ""; } else S.filters[b.dataset.f].delete(b.dataset.v); render(); };
+  $("#count").textContent = `${visible().length} of ${S.drops.length} drops`;
+}
+function sorter() {
+  return { spot: (a, b) => (b.y - a.y) || (a.x - b.x) || (a.azimuth - b.azimuth) || (a.speed - b.speed) || (a.angle - b.angle),
+    e: (a, b) => (b.e ?? -1) - (a.e ?? -1), touch: (a, b) => (b.contact_s ?? -1) - (a.contact_s ?? -1),
+    kept: (a, b) => (b.energy_kept ?? -1) - (a.energy_kept ?? -1), touches: (a, b) => (b.episodes ?? -1) - (a.episodes ?? -1) }[S.sort];
+}
+function summary(list) {
+  const e = med(list.map(d => d.e)), tally = {}; list.forEach(d => tally[d.outcome] = (tally[d.outcome] || 0) + 1);
+  return `${list.length} drop${list.length === 1 ? "" : "s"} · median e ${fmt(e)} · ` + Object.entries(tally).map(([o, n]) => `${n} ${OUTCOME[o] || o}`).join(", ");
+}
+function obar(list) { const t = {}; list.forEach(d => t[d.outcome] = (t[d.outcome] || 0) + 1);
+  return `<div class="obar">${Object.entries(t).map(([o, n]) => `<span style="width:${100 * n / list.length}%;background:var(${OCOLOR[o] || "--capped"})" title="${n} ${OUTCOME[o] || o}"></span>`).join("")}</div>`; }
+function renderGroups() {
+  const list = visible(), o = ORG[S.org], by = {};
+  list.forEach(d => { const k1 = o.g1(d), k2 = o.g2(d); (by[k1] ??= {})[k2] ??= []; by[k1][k2].push(d); });
+  S.order = [];
+  const keys1 = Object.keys(by).sort((a, b) => o.l1(a).localeCompare(o.l1(b), undefined, { numeric: true }));
+  if (!keys1.length) { $("#groups").innerHTML = `<p class="empty">No drop matches these filters.</p>`; return; }
+  $("#groups").innerHTML = keys1.map(k1 => {
+    const subs = by[k1], all1 = Object.values(subs).flat(), id1 = `${S.org}:${k1}`, closed = S.collapsed.has(id1);
+    const keys2 = Object.keys(subs).sort((a, b) => o.l2(a).localeCompare(o.l2(b), undefined, { numeric: true }));
+    const body = closed ? "" : keys2.map(k2 => {
+      const ds = subs[k2].slice().sort(sorter()); ds.forEach(d => S.order.push(d.id));
+      return `<div class="sub"><h3>${termify(o.l2(k2))} <span class="gsum">${esc(summary(ds))}</span></h3>${S.view === "table" ? table(ds) : `<div class="grid">${ds.map(card).join("")}</div>`}</div>`;
+    }).join("");
+    return `<section class="group"><button class="ghead" type="button" data-g="${esc(id1)}" aria-expanded="${!closed}"><h2>${termify(o.l1(k1))}</h2><span class="gsum">${esc(summary(all1))}</span><span class="chev">${closed ? "show ▸" : "hide ▾"}</span></button>${body}</section>`;
+  }).join("");
+  $("#groups").onclick = e => {
+    if (e.target.closest(".term, [data-method]")) return;
+    const g = e.target.closest("[data-g]"); if (g) { S.collapsed.has(g.dataset.g) ? S.collapsed.delete(g.dataset.g) : S.collapsed.add(g.dataset.g); renderGroups(); return; }
+    const th = e.target.closest("th[data-k]"); if (th) { S.tsort = { k: th.dataset.k, dir: S.tsort.k === th.dataset.k ? -S.tsort.dir : -1 }; renderGroups(); return; }
+    const b = e.target.closest("[data-open]"); if (b) openDrop(b.dataset.open);
+  };
+  lazyVideos();
+}
+function termify(text) {   // link the words the glossary defines
+  return esc(text).replace(/\b(realistic size mix|even size mix|thin top layer|thick top layer|bottom layer|small stones|panels open|panels folded)\b/g, w => {
+    const k = { "panels open": "panels open / folded", "panels folded": "panels open / folded" }[w] || w;
+    return `<span class="term" data-term="${esc(k)}">${w}</span>`;
+  });
+}
+function card(d) {
+  const screen = d.movie ? `<video controls muted playsinline preload="none" data-src="media/${esc(d.set)}/${esc(d.id)}.mp4#t=0.6" aria-label="Movie of drop ${esc(d.id)}"></video>` : `<div class="nomovie">movie not made yet</div>`;
+  const chk = d.check === "confirmed" ? `<span class="badge ok" title="exact free flight: no later touch anywhere on the bed">last contact confirmed</span>` :
+    d.check === "next touch off the patch" ? `<span class="badge ok" title="no later touch on the patch; the next hop lands outside it">next touch off the patch</span>` :
+    d.check === "lands back on the patch" ? `<span class="badge" title="a long hop back onto the patch after the 300 s limit">lands back later</span>` :
+    (d.check === "touched again" || d.check === "touched unsimulated terrain") ? `<span class="badge bad">${esc(CHECK[d.check])}</span>` :
+    d.check === "left the patch at detachment" ? `<span class="badge">left over the patch edge</span>` : "";
+  return `<article class="card"><div class="screen">${screen}</div><div class="cbody">
+    <div class="chead"><div><h4>spot (${sgn(d.x)}, ${sgn(d.y)}) m</h4><div class="s">${d.speed} cm/s · ${d.angle}°${d.azimuth ? ` · from ${d.azimuth}°` : ""} · ${esc(craftName(d.craft))}</div></div>${pill(d.outcome)}</div>
+    <dl class="stats">
+      <div><dt>e</dt><dd>${fmt(d.e)}</dd></div><div><dt>exit speed</dt><dd>${fmt(d.v_out, 2)} <small>cm/s</small></dd></div><div><dt>exit spin</dt><dd>${fmt(d.spin_out, 3)} <small>rad/s</small></dd></div>
+      <div><dt>touches</dt><dd>${d.episodes ?? "—"}</dd></div><div><dt>contact time</dt><dd>${fmt(d.contact_s, 1)} <small>s</small></dd></div><div><dt>energy kept</dt><dd>${d.energy_kept == null ? "—" : Math.round(100 * d.energy_kept) + " <small>%</small>"}</dd></div>
+    </dl>
+    <div class="cfoot"><span>${chk}</span><button class="btn" type="button" data-open="${esc(d.id)}">Open drop</button></div></div></article>`;
+}
+const TCOLS = [["spot", d => `(${sgn(d.x)}, ${sgn(d.y)})`, d => d.y * 10 - d.x], ["speed", d => d.speed, d => d.speed], ["angle", d => d.angle + "°", d => d.angle],
+  ["from", d => d.azimuth + "°", d => d.azimuth], ["outcome", d => pill(d.outcome), d => d.outcome], ["e", d => fmt(d.e), d => d.e ?? -1],
+  ["exit cm/s", d => fmt(d.v_out, 2), d => d.v_out ?? -1], ["spin", d => fmt(d.spin_out, 3), d => d.spin_out ?? -1], ["touches", d => d.episodes ?? "—", d => d.episodes ?? -1],
+  ["contact s", d => fmt(d.contact_s, 1), d => d.contact_s ?? -1], ["energy", d => d.energy_kept == null ? "—" : Math.round(100 * d.energy_kept) + "%", d => d.energy_kept ?? -1],
+  ["slope", d => fmt(d.slope, 0) + "°", d => d.slope ?? -1], ["check", d => esc(CHECK[d.check] || "—"), d => d.check || ""], ["id", d => esc(d.id), d => d.id]];
+function table(ds) {
+  const col = TCOLS.find(c => c[0] === S.tsort.k); if (col) ds = ds.slice().sort((a, b) => { const x = col[2](a), y = col[2](b); return (x > y ? 1 : x < y ? -1 : 0) * S.tsort.dir; });
+  return `<div class="scrollx panel" style="padding:0;margin-top:8px"><table class="list"><thead><tr>${TCOLS.map(c => `<th data-k="${c[0]}">${c[0]}${S.tsort.k === c[0] ? (S.tsort.dir > 0 ? " ▴" : " ▾") : ""}</th>`).join("")}</tr></thead>
+    <tbody>${ds.map(d => `<tr data-open="${esc(d.id)}">${TCOLS.map(c => `<td class="${["outcome", "check"].includes(c[0]) ? "" : "num"}">${c[1](d)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+let vobs;
+function lazyVideos() {
+  if (vobs) vobs.disconnect();
+  vobs = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; const v = en.target; if (!v.src && v.dataset.src) { v.src = v.dataset.src; v.preload = "metadata"; } vobs.unobserve(v); }), { rootMargin: "500px" });
+  $$("#groups video").forEach(v => vobs.observe(v));
+}
+
+// ---------------------------------------------------------------- overview
+function renderOverview() {
+  $$("#ovtabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.ov === S.ov));
+  ({ matrix: renderMatrix, explore: renderExplore, spots: renderSpots })[S.ov]();
+}
+function hex(h) { h = h.replace("#", ""); if (h.length === 3) h = h.split("").map(x => x + x).join(""); return [0, 2, 4].map(i => parseInt(h.slice(i, i + 2), 16)); }
+function heat(v, lo = 0, hi = 0.6) {
+  const p = Math.max(0, Math.min(1, (v - lo) / (hi - lo))), a = hex(css("--heat-lo")), b = hex(css("--heat-hi"));
+  const c = a.map((x, i) => Math.round(x + (b[i] - x) * p)), lum = (0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2]) / 255;
+  return { bg: `rgb(${c.join(",")})`, fg: lum > 0.55 ? "#15191e" : "#ffffff" };
+}
+function renderMatrix() {
+  const pool = visible(["bed_type", "footprint", "craft", "speed", "angle"]);
+  const rows = [...new Set(pool.map(bedGroup))].sort((a, b) => bedGroupLabel(a).localeCompare(bedGroupLabel(b)));
+  const cols = [...new Set(pool.map(condKey))].sort((a, b) => { const [s1, a1] = a.split("|").map(Number), [s2, a2] = b.split("|").map(Number); return s1 - s2 || a1 - a2; });
+  if (!rows.length) { $("#ovbody").innerHTML = `<p class="empty">No drops.</p>`; return; }
+  const sel = (r, c) => { const [bt, fp, cr] = r.split("|"), [sp, an] = c.split("|"); return S.filters.bed_type.has(bt) && S.filters.footprint.has(fp) && S.filters.craft.has(cr) && S.filters.speed.has(sp) && S.filters.angle.has(an); };
+  const cell = (r, c) => { const ds = pool.filter(d => bedGroup(d) === r && condKey(d) === c); if (!ds.length) return `<td class="empty">—</td>`;
+    const e = med(ds.map(d => d.e)), h = heat(e ?? 0);
+    return `<td data-r="${esc(r)}" data-c="${esc(c)}" style="background:${h.bg};color:${h.fg};${sel(r, c) ? "outline:2px solid var(--accent)" : ""}" title="${esc(bedGroupLabel(r))}, ${esc(condLabel(c))}: ${esc(summary(ds))}"><b>${fmt(e, 2)}</b><small>n ${ds.length}</small>${obar(ds)}</td>`; };
+  $("#ovbody").innerHTML = `<p style="margin:0 0 8px;color:var(--muted);font-size:14px">Median <button class="info" type="button" data-method="e">speed ratio e</button> for each bed and craft (rows) and each arrival speed and angle (columns). Click a cell to see those drops, a row or column heading to filter by it. The bar under a number shows the outcomes.</p>
+    <div class="scrollx"><table class="matrix"><thead><tr><th></th>${cols.map(c => `<th class="col" data-c="${esc(c)}">${esc(condLabel(c)).replace(" · ", "<br>")}</th>`).join("")}</tr></thead>
+    <tbody>${rows.map(r => { const [bt, fp, cr] = r.split("|"); return `<tr><th class="row" data-r="${esc(r)}">${termify(bedTypeLabel(bt))}<small>${fp} m × ${fp} m · ${esc(craftName(cr))}</small></th>${cols.map(c => cell(r, c)).join("")}</tr>`; }).join("")}</tbody></table></div>
+    <div class="legend"><span>e</span>${[0, 0.15, 0.3, 0.45, 0.6].map(v => `<span><i style="background:${heat(v).bg};border-radius:3px"></i>${v.toFixed(2)}</span>`).join("")}
+      ${["detached", "left_patch", "captured"].map(o => `<span><i style="background:var(${OCOLOR[o]})"></i>${OUTCOME[o]}</span>`).join("")}</div>`;
+  $("#ovbody").onclick = e => {
+    if (e.target.closest(".term, [data-method]")) return;
+    const td = e.target.closest("td[data-r]"), th = e.target.closest("th[data-r], th[data-c]");
+    const setBed = r => { const [bt, fp, cr] = r.split("|"); S.filters.bed_type = new Set([bt]); S.filters.footprint = new Set([fp]); S.filters.craft = new Set([cr]); };
+    const setCond = c => { const [sp, an] = c.split("|"); S.filters.speed = new Set([sp]); S.filters.angle = new Set([an]); };
+    if (td) { setBed(td.dataset.r); setCond(td.dataset.c); } else if (th && th.dataset.r) setBed(th.dataset.r); else if (th && th.dataset.c) setCond(th.dataset.c); else return;
+    render(); $("#groups").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  };
+}
+const CATS = { bedgroup: { label: "bed and craft", f: bedGroup, name: bedGroupLabel }, angle: { label: "angle", f: d => d.angle, name: v => `${v}°` },
+  speed: { label: "speed", f: d => d.speed, name: v => `${v} cm/s` }, outcome: { label: "outcome", f: d => d.outcome, name: v => OUTCOME[v] || v },
+  set: { label: "drop set", f: d => d.set, name: v => (S.sets[v] || {}).label || v }, check: { label: "last-contact check", f: d => d.check || "not run yet", name: v => CHECK[v] || v } };
+function niceStep(raw) { const p = Math.pow(10, Math.floor(Math.log10(raw || 1))); return [1, 2, 5, 10].map(k => k * p).find(k => k >= raw) || 10 * p; }
+function renderExplore() {
+  const pool = visible(), W = Math.max(320, ($("#ovbody").clientWidth || 800) - 4), H = Math.min(440, Math.max(300, W * 0.48)), m = { l: 56, r: 14, t: 10, b: 44 };
+  const opt = (sel, keys, names) => keys.map(k => `<option value="${k}" ${k === sel ? "selected" : ""}>${esc(names(k))}</option>`).join("");
+  const mk = Object.keys(METRICS);
+  let html = `<div class="exctl"><label>x <select id="exx">${opt(S.ex.x, mk, k => METRICS[k].label)}</select></label><label>y <select id="exy">${opt(S.ex.y, mk, k => METRICS[k].label)}</select></label>
+    <label>colour <select id="exc">${opt(S.ex.c, Object.keys(CATS), k => CATS[k].label)}</select></label><span style="color:var(--muted)">hover for details, click a point to open the drop</span></div>`;
+  const X = pool.map(d => d[S.ex.x]), Y = pool.map(d => d[S.ex.y]), ok = pool.map((d, i) => X[i] != null && Y[i] != null);
+  const xs = X.filter((v, i) => ok[i]), ys = Y.filter((v, i) => ok[i]);
+  if (!xs.length) { $("#ovbody").innerHTML = html + `<p class="empty">No values to plot.</p>`; wireExplore(); return; }
+  const ext = a => { let lo = Math.min(...a), hi = Math.max(...a); if (lo === hi) { lo -= 1; hi += 1; } const p = (hi - lo) * 0.06; return [lo - p, hi + p]; };
+  const [x0, x1] = ext(xs), [y0, y1] = ext(ys), sx = v => m.l + (v - x0) / (x1 - x0) * (W - m.l - m.r), sy = v => H - m.b - (v - y0) / (y1 - y0) * (H - m.t - m.b);
+  const fewX = new Set(xs).size <= 12, fewY = new Set(ys).size <= 12, jit = (id, k) => { let h = 0; for (const ch of id + k) h = (h * 31 + ch.charCodeAt(0)) % 9973; return (h / 9973 - 0.5); };
+  const cat = CATS[S.ex.c], cats = [...new Set(pool.map(cat.f).map(String))].sort(), pal = ["--c1", "--c2", "--c3", "--c4", "--c5", "--c6", "--c7"];
+  const colOf = v => S.ex.c === "outcome" ? `var(${OCOLOR[v] || "--capped"})` : `var(${pal[cats.indexOf(String(v)) % pal.length]})`;
+  const ticks = (lo, hi) => { const st = niceStep((hi - lo) / 6), out = []; for (let v = Math.ceil(lo / st) * st; v <= hi + 1e-12; v += st) out.push(+v.toFixed(10)); return out; };
+  let svg = `<svg id="exsvg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Scatter of ${esc(METRICS[S.ex.y].label)} against ${esc(METRICS[S.ex.x].label)}">`;
+  ticks(x0, x1).forEach(v => svg += `<line class="grid" x1="${sx(v)}" x2="${sx(v)}" y1="${m.t}" y2="${H - m.b}"/><text x="${sx(v)}" y="${H - m.b + 16}" text-anchor="middle">${v}</text>`);
+  ticks(y0, y1).forEach(v => svg += `<line class="grid" x1="${m.l}" x2="${W - m.r}" y1="${sy(v)}" y2="${sy(v)}"/><text x="${m.l - 6}" y="${sy(v) + 4}" text-anchor="end">${v}</text>`);
+  svg += `<line class="axis" x1="${m.l}" x2="${W - m.r}" y1="${H - m.b}" y2="${H - m.b}"/><line class="axis" x1="${m.l}" x2="${m.l}" y1="${m.t}" y2="${H - m.b}"/>`;
+  svg += `<text x="${(m.l + W - m.r) / 2}" y="${H - 6}" text-anchor="middle">${esc(METRICS[S.ex.x].label)}</text><text transform="translate(14 ${(m.t + H - m.b) / 2}) rotate(-90)" text-anchor="middle">${esc(METRICS[S.ex.y].label)}</text>`;
+  const nx = new Set(xs).size;
+  pool.forEach((d, i) => { if (!ok[i]) return;
+    const px = sx(X[i]) + (fewX ? jit(d.id, "x") * Math.min(26, (W - m.l - m.r) / (nx * 2.5)) : 0), py = sy(Y[i]) + (fewY ? jit(d.id, "y") * 14 : 0);
+    svg += `<circle class="pt" data-open="${esc(d.id)}" cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="5" fill="${colOf(cat.f(d))}" fill-opacity="0.85"></circle>`; });
+  svg += `</svg>`;
+  html += `<div class="scrollx">${svg}</div><div class="legend">${cats.map(c => `<span><i style="background:${colOf(c)}"></i>${termify(cat.name(c))}</span>`).join("")}</div>`;
+  $("#ovbody").innerHTML = html; wireExplore();
+}
+function wireExplore() {
+  ["exx", "exy", "exc"].forEach((id, i) => { const el = $("#" + id); if (el) el.onchange = e => { S.ex[["x", "y", "c"][i]] = e.target.value; renderExplore(); }; });
+  const svg = $("#exsvg"); if (!svg) return;
+  svg.onclick = e => { const p = e.target.closest("[data-open]"); if (p) { $("#tip").hidden = true; openDrop(p.dataset.open); } };
+  svg.onmousemove = e => { const p = e.target.closest("[data-open]"), tip = $("#tip"); if (!p) { tip.hidden = true; return; }
+    const d = S.drops.find(x => x.id === p.dataset.open);
+    tip.innerHTML = `${esc(bedGroupLabel(bedGroup(d)))}<br>spot (${sgn(d.x)}, ${sgn(d.y)}) · ${d.speed} cm/s · ${d.angle}°${d.azimuth ? ` · from ${d.azimuth}°` : ""}<br>${esc(OUTCOME[d.outcome])} · e ${fmt(d.e)} · ${d.episodes} touches<br>${esc(METRICS[S.ex.x].label)} ${fmt(d[S.ex.x], METRICS[S.ex.x].d)} · ${esc(METRICS[S.ex.y].label)} ${fmt(d[S.ex.y], METRICS[S.ex.y].d)}`;
+    tip.hidden = false; tip.style.left = Math.max(8, Math.min(innerWidth - 330, e.clientX + 14)) + "px"; tip.style.top = (e.clientY + 14) + "px"; };
+  svg.onmouseleave = () => $("#tip").hidden = true;
+}
+function renderSpots() {
+  const pool = visible(["spot"]), groups = [...new Set(pool.map(bedGroup))].sort();
+  if (!pool.length) { $("#ovbody").innerHTML = `<p class="empty">No drops.</p>`; return; }
+  const blocks = groups.map(g => { const ds = pool.filter(d => bedGroup(d) === g);
+    const xs = [...new Set(ds.map(d => d.x))].sort((a, b) => a - b), ys = [...new Set(ds.map(d => d.y))].sort((a, b) => b - a);
+    const grid = ys.map(y => xs.map(x => { const k = `${x},${y}`, sd = ds.filter(d => spotKey(d) === k); if (!sd.length) return `<td class="empty"></td>`; const e = med(sd.map(d => d.e)), h = heat(e ?? 0);
+      return `<td data-spot="${k}" style="background:${h.bg};color:${h.fg};${S.filters.spot.has(k) ? "outline:2px solid var(--accent)" : ""}" title="spot (${sgn(x)}, ${sgn(y)}) m: ${esc(summary(sd))}"><b>${fmt(e, 2)}</b><small>(${sgn(x)}, ${sgn(y)})</small>${obar(sd)}</td>`; }).join("")).map(r => `<tr>${r}</tr>`).join("");
+    return `<div style="min-width:0"><h3 style="font-size:17px;margin:6px 0">${termify(bedGroupLabel(g))}</h3><div class="scrollx"><table class="matrix">${grid}</table></div></div>`; }).join("");
+  $("#ovbody").innerHTML = `<p style="margin:0 0 8px;color:var(--muted);font-size:14px">Median e at each landing spot, seen from above (up = +y, right = +x), for each bed and craft. On bed 1 the spots are 30 cm apart; on the smaller test beds a few centimetres. Click a spot to filter.</p><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px">${blocks}</div>`;
+  $("#ovbody").onclick = e => { if (e.target.closest(".term")) return; const td = e.target.closest("td[data-spot]"); if (!td) return; const s = S.filters.spot; s.has(td.dataset.spot) ? s.delete(td.dataset.spot) : s.add(td.dataset.spot); render(); };
+}
+
+// ---------------------------------------------------------------- drop sets
+function renderSets() {
+  $("#sets").innerHTML = `<h2 style="font-size:28px">The drop sets</h2>` + S.site.sets.map(s => `
+    <article class="panel setcard" id="set-${esc(s.key)}"><h3>${esc(s.label)}</h3><p>${esc(s.blurb || s.description)}</p>
+    <dl class="facts"><dt>bed</dt><dd>${termify(s.bed_type.label)}: ${esc(s.bed_type.detail)}; ${s.footprint_m} m × ${s.footprint_m} m (${esc(s.bed_id || "")})</dd>
+      <dt>craft</dt><dd>${termify(s.craft.label)}: ${esc(s.craft.detail)}</dd><dt><span class="term" data-term="patch">patch</span></dt><dd>radius ${s.crop_m ?? "—"} m</dd>
+      <dt>drops</dt><dd>${s.n}, run on the ${esc(s.machine === "labmac" ? "lab Mac" : "laptop")}</dd></dl>
+    ${s.figures.length ? `<div class="cfigs">${s.figures.map(f => `<figure class="cfig" tabindex="0" data-z="cfig/${esc(s.key)}/${esc(f.name)}.webp" data-t="${esc(FIGNAME[f.name] || f.name)}" data-c="${esc(f.caption)}"><img loading="lazy" src="cfig/${esc(s.key)}/${esc(f.name)}.webp" alt="${esc(FIGNAME[f.name] || f.name)}"><figcaption>${esc(FIGNAME[f.name] || f.name)}</figcaption></figure>`).join("")}</div>` : ""}
+    </article>`).join("");
+  $("#sets").onclick = e => { if (e.target.closest(".term")) return; const f = e.target.closest("[data-z]"); if (f) zoom(f.dataset.z, f.dataset.t, f.dataset.c); };
+  $("#sets").onkeydown = e => { const f = e.target.closest("[data-z]"); if (f && e.key === "Enter") zoom(f.dataset.z, f.dataset.t, f.dataset.c); };
+}
+
+// ---------------------------------------------------------------- drawers
+function renderMethods() {
+  $("#methods").innerHTML = `<p style="margin-top:0">Each number on this page, defined, with why it can be trusted (or where it cannot) and the code that computes it. File names refer to the project's code repository; the full chapter is in <a href="https://ashcav1.github.io/lmgc90-docs/project/methods.html">the documentation</a>.</p>` +
+    S.site.methods.map(m => `<article class="method" id="method-${esc(m.key)}"><h3>${esc(m.name)}</h3>
+      <p><span class="k">Definition</span>${esc(m.definition)}</p>${m.why ? `<p><span class="k">Why</span>${esc(m.why)}</p>` : ""}${m.caveat ? `<p><span class="k">Limits</span>${esc(m.caveat)}</p>` : ""}
+      ${m.code.map(c => `<div class="file">${esc(c.file)}:${c.line ?? "?"}</div><pre>${esc(c.excerpt)}</pre>`).join("")}</article>`).join("");
+}
+function renderGlossary(q = "") {
+  const terms = Object.entries(S.site.glossary).filter(([k, v]) => !q || (k + " " + v).toLowerCase().includes(q.toLowerCase())).sort((a, b) => a[0].localeCompare(b[0]));
+  $("#glossary").innerHTML = terms.map(([k, v]) => `<article class="gterm" id="term-${slug(k)}"><h3>${esc(k)}</h3><p>${esc(v)}</p></article>`).join("") || `<p class="empty">No term matches.</p>`;
+}
+function openDrawer(which, key) {
+  $$(".drawer").forEach(d => d.hidden = true); const dr = $(`#drawer-${which}`); dr.hidden = false;
+  if (which === "glossary") { $("#gq").value = ""; renderGlossary(); }
+  const sc = $(".dscroll", dr);
+  if (key) { const el = $(which === "methods" ? `#method-${CSS.escape(key)}` : `#term-${slug(key)}`); if (el) { sc.scrollTop = el.offsetTop - sc.offsetTop - 8; el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); } }
+  else sc.scrollTop = 0;
+  $("[data-close-drawer]", dr).focus();
+}
+
+// ---------------------------------------------------------------- the drop
+const DET = {};
+async function openDrop(id) {
+  const d = S.drops.find(x => x.id === id); if (!d) return;
+  S.openId = id; $$("#groups video").forEach(v => v.pause());
+  const i = S.order.indexOf(id), set = S.sets[d.set] || {}, dlg = $("#detail");
+  const info = k => `<button class="info" type="button" data-method="${k}" aria-label="How is this computed?">ⓘ</button>`;
+  const n = v => v ?? "—";
+  dlg.innerHTML = `<div class="dhead"><div style="min-width:0"><h3 id="dtitle">spot (${sgn(d.x)}, ${sgn(d.y)}) m ${pill(d.outcome)}</h3>
+      <div class="s">${d.speed} cm/s · ${d.angle}° from vertical${d.azimuth ? ` · approach from ${d.azimuth}°` : ""} · drop ${esc(d.id)}</div>
+      <div class="chips"><span class="chip">${termify(bedTypeLabel(d.bed_type))}</span><span class="chip">${d.footprint} m × ${d.footprint} m</span><span class="chip">${termify(craftName(d.craft))}</span><span class="chip">${esc(set.label || d.set)}</span></div></div>
+    <div class="dnav"><button class="btn" type="button" id="dprev" ${i <= 0 ? "disabled" : ""} aria-label="Previous drop">←</button><button class="btn" type="button" id="dnext" ${i < 0 || i >= S.order.length - 1 ? "disabled" : ""} aria-label="Next drop">→</button><button class="btn" type="button" id="dclose">Close</button></div></div>
+    <div class="dbody">
+      <div class="dtop">
+        <div><div class="screen">${d.movie ? `<video id="dvideo" controls muted playsinline autoplay src="media/${esc(d.set)}/${esc(d.id)}.mp4"></video>` : `<div class="nomovie">movie not made yet</div>`}</div>
+          <p class="label" style="margin:6px 0 0">Real time for 15 s, then 10x · grain colour = grain speed · white line = path of the craft's centre ${info("movie")}</p></div>
+        <div>${verdict(d)}
+          <dl class="keynums"><div><dt>speed ratio e ${info("e")}</dt><dd>${fmt(d.e)}</dd></div><div><dt>exit speed ${info("exit")}</dt><dd>${fmt(d.v_out, 2)} <small>cm/s</small></dd></div>
+            <div><dt>energy kept ${info("energy")}</dt><dd>${d.energy_kept == null ? "—" : Math.round(100 * d.energy_kept) + " %"}</dd></div><div><dt>touches ${info("touches")}</dt><dd>${n(d.episodes)}</dd></div>
+            <div><dt>first to last touch ${info("last")}</dt><dd>${fmt(d.contact_s, 2)} <small>s</small></dd></div><div><dt>exit elevation ${info("exit")}</dt><dd>${fmt(d.exit_elev, 0)}°</dd></div></dl></div>
+      </div>
+      <section class="charts"><div class="chartbar"><span class="label">Through the drop · hover to read, click to move the movie there ${info("touch")}</span>
+        <div class="seg" id="trange"><button type="button" data-r="all" aria-pressed="true">whole drop</button><button type="button" data-r="touch" aria-pressed="false">around the touches</button><button type="button" data-r="15" aria-pressed="false">first 15 s</button></div>
+        <span class="readout" id="readout"></span></div>
+        <div class="chartrow"><svg id="chartsvg" role="img" aria-label="Height, speed, spin, contact force and energy of the craft through the drop"></svg><div><svg id="pathsvg" role="img" aria-label="Path of the craft seen from above"></svg><p class="label" style="margin:2px 0 0">Seen from above: patch (dashed), landing spot (+), path; touches in gold</p></div></div></section>
+      <div class="groups">
+        <section><h4>Bounce</h4><dl>
+          <dt>speed ratio e ${info("e")}</dt><dd>${fmt(d.e)}</dd><dt>normal restitution, contact frame ${info("e_contact")}</dt><dd>${d.e_n_contact == null ? (d.episodes > 1 ? "not meaningful (several touches)" : "—") : fmt(d.e_n_contact)}</dd>
+          <dt>normal / tangential, flat frame ${info("e_flat")}</dt><dd>${fmt(d.e_n_flat)} / ${fmt(d.e_t_flat)}</dd><dt>arrival speed</dt><dd>${fmt(d.v_in, 2)} cm/s</dd>
+          <dt>exit speed ${info("exit")}</dt><dd>${fmt(d.v_out, 2)} cm/s</dd><dt>exit elevation</dt><dd>${fmt(d.exit_elev, 1)}°</dd><dt>exit spin</dt><dd>${fmt(d.spin_out, 3)} rad/s</dd>
+          <dt>energy kept ${info("energy")}</dt><dd>${d.energy_kept == null ? "—" : Math.round(100 * d.energy_kept) + " %"}</dd></dl></section>
+        <section><h4>Contact</h4><dl>
+          <dt>first touch ${info("first")}</dt><dd>${fmt(d.first_t, 2)} s</dd><dt>what touched first ${info("feature")}</dt><dd>${esc(n(d.feature))} on ${esc(n(d.partner))}</dd>
+          <dt>last touch ${info("last")}</dt><dd>${fmt(d.last_t, 2)} s</dd><dt>touches ${info("touches")}</dt><dd>${n(d.episodes)}</dd>
+          <dt>how it ended ${info("detached")}</dt><dd>${esc(OUTCOME[d.outcome] || d.outcome)}${d.how ? ` (${esc(HOW[d.how] || d.how)})` : ""}</dd>
+          <dt>deepest box contact</dt><dd>${d.max_pen_mm == null ? "—" : fmt(d.max_pen_mm, 2) + " mm"}</dd></dl></section>
+        <section><h4>Terrain and grains</h4><dl>
+          <dt>site slope / roughness ${info("site")}</dt><dd>${fmt(d.slope, 0)}° / ${fmt(d.roughness, 3)} m</dd><dt>grains moved over 1 mm ${info("grains")}</dt><dd>${n(d.grains_moved)}</dd>
+          <dt>largest grain move</dt><dd>${d.max_grain_disp == null ? "—" : fmt(d.max_grain_disp, 1) + " mm"}</dd><dt>fastest grain</dt><dd>${fmt(d.max_grain_speed, 2)} cm/s</dd>
+          <dt>grain motion at the patch edge ${info("edge")}</dt><dd>${fmt(d.edge_ratio, 3)}</dd></dl></section>
+        <section><h4>Run</h4><dl>
+          <dt>simulated / wall time</dt><dd>${fmt(d.sim_s, 1)} s / ${fmt(d.wall_s, 0)} s</dd><dt>steps of 5 ms</dt><dd>${n(d.steps)}</dd>
+          <dt>solver steps at budget ${info("solver")}</dt><dd>${n(d.unconverged)}</dd><dt>quality checks <span class="term" data-term="quality checks (QA)">ⓘ</span></dt><dd>${esc(d.qa)}${d.qa_flags.length ? " · " + esc(d.qa_flags.join(", ")) : ""}</dd>
+          ${d.prev ? `<dt>before the 31 Oct fix</dt><dd>${esc(OUTCOME[d.prev.outcome] || d.prev.outcome)} at ${fmt(d.prev.end_s, 1)} s, e ${fmt(d.prev.e)}, ${n(d.prev.touches)} touches</dd>` : ""}
+        </dl></section>
+      </div>
+      <p class="label" style="margin:0">Nine figures for this drop · click one to enlarge</p>
+      <div class="figs" id="figs"><p class="label">${d.figs ? "loading…" : "figures not made yet"}</p></div>
+    </div>`;
+  if (!dlg.open) dlg.showModal();
+  try { history.replaceState(null, "", "#" + id); } catch {}
+  $("#dclose").onclick = () => dlg.close(); $("#dprev").onclick = () => openDrop(S.order[i - 1]); $("#dnext").onclick = () => openDrop(S.order[i + 1]);
+  $("#trange").onclick = e => { const b = e.target.closest("button"); if (!b) return; $$("#trange button").forEach(x => x.setAttribute("aria-pressed", x === b)); drawChartsFor(id, b.dataset.r); };
+  try { DET[id] = DET[id] || await getJSON(`drop/${d.set}/${d.id}.json`); } catch (e) { $("#figs").innerHTML = `<p class="label">details did not load (${esc(e.message)})</p>`; return; }
+  if (S.openId !== id) return;
+  drawChartsFor(id, "all");
+  const det = DET[id];
+  $("#figs").innerHTML = det.figures.length ? det.figures.map(f => `<figure><img src="${f.src}" alt="${esc(FIGNAME[f.name] || f.name)} of drop ${esc(d.id)}" data-t="${esc(FIGNAME[f.name] || f.name)}" data-c="${esc(f.caption)}"><figcaption><b>${esc(FIGNAME[f.name] || f.name)}</b>${esc(f.caption)}</figcaption></figure>`).join("") : `<p class="label">figures not made yet</p>`;
+  $("#figs").onclick = e => { const im = e.target.closest("img"); if (im) zoom(im.src, im.dataset.t, im.dataset.c); };
+}
+function verdict(d) {
+  const c = d.check, info = k => `<button class="info" type="button" data-method="${k}" aria-label="How is this decided?">ⓘ</button>`;
+  if (d.outcome !== "detached") return `<div class="verdict"><h4>${esc(OUTCOME[d.outcome] || d.outcome)}</h4><p>${d.outcome === "left_patch" ? "The craft left the patch while on or near the ground; what happened next is outside what the drop simulates, so its last touch is not a bounce exit." : "The drop did not end by bouncing off."} ${info("outcomes")}</p></div>`;
+  const nt = d.next_touch, last = `The last touch was at ${fmt(d.last_t, 2)} s; the run ended at ${fmt(d.sim_s, 1)} s.`;
+  const closest = d.flight_closest_mm != null ? ` Its closest approach to any grain after the last touch: ${fmt(d.flight_closest_mm, 1)} mm.` : "";
+  const rp = d.check_replay;
+  const replay = rp === "confirmed" ? ` Replayed with the end-of-drop test switched off, the drop ran ${fmt(d.check_extra_s, 0)} s further without another touch.` :
+    rp === "touched the frozen ring as predicted" ? " Replayed with the end-of-drop test switched off, the simulation ran on into that same touch on the fixed ring, at the predicted moment." :
+    (rp || "").startsWith("not needed") ? " No replay was needed: after the run the flight never comes within 5 cm of a grain that can move." : "";
+  const where = nt ? `${esc(nt.where)}, ${fmt(nt.after_last_contact_s, 1)} s after the last touch and ${fmt(nt.distance_from_target_m, 2)} m from the target` : "";
+  if (c === "confirmed") return `<div class="verdict ok"><h4>Last contact confirmed</h4><p>${last} From the last touch on, the craft's exact free flight touches nothing on the bed${d.flight_end === "left the bed" ? " before it has left the bed" : ""}.${closest}${replay} ${info("check")}</p></div>`;
+  if (c === "next touch off the patch") return `<div class="verdict ok"><h4>Bounced off the patch</h4><p>${last} No later touch on the simulated patch. The craft's exact free flight next touches ${where}: the landing of a new hop, outside what this drop simulates.${replay} ${info("check")}</p></div>`;
+  if (c === "lands back on the patch") return `<div class="verdict edge"><h4>Bounced off, lands back later</h4><p>${last} The craft's exact free flight comes back down on the patch: on ${where}, after the run's 300 s limit. A long hop; the exit numbers describe the bounce before it. ${info("check")}</p></div>`;
+  if (c === "touched again") return `<div class="verdict bad"><h4>Touched again: the run ended too early</h4><p>${last} ${rp === "touched again" ? "Replayed with the end-of-drop test off, the drop touched again." : `The craft's exact free flight touches ${where}, within the run's time limit.`} This drop's exit numbers describe an intermediate bounce; it is re-simulated with the current end-of-drop test. ${info("check")}</p></div>`;
+  if (c === "touched unsimulated terrain") return `<div class="verdict bad"><h4>Touched ground the drop leaves out</h4><p>${last} While the drop was running, the craft's flight passed through grains in the rest of the bed, outside the patch and the fixed ring (${where}). ${info("check")}</p></div>`;
+  if (c === "left the patch at detachment") return `<div class="verdict edge"><h4>Flew out over the patch edge</h4><p>The craft was airborne and rising when it crossed the patch's edge, ${fmt(d.sim_s - d.last_t, 1)} s after its last touch at ${fmt(d.last_t, 2)} s. This drop has not had the exact flight check yet. ${info("detached")}</p></div>`;
+  return `<div class="verdict"><h4>Bounced off</h4><p>${last} The last-contact check has not run for this drop yet. ${info("detached")}</p></div>`;
+}
+
+// ---------------------------------------------------------------- charts that follow the movie
+const PANELS = [{ k: "h", label: "height of centre above site (m)" }, { k: "speed", label: "speed (cm/s)" }, { k: "spin", label: "spin (rad/s)" },
+  { k: "force", label: "contact force (N, log scale)", log: true }, { k: "energy", label: "energy, fraction of arrival" }];
+let CH = null, PD = null;
+function drawChartsFor(id, range) {
+  const det = DET[id], d = S.drops.find(x => x.id === id), s = det && det.series;
+  const svg = $("#chartsvg"); if (!svg) return;
+  if (!s || !s.t || !s.t.length) { svg.outerHTML = `<p class="label">no time series for this drop</p>`; return; }
+  range = range || (CH && CH.id === id ? CH.range : "all");
+  const T = s.t[s.t.length - 1]; let t0 = 0, t1 = T;
+  if (range === "touch" && det.episodes.length) { t0 = Math.max(0, det.episodes[0][0] - 1); t1 = Math.min(T, det.episodes[det.episodes.length - 1][1] + 2); }
+  if (range === "15") t1 = Math.min(T, 15);
+  if (t1 - t0 < 0.2) t1 = Math.min(T, t0 + 0.2);
+  const W = Math.max(300, svg.parentElement.clientWidth - 4 || 700), ph = 72, gap = 10, m = { l: 58, r: 10, t: 6, b: 34 };
+  const H = m.t + PANELS.length * (ph + gap) - gap + m.b, sx = t => m.l + (t - t0) / ((t1 - t0) || 1) * (W - m.l - m.r);
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("height", H);
+  const idx = s.t.map((t, i) => i).filter(i => s.t[i] >= t0 - 1e-9 && s.t[i] <= t1 + 1e-9);
+  let out = "";
+  det.episodes.forEach(([a, b]) => { if (b < t0 || a > t1) return; const xa = sx(Math.max(a, t0)), xb = Math.max(xa + 2, sx(Math.min(b, t1))); out += `<rect x="${xa}" y="${m.t}" width="${xb - xa}" height="${H - m.t - m.b}" fill="var(--contact)"/>`; });
+  PANELS.forEach((p, j) => {
+    const y0 = m.t + j * (ph + gap), vals = idx.map(i => s[p.k][i]).filter(v => v != null && (!p.log || v > 0));
+    let lo = vals.length ? Math.min(...vals) : 0, hi = vals.length ? Math.max(...vals) : 1;
+    if (p.log) { lo = Math.log10(Math.max(lo, 1e-6)); hi = Math.log10(Math.max(hi, 1e-5)); }
+    if (hi - lo < 1e-9) { hi += 0.5; lo -= 0.5; }
+    const pad = (hi - lo) * 0.08; lo -= pad; hi += pad;
+    const sy = v => y0 + ph - ((p.log ? Math.log10(Math.max(v, 1e-6)) : v) - lo) / (hi - lo) * ph;
+    out += `<rect x="${m.l}" y="${y0}" width="${W - m.l - m.r}" height="${ph}" fill="none" stroke="var(--line)"/><text x="${m.l + 5}" y="${y0 + 12}" style="font-size:10.5px">${esc(p.label)}</text>`;
+    const lab = v => p.log ? `1e${Math.round(v)}` : (Math.abs(v) >= 100 ? v.toFixed(0) : Math.abs(v) >= 1 ? v.toFixed(1) : v.toFixed(2));
+    out += `<text x="${m.l - 5}" y="${y0 + 10}" text-anchor="end">${lab(hi - pad)}</text><text x="${m.l - 5}" y="${y0 + ph}" text-anchor="end">${lab(lo + pad)}</text>`;
+    if (p.log) idx.forEach(i => { const v = s.force[i]; if (v > 0) out += `<circle cx="${sx(s.t[i]).toFixed(1)}" cy="${sy(v).toFixed(1)}" r="2" fill="var(--accent)"/>`; });
+    else { let path = "", pen = false; idx.forEach(i => { const v = s[p.k][i]; if (v == null) { pen = false; return; } path += `${pen ? "L" : "M"}${sx(s.t[i]).toFixed(1)},${sy(v).toFixed(1)}`; pen = true; });
+      out += `<path d="${path}" fill="none" stroke="var(--c1)" stroke-width="1.5"/>`; }
+  });
+  [["first touch", d.first_t], ["last touch", d.last_t], [d.outcome === "detached" ? "run ends (bounced off)" : "run ends", d.sim_s]].forEach(([name, t], k) => {
+    if (t == null || t < t0 - 1e-9 || t > t1 + 1e-9) return; const x = sx(t);
+    out += `<line x1="${x}" x2="${x}" y1="${m.t}" y2="${H - m.b}" stroke="var(--muted)" stroke-dasharray="3 3"/><text x="${Math.min(x + 3, W - 120)}" y="${H - m.b + 12 + (k % 2) * 10}" style="font-size:10px">${esc(name)}</text>`; });
+  const st = niceStep((t1 - t0) / 6); for (let v = Math.ceil(t0 / st) * st; v <= t1 + 1e-9; v += st) out += `<text x="${sx(v)}" y="${H - 2}" text-anchor="middle">${+v.toFixed(2)} s</text>`;
+  out += `<line id="playhead" x1="${m.l}" x2="${m.l}" y1="${m.t}" y2="${H - m.b}" stroke="var(--ink)" stroke-width="1.5"/>`;
+  svg.innerHTML = out;
+  CH = { id, range };
+  drawPath(det);
+  const video = $("#dvideo"), f = det.frames || [];
+  const toSim = vt => { if (!f.length) return vt; const k = Math.floor(vt * 10 + 1e-6), i = Math.min(f.length - 1, k), fr = vt * 10 - k; return i < f.length - 1 ? f[i] + fr * (f[i + 1] - f[i]) : f[f.length - 1]; };
+  const toVideo = t => { if (!f.length) return t; let i = 0; while (i < f.length - 1 && f[i + 1] <= t) i++; const fr = i < f.length - 1 ? (t - f[i]) / ((f[i + 1] - f[i]) || 1) : 0; return (i + Math.max(0, Math.min(0.99, fr))) / 10; };
+  const nearest = t => { let lo = 0, hi = s.t.length - 1; while (hi - lo > 1) { const mid = (lo + hi) >> 1; s.t[mid] < t ? lo = mid : hi = mid; } return Math.abs(s.t[lo] - t) <= Math.abs(s.t[hi] - t) ? lo : hi; };
+  const show = t => { const phl = $("#playhead"); if (!phl) return; const x = Math.max(m.l, Math.min(W - m.r, sx(t))); phl.setAttribute("x1", x); phl.setAttribute("x2", x); const i = nearest(t);
+    $("#readout").textContent = `t ${t.toFixed(2)} s · height ${fmt(s.h[i], 3)} m · speed ${fmt(s.speed[i], 2)} cm/s · spin ${fmt(s.spin[i], 3)} rad/s · contact force ${s.force[i] > 0 ? fmt(s.force[i], 2) + " N" : "none"}${s.contact[i] ? " · touching" : ""}`;
+    movePathDot(s.x[i], s.y[i]); };
+  if (video) {
+    let raf = null; const loop = () => { show(toSim(video.currentTime)); raf = video.paused ? null : requestAnimationFrame(loop); };
+    video.onplay = () => { if (!raf) raf = requestAnimationFrame(loop); }; video.onseeked = video.ontimeupdate = () => show(toSim(video.currentTime));
+    if (!video.paused) raf = requestAnimationFrame(loop);
+  }
+  const toT = e => { const r = svg.getBoundingClientRect(), x = (e.clientX - r.left) * (W / r.width); return t0 + (x - m.l) / (W - m.l - m.r) * (t1 - t0); };
+  svg.onpointermove = e => { const t = toT(e); if (t >= t0 && t <= t1) show(t); };
+  svg.onpointerdown = e => { const t = Math.max(0, Math.min(T, toT(e))); if (video) { video.pause(); video.currentTime = toVideo(t); } show(t); };
+  show(video ? toSim(video.currentTime) : t0);
+}
+function drawPath(det) {
+  const svg = $("#pathsvg"), s = det.series; if (!svg) return;
+  const W = 260, H = 240, tg = det.target || [s.x[0], s.y[0]], R = det.crop_m || 1.2;
+  const xs = s.x.filter(v => v != null), ys = s.y.filter(v => v != null);
+  const span = Math.max(R * 1.1, ...xs.map(v => Math.abs(v - tg[0])), ...ys.map(v => Math.abs(v - tg[1]))) * 1.05;
+  const sx = x => W / 2 + (x - tg[0]) / span * (W / 2 - 8), sy = y => H / 2 - (y - tg[1]) / span * (H / 2 - 8);
+  let out = `<rect x="0" y="0" width="${W}" height="${H}" fill="var(--sunk)" rx="6"/><circle cx="${W / 2}" cy="${H / 2}" r="${R / span * (W / 2 - 8)}" fill="none" stroke="var(--muted)" stroke-dasharray="4 3"/>`;
+  out += `<path d="M${W / 2 - 6},${H / 2}h12M${W / 2},${H / 2 - 6}v12" stroke="var(--muted)"/>`;
+  let p = ""; s.x.forEach((x, i) => { if (x == null) return; p += `${p ? "L" : "M"}${sx(x).toFixed(1)},${sy(s.y[i]).toFixed(1)}`; });
+  out += `<path d="${p}" fill="none" stroke="var(--c1)" stroke-width="1.5"/>`;
+  s.contact.forEach((c, i) => { if (c && s.x[i] != null) out += `<circle cx="${sx(s.x[i]).toFixed(1)}" cy="${sy(s.y[i]).toFixed(1)}" r="2.6" fill="var(--accent)"/>`; });
+  out += `<circle id="pathdot" r="5" fill="var(--ink)" stroke="var(--surface)" stroke-width="1.5" cx="${sx(s.x[0])}" cy="${sy(s.y[0])}"/><text x="8" y="${H - 8}">${(2 * span).toFixed(2)} m across</text>`;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.innerHTML = out; PD = { sx, sy };
+}
+function movePathDot(x, y) { const dot = $("#pathdot"); if (!dot || !PD || x == null) return; dot.setAttribute("cx", PD.sx(x)); dot.setAttribute("cy", PD.sy(y)); }
+function zoom(src, title, cap) {
+  const z = $("#zoom"); z.innerHTML = `<div class="dhead"><h3>${esc(title)}</h3><button class="btn" type="button" id="zclose">Close</button></div><img src="${src}" alt="${esc(title)}"><p>${esc(cap || "")}</p>`;
+  $("#zclose").onclick = () => z.close(); z.showModal();
+}
+$("#detail").addEventListener("close", () => { S.openId = null; $$("#detail video").forEach(v => v.pause()); try { history.replaceState(null, "", location.pathname + location.search); } catch {} });
+$("#detail").addEventListener("keydown", e => { if (e.target.closest("video, select, input")) return; if (e.key === "ArrowRight") $("#dnext")?.click(); if (e.key === "ArrowLeft") $("#dprev")?.click(); });
+boot();
+</script>
