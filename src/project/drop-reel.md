@@ -23,6 +23,13 @@ What you can do there:
 - **Every number has an ⓘ** that opens its definition, why it can be
   trusted, and the code that computes it. Dotted words open the glossary.
 
+**What is in it (2 November):** the laptop's 240 drops in ten sets: study bed 1
+(36), bed 1's recipe at 4 m (36), bed 2's boulders at 3 m (36), the quick 2 m bed
+with small stones (12), and the patch-size tests (120, new). The 3 m and quick
+2 m sets stood on lopsided beds and say so in their notes. The lab Mac's drops
+are in [Every run so far](runs.md) as numbers; their movies need ParaView on the
+lab Mac.
+
 The reel is rebuilt with `python3 lab.py site --reel <drop sets> --publish`
 when drop sets finish or are re-simulated. The movies and data live on the
 documentation repository's `drops-media` branch, so they never bloat its

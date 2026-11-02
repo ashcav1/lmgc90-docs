@@ -644,15 +644,17 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   (thickness, and a possible 6 mm/s rest test for its stones, user's call)
   on 4 Nov. Estimated bed B cost at 4.5 m with 25 cm: ~30 s/step, ~a week
   per seed for 20,000 steps.
-- 2026-11-02 (10:00) — **Study bed 2 as settled IS standard bed A; bed 3
-  keeps running; beds 4 and 6 stop.** Lab Mac: L2 seeds 1 and 2 settled (35,600
-  and 26,400 steps, QA WARN only for the overrun 500-step check), seed 3
-  confirming at step 36,100, so re-settling three seeds with the budget buys
-  nothing the drops see. Bed B copies these boulders: needs a stage_key change
-  (the budget on a boulders-only stage must not change the key; existing keys
-  stay valid since L2 has the default) when its recipe is fixed. Bed 3 keeps
-  its three cores: idle otherwise, and a stopped settle loses 72 h each.
-  `standard_A` / `battery_A` (written that morning, never run) deleted.
+- 2026-11-02 (10:00, reversed by 10:30) — Study bed 2 as settled was to be
+  standard bed A, keeping bed 3 running. Reversed by the next entry.
+- 2026-11-02 (10:30) — **The pour bug: beds with r_min 0.05, 0.08 or 0.10 m were
+  poured into 83 % (133 % for 0.08) of the box. Beds 2-6 are not used as ground;
+  bed A is `standard_A`, settled afresh; every settle on them stops.** Why:
+  whole-bed tilt 4-9° (bed 1 0.3-1.0°), pile centre 8.3 % of the box off, bare
+  floor in the far corner. Fix in `lmgcx.geometry.deposit`, guards in both grid
+  functions, QA `surface_tilt_deg`. Identity: `config.pour_fix` adds a marker to
+  bed id and stage key only for affected layers, so bed 1's ids stand and no
+  affected recipe can copy a lopsided stage. PHYSICS_VERSION not bumped (it would
+  orphan bed 1). Bed B now copies bed A's stage natively (same settings).
 - OPEN GATES: D1 (parameter provenance — provisional regolith_v1), D2 (Milani
   contact model if the panels are open), D5 (small stones resolution / SFD), D7 (budget
   from pilot timing), D8 (MASCOT benchmark — re-derive the target CoR values

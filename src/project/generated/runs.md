@@ -1,6 +1,6 @@
 # Every run so far
 
-Generated from the reports in the code repository; see [Where things stand](state.md) for what they mean and what is next. Study beds are the six beds of the study; everything else is an experiment that answered one question (its question is the first line of its config). Settle time is wall time on the machine named.
+Generated from the reports in the code repository; see [Where things stand](state.md) for what they mean and what is next. Study beds are the six beds of the study; everything else is an experiment that answered one question (its question is the first line of its config). Settle time is wall time on the machine named. **Lopsided pour** marks a bed poured before the fix of 2 November: its pile started in 83 % of the box's width and depth and came out tilted ([the plan](plan.md#a-bug-in-the-pour-found-2-november)).
 
 ## Beds settled on the lab Mac
 
@@ -11,14 +11,14 @@ Generated from the reports in the code repository; see [Where things stand](stat
 | study bed 1 (`ladder_L1_uniform`) seed 1 | boulders 30-70 cm long, even size mix, 0.9 m deep | 4.5 m × 4.5 m | 1,043 | 5,000 steps, 1.4 h | PASS |
 | study bed 1 (`ladder_L1_uniform`) seed 2 | boulders 30-70 cm long, even size mix, 0.9 m deep | 4.5 m × 4.5 m | 1,046 | 7,900 steps, 2.8 h | WARN (stage1_rest_window WARN) |
 | study bed 1 (`ladder_L1_uniform`) seed 3 | boulders 30-70 cm long, even size mix, 0.9 m deep | 4.5 m × 4.5 m | 1,044 | 10,000 steps, 4.0 h | WARN (stage1_rest_window WARN) |
-| study bed 2 (`ladder_L2_weibull`) seed 1 | boulders 20-70 cm long, realistic size mix, 0.9 m deep | 4.5 m × 4.5 m | 2,097 | 35,600 steps, 68.6 h | WARN (stage1_rest_window WARN) |
-| study bed 2 (`ladder_L2_weibull`) seed 2 | boulders 20-70 cm long, realistic size mix, 0.9 m deep | 4.5 m × 4.5 m | 2,116 | 26,400 steps, 52.3 h | WARN (stage1_rest_window WARN) |
+| study bed 2 (`ladder_L2_weibull`) seed 1 | boulders 20-70 cm long, realistic size mix, 0.9 m deep | 4.5 m × 4.5 m | 2,097 | 35,600 steps, 68.6 h | WARN (stage1_rest_window WARN); **lopsided pour** |
+| study bed 2 (`ladder_L2_weibull`) seed 2 | boulders 20-70 cm long, realistic size mix, 0.9 m deep | 4.5 m × 4.5 m | 2,116 | 26,400 steps, 52.3 h | WARN (stage1_rest_window WARN); **lopsided pour** |
 
 ### Experiment beds
 
 | bed | what it is for | size | grains | settle | QA |
 |---|---|---|---|---|---|
-| `exp_fines_split_substrate` seed 1 | experiment: 2 m bed, 30 cm bottom layer of small stones under 0.5 m of boulders (bed 5 structure), position rule for boulder–stone pairs only | 2.0 m × 2.0 m | 328 | 7,200 steps, 3.2 h | FAIL (stage2_rest_window WARN, overlap_rel_fines FAIL) |
+| `exp_fines_split_substrate` seed 1 | experiment: 2 m bed, 30 cm bottom layer of small stones under 0.5 m of boulders (bed 5 structure), position rule for boulder–stone pairs only | 2.0 m × 2.0 m | 328 | 7,200 steps, 3.2 h | FAIL (stage2_rest_window WARN, overlap_rel_fines FAIL); **lopsided pour** |
 
 ### Test beds (smoke checks)
 
@@ -48,17 +48,17 @@ Generated from the reports in the code repository; see [Where things stand](stat
 | `exp_4m` seed 2 | laptop rehearsal of the 36-drop set configuration: 4 m study bed-1 bed | 4.0 m × 4.0 m | 827 | 9,500 steps, 1.6 h | WARN (stage1_rest_window WARN) |
 | `exp_4m_capwin` seed 1 | bed 1's recipe at 4 m x 4 m, speed limit kept through the 500-step check, rest at 3 mm/s | 4.0 m × 4.0 m | 824 | 5,700 steps, 0.8 h | PASS |
 | `exp_base_v12` seed 1 | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders | 1.5 m × 1.5 m | 116 | 5,500 steps, 0.1 h | PASS |
-| `exp_bed2_3m` seed 1 | study bed 2's boulders at 3 m x 3 m: 0.9 m of boulders 20-70 cm long in the realistic size mix | 3.0 m × 3.0 m | 932 | 15,100 steps, 4.7 h | PASS |
-| `exp_bed4q_2m` seed 1 | quick test, 2 m x 2 m: 0.5 m of boulders 20-50 cm long + 8 cm of small stones 8-16 cm long, split contact rule | 2.0 m × 2.0 m | 1,132 | 14,100 steps, 6.6 h | WARN (overlap_rel_fines WARN, solver_unconverged_fraction WARN, fines_coverage WARN) |
-| `exp_fines` seed 1 | experiment: thin top layer of small stones cost and overlap | 2.0 m × 2.0 m | 1,415 | 12,200 steps, 1.1 h | FAIL (overlap_rel_fines FAIL) |
+| `exp_bed2_3m` seed 1 | study bed 2's boulders at 3 m x 3 m: 0.9 m of boulders 20-70 cm long in the realistic size mix | 3.0 m × 3.0 m | 932 | 15,100 steps, 4.7 h | PASS; **lopsided pour** |
+| `exp_bed4q_2m` seed 1 | quick test, 2 m x 2 m: 0.5 m of boulders 20-50 cm long + 8 cm of small stones 8-16 cm long, split contact rule | 2.0 m × 2.0 m | 1,132 | 14,100 steps, 6.6 h | WARN (overlap_rel_fines WARN, solver_unconverged_fraction WARN, fines_coverage WARN); **lopsided pour** |
+| `exp_fines` seed 1 | experiment: thin top layer of small stones cost and overlap | 2.0 m × 2.0 m | 1,415 | 12,200 steps, 1.1 h | FAIL (overlap_rel_fines FAIL); **lopsided pour** |
 | `exp_fines_only` seed 1 | experiment: small-stones-only layer, speed rule vs position rule | 1.0 m × 1.0 m | 353 | 1,500 steps, 0.0 h | WARN (overlap_rel_fines WARN, bare_floor_fraction WARN) |
 | `exp_fines_only_gap` seed 1 | experiment: small-stones-only layer, speed rule vs position rule | 1.0 m × 1.0 m | 353 | 1,800 steps, 0.0 h | WARN (bare_floor_fraction WARN) |
 | `exp_fines_thick` seed 1 | experiment: 25 cm of small stones 8-16 cm long only (bed 6 top layer, bed 5 bottom layer depth): speed rule vs position rule | 1.0 m × 1.0 m | 882 | 1,900 steps, 0.0 h | WARN (overlap_rel_fines WARN) |
 | `exp_fines_thick_gap` seed 1 | experiment: 25 cm of small stones 8-16 cm long only (bed 6 top layer, bed 5 bottom layer depth): speed rule vs position rule | 1.0 m × 1.0 m | 882 | 5,000 steps, 0.9 h | PASS |
 | `exp_fric03` seed 1 | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders | 1.5 m × 1.5 m | 116 | 8,600 steps, 0.1 h | PASS |
 | `exp_rst` seed 1 | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders | 1.5 m × 1.5 m | 116 | 5,100 steps, 0.0 h | FAIL (overlap_rel_boulders FAIL) |
-| `exp_settle_rmix_base` seed 1 | settling-speed test, 2 m x 2 m, study bed 2's boulders: settled the old way (as on the lab Mac) | 2.0 m × 2.0 m | 414 | 14,500 steps, 1.8 h | WARN (stage1_rest_window WARN) |
-| `exp_settle_rmix_budget` seed 1 | settling-speed test, 2 m x 2 m, study bed 2's boulders: with at most 1,000 solver passes per step | 2.0 m × 2.0 m | 414 | 13,400 steps, 1.0 h | PASS |
+| `exp_settle_rmix_base` seed 1 | settling-speed test, 2 m x 2 m, study bed 2's boulders: settled the old way (as on the lab Mac) | 2.0 m × 2.0 m | 414 | 14,500 steps, 1.8 h | WARN (stage1_rest_window WARN); **lopsided pour** |
+| `exp_settle_rmix_budget` seed 1 | settling-speed test, 2 m x 2 m, study bed 2's boulders: with at most 1,000 solver passes per step | 2.0 m × 2.0 m | 414 | 13,400 steps, 1.0 h | PASS; **lopsided pour** |
 | `exp_smoke_v20` seed 1 | plumbing-test bed: 2.4 m × 2.4 m, ~400 boulders + ~400 small stones | 2.4 m × 2.4 m | 419 | 3,100 steps, 0.0 h | WARN (overlap_rel_fines WARN) |
 | `exp_smoke_v8` seed 1 | plumbing-test bed: 2.4 m × 2.4 m, ~400 boulders + ~400 small stones | 2.4 m × 2.4 m | 419 | 9,300 steps, 0.5 h | WARN (overlap_rel_fines WARN) |
 | `exp_stab_base` seed 1 | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders | 1.5 m × 1.5 m | 116 | 25,000 steps, 0.3 h | PASS |
@@ -131,11 +131,11 @@ Stopped on purpose, failed, settled before bed cards existed, still running, or 
 |---|---|---|---|---|---|---|---|
 | `battery_L1` | lab Mac | the 36-drop set on study bed 1 (boulders 30-70 cm long, even size mix, 0.9 m deep) | 46 | 1 capped, 32 detached, 11 left patch, 2 rest | 0.244 | 6.1 h |  |
 | `exp_battery_4m` | laptop | the 36-drop set on study bed 1's recipe at 4 m x 4 m: 9 spots x 2 speeds x 2 angles, panels open | 8 | 7 detached, 1 left patch | 0.425 | 0.3 h |  |
-| `exp_battery_L1_s1` | laptop | the 36-drop set on study bed 1 (boulders 30-70 cm long, even size mix, 0.9 m deep) | 36 | 32 detached, 4 left patch | 0.342 | 2.3 h |  |
+| `exp_battery_L1_s1` | laptop | the 36-drop set on study bed 1 (boulders 30-70 cm long, even size mix, 0.9 m deep) | 36 | 32 detached, 4 left patch | 0.342 | 2.3 h | [open](../drops/index.html#set-exp_battery_L1_s1) |
 | `exp_drops_4m_capwin` | laptop | the 36-drop set on bed 1's recipe at 4 m x 4 m (speed limit kept while settling): 9 spots (+-0.05 m) x 2 speeds x 2 angles, panels open | 36 | 34 detached, 2 left patch | 0.312 | 0.8 h |  |
-| `exp_drops_4m_capwin_r2` | laptop | the 36 drops again under the rotation-aware look-ahead and the patch-edge rule (2026-10-31) | 36 | 32 detached, 4 left patch | 0.303 | 2.1 h |  |
-| `exp_drops_bed2_3m` | laptop | the 36-drop set on bed 2's boulders at 3 m x 3 m, panels folded: 9 spots (+-0.05 m) x 2 speeds x 2 angles, 0.7 m patch | 36 | 32 detached, 4 left patch | 0.432 | 0.6 h |  |
-| `exp_drops_bed4q_2m` | laptop | drops on the 2 m x 2 m quick bed with a thin top layer, panels folded: the centre spot x 2 speeds x 2 angles x 3 approach directions, 0.45 m patch | 12 | 8 detached, 4 left patch | 0.307 | 0.4 h |  |
+| `exp_drops_4m_capwin_r2` | laptop | the 36 drops again under the rotation-aware look-ahead and the patch-edge rule (2026-10-31) | 36 | 32 detached, 4 left patch | 0.303 | 2.1 h | [open](../drops/index.html#set-exp_drops_4m_capwin_r2) |
+| `exp_drops_bed2_3m` (lopsided bed) | laptop | the 36-drop set on bed 2's boulders at 3 m x 3 m, panels folded: 9 spots (+-0.05 m) x 2 speeds x 2 angles, 0.7 m patch | 36 | 32 detached, 4 left patch | 0.432 | 0.6 h | [open](../drops/index.html#set-exp_drops_bed2_3m) |
+| `exp_drops_bed4q_2m` (lopsided bed) | laptop | drops on the 2 m x 2 m quick bed with a thin top layer, panels folded: the centre spot x 2 speeds x 2 angles x 3 approach directions, 0.45 m patch | 12 | 8 detached, 4 left patch | 0.307 | 0.4 h | [open](../drops/index.html#set-exp_drops_bed4q_2m) |
 | `exp_patch_deployed_r090` | laptop | patch-size test: craft with panels open, patch radius 0.90 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 14 detached, 6 left patch | 0.242 | 0.6 h |  |
 | `exp_patch_deployed_r120` | laptop | patch-size test: craft with panels open, patch radius 1.20 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 17 detached, 3 left patch | 0.248 | 1.3 h |  |
 | `exp_patch_deployed_r145` | laptop | patch-size test: craft with panels open, patch radius 1.45 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 17 detached, 3 left patch | 0.248 | 2.1 h |  |
@@ -219,11 +219,11 @@ Sensitivity tests and smoke checks, one drop each (29-30 October).
 | job-07 | bed ladder_L3_deep seed 1 | START  bed ladder_L3_deep seed 1 |
 | job-08 | bed ladder_L3_deep seed 2 | START  bed ladder_L3_deep seed 2 |
 | job-09 | bed ladder_L3_deep seed 3 | START  bed ladder_L3_deep seed 3 |
-| job-10 | bed ladder_L4_veneer seed 1 | START  bed ladder_L4_veneer seed 1 |
-| job-11 | bed ladder_L4_veneer seed 2 | START  bed ladder_L4_veneer seed 2 |
-| job-12 | bed ladder_L4_veneer seed 3 | START  bed ladder_L4_veneer seed 3 |
+| job-10 | bed ladder_L4_veneer seed 1 | STOPPED by Ctrl+C |
+| job-11 | bed ladder_L4_veneer seed 2 | STOPPED by Ctrl+C |
+| job-12 | bed ladder_L4_veneer seed 3 | STOPPED by Ctrl+C |
 | job-13 | bed ladder_L5_substrate seed 1; campaign battery_L1 shard 13/16 | DONE   terminal 13 |
-| job-14 | bed ladder_L6_thick seed 1 | START  bed ladder_L6_thick seed 1 |
+| job-14 | bed ladder_L6_thick seed 1 | STOPPED by Ctrl+C |
 | job-15 | campaign battery_L1 shard 15/16 | DONE   terminal 15 |
 | job-16 | campaign battery_L1 shard 16/16 | DONE   terminal 16 |
 

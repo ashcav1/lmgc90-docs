@@ -31,11 +31,20 @@ measure how it bounces.
 - **How big a bed must be**, worked out and tested: the study beds' 4.5 m is
   right; bigger buys nothing, and 2 m is too small for drops (below).
 
-**The lab Mac, Monday 10:00:** study bed 1 settled three times (1.5-4 hours
-each) and 46 of its drops ran. Study bed 2 settled twice (52 and 69 hours)
-and its third seed is in its last check, so **bed 2 becomes standard bed A**
-and needs no second settling. Bed 3 is still settling and keeps going; beds
-4 and 6 should be stopped.
+**A bug, found Monday morning.** For boulders from 20 cm long, the pour only
+filled 83 % of the box's width and depth, so every realistic-mix bed started
+lopsided, slumped for days and came out tilted. It is fixed. Study bed 1 and
+its drops were not touched. Study beds 2-6 were, so they will not be used,
+and standard bed A is settling afresh on the lab Mac
+([the plan](plan.md#a-bug-in-the-pour-found-2-november)).
+
+**The lab Mac, Monday morning:** study bed 1 settled three times (1.4-4
+hours each) and 46 of its drops ran with Friday's code; they are being
+re-simulated. Against the laptop's drops on the same bed with the new code
+(17 pairs), 14 end the same way, the median speed ratio moves by 0.014, and a
+single drop by 0.04 on average. So bed 1's early picture holds: the panels hit
+first in 41 of 46 drops, and the speed ratio is about 0.17 straight down and
+0.35 at 40°, with far less spread between seeds than between angles.
 
 ## At a glance (regenerated)
 
@@ -75,14 +84,14 @@ would take millions of grains.
 
 | bed | box | what is in it | where, state |
 |---|---|---|---|
-| **standard bed A** | 4.5 m x 4.5 m | study bed 2 as it stands: 0.9 m of boulders 20-70 cm long, realistic size mix | lab Mac: two seeds settled, the third in its last check on Monday 10:00 |
+| **standard bed A** | 4.5 m x 4.5 m | 0.9 m of boulders 20-70 cm long, realistic size mix, poured right, solver budget | lab Mac, three seeds, started 2 November |
 | **standard bed B** | 4.5 m x 4.5 m | bed A's boulders buried in small stones: at least 70 % of the surface small stones, boulders standing 5 cm or less above them | planned: layer thickness measured first (15, 25 or 35 cm) |
 | **study bed 1** | 4.5 m x 4.5 m | 0.9 m of boulders 30-70 cm long, [even size mix](../glossary.md#even-size-mix) (every length equally likely) | lab Mac: **three seeds settled** (1.5, 2.8, 4 hours), 46 of 108 drops ran. A laptop copy is settled and has its 36 drops |
-| **study bed 2** | 4.5 m x 4.5 m | 0.9 m of boulders 20-70 cm long, [realistic size mix](../glossary.md#realistic-size-mix) (many small, few big, as measured on Dimorphos) | lab Mac: **seeds 1 and 2 settled** (69 and 52 hours), seed 3 in its last check; it is now standard bed A |
-| **study bed 3** | 4.5 m x 4.5 m | bed 2, 1.5 m deep | lab Mac, all three seeds still settling (72 hours, step 17,000, 6.5 mm/s); keeps going, roughly three more days |
-| **study bed 4** | 4.5 m x 4.5 m | bed 2 + a [thin top layer](../glossary.md#thin-top-layer) of small stones (8 cm, about one stone deep: boulder tops stick out) | lab Mac, settling; to be stopped |
+| **study bed 2** | 4.5 m x 4.5 m | 0.9 m of boulders 20-70 cm long, [realistic size mix](../glossary.md#realistic-size-mix) (many small, few big, as measured on Dimorphos) | lab Mac: seeds 1 and 2 settled (69 and 52 hours), but **lopsided pour, tilted 4-5°**; replaced by standard bed A |
+| **study bed 3** | 4.5 m x 4.5 m | bed 2, 1.5 m deep | stopped 2 November: lopsided pour |
+| **study bed 4** | 4.5 m x 4.5 m | bed 2 + a [thin top layer](../glossary.md#thin-top-layer) of small stones (8 cm, about one stone deep: boulder tops stick out) | stopped 2 November: lopsided pour, and not buried ground |
 | **study bed 5** | 4.5 m x 4.5 m | a [bottom layer](../glossary.md#bottom-layer) of small stones (30 cm, stones 10-20 cm long), then bed 4 on top | lab Mac: failed in its first 84 minutes (its log is on the lab Mac) |
-| **study bed 6** | 4.5 m x 4.5 m | bed 2 + a [thick top layer](../glossary.md#thick-top-layer) of small stones (25 cm) | lab Mac, settling; to be stopped (bed B replaces it) |
+| **study bed 6** | 4.5 m x 4.5 m | bed 2 + a [thick top layer](../glossary.md#thick-top-layer) of small stones (25 cm) | stopped 2 November: lopsided pour; bed B replaces it |
 | laptop: bed 1 at 4 m | 4 m x 4 m | bed 1's recipe | settled, 36 drops |
 | laptop: bed 2's boulders at 3 m | 3 m x 3 m | bed 2's boulders, no small stones | settled, 36 drops (panels folded) |
 | laptop: quick bed with small stones | 2 m x 2 m | 0.5 m of boulders 20-50 cm long + a thin top layer | settled, 12 drops (panels folded). Small stones cover 24 % of its surface |
@@ -214,36 +223,37 @@ From the re-simulated laptop drops (medians):
   92 % ended in the lower half of the boulder layer. The lab Mac now tests
   15, 25 and 35 cm pours on bed A's boulders, and `lab.py burial` measures
   any bed's cover, at rest or not.
+- **2 Nov, later: the pour bug.** Both of bed 2's surface maps were low in
+  the same corner, and every realistic-mix bed tilted 4-9° while large
+  even-mix beds stayed level. The cause was a wrongly sized map in the pour;
+  details in [the plan](plan.md#a-bug-in-the-pour-found-2-november). Every
+  bed report now shows its whole-bed tilt, and the
+  [bed library](library.md) marks the beds it touched.
 
 ## What is next
 
 1. **Monday, at the lab Mac:**
-   - Ctrl+C once in the `overnight` windows 10, 11, 12 and 14 (beds 4 and
-     6). Leave window 6 (bed 2 seed 3, in its last check) and windows 7-9
-     (bed 3).
-   - `pkill -INT -f "lab.py bed .*fines_split"`: two old small-stone tests
-     have been holding two cores.
-   - `git pull`, then in one window each, `python3 lab.py bed --bed
-     configs/experiments/settle_rmix_budget_t15.toml` (and `_t25`, `_t35`),
-     about 15, 25 and 35 hours. Each ends with "BED FAILED: did not reach
-     rest" if its stones never rest; that is expected, and the end state is
-     saved. Then `python3 lab.py burial <bed id>` for each and
-     `python3 lab.py sync --reports-only -m "thickness tests"`.
-   - `python3 lab.py campaign rerun battery_L1 --stale --workers 9`, then
-     `python3 lab.py campaign start battery_L1 --workers 9`.
-2. **When window 6 says DONE:** `python3 lab.py campaign start battery_L2
-   --workers 9`, then `python3 lab.py check-last-contact battery_L1 --workers 9`
-   (and `battery_L2`) and `python3 lab.py site --publish`.
-3. **Wednesday:** bed B's recipe from the thickness tests (how thick a
-   pour, and whether its stones need a looser rest test); then bed B,
-   three seeds, about a week on three cores.
-4. **When bed B lands:** A against B, then the position study.
+   - Ctrl+C once in every window still settling (`overnight` windows 6-9,
+     and any thickness test started before this fix). Leave bed 1's drops.
+   - `git pull`, then in one window each:
+     `python3 lab.py bed --bed standard_A --seed 1` (and `--seed 2`, `--seed 3`),
+     and `python3 lab.py bed --bed configs/experiments/settle_rmix_budget_t15.toml`
+     (and `_t25`, `_t35`). A thickness test may end with "BED FAILED: did not
+     reach rest"; that is expected, and the end state is saved.
+2. **When bed 1's drops finish:** `python3 lab.py check-last-contact
+   battery_L1 --workers 9`, then `bash overnight/finish.sh`.
+3. **When bed A lands:** `python3 lab.py campaign start battery_A --workers 9`,
+   the same check, and `bash overnight/finish.sh`. Do not run `battery_L2`.
+4. **When a thickness test ends:** `python3 lab.py burial <bed id>` and
+   `python3 lab.py sync --reports-only -m "thickness tests"`.
+5. **Then:** bed B's recipe from the thickness tests, bed B, A against B, and
+   the position study.
 
 ## Decisions that need you
 
 - **The plan's four questions** ([the plan](plan.md#decisions-that-need-you)):
   is "buried" right (70 % small stones, boulders 5 cm or less above them);
-  stop beds 4 and 6 and keep bed 3; a looser rest test
+  bed A in the even size mix if the realistic one is still slow; a looser rest test
   for bed B's small stones if a thick layer never rests; the position
   study's landing area. (The stone size is settled for now: the 10-20 cm
   stones crashed.)
@@ -275,6 +285,8 @@ From the re-simulated laptop drops (medians):
   both machines.
 - [How each number is computed](methods.md): definitions, justifications,
   limits and the code, for every number on these pages.
+- [The bed library](library.md) (regenerated): every settled bed, whether it
+  is good ground, and how to name, check and move one.
 - [Lab notebook](notebook.md): the dated notes, the study plan, the decision
   log, the failure catalogue.
 - [Glossary](../glossary.md): every term these pages use, in plain words.

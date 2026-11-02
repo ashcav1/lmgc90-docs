@@ -1,8 +1,8 @@
 # The plan
 
 _Written the night of 1-2 November 2026; the results of that night's
-settling tests added on 2 November at 06:30, and the lab Mac's report that
-morning at 10:00 (study bed 2 has settled, so it is bed A). Where we want to end up, where
+settling tests added on 2 November at 06:30, and the bug in the pour found
+that morning at 10:30. Where we want to end up, where
 we are, and the steps in between, each with the check that decides the
 next. [Where things stand](state.md) has the day-to-day detail._
 
@@ -27,8 +27,8 @@ for the craft with its panels open (4.5 m x 4.5 m), and used for every drop.
 
 | bed | what it is | built how |
 |---|---|---|
-| **A: bare boulders** | **Study bed 2 as it stands:** 0.9 m of [boulders](../glossary.md#boulders) 20-70 cm long in the [realistic size mix](../glossary.md#realistic-size-mix), 4.5 m x 4.5 m, three seeds | already settled on the lab Mac; its drops are `battery_L2` |
-| **B: buried boulders** | bed A with [small stones](../glossary.md#small-stones) poured on until they fill the gaps between the boulders **and** cover them | bed A's settled boulders, copied, then the small stones with the solver budget (the code now refuses that copy because the settings differ; a small change when bed B's recipe is fixed). How thick a pour that takes is the open question: the stones fall into the gaps first (below) |
+| **A: bare boulders** | 0.9 m of [boulders](../glossary.md#boulders) 20-70 cm long in the [realistic size mix](../glossary.md#realistic-size-mix), 4.5 m x 4.5 m, three seeds | settled with the pour fixed and the solver budget; config `standard_A`, its drops `battery_A`. Settling on the lab Mac since 2 November |
+| **B: buried boulders** | bed A with [small stones](../glossary.md#small-stones) poured on until they fill the gaps between the boulders **and** cover them | bed A's settled boulders, copied, then the small stones. How thick a pour that takes is the open question: the stones fall into the gaps first (below) |
 
 B is built on A's own boulders (same seed), so A against B is the same
 ground with and without small stones. Three seeds of each, as for the study
@@ -68,16 +68,17 @@ the paper.
   rest.** The lab Mac's weekend (59 hours, 16 windows, reported Sunday 21:19):
   - study bed 1 (even size mix): all three seeds settled, in 1.5, 2.8 and 4
     hours; 46 of its 108 drops ran;
-  - study bed 2 (realistic size mix): **seed 2 settled after 52 hours**
-    (26,400 steps), **seed 1 after 69** (35,600 steps, Monday 05:51), and
-    seed 3 was in its last 500-step check on Monday at 10:00 (step 36,100);
-  - study bed 3 (bed 2, 1.5 m deep): all three still settling after 72
-    hours, at 6.5 mm/s and step 17,000;
+  - study bed 2 (realistic size mix): seed 2 settled after 52 hours (26,400
+    steps) and seed 1 after 69 (35,600 steps); seed 3 was in its last
+    500-step check on Monday morning. All of them had the lopsided pour
+    (below), so they will not be used as standard beds;
+  - study bed 3 (bed 2, 1.5 m deep): still settling after 72 hours when
+    stopped, with the same lopsided pour;
   - study beds 4 and 6 (with small stones): still settling, or waiting for
     bed 2's boulders to copy; bed 5 failed in its first 84 minutes.
 
-  So the realistic size mix is slow even without small stones, and small
-  stones make every bed slower again:
+  The realistic size mix was slow because of the bug below. Small stones
+  are a separate problem, on beds the bug did not touch:
   - the quick 2 m bed rested after 6.3 hours;
   - the 3 m bed with study bed 1's boulders and a thin top layer never
     rested: after 32 hours its median grain still moved 11 mm/s, against
@@ -109,6 +110,51 @@ So everything needed for the paper works except two linked things:
 **getting beds to rest in hours, not days** (the realistic size mix, and
 above all a bed full of small stones), and **finding a pour of small stones
 that buries the boulders instead of draining into them**.
+
+## A bug in the pour (found 2 November)
+
+Before a layer settles, its grains are poured into the box one by one, using
+a height map of what is already there. **For boulders from 20 cm long and
+stones from 10 cm long, that map was the wrong size: the pile only reached
+83 % of the box's width and depth.** The rest of the box stayed empty, the
+pile stood in the corner nearest x = 0, y = 0, and it then spent days
+slumping sideways to fill a strip 74 cm wide on a 4.5 m bed. The cause: the
+map's cells must be a whole fraction of 1 cm, and for these sizes they were
+not (8.33 mm cells were laid out as if they were 1 cm cells).
+
+The pile's starting position and the settled bed's whole-bed tilt show it:
+
+| bed | smallest grain | pile's centre when poured | whole-bed tilt when settled |
+|---|---|---|---|
+| study bed 1, 4.5 m (three seeds) | 30 cm | within 2 cm of the middle | 0.3-1.0° |
+| even size mix, 3 m and 4 m (four beds) | 30 cm | within 2 cm | 0.1-1.6° |
+| realistic size mix, 2 m (two beds) | 20 cm | 18 and 17 cm off, both towards the same corner | 6.6° and 9.4° |
+| realistic size mix, 3 m | 20 cm | 25 and 26 cm off | 8.3° |
+| study bed 2, 4.5 m (two seeds) | 20 cm | about 37 cm off (from the fault's size) | about 4-5° (read off its height map picture), bare floor in the far corner |
+| the pour with the fix, 2 m | 20 cm | **1 and 2 cm** | being measured |
+
+**Touched by the bug, so not to be used as standard ground:** study beds 2
+to 6 and their tests at 2 m and 3 m, the 36 laptop drops on bed 2's boulders
+at 3 m, and the 12 drops on the quick 2 m bed with small stones. The 24 %
+cover and 9 cm measured on that quick bed came from a bed tilted 10°: they
+remain the only numbers we have for a thin top layer, but treat them as rough.
+
+**Not touched:** study bed 1 and all its drops, the patch-size tests, the
+even-mix beds, and stones 8-16 cm long. So the small-stone results below
+that use bed 1's boulders stand: those layers still do not rest, and the
+stones still drain into the gaps.
+
+**What it very likely also explains:** why the realistic size mix needed 3
+to 5 times the steps of the even mix, and why the 10-20 cm stones crashed
+and study bed 5 failed: with a wrongly scaled map, a grain is placed from
+the height of a different spot, so it can start inside a boulder and be
+thrown out violently. The same tests are running again on the laptop with
+the fix, to measure this rather than assume it.
+
+**The fix.** The cells are now always a whole fraction of 1 cm, the code
+refuses any map that does not span the box, and every bed's report and
+quality checks now show its tilt, so this cannot return unseen. Only the
+recipes the bug touched get new bed ids; study bed 1's ids are unchanged.
 
 ## Making beds settle fast
 
@@ -173,6 +219,9 @@ What that means:
   their 20,000-step limit on the lab Mac, which saves the end state even
   when the stones are not at rest, and `lab.py burial` measures it.
 
+**The realistic-mix rows above used the lopsided pour.** They are being
+run again with the fix; the 1.7 times in particular will change.
+
 **What decides bed B now.** Two questions, both answered by the thickness
 tests on the lab Mac:
 
@@ -198,8 +247,8 @@ if nothing better turns up, and it is why bed B is built once and kept.
 |---|---|---|---|
 | ~~1-2 Nov night~~ | ~~the nine settling tests~~ **done**: the solver budget is adopted; no small-stone layer rested | laptop | |
 | ~~Mon 2 Nov~~ | ~~measure how buried the boulders are~~ **done**: on every bed report, and `lab.py burial` for any saved stage, at rest or not | code | |
-| Mon 2 Nov | **how thick must the stone layer be?** `settle_rmix_budget_t15`, `_t25`, `_t35`: bed A's boulders at 2 m x 2 m with 15, 25 and 35 cm of small stones, solver budget, each to its 20,000-step limit (about 15, 25 and 35 hours) | lab Mac, one core each | `lab.py burial` on each: the thinnest layer with 70 % cover and boulders 5 cm or less above; and whether any of them rests |
-| Mon 2 Nov | **bed A's 36-drop set** (`battery_L2`), as soon as seed 3 lands | lab Mac | under an hour for three seeds |
+| Mon 2 Nov | **how thick must the stone layer be?** `settle_rmix_budget_t15`, `_t25`, `_t35`: bed A's boulders at 2 m x 2 m, poured right, with 15, 25 and 35 cm of small stones, solver budget, each to its 20,000-step limit (about 15, 25 and 35 hours) | lab Mac, one core each | `lab.py burial` on each: the thinnest layer with 70 % cover and boulders 5 cm or less above; and whether any of them rests |
+| Mon 2 Nov | **bed A, three seeds** (`standard_A`), then its 36-drop set (`battery_A`) | lab Mac | settled, tilt under 3°, quality checks passed; if it takes more than about two days, the even size mix |
 | Mon 2 Nov | **study bed 1's drops**: the 46 re-simulated, the other 62 run | lab Mac | under an hour; bed 1 against bed A says whether the size mix matters |
 | Wed 4 Nov | **bed B's recipe**, from the thickness tests: the pour, and the rest test for its stones | you and me | |
 | Wed 4 Nov - about Wed 11 Nov | **bed B, three seeds**, on bed A's boulders | lab Mac, three cores for about a week | settled, quality checks passed, "buried" measured on the real bed |
@@ -212,21 +261,14 @@ if nothing better turns up, and it is why bed B is built once and kept.
 They were the first try at bracketing the ground, before we knew what small
 stones cost.
 
-- **Keep what has settled**: bed 1's three seeds and its 46 drops, and bed
-  2's seeds. The drops ran with Friday's code: re-simulate them with the
+- **Keep bed 1**: its three seeds and its 46 drops. The drops ran with Friday's code: re-simulate them with the
   new end of drop (`campaign rerun --stale`) and run bed 1's other 62 drops.
-  Bed 1 against bed 2 answers whether the size mix matters.
-- **Study bed 2 is bed A.** Its seeds settled the old way, which is 2 days
-  already spent; settling them again with the solver budget would cost a
-  day and a half on three cores and change nothing the drops can see. Their
-  quality grade is WARN for one reason, the known one: the 500-step check
-  overran, so the bed is the first-rest snapshot.
-- **Bed 3 keeps running.** It costs three cores the lab Mac can spare, and
-  a stopped settle loses everything (72 hours each so far). Its question
-  (does depth matter?) is worth having if it lands, roughly three more days.
-- **Stop beds 4 and 6.** Their small stones have only just started and they
-  use the old settling. Bed B replaces bed 6, and bed 4's thin top layer
-  leaves most boulders bare, so it is not buried ground.
+  Bed 1 against bed A answers whether the size mix matters.
+- **Stop beds 2 to 6.** All have the lopsided pour. Bed 2's two settled
+  seeds stay in the library, marked, but are not used as ground. Bed A
+  replaces bed 2, and bed B replaces bed 6.
+- **Bed 3's question** (does depth matter?) can return once bed A shows
+  what a level pour costs.
 
 ## If it does not work
 
@@ -248,7 +290,8 @@ stones cost.
    boulders that show standing 5 cm or less above them.
 2. **Stone size for bed B:** 8-16 cm long. The 10-20 cm stones crashed in
    the overnight test, so for now there is no choice to make.
-3. **Stop beds 4 and 6, keep bed 3** (recommended above).
+3. **Bed A in the even size mix** if the realistic one still takes more
+   than about two days with the pour fixed.
 4. **A looser rest test for bed B's small stones** (6 mm/s instead of 3),
    if the thickness tests show a thick layer never rests: the drops start
    every grain at zero speed in near-zero gravity, so the creep does not

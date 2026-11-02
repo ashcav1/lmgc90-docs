@@ -7,6 +7,8 @@
 > (bare boulders, and boulders buried in small stones), the two problems left
 > (small-stone beds settle too slowly, and poured stones drain into the
 > boulders instead of burying them), and the steps to the paper.
+> [The bed library](project/library.md) lists every settled bed and whether it
+> is good ground.
 
 LMGC90 is an open-source contact-dynamics code (Non-Smooth Contact Dynamics,
 NSCD) developed at LMGC, Université de Montpellier. It integrates collections
