@@ -1,7 +1,7 @@
 # The three beds
 
-Every drop in the study lands on one of these three grounds, each 4 m x 4 m and
-settled three times with different random pours (three seeds). Nobody has seen
+Every drop in the study lands on one of these three grounds, each 4 m x 4 m, with one
+random pour (one seed) of each for now. Nobody has seen
 Dimorphos's ground at the scale of the craft, so together they bracket what it may be.
 
 ![The three beds, seen from above and in a side cut, drawn with the real grain shapes and sizes. These are target looks, not settled simulations.](figures/three_beds_target.png)

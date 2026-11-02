@@ -10,9 +10,8 @@ bounces. The study now has one job: settle [three standard beds](beds.md), run
 
 {{#include generated/status.md}}
 
-**What the lab Mac is doing.** It runs by itself. It settles the three beds (three
-seeds each) and two small test beds. No impact is simulated until all nine beds have
-settled. Then the drops start, followed by the last-contact check, the movies, the
+**What the lab Mac is doing.** It runs by itself. It settles the three beds and two small
+test beds. No impact is simulated until all three beds have settled. Then the drops start, followed by the last-contact check, the movies, the
 reports and the [drop reel](drop-reel.md). Everything is pushed to GitHub when a step ends, whether
 it succeeded or failed, and every 2 hours while it runs.
 
@@ -24,7 +23,7 @@ it succeeded or failed, and every 2 hours while it runs.
 - **Bed 2 is the uncertain one.** No bed with this many small stones among boulders
   has come to rest yet. Its small test tells us early how much of the surface is
   stones, how far the boulders stand out, and whether it settles. If the recipe
-  needs changing, its three seeds restart.
+  needs changing, it restarts.
 - **Bed 3** is stones only, which the solver handles far faster. Earlier stone-only
   tests came to rest quickly, but it hasn't been tried at this size.
 

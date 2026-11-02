@@ -200,11 +200,11 @@ How beds with small stones are settled: the position rule between boulders and b
 
 ### standard beds
 
-The three grounds every drop lands on, each 4 m x 4 m and settled three times. Bed 1: boulder field. Bed 2: boulders embedded in small stones. Bed 3: a blanket of small stones with no boulders.
+The three grounds every drop lands on, each 4 m x 4 m. Bed 1: boulder field. Bed 2: boulders embedded in small stones. Bed 3: a blanket of small stones with no boulders.
 
 ### standard drop set
 
-The same 81 landings on every seed of every standard bed: 9 landing spots (a 3 x 3 grid 30 cm apart) x 3 arrival speeds (2, 4 and 8 cm/s) x 3 angles (0, 20 and 40 degrees from vertical), the craft always in the same pose, panels open.
+The same 81 landings on every standard bed: 9 landing spots (a 3 x 3 grid 30 cm apart) x 3 arrival speeds (2, 4 and 8 cm/s) x 3 angles (0, 20 and 40 degrees from vertical), the craft always in the same pose, panels open.
 
 ### start conditions
 

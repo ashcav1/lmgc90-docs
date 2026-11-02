@@ -659,7 +659,8 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   0.7 m), bed 2 embedded boulders (40 vol% boulders in stones 10-20 cm, 0.42 m), bed 3 stone blanket (stones 8-16
   cm, 0.4 m), all 4 m x 4 m, 3 seeds, panels open. Replaces the study-bed ladder and standard_A/B. Drops: 9 spots
   x 2/4/8 cm/s x 0/20/40 deg = 81 per seed, 729 in all. Wall clearance 0.5 m (user): the 9 spots stay 30 cm apart.
-  No impact is simulated until all nine beds have settled (user; `drops_wait_for_all_beds`).
+  No impact is simulated until all the beds have settled (user; `drops_wait_for_all_beds`).
+  One seed per bed for now (user): 3 beds, 243 drops; supersedes the 3 seeds above.
 - 2026-11-02 — **Production machinery.** `milani.production` (plan, runner, outputs, status) runs
   `configs/production.toml` unattended and pushes at every step end, success or failure, and every 2 h. A bed
   stage may rest on its surface: mean height-map change under 5 mm for 3 measurements 2,000 steps apart

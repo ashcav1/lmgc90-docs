@@ -13,9 +13,9 @@ the landing speed and angle, the ground, and where on that ground it lands.
 | step | what | how long (estimates) | what decides the next step |
 |---|---|---|---|
 | 1 | Clean start on the lab Mac: old runs stopped and archived | minutes | |
-| 2 | Settle [the three beds](beds.md), three seeds each, plus two 2 m test beds | bed 3 hours, bed 1 up to about a day, bed 2 about 3 days | settled, tilt under 3°, quality checks passed. Bed 2 also needs at least 70 % small stones on top and boulders 5 cm or less above them |
-| 3 | **No drop starts until all nine beds have settled.** Then a depth test on bed 1: do grains free to 0.3 m rather than 0.6 m below the surface change the bounce? | under an hour | if they do, beds 2 and 3 (0.4 m deep) need deepening |
-| 4 | [The same 81 drops](results.md) on each seed of each bed: 729 drops | bed 1 about 3 hours, bed 2 about 1-3 days, bed 3 about 5 days (a drop's cost grows with the loose grains under the craft: about 310, 2,200 and 6,400). About a week in all, after the beds | if bed 3 is too slow, fewer landing spots on it |
+| 2 | Settle [the three beds](beds.md), one seed (one random pour) each for now, plus two 2 m test beds | bed 3 hours, bed 1 up to about a day, bed 2 about 3 days | settled, tilt under 3°, quality checks passed. Bed 2 also needs at least 70 % small stones on top and boulders 5 cm or less above them |
+| 3 | **No drop starts until all three beds have settled.** Then a depth test on bed 1: do grains free to 0.3 m rather than 0.6 m below the surface change the bounce? | under an hour | if they do, beds 2 and 3 (0.4 m deep) need deepening |
+| 4 | [The same 81 drops](results.md) on each bed: 243 drops | bed 1 about 1 hour, bed 2 about half a day, bed 3 about 2 days (a drop's cost grows with the loose grains under the craft: about 310, 2,200 and 6,400). About 2-3 days in all, after the beds | if bed 3 is too slow, fewer landing spots on it |
 | 5 | Compare the beds, write the paper's figures | | |
 
 Steps 2 to 4 run by themselves on the lab Mac.
@@ -40,10 +40,12 @@ Steps 2 to 4 run by themselves on the lab Mac.
 
 - **Bed 2 misses its target:** its 2 m test shows that within about a day. Change the
   pour and restart bed 2; the other beds are not affected.
-- **Bed 2 takes more than about a week:** use one seed first and run its drops while
-  the others settle.
+- **Bed 2 takes more than about a week:** simplify its recipe, and restart it.
 - **A bed fails:** its report, settling history and log reach GitHub by themselves and
   the other beds carry on. No drops start until it is fixed, because every bed must be done first.
+
+**One pour of each bed for now.** One pour can't separate a real difference between beds from the
+luck of that pour. More seeds can be added later with one line in `configs/production.toml`.
 
 ## How the run is organized
 
