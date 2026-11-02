@@ -1,6 +1,7 @@
 # Where things stand
 
-_Written the night of 1-2 November 2026. This page is rewritten at the end
+_Written the night of 1-2 November 2026; the overnight tests' results added
+on 2 November at 06:30. This page is rewritten at the end
 of every work session; the tables marked "regenerated" are rebuilt from the
 code repository each time the site is published._
 
@@ -9,9 +10,16 @@ CubeSat landing on ground like [Dimorphos](../glossary.md#dimorphos)'s and
 measure how it bounces.
 
 - **[The plan](plan.md) is new.** Everything now aims at two standard beds:
-  bare boulders, and the same boulders buried in small stones. The one
-  thing standing in the way is that beds full of small stones take far too
-  long to come to rest. Five tests run tonight to fix that.
+  bare boulders, and the same boulders buried in small stones.
+- **The overnight settling tests:** one change helps. Capping the
+  solver's work per time step (the "solver budget") makes each step a
+  quarter of the cost without changing how the bed settles, so it is now
+  used for every new bed. But no layer of small stones came to rest in any
+  test, and the stones do something we had not seen: **poured on a boulder
+  layer, most of them fall into its gaps** (92 % ended in the lower half of
+  study bed 1's boulders, a third on the floor). So burying the boulders
+  takes a thicker pour than we thought, and the lab Mac now measures how
+  thick ([the plan](plan.md#what-the-tests-showed-2-november-morning)).
 - **How buried are the boulders today?** Barely: on the only settled bed
   with a thin top layer, small stones cover 24 % of the surface and the
   boulders that show stand a median 9 cm above them.
@@ -136,7 +144,7 @@ the same 20 drops with patches of 0.9, 1.2 and 1.45 m (panels open) and
 | The 4 m and 3 m test sets | laptop | re-simulated 1 Nov and checked: 4 m 24 confirmed + 8 off the patch, 3 m 30 + 2; no drop in any set ended too early | In the reel. |
 | The quick 2 m bed with small stones | laptop | 12 drops, all checked | In the reel. |
 | Bed 1's boulders with a thin top layer, 3 m | laptop | **stopped** Sunday 22:00 at step 9,700: after 32 hours the median grain still moved 11 mm/s against the 3 mm/s rest test, and the fall had nearly stopped | It would have needed about three more days. Its log and progress record are kept; it is the case the settling tests below try to fix. |
-| Settling-speed tests (five 2 m copies of that bed, one change each) | laptop | running since Sunday 22:10 | Finished or stopped by 06:15 Monday. The fastest method that passes the quality checks becomes the settling method of the standard beds ([the plan](plan.md)). |
+| Settling-speed tests (nine 2 m beds, one change each) | laptop | **done** Monday 06:15 | The solver budget is adopted (a quarter of the cost per step, QA PASS); no small-stone layer rested; 1 m/s² and speed zeroing do not help; 10-20 cm stones crashed; the 15 and 25 cm tests were stopped half-way. Results in [the plan](plan.md#what-the-tests-showed-2-november-morning). |
 | Friction test: does settling at higher friction help? | laptop | **done: no.** Every run at friction 0.8 or 0.9 made the solver fail, and the one that finished took half again as many steps | Settling stays at friction 0.6, the same as the drops. |
 | Patch-size test (is the patch big enough?) | laptop | **done**: with the panels open the 1.2 m patch is enough and the 4.5 m beds stay; with them folded single drops are very sensitive | 3 m laptop beds only for comparing beds. |
 
@@ -196,6 +204,16 @@ From the re-simulated laptop drops (medians):
   small stones, about 18,000 of them on 4.5 m, and small-stone beds do not
   come to rest in reasonable time: the 3 m one was stopped after 32 hours.
   Making them settle fast is now the first job ([the plan](plan.md)).
+- **2 Nov morning: the settling tests, and stones that drain away.** The
+  solver budget (at most 1,000 solver passes per time step instead of
+  10,000) settles a bed the same way at a quarter of the cost, and is now
+  used for every new bed (`standard_A`). Nothing else helped: settling at
+  1 m/s² is slower, zeroing every speed now and then changes little, and
+  10-20 cm stones crashed. No small-stone layer came to rest, and on study
+  bed 1's boulders the stones fell into the gaps instead of covering them:
+  92 % ended in the lower half of the boulder layer. The lab Mac now tests
+  15, 25 and 35 cm pours on bed A's boulders, and `lab.py burial` measures
+  any bed's cover, at rest or not.
 
 ## What is next
 
@@ -210,19 +228,31 @@ From the re-simulated laptop drops (medians):
      (the 46 drops, new code), `python3 lab.py campaign start battery_L1 --workers 16`
      (the other 62), `python3 lab.py check-last-contact battery_L1 --workers 16`,
      and `python3 lab.py site --publish`.
-2. **Monday:** the settling tests pick the settling method; the lab Mac
-   settles standard bed A (three seeds) and measures how thick the small
-   stones must be for bed B (2 m beds with 15, 25 and 35 cm).
-3. **Tuesday to Thursday:** standard bed B, three seeds, on bed A's
-   boulders; the 36-drop set on A and B as each lands.
-4. **End of the week:** A against B, then the position study.
+2. **Then, at the lab Mac, one window each** (a Terminal window per
+   command, each in `~/Projects/CSML_LMGC90`), so six settle at once:
+   - standard bed A, three seeds: `python3 lab.py bed --bed standard_A --seed 1`
+     (and `--seed 2`, `--seed 3`), about a day and a half;
+   - the thickness tests: `python3 lab.py bed --bed configs/experiments/settle_rmix_budget_t15.toml`
+     (and `_t25`, `_t35`), about 15, 25 and 35 hours. Each ends with "BED
+     FAILED: did not reach rest" if its stones never rest; that is
+     expected, and the end state is saved. Then
+     `python3 lab.py burial <bed id>` (the id is in the window's last
+     lines) for each, `python3 lab.py sync`, and I read the result.
+3. **As bed A lands:** `python3 lab.py campaign start battery_A --workers 16`.
+4. **Wednesday:** bed B's recipe from the thickness tests (how thick a
+   pour, and whether its stones need a looser rest test); then bed B,
+   three seeds, about a week on three cores.
+5. **When bed B lands:** A against B, then the position study.
 
 ## Decisions that need you
 
 - **The plan's four questions** ([the plan](plan.md#decisions-that-need-you)):
   is "buried" right (70 % small stones, boulders 5 cm or less above them);
-  stones 8-16 cm or 10-20 cm long for bed B; stop study beds 4-6; the
-  position study's landing area.
+  stop the lab Mac's unfinished settles; bed A in the even size mix if
+  the realistic one is not at rest in a day and a half; a looser rest test
+  for bed B's small stones if a thick layer never rests; the position
+  study's landing area. (The stone size is settled for now: the 10-20 cm
+  stones crashed.)
 - **This site is public.** The documentation repository is public, so the
   drop reel and these notes are visible to anyone with the link. Say if they
   should move somewhere private before the paper.

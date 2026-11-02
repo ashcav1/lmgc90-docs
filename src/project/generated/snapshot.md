@@ -1,8 +1,8 @@
-_Run log regenerated 2026-11-01 22:29 from the reports both machines push to GitHub._
+_Run log regenerated 2026-11-02 06:32 from the reports both machines push to GitHub._
 
 |  | laptop | lab Mac |
 |---|---|---|
-| settled beds | 37 | 10 |
+| settled beds | 39 | 10 |
 | of which study beds (1-6) | 1 | 4 |
 | drop sets | 13 | 1 |
 | drops recorded | 292 | 46 |

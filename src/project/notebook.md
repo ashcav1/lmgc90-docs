@@ -4,12 +4,13 @@ The dated notes as they were written while the work happened, newest first,
 copied from the code repository every time the site is published. They are
 the long form of [Where things stand](state.md).
 
-- [31 Oct night - 1 Nov: exact last contact, centre of mass, friction, plain words, bed size, the plan](notebook/2026-11-01.md):
+- [31 Oct night - 2 Nov: exact last contact, centre of mass, friction, plain words, bed size, the plan, the settling tests](notebook/2026-11-01.md):
   a drop now ends on its exact free flight, the open-panel craft's centre of
   mass fixed, every laptop drop re-simulated, settling at higher friction
   tested (it does not help), how big a bed must be and the patch-size test,
   and, that night, how buried the boulders are and why small-stone beds
-  settle so slowly.
+  settle so slowly; on the morning of 2 November, the nine settling tests
+  (the solver budget adopted) and small stones draining into the boulders.
 - [31 October: impacts, movies, the detachment fix](notebook/2026-10-31.md):
   the first drop sets on the laptop, the four problems they exposed, the
   study bed 1 with its 36 drops, beds with the realistic size mix resting

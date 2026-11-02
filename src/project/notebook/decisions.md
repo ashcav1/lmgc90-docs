@@ -625,6 +625,26 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   budget 100 checks, gravity 1 m/s², both, budget + quench 200, budget +
   10-20 cm stones. Pass mark: at least 3x faster to rest, quality checks
   pass. Multi-core NLGS stays ruled out (crash guide §3).
+- 2026-11-02 — **The solver budget (`deposit_max_checks = 100`) is the
+  settling method of every new bed; no method passed the 3x-to-rest rule.**
+  Nine 2 m tests: the budget settles identically per step (17.5 against 17.9
+  mm/s at step 7,200) at a quarter of the cost per step on small stones
+  (1.07 against 3.98 s), 2.8x faster to rest on the even-mix boulders and
+  1.7x on the realistic mix (QA PASS, clean 500-step check, against the old
+  way's overrun). No small-stone stage reached the 3 mm/s rest in 20,000
+  steps (budget 6.4, budget + quench 4.6 mm/s, level since ~15,000). 1 m/s²
+  slower (out), quench marginal (off), 10-20 cm stones non-finite at step
+  2,100 twice (unusable until understood). Bed A = `standard_A` (study bed 2
+  + budget), drops `battery_A`.
+- 2026-11-02 — **Small stones drain into coarse boulder layers; bed B's pour
+  is decided by thickness tests.** On bed 1's boulders (30-70 cm, 0.9 m) an
+  8 cm pour ended 92 % in the lower half, 34 % on the floor, 1 % cover; on
+  20-50 cm boulders (0.5 m) 32 % / 6 % / 24 %. The lab Mac runs 15 / 25 /
+  35 cm pours on bed A's boulders at 2 m to their 20,000-step limit;
+  `lab.py burial` measures cover on any saved stage. Bed B's recipe
+  (thickness, and a possible 6 mm/s rest test for its stones, user's call)
+  on 4 Nov. Estimated bed B cost at 4.5 m with 25 cm: ~30 s/step, ~a week
+  per seed for 20,000 steps.
 - OPEN GATES: D1 (parameter provenance — provisional regolith_v1), D2 (Milani
   contact model if the panels are open), D5 (small stones resolution / SFD), D7 (budget
   from pilot timing), D8 (MASCOT benchmark — re-derive the target CoR values

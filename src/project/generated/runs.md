@@ -56,6 +56,8 @@ Generated from the reports in the code repository; see [Where things stand](stat
 | `exp_fines_thick_gap` seed 1 | experiment: 25 cm of small stones 8-16 cm long only (bed 6 top layer, bed 5 bottom layer depth): speed rule vs position rule | 1.0 m × 1.0 m | 882 | 5,000 steps, 0.9 h | PASS |
 | `exp_fric03` seed 1 | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders | 1.5 m × 1.5 m | 116 | 8,600 steps, 0.1 h | PASS |
 | `exp_rst` seed 1 | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders | 1.5 m × 1.5 m | 116 | 5,100 steps, 0.0 h | FAIL (overlap_rel_boulders FAIL) |
+| `exp_settle_rmix_base` seed 1 | settling-speed test, 2 m x 2 m, study bed 2's boulders: settled the old way (as on the lab Mac) | 2.0 m × 2.0 m | 414 | 14,500 steps, 1.8 h | WARN (stage1_rest_window WARN) |
+| `exp_settle_rmix_budget` seed 1 | settling-speed test, 2 m x 2 m, study bed 2's boulders: with at most 1,000 solver passes per step | 2.0 m × 2.0 m | 414 | 13,400 steps, 1.0 h | PASS |
 | `exp_smoke_v20` seed 1 | plumbing-test bed: 2.4 m × 2.4 m, ~400 boulders + ~400 small stones | 2.4 m × 2.4 m | 419 | 3,100 steps, 0.0 h | WARN (overlap_rel_fines WARN) |
 | `exp_smoke_v8` seed 1 | plumbing-test bed: 2.4 m × 2.4 m, ~400 boulders + ~400 small stones | 2.4 m × 2.4 m | 419 | 9,300 steps, 0.5 h | WARN (overlap_rel_fines WARN) |
 | `exp_stab_base` seed 1 | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders | 1.5 m × 1.5 m | 116 | 25,000 steps, 0.3 h | PASS |
@@ -117,10 +119,9 @@ Stopped on purpose, failed, settled before bed cards existed, still running, or 
 | `settle_budget_g1.toml` | settling-speed test, 2 m x 2 m, bed 1's boulders + a thin top layer: iteration budget and 1 m/s2 together |
 | `settle_budget_quench.toml` | settling-speed test, 2 m x 2 m, bed 1's boulders + a thin top layer: iteration budget, and every grain's speed set to zero every 200 steps until the first rest (quench_every = 200) |
 | `settle_g1.toml` | settling-speed test, 2 m x 2 m, bed 1's boulders + a thin top layer: settled at 1 m/s2 instead of 9.81 (the end state is the same kind under the scaling with gravity; weight-driven overlap is 10x smaller) |
-| `settle_rmix_base.toml` | settling-speed test, 2 m x 2 m, study bed 2's boulders: settled the old way (as on the lab Mac) |
-| `settle_rmix_budget.toml` | settling-speed test, 2 m x 2 m, study bed 2's boulders: with at most 1,000 solver passes per step |
 | `settle_rmix_budget_t15.toml` | settling-speed test, 2 m x 2 m, study bed 2's boulders: with the solver budget and 15 cm of small stones 8-16 cm long on top |
 | `settle_rmix_budget_t25.toml` | settling-speed test, 2 m x 2 m, study bed 2's boulders: with the solver budget and 25 cm of small stones 8-16 cm long on top (study bed 6's layer) |
+| `settle_rmix_budget_t35.toml` | settling-speed test, 2 m x 2 m, study bed 2's boulders: with the solver budget and 35 cm of small stones 8-16 cm long on top |
 | `v8.toml` | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders |
 
 ## Drop sets
@@ -222,7 +223,7 @@ Sensitivity tests and smoke checks, one drop each (29-30 October).
 | job-12 | bed ladder_L4_veneer seed 3 | START  bed ladder_L4_veneer seed 3 |
 | job-13 | bed ladder_L5_substrate seed 1; campaign battery_L1 shard 13/16 | DONE   terminal 13 |
 | job-14 | bed ladder_L6_thick seed 1 | START  bed ladder_L6_thick seed 1 |
-| job-15 | campaign battery_L1 shard 15/16 | WAIT   bed(s) still settling for:battery_L2 battery_L3 battery_L4 battery_L6 battery_L5 — next check in 10 min |
+| job-15 | campaign battery_L1 shard 15/16 | DONE   terminal 15 |
 | job-16 | campaign battery_L1 shard 16/16 | DONE   terminal 16 |
 
 ### rehearsal_2026-10-29_1416 (laptop)
