@@ -17,15 +17,18 @@ it succeeded or failed, and every 2 hours while it runs.
 
 **What we know so far:**
 
-- **Bed 1's recipe is ready.** With the pour fixed, the same recipe at 2 m settled in
-  about 70 minutes, passed the [quality checks](../glossary.md#quality-checks-qa)
-  and tilted 2° instead of 9°.
-- **Bed 2 is the uncertain one.** No bed with this many small stones among boulders
-  has come to rest yet. Its small test tells us early how much of the surface is
-  stones, how far the boulders stand out, and whether it settles. If the recipe
-  needs changing, it restarts.
-- **Bed 3** is stones only, which the solver handles far faster. Earlier stone-only
-  tests came to rest quickly, but it hasn't been tried at this size.
+- **Bed 3 has settled.** Its 22,572 stones came to rest in 1 hour 45 minutes (1,900 steps), level,
+  with stones on all of the surface.
+- **Bed 2's recipe works in its 2 m test.** It came to rest in 40 minutes, with stones on
+  96 % of the surface and the boulders' tops a median 5 cm below the stones around them.
+  The full bed is settling and should take about 4 hours.
+- **Bed 1 is still settling,** with a typical grain moving 4.5 mm/s at the last report. At rest is under 3 mm/s.
+- **"Failed" in the table above means one [quality check](../glossary.md#quality-checks-qa).**
+  Small stones sink slightly into each other while settling, and the worst pair's overlap
+  was over the old limit: 73 % of the thinnest stone's half-thickness on bed 3, against a limit of 50 %.
+  The limit is now 100 %, with a warning that stays on the bed ([why](plan.md)). The table
+  changes when the run restarts after bed 1 finishes; those beds are then graded
+  again without settling again.
 
 **What's next:** [the plan](plan.md).
 

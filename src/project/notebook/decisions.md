@@ -666,6 +666,14 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   stage may rest on its surface: mean height-map change under 5 mm for 3 measurements 2,000 steps apart
   (`SettleSpec.surface_rest_m`, beds 2 and 3 only, QA WARN). Fine-overlap QA grades the top 25 cm.
   Fines-only settling stays on the velocity law: gap-law stones cost 25x (exp_fines_thick 133 s against 3,280 s).
+- 2026-11-02 (user) — **Reachable fines overlap fails at 1.0 of the smallest semi-axis, not 0.5** (QA_VERSION 3;
+  WARN stays at 0.15). Both pilots and `bed3_stones` failed QA on this alone, at 0.51, 0.60 and 0.73 (1.9 cm on stones
+  8-16 cm long, bed 3). The value is one worst pair divided by the smallest possible stone's semi-axis, and it grows with
+  bed size. Face-normal count on `pilot_bed3`, an upper bound: 82 % of about 14,000 near pairs overlap under 2 mm and about
+  a dozen pass the old limit. The drops' rock law is RST_CLB, velocity level, so it does not push overlapping stones apart;
+  no drop has tested this on these beds yet. Rejected: gap law among stones, 25x the cost and it never rested on a mixed
+  bed. Bed 2 stays as settled in its pilot, 96 % stones with boulder tops a median 5 cm below (user), though from above it
+  may look much like bed 3.
 - OPEN GATES: D1 (parameter provenance — provisional regolith_v1), D2 (Milani
   contact model if the panels are open), D5 (small stones resolution / SFD), D7 (budget
   from pilot timing), D8 (MASCOT benchmark — re-derive the target CoR values
