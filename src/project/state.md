@@ -1,13 +1,20 @@
 # Where things stand
 
-_Written Sunday 1 November 2026, 22:00. This page is rewritten at the end
+_Written the night of 1-2 November 2026. This page is rewritten at the end
 of every work session; the tables marked "regenerated" are rebuilt from the
 code repository each time the site is published._
 
 **The short version.** We simulate Hera's [Milani](../glossary.md#milani)
 CubeSat landing on ground like [Dimorphos](../glossary.md#dimorphos)'s and
-measure how it bounces. This weekend:
+measure how it bounces.
 
+- **[The plan](plan.md) is new.** Everything now aims at two standard beds:
+  bare boulders, and the same boulders buried in small stones. The one
+  thing standing in the way is that beds full of small stones take far too
+  long to come to rest. Five tests run tonight to fix that.
+- **How buried are the boulders today?** Barely: on the only settled bed
+  with a thin top layer, small stones cover 24 % of the surface and the
+  boulders that show stand a median 8 cm above them.
 - **The end of a drop is now exact,** and a centre-of-mass error in every
   drop with the panels open was found and fixed. All 108 laptop drops were
   re-simulated.
@@ -17,7 +24,9 @@ measure how it bounces. This weekend:
   right; bigger buys nothing, and 2 m is too small for drops (below).
 
 The lab Mac has been settling the six study beds since Friday, but has sent
-nothing to GitHub since Friday morning.
+nothing to GitHub since Friday morning. Its beds with small stones (4-6)
+should be stopped: they would take days to a week, with settings that never
+rested on the laptop.
 
 ## At a glance (regenerated)
 
@@ -30,19 +39,21 @@ hops or bounces away depends on the ground it hits, which nobody has seen
 at the scale of the craft. We build that ground in
 [LMGC90](../glossary.md#lmgc90) as piles of rigid angular
 [grains](../glossary.md#grain), drop the craft onto it, and record what
-happens. The plan, in order:
+happens. In short ([the plan](plan.md) has the steps, dates and checks):
 
-1. **Settle six study beds**, each one change more realistic than the last
-   (table below). Each is settled once and reused.
-2. **Fire the same [36 drops](../glossary.md#36-drop-set) at every bed**
-   and see which change moves the bounce. That decides how realistic the
-   ground has to be.
-3. **Run the position study** on the chosen bed: the same arrival at many
+1. **Settle two standard beds**, three seeds each: **A**, bare boulders, and
+   **B**, the same boulders buried in small stones.
+2. **Fire the same [36 drops](../glossary.md#36-drop-set) at both** and
+   measure how much the small stones change the bounce.
+3. **Run the position study**: the same arrival at many
    [landing spots](../glossary.md#landing-spot), to map where Milani stays
    and where it bounces away.
 4. **Write the paper**: bounce-outcome maps for Milani on Dimorphos.
 
-We are between steps 1 and 2.
+The six study beds were the first try at step 1. Beds 1-3 (boulders only)
+stay as side checks; beds 4-6 are replaced by bed B. We are at step 1: the
+drops are ready, and boulder beds settle reliably, but beds with small stones
+do not yet come to rest in reasonable time.
 
 ## The beds, in plain terms
 
@@ -55,16 +66,18 @@ would take millions of grains.
 
 | bed | box | what is in it | where, state |
 |---|---|---|---|
+| **standard bed A** | 4.5 m x 4.5 m | study bed 2's boulders: 0.9 m, 20-70 cm long, realistic size mix | planned: lab Mac, three seeds, once the settling method is chosen |
+| **standard bed B** | 4.5 m x 4.5 m | bed A's boulders buried in small stones: at least 70 % of the surface small stones, boulders standing 5 cm or less above them | planned: layer thickness measured first (15, 25 or 35 cm) |
 | **study bed 1** | 4.5 m x 4.5 m | 0.9 m of boulders 30-70 cm long, [even size mix](../glossary.md#even-size-mix) (every length equally likely) | lab Mac, settling. A laptop copy is settled and has its 36 drops |
 | **study bed 2** | 4.5 m x 4.5 m | 0.9 m of boulders 20-70 cm long, [realistic size mix](../glossary.md#realistic-size-mix) (many small, few big, as measured on Dimorphos) | lab Mac, settling |
 | **study bed 3** | 4.5 m x 4.5 m | bed 2, 1.5 m deep | lab Mac, settling |
-| **study bed 4** | 4.5 m x 4.5 m | bed 2 + a [thin top layer](../glossary.md#thin-top-layer) of small stones (8 cm, about one stone deep: boulder tops stick out) | lab Mac, settling |
-| **study bed 5** | 4.5 m x 4.5 m | a [bottom layer](../glossary.md#bottom-layer) of small stones (30 cm, stones 10-20 cm long), then bed 4 on top | lab Mac, settling |
-| **study bed 6** | 4.5 m x 4.5 m | bed 2 + a [thick top layer](../glossary.md#thick-top-layer) of small stones (25 cm) | lab Mac, settling |
+| **study bed 4** | 4.5 m x 4.5 m | bed 2 + a [thin top layer](../glossary.md#thin-top-layer) of small stones (8 cm, about one stone deep: boulder tops stick out) | lab Mac, settling; to be stopped |
+| **study bed 5** | 4.5 m x 4.5 m | a [bottom layer](../glossary.md#bottom-layer) of small stones (30 cm, stones 10-20 cm long), then bed 4 on top | lab Mac, settling; to be stopped |
+| **study bed 6** | 4.5 m x 4.5 m | bed 2 + a [thick top layer](../glossary.md#thick-top-layer) of small stones (25 cm) | lab Mac, settling; to be stopped (bed B replaces it) |
 | laptop: bed 1 at 4 m | 4 m x 4 m | bed 1's recipe | settled, 36 drops |
 | laptop: bed 2's boulders at 3 m | 3 m x 3 m | bed 2's boulders, no small stones | settled, 36 drops (panels folded) |
-| laptop: quick bed with small stones | 2 m x 2 m | 0.5 m of boulders 20-50 cm long + a thin top layer | settled, 12 drops (panels folded) |
-| laptop: bed 1's boulders with a thin top layer | 3 m x 3 m | bed 1's boulders + a thin top layer | **settling now**, its 36 drops start on their own |
+| laptop: quick bed with small stones | 2 m x 2 m | 0.5 m of boulders 20-50 cm long + a thin top layer | settled, 12 drops (panels folded). Small stones cover 24 % of its surface |
+| laptop: bed 1's boulders with a thin top layer | 3 m x 3 m | bed 1's boulders + a thin top layer | **stopped** 1 Nov 22:00 after 32 hours without coming to rest; its drops never ran |
 
 ## How big must a bed be?
 
@@ -115,13 +128,14 @@ the same 20 drops with patches of 0.9, 1.2 and 1.45 m (panels open) and
 
 | piece of work | where | state | what happens next |
 |---|---|---|---|
-| The six study beds, three seeds each for beds 1-4 | lab Mac | settling since Fri 30 Oct, about 11:15. **Nothing pushed to GitHub since Fri 07:57.** Its 60-hour limit ends about 23:15 Sunday: nothing new starts after that, work already going runs on, and each window pushes its notes when it ends | Windows with nothing left to run should push overnight. If nothing has arrived by Monday morning: are the windows running, and does `python3 lab.py sync --reports-only` push? |
+| The six study beds, three seeds each for beds 1-4 | lab Mac | settling since Fri 30 Oct, about 11:15. **Nothing pushed to GitHub since Fri 07:57.** Its 60-hour limit ends about 23:15 Sunday: nothing new starts after that, work already going runs on, and each window pushes its notes when it ends | Windows with nothing left to run should push overnight. If nothing has arrived by Monday morning: are the windows running, and does `python3 lab.py sync --reports-only` push? Stop the windows still settling beds 4-6 (below). |
 | The 36-drop sets on the lab Mac's beds | lab Mac | start on their own as each bed settles | Made with Friday's code: the open-panel craft's centre of mass is off and the end-of-drop test is the old one. After `git pull`, re-simulate each drop set when it finishes (commands below). |
 | Study bed 1, laptop copy (same bed ID as the lab Mac's) | laptop | settled 31 Oct, passed the quality checks | The laptop's reference for checking the lab Mac's result. |
 | Its 36 drops | laptop | re-simulated 1 Nov and checked: 20 last contacts confirmed, 11 next touch off the patch, 1 long hop back onto it, 4 left the patch | In the [drop reel](drop-reel.md). |
 | The 4 m and 3 m test sets | laptop | re-simulated 1 Nov and checked: 4 m 24 confirmed + 8 off the patch, 3 m 30 + 2; no drop in any set ended too early | In the reel. |
 | The quick 2 m bed with small stones | laptop | 12 drops, all checked | In the reel. |
-| Bed 1's boulders with a thin top layer, 3 m | laptop | settling: at step 9,600 (Sunday 22:00) the median grain still moves 11 mm/s against the 3 mm/s rest test. The fall has slowed from about 8 % to about 2 % per 300 steps; 11.6 s per step | **Not at rest by Monday morning.** At this pace about three more days; a sudden drop like the 2 m bed's (step 5,100) would bring it sooner. A stopped settle cannot be resumed, so it keeps running while the laptop is free; its 36 drops start on their own. |
+| Bed 1's boulders with a thin top layer, 3 m | laptop | **stopped** Sunday 22:00 at step 9,700: after 32 hours the median grain still moved 11 mm/s against the 3 mm/s rest test, and the fall had nearly stopped | It would have needed about three more days. Its log and progress record are kept; it is the case the settling tests below try to fix. |
+| Settling-speed tests (five 2 m copies of that bed, one change each) | laptop | running since Sunday 22:10 | Finished or stopped by 06:15 Monday. The fastest method that passes the quality checks becomes the settling method of the standard beds ([the plan](plan.md)). |
 | Friction test: does settling at higher friction help? | laptop | **done: no.** Every run at friction 0.8 or 0.9 made the solver fail, and the one that finished took half again as many steps | Settling stays at friction 0.6, the same as the drops. |
 | Patch-size test (is the patch big enough?) | laptop | **done**: with the panels open the 1.2 m patch is enough and the 4.5 m beds stay; with them folded single drops are very sensitive | 3 m laptop beds only for comparing beds. |
 
@@ -175,26 +189,37 @@ From the re-simulated laptop drops (medians):
   for 2 within 6 s, right at the patch's edge.
 - On the thin top layer the craft's first touch was a boulder in all 12
   drops: the layer is one stone deep and the boulder tops stick out.
+- **1 Nov night: the plan changes to two standard beds.** Measured on the
+  height map, the thin top layer covers only 24 % of the surface, so it is
+  not buried ground. A bed with the boulders buried needs about 25 cm of
+  small stones, about 18,000 of them on 4.5 m, and small-stone beds do not
+  come to rest in reasonable time: the 3 m one was stopped after 32 hours.
+  Making them settle fast is now the first job ([the plan](plan.md)).
 
 ## What is next
 
-1. **When you are next at the lab Mac** (the settles keep running through
-   all of it):
-   - `git pull`
-   - When each drop set has finished:
-     `python3 lab.py campaign rerun battery_L1 --stale --workers 8`, then
-     `python3 lab.py check-last-contact battery_L1 --workers 8`
-   - Then `python3 lab.py site --publish`.
-2. On the laptop: the 3 m bed with a thin top layer keeps settling (about
-   three more days at its current pace), then its 36 drops run, are checked
-   and get movies.
-3. Through the week: the lab Mac's beds finish and their drop sets run.
-   Then compare the beds: which change moves the bounce, by how much, at
-   what cost.
-4. Choose the bed for the position study and its grid of landing spots.
+1. **Monday morning, at the lab Mac:**
+   - `python3 lab.py sync --reports-only`, so its weekend shows up here.
+   - Stop the windows still settling study beds 4, 5 or 6 (Ctrl+C in the
+     window), unless the window's last progress line ends in "confirmation
+     window": that is the last 500 steps before rest.
+   - When no simulation is running: `git pull`, then for each finished
+     drop set `python3 lab.py campaign rerun battery_L1 --stale --workers 8`
+     and `python3 lab.py check-last-contact battery_L1 --workers 8` (and the
+     same for `battery_L2`, `battery_L3`), then `python3 lab.py site --publish`.
+2. **Monday:** the settling tests pick the settling method; the lab Mac
+   settles standard bed A (three seeds) and measures how thick the small
+   stones must be for bed B (2 m beds with 15, 25 and 35 cm).
+3. **Tuesday to Thursday:** standard bed B, three seeds, on bed A's
+   boulders; the 36-drop set on A and B as each lands.
+4. **End of the week:** A against B, then the position study.
 
 ## Decisions that need you
 
+- **The plan's four questions** ([the plan](plan.md#decisions-that-need-you)):
+  is "buried" right (70 % small stones, boulders 5 cm or less above them);
+  stones 8-16 cm or 10-20 cm long for bed B; stop study beds 4-6; the
+  position study's landing area.
 - **This site is public.** The documentation repository is public, so the
   drop reel and these notes are visible to anyone with the link. Say if they
   should move somewhere private before the paper.

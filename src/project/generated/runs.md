@@ -97,6 +97,11 @@ Stopped on purpose, failed, settled before bed cards existed, still running, or 
 | `patch_folded_r045.toml` | patch-size test: craft with panels folded, patch radius 0.45 m, bed 1, 5 spots x 2 speeds x 2 angles |
 | `patch_folded_r070.toml` | patch-size test: craft with panels folded, patch radius 0.70 m, bed 1, 5 spots x 2 speeds x 2 angles |
 | `patch_folded_r100.toml` | patch-size test: craft with panels folded, patch radius 1.00 m, bed 1, 5 spots x 2 speeds x 2 angles |
+| `settle_budget.toml` | settling-speed test, 2 m x 2 m, bed 1's boulders + a thin top layer: iteration budget: at most 1,000 solver sweeps per step (deposit_max_checks = 100) |
+| `settle_budget_coarse.toml` | settling-speed test, 2 m x 2 m, bed 1's boulders + a thin top layer: iteration budget, with coarser small stones 10-20 cm long (half as many) |
+| `settle_budget_g1.toml` | settling-speed test, 2 m x 2 m, bed 1's boulders + a thin top layer: iteration budget and 1 m/s2 together |
+| `settle_budget_quench.toml` | settling-speed test, 2 m x 2 m, bed 1's boulders + a thin top layer: iteration budget, and every grain's speed set to zero every 200 steps until the first rest (quench_every = 200) |
+| `settle_g1.toml` | settling-speed test, 2 m x 2 m, bed 1's boulders + a thin top layer: settled at 1 m/s2 instead of 9.81 (the end state is the same kind under the scaling with gravity; weight-driven overlap is 10x smaller) |
 | `v8.toml` | thick-layer test: 1.5 m x 1.5 m bed, 0.9 m of study bed-1 boulders |
 
 ## Drop sets

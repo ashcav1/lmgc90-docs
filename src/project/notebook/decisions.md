@@ -606,6 +606,25 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   sits 0.04 below 1.0 m (95 % 0.004..0.08) and 0.45 m does not, so it is
   not a clean patch effect but not settled either. Study beds and their
   1.2 m patch stay; folded-craft results from 3 m beds carry about ±0.05.
+- 2026-11-01 (night) — **Two standard beds replace the six-bed ladder as the
+  study's ground.** A: study bed 2's boulders (0.9 m, 20-70 cm long,
+  realistic size mix), 4.5 m x 4.5 m. B: A's settled boulders (stage copy,
+  same seed) buried in small stones, target at least 70 % small-stone cover
+  seen from above and visible boulders standing a median 5 cm or less above
+  the stones within 30 cm (height map, interior). Three seeds each. Why: the
+  thin top layer measured 24 % cover (bed4q_2m), not buried ground, and a
+  buried bed costs ~18,000 stones of 8-16 cm on 4.5 m, so the study can
+  afford one buried bed type, not three small-stone variants. Beds 1 and 3
+  stay as side checks (size mix, depth). Beds 4-6 on the lab Mac to be
+  stopped (user, 1 Nov: stop what cannot finish). A is re-settled with
+  whichever settling method wins, so that B's stage copy matches.
+- 2026-11-01 (night) — **The 3 m thin-top-layer bed (`bed4u_3m`) stopped**
+  at step 9,700 of stage 2, 32 h, median move 11 mm/s and falling ~2 % per
+  300 steps; its drop set never ran. Small-stone settling speed is the
+  blocking problem; five 2 m tests (`settle_*`) run overnight: iteration
+  budget 100 checks, gravity 1 m/s², both, budget + quench 200, budget +
+  10-20 cm stones. Pass mark: at least 3x faster to rest, quality checks
+  pass. Multi-core NLGS stays ruled out (crash guide §3).
 - OPEN GATES: D1 (parameter provenance — provisional regolith_v1), D2 (Milani
   contact model if the panels are open), D5 (small stones resolution / SFD), D7 (budget
   from pilot timing), D8 (MASCOT benchmark — re-derive the target CoR values

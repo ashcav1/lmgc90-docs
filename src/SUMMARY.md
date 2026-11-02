@@ -5,13 +5,15 @@
 # The Milani bounce study
 
 - [Where things stand](project/state.md)
+- [The plan](project/plan.md)
 - [Every run so far](project/runs.md)
 - [The drop reel](project/drop-reel.md)
 - [How each number is computed](project/methods.md)
 - [Lab notebook](project/notebook.md)
+  - [31 Oct night - 1 Nov: exact last contact, centre of mass, friction, plain words, bed size, the plan](project/notebook/2026-11-01.md)
   - [31 October: impacts, movies, the detachment fix](project/notebook/2026-10-31.md)
   - [29-30 October: settling, small stones, tolerance](project/notebook/2026-10-29.md)
-  - [The six-bed study](project/notebook/bed-study.md)
+  - [The six-bed study: plan, cost, what the first night taught](project/notebook/bed-study.md)
   - [Failure modes, as they happened](project/notebook/failure-modes.md)
   - [Decision log](project/notebook/decisions.md)
 
