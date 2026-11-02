@@ -1,6 +1,6 @@
 # How each number is computed
 
-Every number in the [drop reel](../drops/index.html) and the run log, defined: what it is, why it can be trusted (or where it cannot), and the code that computes it. File and line refer to the project's code repository at the time this page was generated (2026-11-02 10:35); the excerpts are copied from that code, not paraphrased.
+Every number in the [drop reel](../drops/index.html) and the run log, defined: what it is, why it can be trusted (or where it cannot), and the code that computes it. File and line refer to the project's code repository at the time this page was generated (2026-11-02 11:56); the excerpts are copied from that code, not paraphrased.
 
 ## The craft model
 
@@ -87,7 +87,7 @@ def _craft_info(spec: ImpactorSpec, pcs, R, centre, av, rho, ballast=None) -> di
             in_contact = fn > dc.contact_eps
 ```
 
-`src/milani/config.py`, line 415:
+`src/milani/config.py`, line 425:
 
 ```python
     contact_eps: float = 1.0e-12           # N; |reaction| above this = in contact

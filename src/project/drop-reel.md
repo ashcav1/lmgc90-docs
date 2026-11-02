@@ -6,7 +6,7 @@ and its nine analysis figures.
 
 What you can do there:
 
-- **Organize** the drops by bed type, by start conditions (arrival speed and
+- **Organize** the drops by bed, by start conditions (arrival speed and
   angle), by drop set or by outcome, as cards with movies or as a sortable
   table. The filters on the left narrow everything at once and show how many
   drops each choice leaves.
@@ -23,14 +23,8 @@ What you can do there:
 - **Every number has an ⓘ** that opens its definition, why it can be
   trusted, and the code that computes it. Dotted words open the glossary.
 
-**What is in it (2 November):** the laptop's 240 drops in ten sets: study bed 1
-(36), bed 1's recipe at 4 m (36), bed 2's boulders at 3 m (36), the quick 2 m bed
-with small stones (12), and the patch-size tests (120, new). The 3 m and quick
-2 m sets stood on lopsided beds and say so in their notes. The lab Mac's drops
-are in [Every run so far](runs.md) as numbers; their movies need ParaView on the
-lab Mac.
+**What is in it:** only the three standard beds. Each bed's drops appear by themselves
+when its drop set finishes. The old reel's drops are [legacy](legacy.md).
 
-The reel is rebuilt with `python3 lab.py site --reel <drop sets> --publish`
-when drop sets finish or are re-simulated. The movies and data live on the
-documentation repository's `drops-media` branch, so they never bloat its
-history.
+The lab Mac rebuilds the reel when a drop set finishes. The movies and data live on the
+documentation repository's `drops-media` branch, so they never bloat its history.

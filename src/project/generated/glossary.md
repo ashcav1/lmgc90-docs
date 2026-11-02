@@ -4,7 +4,7 @@ _The same definitions as in the drop reel's Terms panel._
 
 ### 36-drop set
 
-The same 36 landings on every study bed: 9 landing spots (a 3 x 3 grid 30 cm apart) x 2 arrival speeds (4 and 8 cm/s) x 2 angles (0 and 40 degrees from vertical), the craft always in the same pose.
+Legacy: the same 36 landings on every study bed: 9 landing spots (a 3 x 3 grid 30 cm apart) x 2 arrival speeds (4 and 8 cm/s) x 2 angles (0 and 40 degrees from vertical), the craft always in the same pose.
 
 ### 500-step check
 
@@ -28,7 +28,7 @@ A massless box inside the craft's body (panels open). LMGC90 turns a body made o
 
 ### bed
 
-Simulated ground: grains poured into a square box, left to settle under Earth's gravity, saved once, and reused by every drop on it. A bed's size is the side of its box: 4.5 m x 4.5 m for the study beds, 2-4 m for laptop tests.
+Simulated ground: grains poured into a square box, left to settle under Earth's gravity, saved once, and reused by every drop on it. A bed's size is the side of its box: 4 m x 4 m for the standard beds.
 
 ### bed size
 
@@ -40,7 +40,7 @@ The side of a bed's box. A drop needs the patch plus 0.75 m on every side kept a
 
 ### boulders
 
-Grains 20-70 cm long (30-70 cm in study bed 1). Boulders of this size cover most of Dimorphos.
+Grains 20-70 cm long. Boulders of this size cover most of Dimorphos.
 
 ### centre of mass
 
@@ -116,7 +116,7 @@ Bounced off: left the ground, and its exact free flight comes back down on none 
 
 ### lab Mac
 
-The 24-core Mac Studio in the lab that settles the study beds and runs their drop sets. The laptop runs small tests and the analyses on these pages.
+The 24-core Mac Studio in the lab that settles the standard beds and runs their drop sets. The laptop reads its results through GitHub for the analyses on these pages.
 
 ### landing spot
 
@@ -184,7 +184,7 @@ Letting poured grains fall and stop. Beds are settled under Earth's gravity (9.8
 
 ### small stones
 
-Grains 8-16 cm long (10-20 cm in study bed 5's bottom layer). They stand in for the smaller material between and on Dimorphos's boulders. They are not fine-grained: sand or gravel would take millions of grains per square metre, far beyond what can be simulated, so no bed has fine-grained material. (The code calls them fines.)
+Grains 8-20 cm long (10-20 cm in bed 2, 8-16 cm in bed 3). They stand in for the smaller material between and on Dimorphos's boulders. They are not fine-grained: sand or gravel would take millions of grains per square metre, far beyond what can be simulated, so no bed has fine-grained material. (The code calls them fines.)
 
 ### speed limit
 
@@ -198,13 +198,21 @@ Exit speed divided by arrival speed. 0: the craft stopped; 1: it left as fast as
 
 How beds with small stones are settled: the position rule between boulders and between a boulder and a small stone (so boulders do not sink into the stones), the speed rule between two small stones (with the position rule there they never come to rest on the boulders). Used since 30 October.
 
+### standard beds
+
+The three grounds every drop lands on, each 4 m x 4 m and settled three times. Bed 1: boulder field. Bed 2: boulders embedded in small stones. Bed 3: a blanket of small stones with no boulders.
+
+### standard drop set
+
+The same 81 landings on every seed of every standard bed: 9 landing spots (a 3 x 3 grid 30 cm apart) x 3 arrival speeds (2, 4 and 8 cm/s) x 3 angles (0, 20 and 40 degrees from vertical), the craft always in the same pose, panels open.
+
 ### start conditions
 
 What is set before a drop: the bed, the landing spot, the arrival speed, the angle from vertical, the approach direction, the craft's shape and its pose.
 
 ### study beds 1-6
 
-The six beds of the study, each one change from the one before; all 4.5 m x 4.5 m with 0.9 m of boulders unless stated, settled on the lab Mac. 1: boulders, even size mix (30-70 cm). 2: boulders, realistic size mix (20-70 cm). 3: bed 2, 1.5 m deep. 4: bed 2 plus a thin top layer of small stones. 5: a bottom layer of small stones, then bed 4. 6: bed 2 plus a thick top layer of small stones.
+Legacy: the six beds of the earlier study, each one change from the one before; all 4.5 m x 4.5 m with 0.9 m of boulders unless stated, settled on the lab Mac. 1: boulders, even size mix (30-70 cm). 2: boulders, realistic size mix (20-70 cm). 3: bed 2, 1.5 m deep. 4: bed 2 plus a thin top layer of small stones. 5: a bottom layer of small stones, then bed 4. 6: bed 2 plus a thick top layer of small stones.
 
 ### thick top layer
 

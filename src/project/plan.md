@@ -1,10 +1,6 @@
 # The plan
 
-_Written the night of 1-2 November 2026; the results of that night's
-settling tests added on 2 November at 06:30, and the bug in the pour found
-that morning at 10:30. Where we want to end up, where
-we are, and the steps in between, each with the check that decides the
-next. [Where things stand](state.md) has the day-to-day detail._
+_Written 2 November 2026._
 
 ## Where we want to end up
 
@@ -12,290 +8,51 @@ A paper on what decides whether [Milani](../glossary.md#milani) stays, hops or
 bounces away when it lands on ground like [Dimorphos](../glossary.md#dimorphos)'s:
 the landing speed and angle, the ground, and where on that ground it lands.
 
-Nobody has seen Dimorphos's ground at the scale of the craft. So we bracket
-it with two kinds of ground, the same everywhere in the study:
-
-- **bare boulders**, and
-- **boulders buried in smaller stones**, where most of the surface is small
-  stones and the boulders show only their tops.
-
-For that we need **standard beds**: a few beds, each settled once, at rest,
-passing the [quality checks](../glossary.md#quality-checks-qa), big enough
-for the craft with its panels open (4.5 m x 4.5 m), and used for every drop.
-
-## The standard beds
-
-| bed | what it is | built how |
-|---|---|---|
-| **A: bare boulders** | 0.9 m of [boulders](../glossary.md#boulders) 20-70 cm long in the [realistic size mix](../glossary.md#realistic-size-mix), 4.5 m x 4.5 m, three seeds | settled with the pour fixed and the solver budget; config `standard_A`, its drops `battery_A`. Settling on the lab Mac since 2 November |
-| **B: buried boulders** | bed A with [small stones](../glossary.md#small-stones) poured on until they fill the gaps between the boulders **and** cover them | bed A's settled boulders, copied, then the small stones. How thick a pour that takes is the open question: the stones fall into the gaps first (below) |
-
-B is built on A's own boulders (same seed), so A against B is the same
-ground with and without small stones. Three seeds of each, as for the study
-beds.
-
-**"Buried" needs a number.** We measure it on the bed's height map (the top
-of the bed seen from above, on a 1 cm grid), and propose:
-
-- small stones cover **at least 70 %** of the surface seen from above, and
-- the boulders that still show stand **5 cm or less** (median) above the
-  small stones around them.
-
-The only settled bed with a [thin top layer](../glossary.md#thin-top-layer)
-is far from that: small stones cover **24 %** of its surface, and the
-boulders that show stand a median 9 cm above the stones around them (1 in
-20 stand more than 23 cm above). That is why the craft hit a boulder first
-in all 12 drops on it. An older test bed did reach 77 % cover with a 10 cm
-layer, but only because its boulders sank 9 cm into the stones under the
-contact rule we have since replaced, which is not real.
-
-**How fine can "fine" be?** The smallest stones we can afford are 8-16 cm
-long, a fifth to a half of the craft body's length (36.6 cm). Halving the
-stone size multiplies their number by eight: a layer of 4-8 cm stones on a
-4.5 m bed would be about 140,000 stones, far beyond these machines. So
-"buried in smaller stones" in this study means buried in stones 8-16 cm
-long. Material finer than that, if Dimorphos has it, is a limit we state in
-the paper.
-
-## Where we are
-
-- **Drops: ready.** A drop now ends at the exact moment no part of the craft
-  can touch the ground again, the open-panel craft turns about its true
-  centre of mass, and the [patch](../glossary.md#patch) is the right size:
-  1.2 m with the panels open, so 4.5 m beds are enough (tested on 1
-  November). A drop costs about 4 minutes on one core.
-- **Beds no longer blow apart, but most take far too long to come to
-  rest.** The lab Mac's weekend (59 hours, 16 windows, reported Sunday 21:19):
-  - study bed 1 (even size mix): all three seeds settled, in 1.5, 2.8 and 4
-    hours; 46 of its 108 drops ran;
-  - study bed 2 (realistic size mix): seed 2 settled after 52 hours (26,400
-    steps) and seed 1 after 69 (35,600 steps); seed 3 was in its last
-    500-step check on Monday morning. All of them had the lopsided pour
-    (below), so they will not be used as standard beds;
-  - study bed 3 (bed 2, 1.5 m deep): still settling after 72 hours when
-    stopped, with the same lopsided pour;
-  - study beds 4 and 6 (with small stones): still settling, or waiting for
-    bed 2's boulders to copy; bed 5 failed in its first 84 minutes.
-
-  The realistic size mix was slow because of the bug below. Small stones
-  are a separate problem, on beds the bug did not touch:
-  - the quick 2 m bed rested after 6.3 hours;
-  - the 3 m bed with study bed 1's boulders and a thin top layer never
-    rested: after 32 hours its median grain still moved 11 mm/s, against
-    the 3 mm/s that counts as [at rest](../glossary.md#at-rest). We stopped
-    it on 1 November at 22:00;
-  - its 2 m version was still moving 18 mm/s after 8 hours.
-
-  In all of them the small stones keep jostling: 1 grain in 100 sits at
-  the [speed limit](../glossary.md#speed-limit) the whole time, and the
-  contact solver needs thousands of passes per time step.
-- **Small stones poured on a boulder layer fall into its gaps.** Measured
-  on 2 November on the end state of the overnight tests: of a layer one
-  stone deep poured on study bed 1's boulders (30-70 cm, 0.9 m deep), **92 %
-  of the stones ended up in the lower half of the boulder layer and a third
-  on the floor**; small stones cover 1 % of the surface seen from above. On
-  the quick bed's smaller boulders (20-50 cm, 0.5 m deep) a third fell to
-  the lower half, and the cover is 24 %. So a pour does not stay on top as
-  a layer: it fills the gaps from the bottom up first, and only what is
-  left covers the boulders. That is very likely also why these beds never
-  rest: stones keep trickling down through the gaps.
-- **What a buried bed costs.** Bed B needs a layer of small stones about 25
-  cm thick, poured over the boulders: about **18,000 stones** of 8-16 cm
-  (or about 9,000 of 10-20 cm). At today's settling speed that is more than
-  a week per bed on one core. Splitting one simulation over several cores
-  is ruled out: LMGC90's multi-core solver has a known flaw (cores overwrite
-  each other's numbers) that blew runs apart on the lab Mac, so every run is
-  held to one core.
-So everything needed for the paper works except two linked things:
-**getting beds to rest in hours, not days** (the realistic size mix, and
-above all a bed full of small stones), and **finding a pour of small stones
-that buries the boulders instead of draining into them**.
-
-## A bug in the pour (found 2 November)
-
-Before a layer settles, its grains are poured into the box one by one, using
-a height map of what is already there. **For boulders from 20 cm long and
-stones from 10 cm long, that map was the wrong size: the pile only reached
-83 % of the box's width and depth.** The rest of the box stayed empty, the
-pile stood in the corner nearest x = 0, y = 0, and it then spent days
-slumping sideways to fill a strip 74 cm wide on a 4.5 m bed. The cause: the
-map's cells must be a whole fraction of 1 cm, and for these sizes they were
-not (8.33 mm cells were laid out as if they were 1 cm cells).
-
-The pile's starting position and the settled bed's whole-bed tilt show it:
-
-| bed | smallest grain | pile's centre when poured | whole-bed tilt when settled |
-|---|---|---|---|
-| study bed 1, 4.5 m (three seeds) | 30 cm | within 2 cm of the middle | 0.3-1.0° |
-| even size mix, 3 m and 4 m (four beds) | 30 cm | within 2 cm | 0.1-1.6° |
-| realistic size mix, 2 m (two beds) | 20 cm | 18 and 17 cm off, both towards the same corner | 6.6° and 9.4° |
-| realistic size mix, 3 m | 20 cm | 25 and 26 cm off | 8.3° |
-| study bed 2, 4.5 m (two seeds) | 20 cm | about 37 cm off (from the fault's size) | about 4-5° (read off its height map picture), bare floor in the far corner |
-| the pour with the fix, 2 m | 20 cm | **1 and 2 cm** | being measured |
-
-**Touched by the bug, so not to be used as standard ground:** study beds 2
-to 6 and their tests at 2 m and 3 m, the 36 laptop drops on bed 2's boulders
-at 3 m, and the 12 drops on the quick 2 m bed with small stones. The 24 %
-cover and 9 cm measured on that quick bed came from a bed tilted 10°: they
-remain the only numbers we have for a thin top layer, but treat them as rough.
-
-**Not touched:** study bed 1 and all its drops, the patch-size tests, the
-even-mix beds, and stones 8-16 cm long. So the small-stone results below
-that use bed 1's boulders stand: those layers still do not rest, and the
-stones still drain into the gaps.
-
-**What it very likely also explains:** why the realistic size mix needed 3
-to 5 times the steps of the even mix, and why the 10-20 cm stones crashed
-and study bed 5 failed: with a wrongly scaled map, a grain is placed from
-the height of a different spot, so it can start inside a boulder and be
-thrown out violently. The same tests are running again on the laptop with
-the fix, to measure this rather than assume it.
-
-**The fix.** The cells are now always a whole fraction of 1 cm, the code
-refuses any map that does not span the box, and every bed's report and
-quality checks now show its tilt, so this cannot return unseen. Only the
-recipes the bug touched get new bed ids; study bed 1's ids are unchanged.
-
-## Making beds settle fast
-
-Five tests ran on the laptop on the night of 1-2 November, each a 2 m copy of the 3 m bed that
-would not rest (study bed 1's boulders and a thin top layer). Each changes
-one thing, for both stages (the boulders, then the small stones):
-
-| test | the change | why it might help |
-|---|---|---|
-| `settle_budget` | at most 1,000 solver passes per time step (now up to 10,000) | each step costs a fifth; the drops start from zero speed in near-zero gravity, so the bed's shape matters, not perfectly converged forces at 1 g |
-| `settle_g1` | settle at 1 m/s² instead of 9.81 | the stones' weight presses them 10 times less into each other. Without stickiness, a bed settled at lower gravity packs the same way, just more slowly, and the drops run at 0.00005 m/s² anyway |
-| `settle_budget_g1` | both | |
-| `settle_budget_quench` | budget, and every grain's speed set to zero every 200 steps until the first rest | takes out the energy the jostling keeps alive |
-| `settle_budget_coarse` | budget, with stones 10-20 cm long | half as many stones; does a coarser layer rest sooner? |
-
-After the lab Mac's results came in, four more ran, on study bed 2's boulders
-(the realistic size mix) at 2 m x 2 m:
-
-| test | what it shows |
-|---|---|
-| `settle_rmix_base` | how long these boulders take settled the old way (52 hours at 4.5 m on the lab Mac) |
-| `settle_rmix_budget` | the same with the solver budget: does it help the realistic size mix too? |
-| `settle_rmix_budget_t15`, `_t25` | the budget, with 15 or 25 cm of small stones on these boulders: **the first measure of how much cover a thick layer gives**, and of how long it takes |
-
-### What the tests showed (2 November, morning)
-
-Each bed settles in stages: the boulders first, then the small stones
-poured on them. "At rest" means the median grain moved less than 3 mm/s
-over the last second, five checks in a row, then a 500-step check.
-
-| test | boulders | small stones |
-|---|---|---|
-| the old way (`bed4u_2m_mu06`, 1 Nov) | at rest: 8,400 steps, 13.7 min | **not at rest**: 18 mm/s after 7,200 steps and 8 hours (4.0 s a step) |
-| `settle_budget` | at rest: 4,700 steps, 4.9 min | **not at rest**: 6 mm/s after 20,000 steps and 5.9 hours (1.1 s a step) |
-| `settle_budget_quench` (speeds zeroed every 200 steps) | at rest: 5,600 steps, 5.5 min | **not at rest**: 5 mm/s after 20,000 steps and 6.1 hours |
-| `settle_budget_coarse` (stones 10-20 cm) | shared with `settle_budget` | **crashed** twice at step 2,100: a grain's speed became infinite |
-| `settle_g1`, `settle_budget_g1` (1 m/s²) | **not at rest** after 20,000 steps (11 and 15 mm/s) | not reached |
-| `settle_rmix_base` (realistic size mix, the old way) | at rest: 14,500 steps, 106 min; the 500-step check overran, so the bed is the first-rest snapshot (QA WARN) | none |
-| `settle_rmix_budget` (realistic size mix, budget) | at rest: 13,400 steps, 63 min, 500-step check clean, **QA PASS** | none |
-| `settle_rmix_budget_t15` (15 cm of stones) | copied from `settle_rmix_budget` | **stopped at 06:15**: 11 mm/s after 9,800 steps and 6.7 hours (2.5 s a step) |
-| `settle_rmix_budget_t25` (25 cm of stones) | copied | **stopped at 06:15**: 14 mm/s after 5,700 steps and 6.7 hours (4.2 s a step) |
-
-What that means:
-
-- **The solver budget is the one change that helps, and we adopt it for
-  every new bed.** It does not change how a bed settles step by step: at
-  step 7,200 the small stones moved 17.5 mm/s with the budget and 17.9 mm/s
-  without. But each step costs a quarter as much, so the budget got there
-  in 1.9 hours instead of 8. On the boulders it is 2.8 times faster for the
-  even size mix and 1.7 times for the realistic size mix, and the realistic
-  mix's 500-step check passed cleanly where the old way's overran.
-- **By the rule we set (at least 3 times faster to rest, quality checks
-  passed), no method qualifies**, because no layer of small stones came to
-  rest in any test. With the budget the stones' median move fell from 18 to
-  about 5 mm/s over 20,000 steps and then levelled off between 4 and 6;
-  3 mm/s was never reached.
-- **Zeroing the speeds barely helps** (5 against 6 mm/s at the end) and
-  stays off. **The 10-20 cm stones crashed** and cannot be used until that
-  is understood. **1 m/s² is out.**
-- **The thick-layer tests were stopped half-way** and saved no end state,
-  so they do not yet say how much cover 15 or 25 cm gives. They now run to
-  their 20,000-step limit on the lab Mac, which saves the end state even
-  when the stones are not at rest, and `lab.py burial` measures it.
-
-**The realistic-mix rows above used the lopsided pour.** They are being
-run again with the fix; the 1.7 times in particular will change.
-
-**What decides bed B now.** Two questions, both answered by the thickness
-tests on the lab Mac:
-
-1. **How much of a pour drains into the realistic size mix?** Its many
-   20-30 cm boulders fill the gaps between the big ones, so less should
-   drain than into study bed 1's boulders (92 % in the lower half). If 25
-   or 35 cm of stones reaches 70 % cover, bed B is that pour on bed A.
-2. **Does a thick layer ever rest?** If not even 35 cm rests within 20,000
-   steps, bed B needs a looser rest test for its small stones (for example
-   6 mm/s, which the budget run reached for five checks in a row at step
-   13,800), justified by what the drops see: every grain starts the drop at
-   zero speed in a gravity 200,000 times weaker.
-
-**What bed B costs.** At 4.5 m, 25 cm of stones is about 18,000 of them.
-From the 2 m test's 4.2 s a step and the cost rule (cost per step grows as
-grains^1.3), that is about 30 s a step: 20,000 steps would take about
-**a week per seed** on one core, three seeds in parallel. That is the price
-if nothing better turns up, and it is why bed B is built once and kept.
-
 ## The steps
 
-| when | what | where | the check that decides the next step |
+| step | what | how long (estimates) | what decides the next step |
 |---|---|---|---|
-| ~~1-2 Nov night~~ | ~~the nine settling tests~~ **done**: the solver budget is adopted; no small-stone layer rested | laptop | |
-| ~~Mon 2 Nov~~ | ~~measure how buried the boulders are~~ **done**: on every bed report, and `lab.py burial` for any saved stage, at rest or not | code | |
-| Mon 2 Nov | **how thick must the stone layer be?** `settle_rmix_budget_t15`, `_t25`, `_t35`: bed A's boulders at 2 m x 2 m, poured right, with 15, 25 and 35 cm of small stones, solver budget, each to its 20,000-step limit (about 15, 25 and 35 hours) | lab Mac, one core each | `lab.py burial` on each: the thinnest layer with 70 % cover and boulders 5 cm or less above; and whether any of them rests |
-| Mon 2 Nov | **bed A, three seeds** (`standard_A`), then its 36-drop set (`battery_A`) | lab Mac | settled, tilt under 3°, quality checks passed; if it takes more than about two days, the even size mix |
-| Mon 2 Nov | **study bed 1's drops**: the 46 re-simulated, the other 62 run | lab Mac | under an hour; bed 1 against bed A says whether the size mix matters |
-| Wed 4 Nov | **bed B's recipe**, from the thickness tests: the pour, and the rest test for its stones | you and me | |
-| Wed 4 Nov - about Wed 11 Nov | **bed B, three seeds**, on bed A's boulders | lab Mac, three cores for about a week | settled, quality checks passed, "buried" measured on the real bed |
-| as each bed lands | the [36-drop set](../glossary.md#36-drop-set) with the panels open, then the exact last-contact check, movies, this site | lab Mac | under an hour for a bed's three seeds on 16 cores |
-| when bed B lands | A against B: how much do the small stones change the bounce, and how much of that is seed-to-seed spread? Meanwhile, study bed 1 against bed A (does the size mix matter?) | | |
-| next | the position study on the beds that matter, then the paper's figures | lab Mac | |
+| 1 | Clean start on the lab Mac: old runs stopped and archived | minutes | |
+| 2 | Settle [the three beds](beds.md), three seeds each, plus two 2 m test beds | bed 3 hours, bed 1 up to about a day, bed 2 about 3 days | settled, tilt under 3°, quality checks passed. Bed 2 also needs at least 70 % small stones on top and boulders 5 cm or less above them |
+| 3 | Depth test on bed 1: do grains free to 0.3 m rather than 0.6 m below the surface change the bounce? | under an hour | if they do, beds 2 and 3 (0.4 m deep) need deepening |
+| 4 | [The same 81 drops](results.md) on each seed of each bed: 729 drops | bed 1 about 3 hours, bed 2 about 1-3 days, bed 3 about 5 days (a drop's cost grows with the loose grains under the craft: about 310, 2,200 and 6,400). All of it in about a week | if bed 3 is too slow, fewer landing spots on it |
+| 5 | Compare the beds, write the paper's figures | | |
 
-## What happens to the six study beds
+Steps 2 to 4 run by themselves on the lab Mac.
 
-They were the first try at bracketing the ground, before we knew what small
-stones cost.
+## Three choices behind the beds
 
-- **Keep bed 1**: its three seeds and its 46 drops. The drops ran with Friday's code: re-simulate them with the
-  new end of drop (`campaign rerun --stale`) and run bed 1's other 62 drops.
-  Bed 1 against bed A answers whether the size mix matters.
-- **Stop beds 2 to 6.** All have the lopsided pour. Bed 2's two settled
-  seeds stay in the library, marked, but are not used as ground. Bed A
-  replaces bed 2, and bed B replaces bed 6.
-- **Bed 3's question** (does depth matter?) can return once bed A shows
-  what a level pour costs.
+- **4 m x 4 m, with the craft's patch 0.5 m from the walls.** The rule until now, one
+  largest boulder plus 5 cm (0.75 m), would squeeze the nine landing spots to within
+  5 cm of each other. At 0.5 m they stay 30 cm apart. On the beds measured, the
+  surface 0.3-0.5 m from a wall is only 1-3 cm lower than at 0.5-0.7 m.
+- **Stones 10-20 cm long in bed 2, 8-16 cm in bed 3.** Halving a stone's size multiplies
+  the number of stones by eight, so finer material is out of reach. It is a limit
+  the paper states.
+- **Settled when the surface stops changing.** Small stones can keep jostling for
+  ever: in tests the median stone was still moving 4-6 mm/s after 20,000 steps. Beds
+  2 and 3 also count as settled when their height map changes by less than 5 mm
+  on average, three measurements in a row, 4 seconds of settling apart. Each drop starts
+  every grain at zero speed in near-zero gravity, so the jostling never reaches it.
+  Beds settled this way carry a WARN in their quality checks.
 
 ## If it does not work
 
-- **A week per seed of bed B is too long:** settle one seed of bed B first
-  and run its drops while the other two settle; or settle bed B at 3.9 m x
-  3.9 m (one landing spot instead of nine, a quarter fewer stones). The
-  10-20 cm stones (half as many) need their crash understood first.
-- **Even 35 cm of stones mostly drains into the boulders:** pour the
-  stones in two layers (the code settles a bed one layer at a time), so the
-  first fills the gaps and rests before the second covers the boulders; or
-  give bed B a thinner boulder layer under the stones (less gap to fill),
-  at the price of A and B no longer sharing their boulders.
-- **The lab Mac is down or not reporting:** it is the first thing to check
-  on Monday; nothing in this plan runs without it.
+- **Bed 2 misses its target:** its 2 m test shows that within about a day. Change the
+  pour and restart bed 2; the other beds are not affected.
+- **Bed 2 takes more than about a week:** use one seed first and run its drops while
+  the others settle.
+- **A bed fails:** its report, settling history and log reach GitHub by themselves,
+  the other beds carry on, and its drops wait.
 
-## Decisions that need you
+## How the run is organized
 
-1. **Is "buried" right?** At least 70 % of the surface small stones, and the
-   boulders that show standing 5 cm or less above them.
-2. **Stone size for bed B:** 8-16 cm long. The 10-20 cm stones crashed in
-   the overnight test, so for now there is no choice to make.
-3. **Bed A in the even size mix** if the realistic one still takes more
-   than about two days with the pour fixed.
-4. **A looser rest test for bed B's small stones** (6 mm/s instead of 3),
-   if the thickness tests show a thick layer never rests: the drops start
-   every grain at zero speed in near-zero gravity, so the creep does not
-   reach them. Decided on Wednesday with the thickness results.
-5. **The position study's landing area** (unchanged from
-   [Where things stand](state.md)): 0.6 m x 0.6 m fits on a 4.5 m bed; a
-   wider area needs a wider bed.
+All of this lives in the code repository:
+
+| what | where |
+|---|---|
+| What runs | `configs/production.toml`, one file |
+| The beds | `configs/beds/bed1_boulders.toml`, `bed2_embedded.toml`, `bed3_stones.toml` |
+| The drops | `configs/campaigns/drops_bed1.toml`, `drops_bed2.toml`, `drops_bed3.toml` |
+| Commands | `python3 lab.py production start`, `status`, `stop` |
+| What reaches GitHub | `reports/labmac/`: status, reports, figures, settling histories, height maps, grain positions, every drop's records |

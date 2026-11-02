@@ -1,14 +1,9 @@
 # Introduction
 
-> **Following the Milani bounce study?** Start at [Where things stand](project/state.md):
-> what the project is doing, the state of every run, and links to the
-> [drop reel](project/drop-reel.md) with a movie of every simulated drop.
-> [The plan](project/plan.md) says where the study is going: the standard beds
-> (bare boulders, and boulders buried in small stones), the two problems left
-> (small-stone beds settle too slowly, and poured stones drain into the
-> boulders instead of burying them), and the steps to the paper.
-> [The bed library](project/library.md) lists every settled bed and whether it
-> is good ground.
+> **Following the Milani bounce study?** Start at [Where things stand](project/state.md).
+> [The three beds](project/beds.md) are the ground every drop lands on,
+> [Drop results](project/results.md) and the [drop reel](project/drop-reel.md) show the
+> drops, and [the plan](project/plan.md) says what comes next.
 
 LMGC90 is an open-source contact-dynamics code (Non-Smooth Contact Dynamics,
 NSCD) developed at LMGC, Université de Montpellier. It integrates collections

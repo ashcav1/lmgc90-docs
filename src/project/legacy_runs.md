@@ -1,6 +1,8 @@
+> **Legacy page, frozen on 2 November 2026.** It describes the work before the three standard beds; see [the current plan](plan.md).
+
 # Every run so far
 
-Generated from the reports in the code repository; see [Where things stand](state.md) for what they mean and what is next. Study beds are the six beds of the study; everything else is an experiment that answered one question (its question is the first line of its config). Settle time is wall time on the machine named. **Lopsided pour** marks a bed poured before the fix of 2 November: its pile started in 83 % of the box's width and depth and came out tilted ([the plan](plan.md#a-bug-in-the-pour-found-2-november)).
+Generated from the reports in the code repository; see [Where things stand](legacy_state.md) for what they mean and what is next. Study beds are the six beds of the study; everything else is an experiment that answered one question (its question is the first line of its config). Settle time is wall time on the machine named. **Lopsided pour** marks a bed poured before the fix of 2 November: its pile started in 83 % of the box's width and depth and came out tilted ([the plan](legacy_plan.md#a-bug-in-the-pour-found-2-november)).
 
 ## Beds settled on the lab Mac
 
@@ -131,17 +133,17 @@ Stopped on purpose, failed, settled before bed cards existed, still running, or 
 |---|---|---|---|---|---|---|---|
 | `battery_L1` | lab Mac | the 36-drop set on study bed 1 (boulders 30-70 cm long, even size mix, 0.9 m deep) | 46 | 1 capped, 32 detached, 11 left patch, 2 rest | 0.244 | 6.1 h |  |
 | `exp_battery_4m` | laptop | the 36-drop set on study bed 1's recipe at 4 m x 4 m: 9 spots x 2 speeds x 2 angles, panels open | 8 | 7 detached, 1 left patch | 0.425 | 0.3 h |  |
-| `exp_battery_L1_s1` | laptop | the 36-drop set on study bed 1 (boulders 30-70 cm long, even size mix, 0.9 m deep) | 36 | 32 detached, 4 left patch | 0.342 | 2.3 h | [open](../drops/index.html#set-exp_battery_L1_s1) |
+| `exp_battery_L1_s1` | laptop | the 36-drop set on study bed 1 (boulders 30-70 cm long, even size mix, 0.9 m deep) | 36 | 32 detached, 4 left patch | 0.342 | 2.3 h | in the old reel |
 | `exp_drops_4m_capwin` | laptop | the 36-drop set on bed 1's recipe at 4 m x 4 m (speed limit kept while settling): 9 spots (+-0.05 m) x 2 speeds x 2 angles, panels open | 36 | 34 detached, 2 left patch | 0.312 | 0.8 h |  |
-| `exp_drops_4m_capwin_r2` | laptop | the 36 drops again under the rotation-aware look-ahead and the patch-edge rule (2026-10-31) | 36 | 32 detached, 4 left patch | 0.303 | 2.1 h | [open](../drops/index.html#set-exp_drops_4m_capwin_r2) |
-| `exp_drops_bed2_3m` (lopsided bed) | laptop | the 36-drop set on bed 2's boulders at 3 m x 3 m, panels folded: 9 spots (+-0.05 m) x 2 speeds x 2 angles, 0.7 m patch | 36 | 32 detached, 4 left patch | 0.432 | 0.6 h | [open](../drops/index.html#set-exp_drops_bed2_3m) |
-| `exp_drops_bed4q_2m` (lopsided bed) | laptop | drops on the 2 m x 2 m quick bed with a thin top layer, panels folded: the centre spot x 2 speeds x 2 angles x 3 approach directions, 0.45 m patch | 12 | 8 detached, 4 left patch | 0.307 | 0.4 h | [open](../drops/index.html#set-exp_drops_bed4q_2m) |
-| `exp_patch_deployed_r090` | laptop | patch-size test: craft with panels open, patch radius 0.90 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 14 detached, 6 left patch | 0.242 | 0.6 h | [open](../drops/index.html#set-exp_patch_deployed_r090) |
-| `exp_patch_deployed_r120` | laptop | patch-size test: craft with panels open, patch radius 1.20 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 17 detached, 3 left patch | 0.248 | 1.3 h | [open](../drops/index.html#set-exp_patch_deployed_r120) |
-| `exp_patch_deployed_r145` | laptop | patch-size test: craft with panels open, patch radius 1.45 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 17 detached, 3 left patch | 0.248 | 2.1 h | [open](../drops/index.html#set-exp_patch_deployed_r145) |
-| `exp_patch_folded_r045` | laptop | patch-size test: craft with panels folded, patch radius 0.45 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 18 detached, 2 left patch | 0.312 | 0.1 h | [open](../drops/index.html#set-exp_patch_folded_r045) |
-| `exp_patch_folded_r070` | laptop | patch-size test: craft with panels folded, patch radius 0.70 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 20 detached | 0.288 | 0.3 h | [open](../drops/index.html#set-exp_patch_folded_r070) |
-| `exp_patch_folded_r100` | laptop | patch-size test: craft with panels folded, patch radius 1.00 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 20 detached | 0.306 | 0.4 h | [open](../drops/index.html#set-exp_patch_folded_r100) |
+| `exp_drops_4m_capwin_r2` | laptop | the 36 drops again under the rotation-aware look-ahead and the patch-edge rule (2026-10-31) | 36 | 32 detached, 4 left patch | 0.303 | 2.1 h | in the old reel |
+| `exp_drops_bed2_3m` (lopsided bed) | laptop | the 36-drop set on bed 2's boulders at 3 m x 3 m, panels folded: 9 spots (+-0.05 m) x 2 speeds x 2 angles, 0.7 m patch | 36 | 32 detached, 4 left patch | 0.432 | 0.6 h | in the old reel |
+| `exp_drops_bed4q_2m` (lopsided bed) | laptop | drops on the 2 m x 2 m quick bed with a thin top layer, panels folded: the centre spot x 2 speeds x 2 angles x 3 approach directions, 0.45 m patch | 12 | 8 detached, 4 left patch | 0.307 | 0.4 h | in the old reel |
+| `exp_patch_deployed_r090` | laptop | patch-size test: craft with panels open, patch radius 0.90 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 14 detached, 6 left patch | 0.242 | 0.6 h | in the old reel |
+| `exp_patch_deployed_r120` | laptop | patch-size test: craft with panels open, patch radius 1.20 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 17 detached, 3 left patch | 0.248 | 1.3 h | in the old reel |
+| `exp_patch_deployed_r145` | laptop | patch-size test: craft with panels open, patch radius 1.45 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 17 detached, 3 left patch | 0.248 | 2.1 h | in the old reel |
+| `exp_patch_folded_r045` | laptop | patch-size test: craft with panels folded, patch radius 0.45 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 18 detached, 2 left patch | 0.312 | 0.1 h | in the old reel |
+| `exp_patch_folded_r070` | laptop | patch-size test: craft with panels folded, patch radius 0.70 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 20 detached | 0.288 | 0.3 h | in the old reel |
+| `exp_patch_folded_r100` | laptop | patch-size test: craft with panels folded, patch radius 1.00 m, bed 1, 5 spots x 2 speeds x 2 angles | 20 | 20 detached | 0.306 | 0.4 h | in the old reel |
 | `smoke` | laptop | 8-run engine drill on the smoke bed (not science) | 8 | 5 detached, 3 left patch | 0.186 | 0.1 h |  |
 
 ## Single test drops
