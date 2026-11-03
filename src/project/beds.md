@@ -10,7 +10,7 @@ don't stick together, weaker gravity is the same motion played slower. We tested
 one-sixth of the gravity, with time rescaled to match, ended 1-2 mm different in height, less than the gap between
 two different pours. So every bed settles the fast way, at Earth's gravity, and each body's gravity goes into its drops.
 
-Bed 2 was settled in three versions. Version A is the pick, which leaves six beds; [why](state.md).
+Bed 2 has five versions. A, B and C are settled, with A the best so far. D and E add stones below and between the rocks, to leave fewer holes. One is picked when they have settled, which leaves six beds.
 
 | bed | the idea | what it is | grains in one pour |
 |---|---|---|---|
@@ -18,6 +18,8 @@ Bed 2 was settled in three versions. Version A is the pick, which leaves six bed
 | **Bed 2, version A: rocks in stones** | Boulders sit in finer debris with their tops sticking out | Boulders 20-70 cm long, two deep (a 0.3 m layer), with small stones 8-16 cm long around them | about 370 boulders, 2,400 stones |
 | **Bed 2, version B: more rock showing** | As A, with fewer stones | As A, with a quarter fewer stones | about 370 boulders, 1,800 stones |
 | **Bed 2, version C: fewer, bigger rocks** | A few big rocks standing clear | Boulders up to about 120 cm long, with more stones | about 130 boulders, 3,000 stones |
+| **Bed 2, version D: stones below and above** | Rocks sit in stones with their tops sticking out, and not on the bare floor | Small stones, then boulders 20-70 cm long two deep, then more small stones | about 370 boulders, 6,700 stones |
+| **Bed 2, version E: stones below, between and above** | As D, with stones between two thin layers of rocks, so rocks touch each other less | Stones, boulders, stones, boulders, stones | about 370 boulders, 7,300 stones |
 | **Bed 3: stone blanket** | Debris from the impact has settled back over the surface | Small stones 8-16 cm long only, no boulders, 0.4 m deep | about 12,100 |
 
 All grains now have 20 corners, not 10 or 12. Grains with few corners are thin shards: a 10-cornered stone fills

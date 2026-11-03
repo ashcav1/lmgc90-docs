@@ -116,6 +116,24 @@ Seed 2:
 
 ![settle of seed 2](generated/images/bed2c_embedded-s2-80495daa/settle.webp)
 
+## Bed 2, version D: stones below and above the rocks
+
+standard bed 2, version D: small stones 8-16 cm long below and above boulders 20-70 cm long.
+
+| pour (drops' gravity) | state | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | rocks sticking out, per m² | median move, mm/s |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 (Dimorphos) | waiting | — | — | — | — | — | — | — | — |
+| 2 (Didymos) | waiting | — | — | — | — | — | — | — | — |
+
+## Bed 2, version E: stones below, between and above the rocks
+
+standard bed 2, version E: small stones 8-16 cm long below, between and above two thin layers of boulders 20-70 cm long.
+
+| pour (drops' gravity) | state | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | rocks sticking out, per m² | median move, mm/s |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 (Dimorphos) | waiting | — | — | — | — | — | — | — | — |
+| 2 (Didymos) | waiting | — | — | — | — | — | — | — | — |
+
 ## Bed 3: stone blanket
 
 standard bed 3, stone blanket: stones 8-16 cm long only, 0.4 m deep.

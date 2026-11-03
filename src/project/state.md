@@ -10,9 +10,8 @@ settle [six standard beds](beds.md), run [the same drops](results.md) on each, a
 
 {{#include generated/status.md}}
 
-**What the lab Mac is doing.** Nothing right now. All the beds settled on the evening of 2 November, and the drops wait for
-the next start. Once started it runs by itself, and everything is pushed to GitHub when a step ends, whether it succeeded or
-failed, and every 2 hours while it runs.
+**What the lab Mac is doing.** Settling two more versions of bed 2, D and E, with small stones below, between and above the rocks, to leave fewer holes.
+No drops yet. The drops are planned in [the impact plan](plan.md#the-impact-plan), which waits for approval.
 
 **What we know so far:**
 
@@ -27,6 +26,8 @@ failed, and every 2 hours while it runs.
 | B | 31-32 % | 7.5-7.9 | 16-17 cm | 0.29-0.31 m | 2.2-2.8 h |
 | C | 27 % | 3.8-4.1 | 33-35 cm | 0.34-0.36 m | 3.3-3.5 h |
 
+- **Holes:** in version A, 37-38 % of the space under the surface is empty and 1.1-1.3 % is in holes big enough for a 10 cm ball. That compares with 44 % and 0.7 % in the first bed 2,
+  41 % and 3.5 % on bed 1, and 49 % and none on bed 3. Versions D and E try to bring A's holes down, and they keep the rocks off the bare floor.
 - **Why A, though it misses a target:** the target was stones on 40-70 % of the surface, and A has 37-38 % over the whole bed and
   43-45 % in the square where the craft lands. It is the closest of the three, and more stones would mean another settle of about 5 hours or more.
 - **Stones fell further into the gaps than planned,** so bed 2 is about 0.31 m deep, not about 0.4 m, and boulders are 81 % of its
