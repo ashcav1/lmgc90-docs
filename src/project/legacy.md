@@ -21,6 +21,6 @@ built on, but none of those beds or drops are part of the results now.
   old run, the dated lab notes, the old six-bed study and the decision log.
 - In the code repository, the folder `legacy/`: old configs, every report from both
   machines, the old overnight scripts and notes.
-- On each machine, `runs/legacy/`: the simulation data itself (too big for GitHub).
+- On the lab Mac, `runs/legacy/`: the simulation data itself (too big for GitHub). The laptop's copy was deleted on 3 November 2026; its reports stay in `legacy/reports/laptop/`.
 - The old drop reel's 240 drops are kept on the documentation repository's
   `drops-media-legacy` branch.
