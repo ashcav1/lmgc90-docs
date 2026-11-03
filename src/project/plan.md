@@ -59,8 +59,8 @@ Steps 2, 4 and 5 run by themselves on the lab Mac.
 
 ## The impact plan
 
-Proposed, not yet approved. `plans/Milani_impact_plan.xlsx` lists about 1,570 drops, with what each tests and a link to its GitHub folder. Each is made from
-`configs/impact_plan.toml` by `python3 lab.py impact-sheet`.
+Proposed, not yet approved. `docs/Milani_impact_plan.xlsx` lists about 1,570 drops, with the settings of each and a link to its GitHub folder. It is made from
+`configs/impact_plan.toml` by `python3 lab.py impact-sheet`, which also pushes it to GitHub.
 
 | tier | what | drops |
 |---|---|---|
