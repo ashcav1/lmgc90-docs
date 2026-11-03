@@ -47,4 +47,13 @@ code.
 
 | bed id | machine | size | grains | settling time | QA | whole-bed tilt |
 |---|---|---|---|---|---|---|
-| `bed1_boulders-s1-d196b6fc` | lab Mac | 4 m × 4 m | 1,289 | 3.5 h | PASS | 0.7° |
+| `bed1_boulders-s1-63ea1d69` | lab Mac | 4 m × 4 m | 852 | 1.1 h | PASS | 0.6° |
+| `bed1_boulders-s2-bdb6e0b0` | lab Mac | 4 m × 4 m | 859 | 0.9 h | PASS | 0.6° |
+| `bed2a_embedded-s1-7793841c` | lab Mac | 4 m × 4 m | 2,430 | 4.8 h | WARN | 0.5° |
+| `bed2a_embedded-s2-b060a218` | lab Mac | 4 m × 4 m | 2,426 | 4.6 h | WARN | 0.5° |
+| `bed2b_embedded-s1-a15e1623` | lab Mac | 4 m × 4 m | 1,822 | 2.8 h | WARN | 0.4° |
+| `bed2b_embedded-s2-79bef9a4` | lab Mac | 4 m × 4 m | 1,820 | 2.2 h | WARN | 0.6° |
+| `bed2c_embedded-s1-05332dba` | lab Mac | 4 m × 4 m | 3,037 | 3.3 h | WARN | 2.3° |
+| `bed2c_embedded-s2-80495daa` | lab Mac | 4 m × 4 m | 3,033 | 3.5 h | WARN | 1.5° |
+| `bed3_stones-s1-804ae8bd` | lab Mac | 4 m × 4 m | 12,113 | 1.4 h | WARN | 0.0° |
+| `bed3_stones-s2-6e2f6de9` | lab Mac | 4 m × 4 m | 12,148 | 1.4 h | WARN | 0.2° |

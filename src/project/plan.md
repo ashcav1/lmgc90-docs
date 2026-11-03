@@ -13,9 +13,9 @@ the landing speed and angle, the ground, and where on that ground it lands.
 | step | what | how long (estimates) | what decides the next step |
 |---|---|---|---|
 | 1 | Clean start on the lab Mac: old runs stopped and archived | done | |
-| 2 | Settle [the beds](beds.md): three grounds, two pours each, and three versions of bed 2 | a few hours (bed 1 is the slowest, about 4 hours) | settled, tilt under 3°, quality checks passed |
-| 3 | Pick bed 2 from its settled versions, which leaves six beds | minutes | stones on 40-70 % of the surface, at least 2 rocks per m² sticking out, by at least 8 cm |
-| 4 | **No drop starts until then.** A depth test on bed 1 runs first: do grains free to 0.3 m rather than 0.6 m below the surface change the bounce? | under an hour | if they do, beds 2 and 3 (about 0.4 m deep) need deepening |
+| 2 | Settle [the beds](beds.md): three grounds, two pours each, and three versions of bed 2 | done 2 November: bed 1 about 1 hour, bed 3 about 1.5 hours, bed 2 2-5 hours | settled, tilt under 3°, quality checks passed |
+| 3 | Pick bed 2 from its settled versions, which leaves six beds | done: version A | stones on 40-70 % of the surface, at least 2 rocks per m² sticking out, by at least 8 cm. A has 37-38 % stones, just short, and the closest of the three |
+| 4 | **No drop starts until then.** A depth test on bed 1 runs first: do grains free to 0.3 m rather than 0.6 m below the surface change the bounce? | under an hour | if they do, beds 2 and 3 (about 0.3 and 0.4 m deep) need deepening |
 | 5 | [The same drops](results.md) on each bed, at each body's gravity | estimated when the beds are in; a drop's cost grows with the loose grains under the craft | if bed 3 is too slow, fewer landing spots on it |
 | 6 | Compare the beds and the gravities, write the paper's figures | | |
 

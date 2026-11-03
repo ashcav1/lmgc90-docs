@@ -685,6 +685,10 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   which one pour can't, and since gravity is self-similar (Froude, 0.1 % on one drop, 2026-10) a paired check on one pile can confirm that part.
   (d) Rejected: finer stones in bed 3 (drops now double), gap law on stones (25x, and at step 500 of a new small test already 2x per step). (e) `hold_drops` until bed 2 is picked. Didymos drop gravity about 2e-4 m/s2 (GM about 40 m3/s2, R about 380 m, rotation at mid latitude),
   provisional. Same-pile Didymos speeds at 2x Dimorphos's would repeat those drops exactly, so its speeds need choosing with that in mind. (f) Resume settles again a bed whose recipe changed (`runner.made_from`).
+- 2026-11-03 — **Bed 2 version A picked, just outside its stones target.** Settled (2 pours each): A stones on top 38 / 37 %, rocks out 7.0 / 6.3 per m2 by 18 / 17 cm, 0.32 / 0.31 m deep, boulders 81 % by volume;
+  B 32 / 31 %, 7.5 / 7.9, 17 / 16 cm; C 27 / 27 %, 4.1 / 3.8, 35 / 33 cm. Target 40-70 % stones: A is closest, and 45 / 43 % in the landing square. Stones drained further than the 1.5 m tests (0.06 thickness: 38 % there, 32 % at 4 m), so a thicker pour (about
+  0.12 for 50 %, by the slope from B to A) costs 5 h or more; not worth it before seeing drops (user may overrule). `rocks` counted connected patches until today, which merged touching rocks (0.6 per m2 on A against 7.0 one by one), so the rule
+  looked failed on all; now per boulder via the height map's owner. Cards settled before today still carry the old count in their burial line; the site counts from the height map (`site_standard._rocks`).
 - OPEN GATES: D1 (parameter provenance — provisional regolith_v1), D2 (Milani
   contact model if the panels are open), D5 (small stones resolution / SFD), D7 (budget
   from pilot timing), D8 (MASCOT benchmark — re-derive the target CoR values

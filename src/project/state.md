@@ -10,22 +10,29 @@ settle [six standard beds](beds.md), run [the same drops](results.md) on each, a
 
 {{#include generated/status.md}}
 
-**What the lab Mac is doing.** It runs by itself. It is settling the beds, with no drops: three kinds of ground,
-each poured twice, and three versions of bed 2 to choose from. Everything is pushed to GitHub when a step ends, whether it
-succeeded or failed, and every 2 hours while it runs.
+**What the lab Mac is doing.** Nothing right now. All the beds settled on the evening of 2 November, and the drops wait for
+the next start. Once started it runs by itself, and everything is pushed to GitHub when a step ends, whether it succeeded or
+failed, and every 2 hours while it runs.
 
 **What we know so far:**
 
-- **The first three beds settled in under 4 hours each, and were replaced.** Their bed 2 buried the boulders: stones
-  covered 98 % of the surface and no rock stuck out, because the boulders lay in one layer with tops at a median 15 cm under
-  38 cm of stones.
-- **The new bed 2 has boulders two deep and far fewer stones.** In short tests on 1.5 m x 1.5 m, stones on top
-  went from 43 % to 67 % to 86 % as the stones increased, and rocks stuck out by up to about 20 cm at the low end and not at all
-  at the high end. A bed that small holds only a few rocks, so these are rough. The full beds decide.
-- **Boulders will be most of bed 2's volume, about 70-85 %, not 40 %.** A study of the DART impact infers at most about 40 % near
-  the surface, but in a bed this shallow, 40 % leaves almost no rock showing.
-- **Rounder grains help.** On a 1 m test, 20-cornered stones used 568 grains instead of 1,058, took 101 s instead of 154 s, and
-  their worst overlap fell from 33 % to 12 % of the thinnest stone's half-thickness.
+- **All 10 settles finished and passed.** That is three grounds with two pours each, and three versions of bed 2. Bed 1 passed
+  every quality check. The others carry a warning for small overlaps between stones.
+- **Bed 2's rocks now stick out.** Version A is the pick: 6-7 rocks per m² stand clear of the stones around them, typically by
+  17-18 cm. The first bed 2 had none.
+
+| version | stones on top | rocks sticking out, per m² | typically by | deep | settling time |
+|---|---|---|---|---|---|
+| **A (picked)** | 37-38 % | 6.3-7.0 | 17-18 cm | 0.31-0.32 m | 4.6-4.8 h |
+| B | 31-32 % | 7.5-7.9 | 16-17 cm | 0.29-0.31 m | 2.2-2.8 h |
+| C | 27 % | 3.8-4.1 | 33-35 cm | 0.34-0.36 m | 3.3-3.5 h |
+
+- **Why A, though it misses a target:** the target was stones on 40-70 % of the surface, and A has 37-38 % over the whole bed and
+  43-45 % in the square where the craft lands. It is the closest of the three, and more stones would mean another settle of about 5 hours or more.
+- **Stones fell further into the gaps than planned,** so bed 2 is about 0.31 m deep, not about 0.4 m, and boulders are 81 % of its
+  volume. A study of the DART impact infers at most about 40 % near the surface. The depth test compares grains free to 0.3 m and to 0.6 m, so it covers this.
+- **Rounder grains worked.** The worst overlap the craft can reach fell from 79 % to 16-17 % of the thinnest stone's half-thickness on bed 2, and from
+  73 % to 19-37 % on bed 3. Bed 3 needed about half the stones (12,100, not 22,600) and bed 1 settled in about 1 hour, not 3.5.
 - **Gravity does not change a settled pile**, so [each body's gravity goes into its drops](beds.md).
 
 **What's next:** [the plan](plan.md).

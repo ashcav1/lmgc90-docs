@@ -1,1 +1,1 @@
-**The lab Mac's run is not running** (last report 2026-11-02 14:52 PST). Steps: 1 done, 4 **failed**, 20 blocked by a failure. Failed: bed:pilot_bed2:s1, bed:pilot_bed3:s1, bed:bed2_embedded:s1, bed:bed3_stones:s1.
+**The lab Mac's run is not running** (last report 2026-11-02 20:37 PST). Steps: 10 done.

@@ -10,7 +10,7 @@ don't stick together, weaker gravity is the same motion played slower. We tested
 one-sixth of the gravity, with time rescaled to match, ended 1-2 mm different in height, less than the gap between
 two different pours. So every bed settles the fast way, at Earth's gravity, and each body's gravity goes into its drops.
 
-Bed 2 has three versions until the settled beds have been compared. Then one is picked, which leaves six.
+Bed 2 was settled in three versions. Version A is the pick, which leaves six beds; [why](state.md).
 
 | bed | the idea | what it is | grains in one pour |
 |---|---|---|---|
