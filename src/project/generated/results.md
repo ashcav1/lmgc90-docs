@@ -1,14 +1,26 @@
 _Regenerated from what the lab Mac pushes to GitHub. The speed ratio is speed out divided by speed in._
 
-## Bed 1: 0 of 162 drops
+## Bed 1, Dimorphos's gravity: 0 of 720 drops
 
-No drops yet; they start when all three beds have settled.
+No drops yet.
 
-## Bed 2: 0 of 162 drops
+## Bed 1, Didymos's gravity: 0 of 720 drops
 
-No drops yet; they start when all three beds have settled.
+No drops yet.
 
-## Bed 3: 0 of 162 drops
+## Bed 2, Dimorphos's gravity: 0 of 720 drops
 
-No drops yet; they start when all three beds have settled.
+Held until bed 1's results have been reviewed.
+
+## Bed 2, Didymos's gravity: 0 of 720 drops
+
+Held until bed 1's results have been reviewed.
+
+## Bed 3, Dimorphos's gravity: 0 of 720 drops
+
+Held until bed 1's results have been reviewed.
+
+## Bed 3, Didymos's gravity: 0 of 720 drops
+
+Held until bed 1's results have been reviewed.
 

@@ -10,8 +10,7 @@ settle [six standard beds](beds.md), run [the same drops](results.md) on each, a
 
 {{#include generated/status.md}}
 
-**What the lab Mac is doing.** Nothing right now: every bed has finished. The status table lists two failures, both for version E of bed 2, which was then dropped.
-No drops yet. The drops are planned in [the impact plan](plan.md#the-impact-plan), which waits for approval.
+**What the lab Mac is doing.** The drops in [the impact plan](plan.md#the-impact-plan), approved on 4 November: a drop test first, then all of bed 1 at both gravities. Beds 2 and 3 wait for a review of bed 1's results.
 
 **What we know so far:**
 
