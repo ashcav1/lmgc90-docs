@@ -1,4 +1,4 @@
-_Last report from the lab Mac: 2026-11-03 08:59 PST._
+_Last report from the lab Mac: 2026-11-04 12:01 PST._
 
 ## Bed 1: boulder field
 
@@ -29,110 +29,34 @@ Seed 2:
 
 ![settle of seed 2](generated/images/bed1_boulders-s2-bdb6e0b0/settle.webp)
 
-## Bed 2, version A: rocks in stones
-
-standard bed 2, version A: boulders 20-70 cm long two deep, small stones 8-16 cm long filling about half the surface.
-
-| pour (drops' gravity) | state | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | rocks sticking out, per m² | median move, mm/s |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 (Dimorphos) | settled, QA WARN | 2,430 | 6,500 | 4.8 h | 0.5° | 38% | 7 cm | 7.0, by 18 cm | — |
-| 2 (Didymos) | settled, QA WARN | 2,426 | 6,300 | 4.6 h | 0.5° | 37% | 7 cm | 6.3, by 17 cm | — |
-
-Seed 1:
-
-![surface of seed 1](generated/images/bed2a_embedded-s1-7793841c/surface.webp)
-
-![section of seed 1](generated/images/bed2a_embedded-s1-7793841c/section.webp)
-
-![scene3d of seed 1](generated/images/bed2a_embedded-s1-7793841c/scene3d.webp)
-
-![settle of seed 1](generated/images/bed2a_embedded-s1-7793841c/settle.webp)
-
-Seed 2:
-
-![surface of seed 2](generated/images/bed2a_embedded-s2-b060a218/surface.webp)
-
-![section of seed 2](generated/images/bed2a_embedded-s2-b060a218/section.webp)
-
-![scene3d of seed 2](generated/images/bed2a_embedded-s2-b060a218/scene3d.webp)
-
-![settle of seed 2](generated/images/bed2a_embedded-s2-b060a218/settle.webp)
-
-## Bed 2, version B: more rock showing
-
-standard bed 2, version B: boulders 20-70 cm long two deep, small stones 8-16 cm long filling under half the surface.
-
-| pour (drops' gravity) | state | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | rocks sticking out, per m² | median move, mm/s |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 (Dimorphos) | settled, QA WARN | 1,822 | 5,500 | 2.8 h | 0.4° | 32% | 6 cm | 7.5, by 17 cm | — |
-| 2 (Didymos) | settled, QA WARN | 1,820 | 4,800 | 2.2 h | 0.6° | 31% | 8 cm | 7.9, by 16 cm | — |
-
-Seed 1:
-
-![surface of seed 1](generated/images/bed2b_embedded-s1-a15e1623/surface.webp)
-
-![section of seed 1](generated/images/bed2b_embedded-s1-a15e1623/section.webp)
-
-![scene3d of seed 1](generated/images/bed2b_embedded-s1-a15e1623/scene3d.webp)
-
-![settle of seed 1](generated/images/bed2b_embedded-s1-a15e1623/settle.webp)
-
-Seed 2:
-
-![surface of seed 2](generated/images/bed2b_embedded-s2-79bef9a4/surface.webp)
-
-![section of seed 2](generated/images/bed2b_embedded-s2-79bef9a4/section.webp)
-
-![scene3d of seed 2](generated/images/bed2b_embedded-s2-79bef9a4/scene3d.webp)
-
-![settle of seed 2](generated/images/bed2b_embedded-s2-79bef9a4/settle.webp)
-
-## Bed 2, version C: fewer, bigger rocks
-
-standard bed 2, version C: boulders up to about 120 cm long two deep, small stones 8-16 cm long around them.
-
-| pour (drops' gravity) | state | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | rocks sticking out, per m² | median move, mm/s |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 (Dimorphos) | settled, QA WARN | 3,037 | 4,800 | 3.3 h | 2.3° | 27% | 18 cm | 4.1, by 35 cm | — |
-| 2 (Didymos) | settled, QA WARN | 3,033 | 5,200 | 3.5 h | 1.5° | 27% | 18 cm | 3.8, by 33 cm | — |
-
-Seed 1:
-
-![surface of seed 1](generated/images/bed2c_embedded-s1-05332dba/surface.webp)
-
-![section of seed 1](generated/images/bed2c_embedded-s1-05332dba/section.webp)
-
-![scene3d of seed 1](generated/images/bed2c_embedded-s1-05332dba/scene3d.webp)
-
-![settle of seed 1](generated/images/bed2c_embedded-s1-05332dba/settle.webp)
-
-Seed 2:
-
-![surface of seed 2](generated/images/bed2c_embedded-s2-80495daa/surface.webp)
-
-![section of seed 2](generated/images/bed2c_embedded-s2-80495daa/section.webp)
-
-![scene3d of seed 2](generated/images/bed2c_embedded-s2-80495daa/scene3d.webp)
-
-![settle of seed 2](generated/images/bed2c_embedded-s2-80495daa/settle.webp)
-
-## Bed 2, version D: stones below and above the rocks
+## Bed 2: rocks in stones
 
 standard bed 2, version D: small stones 8-16 cm long below and above boulders 20-70 cm long.
 
 | pour (drops' gravity) | state | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | rocks sticking out, per m² | median move, mm/s |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 (Dimorphos) | waiting | — | — | — | — | — | — | — | — |
-| 2 (Didymos) | waiting | — | — | — | — | — | — | — | — |
+| 1 (Dimorphos) | settled, QA WARN | 7,037 | 10,900 | 24.4 h | 0.3° | 54% | 6 cm | 5.4, by 18 cm | — |
+| 2 (Didymos) | settled, QA WARN | 7,041 | 10,000 | 21.7 h | 0.6° | 53% | 7 cm | 5.4, by 16 cm | — |
 
-## Bed 2, version E: stones below, between and above the rocks
+Seed 1:
 
-standard bed 2, version E: small stones 8-16 cm long below, between and above two thin layers of boulders 20-70 cm long.
+![surface of seed 1](generated/images/bed2d_embedded-s1-aff071fc/surface.webp)
 
-| pour (drops' gravity) | state | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | rocks sticking out, per m² | median move, mm/s |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 (Dimorphos) | waiting | — | — | — | — | — | — | — | — |
-| 2 (Didymos) | waiting | — | — | — | — | — | — | — | — |
+![section of seed 1](generated/images/bed2d_embedded-s1-aff071fc/section.webp)
+
+![scene3d of seed 1](generated/images/bed2d_embedded-s1-aff071fc/scene3d.webp)
+
+![settle of seed 1](generated/images/bed2d_embedded-s1-aff071fc/settle.webp)
+
+Seed 2:
+
+![surface of seed 2](generated/images/bed2d_embedded-s2-e7260ea7/surface.webp)
+
+![section of seed 2](generated/images/bed2d_embedded-s2-e7260ea7/section.webp)
+
+![scene3d of seed 2](generated/images/bed2d_embedded-s2-e7260ea7/scene3d.webp)
+
+![settle of seed 2](generated/images/bed2d_embedded-s2-e7260ea7/settle.webp)
 
 ## Bed 3: stone blanket
 

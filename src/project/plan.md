@@ -1,6 +1,6 @@
 # The plan
 
-_Written 2 November 2026._
+_Written 4 November 2026._
 
 ## Where we want to end up
 
@@ -14,9 +14,9 @@ the landing speed and angle, the ground, and where on that ground it lands.
 |---|---|---|---|
 | 1 | Clean start on the lab Mac: old runs stopped and archived | done | |
 | 2 | Settle [the beds](beds.md): three grounds, two pours each, and three versions of bed 2 | done 2 November: bed 1 about 1 hour, bed 3 about 1.5 hours, bed 2 2-5 hours | settled, tilt under 3°, quality checks passed |
-| 3 | Settle two more versions of bed 2, with stones below, between and above the rocks, and pick one, which leaves six beds | under a day (estimate) | stones on 40-70 % of the surface, at least 2 rocks per m² sticking out, by at least 8 cm, and fewer holes than version A |
-| 4 | **No drop starts until then.** A depth test on bed 1 runs first: do grains free to 0.3 m rather than 0.6 m below the surface change the bounce? | under an hour | if they do, beds 2 and 3 (about 0.3 and 0.4 m deep) need deepening |
-| 5 | The drops in [the impact plan](#the-impact-plan), once approved | about 7 days in all (estimate, to be replaced by measured costs) | if bed 3 is too slow, fewer drops on it |
+| 3 | Settle two more versions of bed 2, with stones below, between and above the rocks, and pick one, which leaves six beds | done 4 November: version D picked, settled in 22-25 hours; both pours of version E crashed on their last layer | stones on 40-70 % of the surface, at least 2 rocks per m² sticking out, by at least 8 cm, and fewer holes than version A |
+| 4 | **No drop starts until then.** A depth test on bed 1 runs first, at 8 and 16 cm/s: do grains free to 0.3 m rather than 0.6 m below the surface change the bounce? | under an hour | if they do, beds 2 and 3 (about 0.4 m deep) need deepening |
+| 5 | The drops in [the impact plan](#the-impact-plan), once approved | about 25 days in all (estimate, to be replaced by measured costs) | if bed 3 is too slow, fewer drops on it |
 | 6 | Compare the beds and the gravities, write the paper's figures | | |
 
 Steps 2, 4 and 5 run by themselves on the lab Mac.
@@ -59,18 +59,21 @@ Steps 2, 4 and 5 run by themselves on the lab Mac.
 
 ## The impact plan
 
-Proposed, not yet approved. `docs/Milani_impact_plan.xlsx` lists about 1,570 drops, with the settings of each and a link to its GitHub folder. It is made from
+Proposed, not yet approved. `docs/Milani_impact_plan.xlsx` lists 4,360 drops, with the settings of each and a link to its GitHub folder, the gravity used for each body and a small picture of each bed. It is made from
 `configs/impact_plan.toml` by `python3 lab.py impact-sheet`, which also pushes it to GitHub.
 
-| tier | what | drops |
+| set | what | drops |
 |---|---|---|
-| 0 | Depth test on bed 1, runs first and gives measured costs | 40 |
-| 1 | Main grid on all six beds: 5 speeds x 3 angles x 3 attitudes x 3 landing spots | 810 |
-| 2 | The other six landing spots | 144 |
-| 3 | Extras on beds 1 and 2: 60° approach, more attitudes, random attitude, approach direction, spin, panels folded, contact properties, up to 1 m/s | 572 |
+| Depth test | On bed 1, runs first at 8 and 16 cm/s and gives measured costs | 40 |
+| Grid | All six beds: 5 speeds x 4 angles x 9 landing spots x 4 attitudes | 4,320 |
 
-Speeds double at each step, to well past escape speed: 2-32 cm/s on Dimorphos and 4-64 cm/s on Didymos. Didymos's gravity is about 4 times
-stronger, so each speed there should behave like half that speed on Dimorphos; the two ladders test this.
+| body | gravity used | speeds | how the gravity was found |
+|---|---|---|---|
+| Dimorphos | 5.0e-5 m/s² | 2, 4, 6, 8, 16 cm/s | published averages of about 4.5-5e-5 |
+| Didymos | 2.0e-4 m/s² | 4, 8, 12, 16, 32 cm/s | worked out here: 2.6e-4 at the pole, 1.8e-4 at 45° latitude, 0.3e-4 at the equator |
+
+Didymos's gravity is taken as 4 times Dimorphos's, so each speed there should behave like half that speed on Dimorphos. Every speed pairs this way, and the pairs test it.
+The fastest speeds were capped on 4 November: planned landings on Dimorphos are about 7-9 cm/s, and a craft leaves again above about 8-10 cm/s.
 
 ## How the run is organized
 
@@ -79,7 +82,7 @@ All of this lives in the code repository:
 | what | where |
 |---|---|
 | What runs | `configs/production.toml`, one file |
-| The beds | `configs/beds/bed1_boulders.toml`, `bed2a_embedded.toml`, `bed2b_embedded.toml`, `bed2c_embedded.toml`, `bed3_stones.toml` |
+| The beds | `configs/beds/bed1_boulders.toml`, `bed2d_embedded.toml`, `bed3_stones.toml` |
 | The drops | `configs/campaigns/drops_bed1.toml`, `drops_bed2.toml`, `drops_bed3.toml` |
 | Commands | `python3 lab.py production start`, `status`, `stop` |
 | What reaches GitHub | `reports/labmac/`: status, reports, figures, settling histories, height maps, grain positions, every drop's records |
