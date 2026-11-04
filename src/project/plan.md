@@ -15,7 +15,7 @@ the landing speed and angle, the ground, and where on that ground it lands.
 | 1 | Clean start on the lab Mac: old runs stopped and archived | done | |
 | 2 | Settle [the beds](beds.md): three grounds, two pours each, and three versions of bed 2 | done 2 November: bed 1 about 1 hour, bed 3 about 1.5 hours, bed 2 2-5 hours | settled, tilt under 3°, quality checks passed |
 | 3 | Settle two more versions of bed 2, with stones below, between and above the rocks, and pick one, which leaves six beds | done 4 November: version D picked, settled in 22-25 hours; both pours of version E crashed on their last layer | stones on 40-70 % of the surface, at least 2 rocks per m² sticking out, by at least 8 cm, and fewer holes than version A |
-| 4 | **No drop starts until then.** A depth test on bed 1 runs first, at 8 and 16 cm/s: do grains free to 0.3 m rather than 0.6 m below the surface change the bounce? | under an hour | if they do, beds 2 and 3 (about 0.4 m deep) need deepening |
+| 4 | **No drop starts until then.** A drop test on bed 1 runs first, at 8 and 16 cm/s: do grains free to 0.3 m rather than 0.6 m below the surface change the bounce? | under an hour | if they do, beds 2 and 3 (about 0.4 m deep) need deepening |
 | 5 | The drops in [the impact plan](#the-impact-plan), once approved | about 25 days in all (estimate, to be replaced by measured costs) | if bed 3 is too slow, fewer drops on it |
 | 6 | Compare the beds and the gravities, write the paper's figures | | |
 
@@ -64,8 +64,8 @@ Proposed, not yet approved. `docs/Milani_impact_plan.xlsx` lists 4,360 drops, wi
 
 | set | what | drops |
 |---|---|---|
-| Depth test | On bed 1, runs first at 8 and 16 cm/s and gives measured costs | 40 |
-| Grid | All six beds: 5 speeds x 4 angles x 9 landing spots x 4 attitudes | 4,320 |
+| Drop test | On bed 1, runs first at 8 and 16 cm/s: does the depth of the ground change the bounce? It also gives measured costs | 40 |
+| Production | All six beds: 5 speeds x 4 angles x 9 landing spots x 4 attitudes | 4,320 |
 
 | body | gravity used | speeds | how the gravity was found |
 |---|---|---|---|
