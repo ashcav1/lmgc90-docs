@@ -1,6 +1,6 @@
 # Where things stand
 
-_Written 4 November 2026. The tables are regenerated from what the lab Mac pushes
+_Written 5 November 2026. The tables are regenerated from what the lab Mac pushes
 to GitHub._
 
 **The short version.** We simulate Hera's [Milani](../glossary.md#milani) CubeSat
@@ -11,6 +11,12 @@ settle [six standard beds](beds.md), run [the same drops](results.md) on each, a
 {{#include generated/status.md}}
 
 **What the lab Mac is doing.** The drops in [the impact plan](plan.md#the-impact-plan), approved on 4 November: a drop test first, then all of bed 1 at both gravities. Beds 2 and 3 wait for a review of bed 1's results.
+
+**The first run of bed 1 only landed at the centre spot.** A safety check that the patch fits between the landing spot and the walls used a stricter rule than the one that chose the 9 spots, so it refused the other 8: 160 of 1,440 drops ran, and 1,280 failed in seconds. The check is fixed. Running again keeps the 160 and does only the rest.
+
+**The drop test found little effect from depth.** All 20 pairs had the same outcome with grains free to 30 cm and to 60 cm. The speed ratio typically changed by 0.03, against a spread of about 0.3 from moving the landing spot just 4 cm. Straight down there was no shift on average, and at 40° it was about 0.05 higher at 30 cm. That was on bed 1's boulders only.
+
+**A drop costs more than estimated:** about 0.25 core-hours on bed 1, not 0.13, and the checks and movies add about half as much again.
 
 **What we know so far:**
 
