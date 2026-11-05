@@ -10,7 +10,7 @@ settle [six standard beds](beds.md), run [the same drops](results.md) on each, a
 
 {{#include generated/status.md}}
 
-**What the lab Mac is doing.** The drops in [the impact plan](plan.md#the-impact-plan), approved on 4 November: a drop test first, then all of bed 1 at both gravities. Beds 2 and 3 wait for a review of bed 1's results.
+**What the lab Mac is doing.** The drops in [the impact plan](plan.md#the-impact-plan), approved on 4 November: the drop test (done), then the rest of bed 1 at both gravities on all 15 cores. After that, beds 2 and 3 start side by side, 4 cores per set, with the drops at the centre spot first and in a mixed order, so that by Monday each set has an even sample and a measured cost.
 
 **The first run of bed 1 only landed at the centre spot.** A safety check that the patch fits between the landing spot and the walls used a stricter rule than the one that chose the 9 spots, so it refused the other 8: 160 of 1,440 drops ran, and 1,280 failed in seconds. The check is fixed. Running again keeps the 160 and does only the rest.
 

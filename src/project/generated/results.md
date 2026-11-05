@@ -22,19 +22,19 @@ _Regenerated from what the lab Mac pushes to GitHub. The speed ratio is speed ou
 
 ## Bed 2, Dimorphos's gravity: 0 of 720 drops
 
-Held until bed 1's results have been reviewed.
+No drops yet.
 
 ## Bed 2, Didymos's gravity: 0 of 720 drops
 
-Held until bed 1's results have been reviewed.
+No drops yet.
 
 ## Bed 3, Dimorphos's gravity: 0 of 720 drops
 
-Held until bed 1's results have been reviewed.
+No drops yet.
 
 ## Bed 3, Didymos's gravity: 0 of 720 drops
 
-Held until bed 1's results have been reviewed.
+No drops yet.
 
 ## The beds side by side, Dimorphos's gravity
 

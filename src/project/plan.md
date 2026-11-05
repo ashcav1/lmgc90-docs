@@ -17,7 +17,7 @@ the landing speed and angle, the ground, and where on that ground it lands.
 | 3 | Settle two more versions of bed 2, with stones below, between and above the rocks, and pick one, which leaves six beds | done 4 November: version D picked, settled in 22-25 hours; both pours of version E crashed on their last layer | stones on 40-70 % of the surface, at least 2 rocks per m² sticking out, by at least 8 cm, and fewer holes than version A |
 | 4 | A drop test on bed 1 runs first, at 8 and 16 cm/s: do grains free to 0.3 m rather than 0.6 m below the surface change the bounce? | under an hour | if they do, beds 2 and 3 (about 0.4 m deep) need deepening |
 | 5 | All of bed 1 (1,440 drops), at both gravities, then a review | the centre spot took about 5 hours; the other 8 spots about 33 hours more (estimate, with the checks and movies) | which factors change the bounce, and what a drop really costs |
-| 6 | Beds 2 and 3, held until that review | about 10 weeks, without the checks and movies (estimate from bed 1's measured cost, to be replaced by measured costs) | if bed 3 is too slow, fewer drops on it |
+| 6 | Beds 2 and 3, started on 5 November to use the weekend: their four sets run side by side once bed 1 is done, 4 cores each, centre spot first | about 10 weeks for all of them, without the checks and movies (estimate from bed 1's measured cost); by Monday a sample of each | if bed 3 is too slow, fewer drops on it |
 | 7 | Compare the beds and the gravities, write the paper's figures | | |
 
 Steps 2, 4, 5 and 6 run by themselves on the lab Mac.
