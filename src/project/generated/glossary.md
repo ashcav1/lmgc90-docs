@@ -24,7 +24,7 @@ How a settle decides the grains have stopped: over the last simulated second the
 
 ### ballast
 
-A massless box inside the craft's body (panels open). LMGC90 turns a body made of several pieces about the centre of their volumes, not of their masses; the ballast's volume moves that point onto the craft's true centre of mass.
+A massless box inside the craft's body (panels open). LMGC90 turns a body made of several pieces about the center of their volumes, not of their masses; the ballast's volume moves that point onto the craft's true center of mass.
 
 ### bed
 
@@ -42,9 +42,9 @@ The side of a bed's box. A drop needs the patch plus 0.75 m on every side kept a
 
 Grains 20-70 cm long. Boulders of this size cover most of Dimorphos.
 
-### centre of mass
+### center of mass
 
-The point a free body turns about and whose path is a ballistic arc. With the panels open it lies 6 mm from the centre of the craft's body, toward the panels.
+The point a free body turns about and whose path is a ballistic arc. With the panels open it lies 6 mm from the center of the craft's body, toward the panels.
 
 ### conservative advancement
 
@@ -120,7 +120,7 @@ Sizes on these pages are lengths: a grain's longest dimension. The bed files giv
 
 ### how a drop ends
 
-Bounced off: left the ground, and its exact free flight comes back down on none of the grains the drop can move. Left the patch: slid or hopped out of the patch while on the ground, so the result is cut off. Captured: stayed down, creeping. Came to rest. Ran out of time: 300 s simulated.
+Flew off: in flight after its last touch on the patch, with its exact free flight coming back down on none of the grains the drop can move. This includes drops recorded as leaving the patch. It does not mean the craft escaped. Captured: stayed down, creeping. Came to rest. Ran out of time: 300 s simulated.
 
 ### lab Mac
 
@@ -128,7 +128,7 @@ The 24-core Mac Studio in the lab that settles the standard beds and runs their 
 
 ### landing spot
 
-Where the craft is aimed, in metres from the bed's centre (x, y).
+Where the craft is aimed, in meters from the bed's center (x, y).
 
 ### laptop test beds
 
@@ -168,7 +168,7 @@ Automatic checks on every bed and drop, graded PASS, WARN (look at it) or FAIL (
 
 ### reach
 
-The largest distance from the craft's centre of mass to any point of the craft: 0.76 m with the panels open, 0.23 m folded. Whatever the craft's rotation, all of it lies within this distance.
+The largest distance from the craft's center of mass to any point of the craft: 0.76 m with the panels open, 0.23 m folded. Whatever the craft's rotation, all of it lies within this distance.
 
 ### realistic size mix
 
@@ -192,7 +192,7 @@ Letting poured grains fall and stop. Beds are settled under Earth's gravity (9.8
 
 ### small stones
 
-Grains 8-20 cm long (10-20 cm in bed 2, 8-16 cm in bed 3). They stand in for the smaller material between and on Dimorphos's boulders. They are not fine-grained: sand or gravel would take millions of grains per square metre, far beyond what can be simulated, so no bed has fine-grained material. (The code calls them fines.)
+Grains 8-20 cm long (10-20 cm in bed 2, 8-16 cm in bed 3). They stand in for the smaller material between and on Dimorphos's boulders. They are not fine-grained: sand or gravel would take millions of grains per square meter, far beyond what can be simulated, so no bed has fine-grained material. (The code calls them fines.)
 
 ### speed limit
 

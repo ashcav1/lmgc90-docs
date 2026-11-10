@@ -63,7 +63,7 @@ the paper.
 
 - **Drops: ready.** A drop now ends at the exact moment no part of the craft
   can touch the ground again, the open-panel craft turns about its true
-  centre of mass, and the [patch](../glossary.md#patch) is the right size:
+  center of mass, and the [patch](../glossary.md#patch) is the right size:
   1.2 m with the panels open, so 4.5 m beds are enough (tested on 1
   November). A drop costs about 4 minutes on one core.
 - **Beds no longer blow apart, but most take far too long to come to
@@ -126,11 +126,11 @@ not (8.33 mm cells were laid out as if they were 1 cm cells).
 
 The pile's starting position and the settled bed's whole-bed tilt show it:
 
-| bed | smallest grain | pile's centre when poured | whole-bed tilt when settled |
+| bed | smallest grain | pile's center when poured | whole-bed tilt when settled |
 |---|---|---|---|
 | study bed 1, 4.5 m (three seeds) | 30 cm | within 2 cm of the middle | 0.3-1.0° |
 | even size mix, 3 m and 4 m (four beds) | 30 cm | within 2 cm | 0.1-1.6° |
-| realistic size mix, 2 m (two beds) | 20 cm | 18 and 17 cm off, both towards the same corner | 6.6° and 9.4° |
+| realistic size mix, 2 m (two beds) | 20 cm | 18 and 17 cm off, both toward the same corner | 6.6° and 9.4° |
 | realistic size mix, 3 m | 20 cm | 25 and 26 cm off | 8.3° |
 | study bed 2, 4.5 m (two seeds) | 20 cm | about 37 cm off (from the fault's size) | about 4-5° (read off its height map picture), bare floor in the far corner |
 | the pour with the fix, 2 m | 20 cm | **1 and 2 cm** | being measured |

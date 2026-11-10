@@ -1,12 +1,12 @@
 # How each number is computed
 
-Every number in the [drop reel](../drops/index.html) and the run log, defined: what it is, why it can be trusted (or where it cannot), and the code that computes it. File and line refer to the project's code repository at the time this page was generated (2026-11-10 07:33); the excerpts are copied from that code, not paraphrased.
+Every number in the [drop reel](../drops/index.html) and the run log, defined: what it is, why it can be trusted (or where it cannot), and the code that computes it. File and line refer to the project's code repository at the time this page was generated (2026-11-10 10:41); the excerpts are copied from that code, not paraphrased.
 
 ## The craft model
 
-**Definition.** Milani is rigid convex boxes: a 13 x 24.6 x 36.6 cm body of 10.8 kg and, with the panels open, two solar panels 1 cm thick and 59 x 36.6 cm, 0.6 kg each: 12 kg in all. With the panels folded it is the body alone at 12 kg. Mass, centre of mass and inertia come from the pieces' own masses. Inside the body (panels open) sits a massless ballast box (3.9 x 24 x 36 cm, 3 mm inside every wall): LMGC90 places a body made of several pieces at the centre of their volumes rather than of their masses (mod_RBDY3, reading the bodies), and the ballast's volume moves that point onto the centre of mass.
+**Definition.** Milani is rigid convex boxes: a 13 x 24.6 x 36.6 cm body of 10.8 kg and, with the panels open, two solar panels 1 cm thick and 59 x 36.6 cm, 0.6 kg each: 12 kg in all. With the panels folded it is the body alone at 12 kg. Mass, center of mass and inertia come from the pieces' own masses. Inside the body (panels open) sits a massless ballast box (3.9 x 24 x 36 cm, 3 mm inside every wall): LMGC90 places a body made of several pieces at the center of their volumes rather than of their masses (mod_RBDY3, reading the bodies), and the ballast's volume moves that point onto the center of mass.
 
-**Why it can be trusted.** Without it the craft with open panels turned about a point 10.2 mm from its centre of mass: the panels are far lighter for their volume than the body. Found on 1 November by comparing the craft in the simulation's own frames with its design. Every drop now checks that the simulated craft sits within 0.1 mm of its design (it does, to 1e-11 m). No grain can reach the ballast without pushing 3 mm into the body first.
+**Why it can be trusted.** Without it the craft with open panels turned about a point 10.2 mm from its center of mass: the panels are far lighter for their volume than the body. Found on 1 November by comparing the craft in the simulation's own frames with its design. Every drop now checks that the simulated craft sits within 0.1 mm of its design (it does, to 1e-11 m). No grain can reach the ballast without pushing 3 mm into the body first.
 
 **Limits.** Drops made before 1 November have the 10 mm offset: the laptop's were re-simulated on 1 November, the lab Mac's weekend drops still need it (lab.py campaign rerun --stale). On one 4 m bed drop the fix moved e from 0.300 to 0.329; with the panels folded the craft is one piece and was never affected.
 
@@ -14,12 +14,12 @@ Every number in the [drop reel](../drops/index.html) and the run log, defined: w
 
 ```python
 def ballast_piece(pcs, inset: float = BALLAST_INSET_M):
-    """An internal box that puts the craft's VOLUME centroid on its centre of
-    mass. LMGC90 places a multi-contactor body's centre at the volume-weighted
+    """An internal box that puts the craft's VOLUME centroid on its center of
+    mass. LMGC90 places a multi-contactor body's center at the volume-weighted
     centroid of its contactors' geometric volumes (mod_RBDY3, read_bodies:
     OG = sum(v_i shift_i) / sum(v_i)) and keeps the principal inertia it is
     given, so a craft whose pieces differ in density (deployed: bus 10.8 kg,
-    wings 0.6 kg each) turned about a point 10.2 mm from its centre of mass
+    wings 0.6 kg each) turned about a point 10.2 mm from its center of mass
     until 2026-11-01. The ballast lies `inset` inside the bus on every side,
     so no grain can reach it before the bus; None when the volumes already
     balance (one piece, or uniform density)."""
@@ -38,11 +38,11 @@ def ballast_piece(pcs, inset: float = BALLAST_INSET_M):
     side = -float(np.sign(S[k]))                  # the ballast sits opposite the imbalance
     face = float(bus.centre[k]) + side * h[k]     # inner face of the bus wall on that side
     A = float(np.prod(np.delete(2.0 * h, k)))
-    a = side * (face - float(com[k]))             # from the centre of mass to that face, > 0
+    a = side * (face - float(com[k]))             # from the center of mass to that face, > 0
     need = abs(float(S[k])) / A                   # the ballast's length L solves L (a - L/2) = need
     disc = a * a - 2.0 * need
     if disc < 0:
-        raise ValueError("ballast: the bus cannot hold enough volume to centre the craft")
+        raise ValueError("ballast: the bus cannot hold enough volume to center the craft")
     L = a - math.sqrt(disc)
     dims = 2.0 * h
     dims[k] = L
@@ -150,7 +150,7 @@ def _craft_info(spec: ImpactorSpec, pcs, R, centre, av, rho, ballast=None) -> di
 
 ## Bounced off: when a drop is over
 
-**Definition.** A drop ends as 'bounced off' when the craft has been free for 0.5 s, is rising, and its exact free flight (next entry) does not come back down on a grain the drop can move, the patch, within the time the drop could still take (up to 300 s). Until that holds the simulation goes on and the solver decides, also when the craft's centre has crossed the patch's edge but a panel is still over it. The flight is checked against the whole bed: 'clear' if it touches nothing in that time, 'beyond' if its next touch is on the fixed ring or the rest of the bed; the prediction is stored with the drop.
+**Definition.** A drop ends as 'bounced off' when the craft has been free for 0.5 s, is rising, and its exact free flight (next entry) does not come back down on a grain the drop can move, the patch, within the time the drop could still take (up to 300 s). Until that holds the simulation goes on and the solver decides, also when the craft's center has crossed the patch's edge but a panel is still over it. The flight is checked against the whole bed: 'clear' if it touches nothing in that time, 'beyond' if its next touch is on the fixed ring or the rest of the bed; the prediction is stored with the drop.
 
 **Why it can be trusted.** Once the craft is free nothing acts on it but gravity, so its future is known exactly: nothing is left to simulate unless it comes back down on grains the drop can move. The test it replaced, a 3-30 s look-ahead of the tumbling craft, missed a panel-tip graze 19 s after a drop on bed 1 had been declared over (31 October). The exact test also ends drops sooner: a 4 m-bed drop now stops 0.5 s after its last touch instead of 31 s later, with the same result, at a seventh of the computing.
 
@@ -219,9 +219,9 @@ def _craft_info(spec: ImpactorSpec, pcs, R, centre, av, rho, ballast=None) -> di
 
 ## Exact free flight
 
-**Definition.** From any free state the craft's motion is computed exactly: its centre of mass on the ballistic arc, its rotation from Euler's equations for a torque-free body (the spin axis wobbles because the craft's three moments of inertia differ), integrated by 4th-order Runge-Kutta in steps of at most 0.02 s. The craft is then moved along that flight over the bed in two stages. Points every 2 cm on its surface are compared with the bed's top surface (1 cm grid, each cell raised to its highest neighbour); wherever a point comes within 2 cm, the exact distance between the craft's pieces (three convex boxes with the panels open) and every grain nearby (convex polyhedra) decides. A touch is an exact distance under 1 mm. Near a grain every step is the longest in which no point of the craft could close that distance (conservative advancement), so a touch cannot fall between two tests.
+**Definition.** From any free state the craft's motion is computed exactly: its center of mass on the ballistic arc, its rotation from Euler's equations for a torque-free body (the spin axis wobbles because the craft's three moments of inertia differ), integrated by 4th-order Runge-Kutta in steps of at most 0.02 s. The craft is then moved along that flight over the bed in two stages. Points every 2 cm on its surface are compared with the bed's top surface (1 cm grid, each cell raised to its highest neighbor); wherever a point comes within 2 cm, the exact distance between the craft's pieces (three convex boxes with the panels open) and every grain nearby (convex polyhedra) decides. A touch is an exact distance under 1 mm. Near a grain every step is the longest in which no point of the craft could close that distance (conservative advancement), so a touch cannot fall between two tests.
 
-**Why it can be trusted.** It is the physics LMGC90 itself integrates for a free body, gyroscopic torque included, so it can be checked against the simulation: over the recorded free flights of bed 1 (10-70 s each) the predicted centre stays within 0.001 mm and the orientation within 0.06 degrees of the simulation's. The exact distance is the closest pair of points of two convex hulls, a small least-squares problem; on 1000 pairs of boxes with known distances its worst error is 2e-13 m.
+**Why it can be trusted.** It is the physics LMGC90 itself integrates for a free body, gyroscopic torque included, so it can be checked against the simulation: over the recorded free flights of bed 1 (10-70 s each) the predicted center stays within 0.001 mm and the orientation within 0.06 degrees of the simulation's. The exact distance is the closest pair of points of two convex hulls, a small least-squares problem; on 1000 pairs of boxes with known distances its worst error is 2e-13 m.
 
 **Limits.** The patch's grains are taken as they stand (the drop's last frame for the check, the current pose in the end-of-drop test). Outside the patch the bed is as settled, which is what an undisturbed bed would be.
 
@@ -426,7 +426,7 @@ def energy_kept(rec: dict):
 
 ## Outcomes
 
-**Definition.** bounced off: see above. left the patch: the craft's centre left the patch while on or near the ground, and its flight (if it was airborne) does not come back down on the patch (the result is cut off). came to rest: slower than 2 mm/s and 0.01 rad/s for 10 s in contact. captured: its fastest point stayed below 10 % of the arrival speed for 10 s (at micro-g friction takes minutes to stop a creep). ran out of time: 300 s simulated.
+**Definition.** flew off: see above; the runs record a drop as left the patch when its center crosses the patch edge while not rising, and these count as flew off (97 % are in the air when the run ends). came to rest: slower than 2 mm/s and 0.01 rad/s for 10 s in contact. captured: its fastest point stayed below 10 % of the arrival speed for 10 s (at micro-g friction takes minutes to stop a creep). ran out of time: 300 s simulated.
 
 `src/milani/detectors.py`, line 46:
 
@@ -606,7 +606,7 @@ def solver_health(postpro_dir, max_sweeps: int, first_step: int | None = None) -
 
 ## Movies
 
-**Definition.** LMGC90's own ParaView frames of the drop (every 0.1 s for 15 s, then every second), rendered by ParaView 6.0 offscreen and played at 10 frames a second: real time for the first 15 s, then ten times faster. Grain colour is grain speed; the white line is the path of the craft's centre.
+**Definition.** LMGC90's own ParaView frames of the drop (every 0.1 s for 15 s, then every second), rendered by ParaView 6.0 offscreen and played at 10 frames a second: real time for the first 15 s, then ten times faster. Grain color is grain speed; the white line is the path of the craft's center.
 
 `src/milani/tools/pv_drop_movie.py`, line 37:
 

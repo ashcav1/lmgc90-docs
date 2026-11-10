@@ -16,8 +16,8 @@ the landing speed and angle, the ground, and where on that ground it lands.
 | 2 | Settle [the beds](beds.md): three grounds, two pours each, and three versions of bed 2 | done 2 November: bed 1 about 1 hour, bed 3 about 1.5 hours, bed 2 2-5 hours | settled, tilt under 3°, quality checks passed |
 | 3 | Settle two more versions of bed 2, with stones below, between and above the rocks, and pick one, which leaves six beds | done 4 November: version D picked, settled in 22-25 hours; both pours of version E crashed on their last layer | stones on 40-70 % of the surface, at least 2 rocks per m² sticking out, by at least 8 cm, and fewer holes than version A |
 | 4 | A drop test on bed 1 runs first, at 8 and 16 cm/s: do grains free to 0.3 m rather than 0.6 m below the surface change the bounce? | under an hour | if they do, beds 2 and 3 (about 0.4 m deep) need deepening |
-| 5 | All of bed 1 (1,440 drops), at both gravities, then a review | the centre spot took about 5 hours; the other 8 spots about 33 hours more (estimate, with the checks and movies) | which factors change the bounce, and what a drop really costs |
-| 6 | Beds 2 and 3, started on 5 November to use the weekend: their four sets run side by side once bed 1 is done, 4 cores each, centre spot first | about 10 weeks for all of them, without the checks and movies (estimate from bed 1's measured cost); by Monday a sample of each | if bed 3 is too slow, fewer drops on it |
+| 5 | All of bed 1 (1,440 drops), at both gravities, then a review | the center spot took about 5 hours; the other 8 spots about 33 hours more (estimate, with the checks and movies) | which factors change the bounce, and what a drop really costs |
+| 6 | Beds 2 and 3, started on 5 November to use the weekend: their four sets run side by side once bed 1 is done, 4 cores each, center spot first | about 10 weeks for all of them, without the checks and movies (estimate from bed 1's measured cost); by Monday a sample of each | if bed 3 is too slow, fewer drops on it |
 | 7 | Compare the beds and the gravities, write the paper's figures | | |
 
 Steps 2, 4, 5 and 6 run by themselves on the lab Mac.
@@ -76,7 +76,7 @@ Each drop's records go to its own folder, `reports/labmac/drops/<set>_<bed>_<bod
 
 Didymos's gravity is taken as 4 times Dimorphos's, so each speed there should behave like half that speed on Dimorphos. Every speed pairs this way, and the pairs test it. So that a pair really is the same motion, Didymos's drops also run with half the time limit, half the time step limit, and a rest test scaled to match.
 
-Every drop's movie stays on the lab Mac. The [drop reel](../drops/index.html) shows the centre spot of each production set, because the movies of every drop would be too much for the site.
+Every drop's movie stays on the lab Mac. The [drop reel](../drops/index.html) shows the center spot of each production set, because the movies of every drop would be too much for the site.
 The fastest speeds were capped on 4 November: planned landings on Dimorphos are about 7-9 cm/s, and a craft leaves again above about 8-10 cm/s.
 
 ## How the run is organized

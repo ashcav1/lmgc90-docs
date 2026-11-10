@@ -15,7 +15,7 @@
   - [The old plan](project/legacy_plan.md)
   - [The old status page](project/legacy_state.md)
   - [Every old run](project/legacy_runs.md)
-  - [31 Oct night - 2 Nov: last contact, centre of mass, friction, bed size, settling tests, the pour bug](project/notebook/2026-11-01.md)
+  - [31 Oct night - 2 Nov: last contact, center of mass, friction, bed size, settling tests, the pour bug](project/notebook/2026-11-01.md)
   - [31 October: impacts, movies, the detachment fix](project/notebook/2026-10-31.md)
   - [29-30 October: settling, small stones, tolerance](project/notebook/2026-10-29.md)
   - [The six-bed study: plan, cost, what the first night taught](project/notebook/bed-study.md)

@@ -180,12 +180,12 @@ The details are in the [lab notebook](legacy.md); the short reasons:
   ends when that [exact free flight](methods.md#exact-free-flight) will not
   come back down on a grain the drop can move, and the prediction is then
   checked against the whole bed ([how](methods.md#last-contact-check)).
-- **31 Oct, night: the craft's centre of mass.** LMGC90 puts the centre of a
-  body made of several pieces at the centre of their volumes, not of their
+- **31 Oct, night: the craft's center of mass.** LMGC90 puts the center of a
+  body made of several pieces at the center of their volumes, not of their
   masses. Milani's panels are much lighter for their size than its body, so
   with the panels open the craft turned about a point 10.2 mm from its true
-  centre of mass. A massless [ballast](../glossary.md#ballast) box inside the
-  body now puts the centre in the right place; every drop checks it (to
+  center of mass. A massless [ballast](../glossary.md#ballast) box inside the
+  body now puts the center in the right place; every drop checks it (to
   1e-11 m). The folded craft (one piece) was never affected.
 - **1 Nov: plain words and true sizes.** The pages used the code's names
   (veneer, fines, crop, frozen ring, stowed, deployed) and gave half-lengths
@@ -202,7 +202,7 @@ From the re-simulated laptop drops (medians):
 - Arriving at 40 degrees from vertical keeps more speed than straight down:
   speed ratio about 0.38 against 0.23 on bed 1.
 - Where the craft lands matters more than how fast it arrives, and single
-  drops are sensitive: moving the centre of mass by 1 cm changed single
+  drops are sensitive: moving the center of mass by 1 cm changed single
   drops' speed ratio by up to ±0.1, but the medians by at most 0.02.
 - No bounce ended too early. In 21 of 96 the craft's next touch is on the
   bed just outside the patch: for 19, 15 s to 8 minutes later (a new hop),
@@ -263,7 +263,7 @@ From the re-simulated laptop drops (medians):
   drop reel and these notes are visible to anyone with the link. Say if they
   should move somewhere private before the paper.
 - **Re-simulating the lab Mac's weekend drops is necessary**: the
-  open-panel craft's centre of mass was wrong. With the new end-of-drop test
+  open-panel craft's center of mass was wrong. With the new end-of-drop test
   a set of 36 takes about two CPU-hours.
 - **Hops that land just outside the patch.** For about one bounce in five
   (21 of 96), the craft's next touch is on the bed outside the patch. These
@@ -290,7 +290,7 @@ From the re-simulated laptop drops (medians):
 - [The bed library](library.md) (regenerated): every settled bed, whether it
   is good ground, and how to name, check and move one.
 - [Lab notebook](legacy.md): the dated notes, the study plan, the decision
-  log, the failure catalogue.
+  log, the failure catalog.
 - [Glossary](../glossary.md): every term these pages use, in plain words.
 - The LMGC90 chapters of this guide: [settling](../settling.md),
   [impacts](../impacts.md), [failure modes](../failure-modes.md).

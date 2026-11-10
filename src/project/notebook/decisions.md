@@ -57,7 +57,7 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   `norm1 > 0.D0` where norm1 is analytically zero (float round-off coin
   flip, ~line 595), which is why the failure is seed-dependent and bimodal.
   Past 100 grains, the first failed trip `exit`s the WHOLE deposit. Two
-  `stop` paths (>110 references, >2000 Verlet neighbours) hard-kill the
+  `stop` paths (>110 references, >2000 Verlet neighbors) hard-kill the
   Python process — a real hazard for strongly polydisperse beds. Return
   contract verified: radii_out is an exact PREFIX of the input (truncation,
   not filtering); np.random.seed never touches the Fortran RNG (only the
@@ -110,7 +110,7 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   grain stops). The SPPLx "Unknown visibility table" faterr is dead code.
 - 2026-10-28 — **All grains are polyhedra (gate D4 closed toward realism)**:
   LMGC90's SPPRx detector (sphere vs polyhedron) projects toward the
-  polyhedron centre and misses approaching contacts; in tests sphere small stones
+  polyhedron center and misses approaching contacts; in tests sphere small stones
   sank a full radius into boulders (LMGC gap −43 mm; exact hull distance
   confirmed the penetration). Polyhedral small stones: worst exact penetration
   0.9–2.8 mm. Also: LMGC90 has no rolling-resistance law, so sphere small stones
@@ -132,7 +132,7 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   scene: a global spin given at random attitude reads back exactly, the cube
   turns 0.10000 rad about z in 0.1 s). GetBodyMatrix rows = body axes.
   Outcomes store spin in global, body and azimuth-canonical frames.
-- 2026-10-28 — **v4 wall overlap bug**: walls were centred on the deposit-box
+- 2026-10-28 — **v4 wall overlap bug**: walls were centered on the deposit-box
   faces, so edge grains started ~1 cm inside the wall plates (measured −9 mm
   at step 1). Walls now sit outside the box (inner faces on the box faces).
 - 2026-10-28 — **Settling**: boulders deposited lying flat (long axis
@@ -143,7 +143,7 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   floor e = 0.4996 vs rstn 0.5.
 - 2026-10-28 — **Settle law is GAP_SGR_CLB, not RST_CLB**: the smoke bed
   failed QA with a 15.8 mm boulder–boulder overlap (exact SAT check of the
-  two polyhedra: 15.5 mm, so real, not a gap-reporting artefact). On the
+  two polyhedra: 15.5 mm, so real, not a gap-reporting artifact). On the
   micro bed, RST_CLB with zero restitution left 4.9–7.4 mm overlaps
   whatever the dt (5e-4 to 2e-3), tolerance or alert distance (×3, ×6):
   a velocity-level law stops approach but never pushes an overlap back
@@ -232,7 +232,7 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   No Milani span is published; Juventas (same 6U-XL form factor, same 2 × 3
   panels) is quoted at ~1420 mm across the arrays → 0.587 m per solar panel.
   Assumed (edit configs/impactors/milani_deployed.toml): panel thickness
-  10 mm, root gap 20 mm, 0.6 kg per solar panel, total 12 kg. Modelled as ONE rigid
+  10 mm, root gap 20 mm, 0.6 kg per solar panel, total 12 kg. Modeled as ONE rigid
   body with three convex POLYR contactors (polyhedron detection needs convex
   pieces; a hull would fill the space between the solar panels and the craft's body); each
   piece gets an effective volume mass/ρ and matching inertia so pre's
@@ -257,7 +257,7 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   (milani/recorder.py). Cadences are module constants, NOT config fields:
   adding a field to a hashed dataclass (ImpactSettings, DetectorSettings,
   SolverOptions, the bed specs) changes every run/bed id and orphans the
-  work already done. `lab.py plot` draws a fixed catalogue of figures for
+  work already done. `lab.py plot` draws a fixed catalog of figures for
   any run / bed / campaign folder (milani/plots, rules in docs/PLOTS.md);
   reports use the same code. Measured: `getInteractions` reactions are
   forces (verlet tables hold impulse/H; Σ rn on the box = 0.89 |Reac_|).
@@ -460,7 +460,7 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   of steps that hit the 10,000-sweep budget — the patch's own relaxation
   before the touch, the shock steps of the touch (8–13 per run on the 4 m
   bed) — so the old fraction of all steps read 4 % on a 1 s run and 0.06 %
-  on a 100 s one for the same solver behaviour. Now: steps from the first
+  on a 100 s one for the same solver behavior. Now: steps from the first
   touch on, WARN above 5 %, FAIL above 20 %; the counts before and after
   the touch are in the message.
 - 2026-10-31 — **Rest may be declared on the load-bearing half of
@@ -489,12 +489,12 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   (1.6 N for one step, horizontal speed -6 %). The look-ahead had projected
   the craft's vertices 3-30 s ahead assuming a constant spin axis; a free
   asymmetric body's axis precesses, and over 19 s the panel tip drifted the
-  few centimetres between "clear" and a graze. The new test needs no
+  few centimeters between "clear" and a graze. The new test needs no
   rotation model: the craft is inside a sphere of its circumradius (0.76 m
-  with the panels open, 0.23 m folded) about its centre of mass, which moves on an
+  with the panels open, 0.23 m folded) about its center of mass, which moves on an
   exact ballistic arc when free; the sphere must stay above the bed's
   height map (+ largest grain displacement so far + 1 cm + half a sample
-  step of travel) from now until the centre leaves the patch, checked
+  step of travel) from now until the center leaves the patch, checked
   every 0.5 s of free flight. It is a proof of no contact over the patch up
   to the height map's resolution and later grain creep; the replay check
   tests those directly, drop by drop (verdicts in last_contact_check.json).
@@ -506,24 +506,24 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   floor (energy_ratio ~6 % high on a 1 m bed); now from the first-contact
   height, old records recomputed exactly (outcome.energy_kept). And the
   contact-frame normal restitution is reported only for single-touch drops.
-- 2026-11-01 — **The craft with panels open turns about its centre of mass: an
+- 2026-11-01 — **The craft with panels open turns about its center of mass: an
   internal ballast** (impactors.ballast_piece; impact.py records
   `setup.craft_geometry_error_m` for every drop). LMGC90 places a body made
   of several contactors at the volume-weighted centroid of their GEOMETRIC
   volumes (mod_RBDY3 read_bodies: OG = sum(v_i shift_i) / sum(v_i)) and keeps
   the principal inertia it is given; the per-piece "effective volumes" that
-  make pre's centre of mass right never reach LMGC90. The craft with panels open
+  make pre's center of mass right never reach LMGC90. The craft with panels open
   (bus 10.8 kg, solar panels 0.6 kg each, solar panels far lighter for their volume) so
-  turned about a point 10.2 mm from its centre of mass in every drop until
+  turned about a point 10.2 mm from its center of mass in every drop until
   now; the folded craft (one piece) was right. Found by comparing the craft in
   the run's ParaView frames with craft.json: a constant 10.172 mm offset
   along the craft's body x axis. The fix adds a box inside the craft's body (3.9 x 24 x 36 cm,
   3 mm inside every wall: no grain can reach it before the craft's body) whose
-  volume moves the geometric centroid onto the centre of mass, and sets the
+  volume moves the geometric centroid onto the center of mass, and sets the
   density to 12 kg / total geometric volume. In pre the ballast is massless:
   pre takes a contactor's volume and inertia as given only when an inertia
   entry exceeds 1e-6 (rigidContactor3D), so the ballast gets 2e-6 and the
-  bus 2e-6 less; build_avatar asserts pre's centre and inertia equal the
+  bus 2e-6 less; build_avatar asserts pre's center and inertia equal the
   intended ones. Its interactions are excluded from the craft's contacts.
   Verified in a run: the simulated craft within 1.6e-11 m of craft.json,
   inertia 0.4535 / 0.1531 / 0.3387 kg m^2 (intended 0.4534 / 0.1531 /
@@ -532,7 +532,7 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   `lab.py campaign rerun NAME --stale` re-simulates older ones in place.
 - 2026-11-01 — **A drop ends on the craft's exact free flight**
   (flight.py; impact.py ahead; detectors.py). Once free, the craft feels
-  only gravity: centre on a ballistic arc, rotation by the torque-free
+  only gravity: center on a ballistic arc, rotation by the torque-free
   Euler equations (RK4), validated against the recorded free flights of
   bed 1 to 0.001 mm and 0.06 degrees over 10-70 s, every surface point
   within 0.015 mm after 48 s. When the craft has been free 0.5 s and is
@@ -546,7 +546,7 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
   touch falls between two tests. The drop goes on while the flight comes
   within 1 cm + (fastest free grain's surface speed) x (time ahead) of a
   free grain in the time the run could still take: the solver decides
-  those, also after the centre crossed the patch edge with a solar panel still over
+  those, also after the center crossed the patch edge with a solar panel still over
   it. Otherwise it ends: `detached_how = "clear"` (no touch on the bed) or
   `"beyond"` (the next touch is on the fixed ring or the bed outside the
   patch; the prediction is stored in `contact.flight`). Replaces reach_clear
@@ -649,7 +649,7 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
 - 2026-11-02 (10:30) — **The pour bug: beds with r_min 0.05, 0.08 or 0.10 m were
   poured into 83 % (133 % for 0.08) of the box. Beds 2-6 are not used as ground;
   bed A is `standard_A`, settled afresh; every settle on them stops.** Why:
-  whole-bed tilt 4-9° (bed 1 0.3-1.0°), pile centre 8.3 % of the box off, bare
+  whole-bed tilt 4-9° (bed 1 0.3-1.0°), pile center 8.3 % of the box off, bare
   floor in the far corner. Fix in `lmgcx.geometry.deposit`, guards in both grid
   functions, QA `surface_tilt_deg`. Identity: `config.pour_fix` adds a marker to
   bed id and stage key only for affected layers, so bed 1's ids stand and no
@@ -696,11 +696,13 @@ artifact (rev 7). A gate is CLOSED only when its criterion has data.
 - 2026-11-04 — **Bed 2 version E failed on both pours, both on the last layer, each twice alike.** Pour 1: non-finite velocity before step 800, one stone spinning at up to 697 rad/s (the speed cap does not limit spin). Pour 2: exit code 1 at step 2,900, just after first rest; the log is on the lab Mac. Version D is the only version that passes the pick rule; not yet picked.
 - 2026-11-04 (user) — **Bed 2 is version D (`bed2d_embedded`).** The only version passing the pick rule. A, B, C and E left `configs/production.toml` (so E's failures no longer hold the drops back) and their recipes went to `legacy/configs/beds`; their reports stay in `reports/labmac/beds`. Its patch holds about 2,000 free grains (counted 1,968 and 2,015), so the cost estimate stays 2.0 core-hours a drop, not the 2.5 first feared. Boulders are 59-61 % of its volume. **Depth test now at 8 and 16 cm/s,** not 4 and 8: the fastest drops dig deepest, and 16 is the top of the Dimorphos ladder (Fr 37, as 32 on Didymos). Still 40 drops.
 - 2026-11-04 (user) — **Plain words in the sheet, and no text wider than its column.** The grid set is now `production`, the depth test is the `drop test`, and every other code was spelled out (Dimorphos, Bed 1, upright, corner, attitude, run?, core-h, free depth, spot1, test1). Drop folders follow: `production_bed2_dimorphos/16cms_20deg_flat_spot5`; nothing has run, so no link breaks. Column widths are computed from their text (`impact_sheet._fit_columns`). The campaign files keep their names (`test_depth_bed1_d03`, `d06`).
-- 2026-11-04 (user approved the plan) — **The drop runs.** `configs/impact_plan.toml` is the one source: `lab.py impact-campaigns` writes `configs/campaigns/<set>_<bed>_<body>.toml` and a test holds every run to its row in the sheet. Sweeps gained named spots (`targets.names`) and named attitudes (`sweep.poses`). The old `drops_bed*` and `test_depth_*` went to `legacy/configs/campaigns`. Drop test, then bed 1 at both gravities, then a review: beds 2 and 3 have `hold_drops = true` (the user's condition). Sets run one after another on all 15 cores (`flex_max_cores = 15`): side by side, the second would keep 4 cores for its whole run. A drop set is now a soft task: one failed drop gave exit 1 and blocked every set after it. **Didymos's settings scale with sqrt(g):** time limit, time-step limits and the detector's times and speeds (x0.5 or x2), so a pair at equal Froude number is the same motion with a different clock, and costs the same; Dimorphos keeps the code's defaults exactly. **Records:** `drop_records.py` copies each drop's outcome, QA, check and gzipped tables to `reports/labmac/drops/<set>/<drop>/`, at most 40 MB a push (a past estimate of 100-120 KB a drop, about 500 MB for the plan), and writes `results.csv`, which the sheet reads when remade on the laptop (the lab Mac does not touch the workbook). `disk.txt` gives each finished set's size on the lab Mac, to size beds 2 and 3, and status.txt shows free disk. **Movies:** made for every drop as before, kept on the lab Mac; the reel shows only each production set's centre spot (`gallery.on_the_reel`), because all of them would exceed what GitHub Pages holds. Laptop test: two drops on a tiny bed; its auto-sync pushed `reports/laptop` by accident, removed in the next commit.
-- 2026-11-05 — **The composer refused 8 of the 9 landing spots; fixed.** Its wall check needed patch + 2 r_max (1.9 m on bed 1) and ignored `wall_clearance_m`, while `site_half_width`, which allowed the +/-0.3 m spots, used the 0.5 m clearance (1.7 m). Centre spot and drop test (within 4 cm) passed, so 1,280 of bed 1's 1,440 drops failed as `python_error` in seconds; bed 2 would have too, bed 3 not. Both now use `ImpactSettings.wall_margin`, and a test holds every planned drop to the composer's check. Missed because my laptop test and the drop test landed at the centre, and the old test only asked `site_half_width`. Run ids unchanged, so the 160 finished drops stay. **Costs re-based on those 160 drops:** 0.25 core-hours a drop on bed 1 (0.22 Dimorphos, 0.28 Didymos; 2 cm/s about 0.6, 16 cm/s about 0.03), not 0.13; checks about 0.12 more, movies 0.02. Scaling by free grains^1.3 from about 184 gives 5.6 on bed 2 and 11.4 on bed 3: about 69 days of drops for the whole plan on 15 cores, against 24.5 before. Not measured on beds 2 and 3; a decision for the review.
-- 2026-11-05 (user: "as much as possible until Monday morning") — **Beds 2 and 3 released for the weekend.** Read as: keep the lab Mac busy, no stop on Monday. Bed 1's remaining 1,280 drops run first on all 15 cores (about 33 h with checks and movies), then the four sets of beds 2 and 3 run side by side: bed-level `cores_per_set = 4` (Task.max_cores; such a task starts on whatever is free, so 4, 4, 4 and 3). Side by side because one after another the weekend would have gone to bed 2 at Dimorphos's gravity alone, and the review needs bed 3's cost most (46 of the estimated 69 days). Within a set, `[run] order = "spread", first_spot = "spot5"`: centre-spot drops first, then the rest, each mixed by run id, so a part-finished set is an even sample (RunPolicy, not part of run ids). Expected by Monday 7:00 MST at the scaled costs: bed 1 complete, about 40 drops per set on bed 2 and 20 on bed 3, all at the centre.
-- 2026-11-10 (user: stop the runs, smaller future runs, delete old data) — **A finished drop keeps its results and its movie, not its frames.** ParaView frames were about 95 % of a drop (about 1.5 GB on stones), and the deck was only trimmed from drops whose QA was PASS, so almost none on beds 2 and 3. Now `run_storage.after_drop` renders the movie on the drop's own worker, then keeps only the last frame (check-last-contact reads it), `movie_frames.json` (the reel's charts) and every result; the deck goes unless the drop is in the 5 % sample. A failed render keeps the frames. Frames come back with `lab.py movie NAME --regenerate --keep-frames` (deterministic). `lab.py tidy-disk` does the same to finished drops and clears the bulk of old sets, one-off drops, test scenes, old beds' DISPLAY/OUTBOX and `runs/legacy`; beds in the plan and anything it does not recognise are left alone and listed in `reports/labmac/production/disk_tidy.txt`. It also writes `drops/<set>/bed_reach.csv` from grains.npz (grains moved per ring and layer).
-- 2026-11-10 — **Bed size, from the records (`docs/results/`, nothing simulated).** Time per step grows as bodies^1.51 (1,696 drops). The footprint does not change drop time. Replaying each path against a smaller patch: 1.0 m cuts 5-7.5 % of drops, 0.8 m 9-17 %; the panel tip is 0.76 m out. The craft goes at most 10 cm below its first touch on stones (median 3). Bed 2 against bed 3 at the centre spot: 68 % same outcome, about the 68-70 % of two spots on bed 1. Recommended, not yet decided by the user: drop bed 2, one stone bed 25 cm thick with a 1.0 m patch, about 10 days instead of 42, after bed_reach.csv and about 20 paired drops on the thinner bed.
+- 2026-11-04 (user approved the plan) — **The drop runs.** `configs/impact_plan.toml` is the one source: `lab.py impact-campaigns` writes `configs/campaigns/<set>_<bed>_<body>.toml` and a test holds every run to its row in the sheet. Sweeps gained named spots (`targets.names`) and named attitudes (`sweep.poses`). The old `drops_bed*` and `test_depth_*` went to `legacy/configs/campaigns`. Drop test, then bed 1 at both gravities, then a review: beds 2 and 3 have `hold_drops = true` (the user's condition). Sets run one after another on all 15 cores (`flex_max_cores = 15`): side by side, the second would keep 4 cores for its whole run. A drop set is now a soft task: one failed drop gave exit 1 and blocked every set after it. **Didymos's settings scale with sqrt(g):** time limit, time-step limits and the detector's times and speeds (x0.5 or x2), so a pair at equal Froude number is the same motion with a different clock, and costs the same; Dimorphos keeps the code's defaults exactly. **Records:** `drop_records.py` copies each drop's outcome, QA, check and gzipped tables to `reports/labmac/drops/<set>/<drop>/`, at most 40 MB a push (a past estimate of 100-120 KB a drop, about 500 MB for the plan), and writes `results.csv`, which the sheet reads when remade on the laptop (the lab Mac does not touch the workbook). `disk.txt` gives each finished set's size on the lab Mac, to size beds 2 and 3, and status.txt shows free disk. **Movies:** made for every drop as before, kept on the lab Mac; the reel shows only each production set's center spot (`gallery.on_the_reel`), because all of them would exceed what GitHub Pages holds. Laptop test: two drops on a tiny bed; its auto-sync pushed `reports/laptop` by accident, removed in the next commit.
+- 2026-11-05 — **The composer refused 8 of the 9 landing spots; fixed.** Its wall check needed patch + 2 r_max (1.9 m on bed 1) and ignored `wall_clearance_m`, while `site_half_width`, which allowed the +/-0.3 m spots, used the 0.5 m clearance (1.7 m). Center spot and drop test (within 4 cm) passed, so 1,280 of bed 1's 1,440 drops failed as `python_error` in seconds; bed 2 would have too, bed 3 not. Both now use `ImpactSettings.wall_margin`, and a test holds every planned drop to the composer's check. Missed because my laptop test and the drop test landed at the center, and the old test only asked `site_half_width`. Run ids unchanged, so the 160 finished drops stay. **Costs re-based on those 160 drops:** 0.25 core-hours a drop on bed 1 (0.22 Dimorphos, 0.28 Didymos; 2 cm/s about 0.6, 16 cm/s about 0.03), not 0.13; checks about 0.12 more, movies 0.02. Scaling by free grains^1.3 from about 184 gives 5.6 on bed 2 and 11.4 on bed 3: about 69 days of drops for the whole plan on 15 cores, against 24.5 before. Not measured on beds 2 and 3; a decision for the review.
+- 2026-11-05 (user: "as much as possible until Monday morning") — **Beds 2 and 3 released for the weekend.** Read as: keep the lab Mac busy, no stop on Monday. Bed 1's remaining 1,280 drops run first on all 15 cores (about 33 h with checks and movies), then the four sets of beds 2 and 3 run side by side: bed-level `cores_per_set = 4` (Task.max_cores; such a task starts on whatever is free, so 4, 4, 4 and 3). Side by side because one after another the weekend would have gone to bed 2 at Dimorphos's gravity alone, and the review needs bed 3's cost most (46 of the estimated 69 days). Within a set, `[run] order = "spread", first_spot = "spot5"`: centre-spot drops first, then the rest, each mixed by run id, so a part-finished set is an even sample (RunPolicy, not part of run ids). Expected by Monday 7:00 MST at the scaled costs: bed 1 complete, about 40 drops per set on bed 2 and 20 on bed 3, all at the center.
+- 2026-11-10 (user: stop the runs, smaller future runs, delete old data) — **A finished drop keeps its results and its movie, not its frames.** ParaView frames were about 95 % of a drop (about 1.5 GB on stones), and the deck was only trimmed from drops whose QA was PASS, so almost none on beds 2 and 3. Now `run_storage.after_drop` renders the movie on the drop's own worker, then keeps only the last frame (check-last-contact reads it), `movie_frames.json` (the reel's charts) and every result; the deck goes unless the drop is in the 5 % sample. A failed render keeps the frames. Frames come back with `lab.py movie NAME --regenerate --force --keep-frames` (deterministic). `lab.py tidy-disk` does the same to finished drops and clears the bulk of old sets, one-off drops, test scenes, old beds' DISPLAY/OUTBOX and `runs/legacy`; beds in the plan and anything it does not recognize are left alone and listed in `reports/labmac/production/disk_tidy.txt`. It also writes `drops/<set>/bed_reach.csv` from grains.npz (grains moved per ring and layer).
+- 2026-11-10 — **Bed size, from the records (`docs/results/`, nothing simulated).** Time per step grows as bodies^1.51 (1,696 drops). The footprint does not change drop time. Replaying each path against a smaller patch: 1.0 m cuts 5-7.5 % of drops, 0.8 m 9-17 %; the panel tip is 0.76 m out. The craft goes at most 10 cm below its first touch on stones (median 3). Bed 2 against bed 3 at the center spot: 68 % same outcome, about the 68-70 % of two spots on bed 1. Recommended, not yet decided by the user: drop bed 2, one stone bed 25 cm thick with a 1.0 m patch, about 10 days instead of 42, after bed_reach.csv and about 20 paired drops on the thinner bed.
+- 2026-11-10 (user) — **"Left the patch" counts as flew off in every result.** 97 % of the 246 left-patch drops are in the air when the run ends; the label only records whether the craft was rising as it crossed the patch edge. `drop_table.load` merges them and keeps `outcome_recorded`; each drop's own records keep left_patch. Flew off does not mean escaped: 72 % of Dimorphos drops that flew off leave slower than 3.3 cm/s.
+- 2026-11-10 — **Thickness recommendation moved from 25 cm to 30 cm** once `bed_reach.csv` arrived (1,771 drops). On stones, 95 % of the grains that moved at least 5 mm lie within 28 cm of the surface in the median drop and 33 cm in the deepest tenth; about 10 % of the stones in the 20-30 cm layer still move. One stone bed 30 cm thick, 1.0 m patch: about 13 days. Still a recommendation, pending the user and about 20 paired drops.
 - OPEN GATES: D1 (parameter provenance — provisional regolith_v1), D2 (Milani
   contact model if the panels are open), D5 (small stones resolution / SFD), D7 (budget
   from pilot timing), D8 (MASCOT benchmark — re-derive the target CoR values

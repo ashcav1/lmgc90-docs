@@ -9,7 +9,7 @@ built on, but none of those beds or drops are part of the results now.
 - Beds blew apart until a speed limit was applied on every step.
 - Boulder pairs need the position rule, or they overlap.
 - A drop must end at the exact moment no part of the craft can touch the ground
-  again, and the craft with its panels open must turn about its true centre of mass.
+  again, and the craft with its panels open must turn about its true center of mass.
 - Small stones poured on coarse boulders fall into the gaps.
 - A bug in the pour filled only 83 % of the box for boulders from 20 cm long, so
   those beds came out tilted 4-9° and took days to settle. It is fixed, and every
