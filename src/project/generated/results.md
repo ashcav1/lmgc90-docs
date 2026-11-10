@@ -1,4 +1,4 @@
-_Regenerated from what the lab Mac pushes to GitHub. The speed ratio is speed out divided by speed in._
+_Regenerated from what the lab Mac pushes to GitHub. v<sub>out</sub>/v<sub>in</sub> is the speed leaving the surface over the impact speed, θ<sub>in</sub> the impact angle from vertical._
 
 ## Bed 1, Dimorphos's gravity: 720 of 720 drops
 
@@ -22,9 +22,9 @@ No drops yet.
 
 ## The beds side by side, Dimorphos's gravity
 
-Median speed ratio.
+Median v<sub>out</sub>/v<sub>in</sub>.
 
-| speed | angle | bed 1 | bed 2 |
+| v<sub>in</sub> | θ<sub>in</sub> | bed 1 | bed 2 |
 |---|---|---|---|
 | 2 cm/s | 0° | 0.08 | — |
 | 2 cm/s | 20° | 0.09 | — |
@@ -49,9 +49,9 @@ Median speed ratio.
 
 ## The beds side by side, Didymos's gravity
 
-Median speed ratio.
+Median v<sub>out</sub>/v<sub>in</sub>.
 
-| speed | angle | bed 1 | bed 2 |
+| v<sub>in</sub> | θ<sub>in</sub> | bed 1 | bed 2 |
 |---|---|---|---|
 | 4 cm/s | 0° | 0.08 | — |
 | 4 cm/s | 20° | 0.06 | — |
@@ -78,7 +78,7 @@ Median speed ratio.
 
 The same 20 drops on bed 1, pour 1, with grains free to 30 cm and to 60 cm below the surface: does ground that stops close under the craft change the bounce?
 
-| drop set | drops | median ratio, straight down | median ratio, 40° |
+| drop set | drops | median v<sub>out</sub>/v<sub>in</sub>, θ<sub>in</sub> = 0° | median v<sub>out</sub>/v<sub>in</sub>, θ<sub>in</sub> = 40° |
 |---|---|---|---|
 | `drop_test_30cm_bed1_dimorphos` | 20 | 0.30 | 0.41 |
 | `drop_test_60cm_bed1_dimorphos` | 20 | 0.35 | 0.39 |

@@ -4,7 +4,7 @@ _Last report from the lab Mac: 2026-11-10 13:20 PST._
 
 standard bed 1, boulder field: boulders 20-70 cm long, realistic size mix, 0.7 m deep.
 
-| pour (drops' gravity) | state | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | rocks sticking out, per m² | median move, mm/s |
+| pour (drops' gravity) | status | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | rocks sticking out, per m² | median move, mm/s |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 (Dimorphos) | settled, QA PASS | 852 | 4,300 | 1.1 h | 0.6° | 0% | — | — | — |
 | 2 (Didymos) | settled, QA PASS | 859 | 3,700 | 0.9 h | 0.6° | 0% | — | — | — |
@@ -33,7 +33,7 @@ Seed 2:
 
 standard bed 3, stone blanket: stones 8-16 cm long only, 0.4 m deep.
 
-| pour (drops' gravity) | state | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | rocks sticking out, per m² | median move, mm/s |
+| pour (drops' gravity) | status | grains | steps | time | whole-bed tilt | small stones on top | boulders above stones (median) | rocks sticking out, per m² | median move, mm/s |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 (Dimorphos) | settled, QA WARN | 12,113 | 1,800 | 1.4 h | 0.0° | 100% | — | — | — |
 | 2 (Didymos) | settled, QA WARN | 12,148 | 1,800 | 1.4 h | 0.2° | 100% | — | — | — |
