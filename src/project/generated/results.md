@@ -6,51 +6,27 @@ _Regenerated from what the lab Mac pushes to GitHub. The speed ratio is speed ou
 
 82 at rest, 615 flew off, 3 no_contact, 12 out of time, 8 stuck.
 
-![bounce_map](generated/images/production_bed1_dimorphos/bounce_map.webp)
-
-![restitution](generated/images/production_bed1_dimorphos/restitution.webp)
-
 ## Bed 1, Didymos's gravity: 720 of 720 drops
 
 [Open the drops at the centre spot in the reel](../drops/index.html#set-production_bed1_didymos).
 
 109 at rest, 592 flew off, 15 out of time, 4 stuck.
 
-![bounce_map](generated/images/production_bed1_didymos/bounce_map.webp)
-
-![restitution](generated/images/production_bed1_didymos/restitution.webp)
-
 ## Bed 2, Dimorphos's gravity: 107 of 720 drops
 
 15 at rest, 84 flew off, 3 out of time, 5 stuck.
-
-![bounce_map](generated/images/production_bed2_dimorphos/bounce_map.webp)
-
-![restitution](generated/images/production_bed2_dimorphos/restitution.webp)
 
 ## Bed 2, Didymos's gravity: 144 of 720 drops
 
 21 at rest, 117 flew off, 6 stuck.
 
-![bounce_map](generated/images/production_bed2_didymos/bounce_map.webp)
-
-![restitution](generated/images/production_bed2_didymos/restitution.webp)
-
 ## Bed 3, Dimorphos's gravity: 48 of 720 drops
 
 14 at rest, 30 flew off, 4 stuck.
 
-![bounce_map](generated/images/production_bed3_dimorphos/bounce_map.webp)
-
-![restitution](generated/images/production_bed3_dimorphos/restitution.webp)
-
 ## Bed 3, Didymos's gravity: 35 of 720 drops
 
 5 at rest, 29 flew off, 1 stuck.
-
-![bounce_map](generated/images/production_bed3_didymos/bounce_map.webp)
-
-![restitution](generated/images/production_bed3_didymos/restitution.webp)
 
 ## The beds side by side, Dimorphos's gravity
 

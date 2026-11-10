@@ -51,7 +51,7 @@ Looking at the drops so far: the 4 m × 4 m footprint does not change the time o
 ## Where to find things
 
 - [The beds](beds.md): the recipes, the real pictures and numbers for every seed.
-- [Drop results](results.md): every drop set, and the three beds side by side.
+- [Drop results](results.md): how much is done, the bed 1 plots, how big the beds need to be, and every drop set.
 - [The drop reel](drop-reel.md): every drop with its movie and analysis.
 - [The bed library](library.md): every settled bed, and how to name, check and move one.
 - [How each number is computed](methods.md), and the [glossary](../glossary.md).
