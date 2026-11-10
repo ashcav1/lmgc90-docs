@@ -1,6 +1,6 @@
 # Where things stand
 
-_Written 5 November 2026. The tables are regenerated from what the lab Mac pushes
+_Written 10 November 2026. The tables are regenerated from what the lab Mac pushes
 to GitHub._
 
 **The short version.** We simulate Hera's [Milani](../glossary.md#milani) CubeSat
@@ -10,7 +10,9 @@ settle [six standard beds](beds.md), run [the same drops](results.md) on each, a
 
 {{#include generated/status.md}}
 
-**What the lab Mac is doing.** The drops in [the impact plan](plan.md#the-impact-plan), approved on 4 November: the drop test (done), then the rest of bed 1 at both gravities on all 15 cores. After that, beds 2 and 3 start side by side, 4 cores per set, with the drops at the centre spot first and in a mixed order, so that by Monday each set has an even sample and a measured cost.
+**10 November: the drops are stopped while we decide the beds.** Bed 1 is finished: 1,440 drops, none crashed. Beds 2 and 3 got 322 drops. Most of a drop's disk space was its ParaView frames, so each drop now keeps its results and its movie, and the frames can be remade exactly. Looking at the drops so far: the 4 m × 4 m footprint does not change the time of a drop, the free patch can shrink from 1.2 m to about 1.0 m, and the craft goes at most 10 cm into the stones. Dropping bed 2 and making one bed of stones 25 cm thick with a 1.0 m patch would take about 10 days instead of 42. That is a recommendation for now: the thinner bed still has to be checked with paired drops.
+
+**What the lab Mac was doing until then.** The drops in [the impact plan](plan.md#the-impact-plan), approved on 4 November: the drop test (done), then the rest of bed 1 at both gravities on all 15 cores. After that, beds 2 and 3 start side by side, 4 cores per set, with the drops at the centre spot first and in a mixed order, so that by Monday each set has an even sample and a measured cost.
 
 **The first run of bed 1 only landed at the centre spot.** A safety check that the patch fits between the landing spot and the walls used a stricter rule than the one that chose the 9 spots, so it refused the other 8: 160 of 1,440 drops ran, and 1,280 failed in seconds. The check is fixed. Running again keeps the 160 and does only the rest.
 
