@@ -60,14 +60,15 @@ Steps 2, 4, 5 and 6 run by themselves on the lab Mac.
 
 ## The impact plan
 
-Approved on 4 November. `docs/Milani_impact_plan.xlsx` lists 4,360 drops, with the settings of each and a link to its GitHub folder, the gravity used for each body and a small picture of each bed. It is made from
+Approved on 4 November; on 10 November bed 2 was stopped and bed 3 given a 1.0 m free patch. `docs/Milani_impact_plan.xlsx` lists 2,920 drops, with the settings of each and a link to its GitHub folder, the gravity used for each body and a small picture of each bed. It is made from
 `configs/impact_plan.toml` by `python3 lab.py impact-sheet`, which also pushes it to GitHub, and `python3 lab.py impact-campaigns` writes what the lab Mac runs from the same file.
 Each drop's records go to its own folder, `reports/labmac/drops/<set>_<bed>_<body>/<drop>/`.
 
 | set | what | drops |
 |---|---|---|
 | Drop test | On bed 1, runs first at 8 and 16 cm/s: does the depth of the ground change the bounce? It also gives measured costs | 40 |
-| Production | All six beds: 5 speeds x 4 angles x 9 landing spots x 4 attitudes | 4,320 |
+| Production | Bed 1 at both gravities: 5 speeds x 4 angles x 9 landing spots x 4 attitudes (finished November 6) | 1,440 |
+| Production, 1.0 m patch | Bed 3 at both gravities, the same drops with a 1.0 m free patch (from November 10) | 1,440 |
 
 | body | gravity used | speeds | how the gravity was found |
 |---|---|---|---|

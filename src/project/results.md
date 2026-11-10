@@ -4,7 +4,7 @@ _Updated November 10, 2026, when the drops stopped. Nothing here needed a new si
 
 The drops stopped with 1,814 of the 4,360 planned drops finished. Bed 1 is complete, and beds 2 and 3 are barely started.
 
-**Recommendation.** Keep bed 1 and replace beds 2 and 3 with one bed of stones 8–16 cm long, 30 cm thick, with a 1.0 m free patch. That is about 13 days of lab Mac time for 1,440 drops, against 42 days for beds 2 and 3 as planned. It still needs a short paired check before it is locked in, and the choice has not been made yet.
+**Decided November 10: bed 2 stops and bed 3 continues as it is,** 37 cm of stones, now with a 1.0 m free patch (bed 1 used 1.2 m). Its 1,440 drops take about 18 days on the lab Mac. The 83 bed 3 drops made with the 1.2 m patch are kept, and pair with the new ones at the center spot as a check of the smaller patch. Bed 2's 251 drops stay in the record.
 
 **Words used here.** The *speed ratio* is the speed leaving the surface divided by the impact speed. *Flew off* means the craft is in flight after its last touch on the patch. It includes the drops recorded as leaving the patch, which are in the air and differ only in whether they were rising as they crossed its edge. It does not mean the craft escaped. The *free patch* is the circle around the aim point where grains can move.
 
@@ -151,7 +151,7 @@ Going finer is expensive. Stones 25% smaller would mean 2.4 times the grains and
 
 ## Combining beds 2 and 3
 
-The data supports dropping bed 2. Under the same conditions at the center spot, the differences between beds are about the size of the differences between two spots on one bed.
+Bed 2 was stopped on November 10. Under the same conditions at the center spot, the differences between beds are about the size of the differences between two spots on one bed.
 
 | Comparison, same drops | Same outcome | Change in speed ratio (median) |
 |---|---|---|
