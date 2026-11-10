@@ -211,7 +211,7 @@ What that means:
 - **By the rule we set (at least 3 times faster to rest, quality checks
   passed), no method qualifies**, because no layer of small stones came to
   rest in any test. With the budget the stones' median move fell from 18 to
-  about 5 mm/s over 20,000 steps and then levelled off between 4 and 6;
+  about 5 mm/s over 20,000 steps and then leveled off between 4 and 6;
   3 mm/s was never reached.
 - **Zeroing the speeds barely helps** (5 against 6 mm/s at the end) and
   stays off. **The 10-20 cm stones crashed** and cannot be used until that

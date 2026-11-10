@@ -25,7 +25,7 @@ measure how it bounces.
 - **How buried are the boulders today?** Barely: on the only settled bed
   with a thin top layer, small stones cover 24 % of the surface and the
   boulders that show stand a median 9 cm above them.
-- **The end of a drop is now exact,** and a centre-of-mass error in every
+- **The end of a drop is now exact,** and a center-of-mass error in every
   drop with the panels open was found and fixed. All 108 laptop drops were
   re-simulated.
 - **These pages were rewritten in plain words,** and grain sizes are now
