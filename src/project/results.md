@@ -6,7 +6,7 @@ The drops stopped with 1,814 of the 4,360 planned drops finished. Bed 1 is compl
 
 **Decided November 10: bed 2 stops and bed 3 continues as it is,** 37 cm of stones, now with a 1.0 m free patch (bed 1 used 1.2 m). Its 1,440 drops take about 18 days on the lab Mac. The 83 bed 3 drops made with the 1.2 m patch are kept, and pair with the new ones at the center spot as a check of the smaller patch. Bed 2's 251 drops stay in the record.
 
-**Words used here.** The *speed ratio* is the speed leaving the surface divided by the impact speed. *Flew off* means the craft is in flight after its last touch on the patch. It includes the drops recorded as leaving the patch, which are in the air and differ only in whether they were rising as they crossed its edge. It does not mean the craft escaped. The *free patch* is the circle around the aim point where grains can move.
+**Symbols and words used here.** v<sub>in</sub> is the impact speed, v<sub>out</sub> the speed leaving the surface, and v<sub>out</sub>/v<sub>in</sub> their ratio. θ<sub>in</sub> is the impact angle from vertical, ω<sub>out</sub> the craft's spin as it leaves, and Fr = v<sub>in</sub>/√(gL) the Froude number (g the gravity, L the craft's 36.6 cm length). *Flew off* means the craft is in flight after its last touch on the patch. It includes the drops recorded as leaving the patch, which are in the air and differ only in whether they were rising as they crossed its edge. It does not mean the craft escaped. The *free patch* is the circle around the aim point where grains can move.
 
 ## How much is done
 
@@ -28,73 +28,43 @@ Boulders 20–70 cm long, 720 drops at each gravity: 5 speeds, 4 angles, 4 craft
 
 - Most drops fly off: 85% on Dimorphos and 82% on Didymos. Another 11–15% come to rest.
 - Impact speed decides whether the craft flies off. On Dimorphos 53% fly off at 2 cm/s and 99% at 16 cm/s.
-- Impact angle decides how much speed it keeps: a median ratio of 0.25–0.32 up to 40° and 0.5 at 60°.
+- Impact angle decides how much speed it keeps: a median v<sub>out</sub>/v<sub>in</sub> of 0.25–0.32 up to 40° and 0.5 at 60°.
 - Landing at 8 cm/s on Dimorphos, 1 drop in 144 leaves faster than 6.5 cm/s and 34% leave faster than 3.3 cm/s. At 16 cm/s those become 35% and 76%. Most drops that fly off stay on the body: 72% of those on Dimorphos, across all three beds, leave slower than 3.3 cm/s.
 - Craft pose and landing spot matter much less. The solar panels touch first in over 80% of drops, except in the pose that lands on the back of the body.
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed1/outcomes.webp" alt="How the drops ended, as a share of the drops at each impact speed (a, c; 144 drops per bar) and impact angle from vertical (b, d; 180 drops per bar), for Dimorphos (a, b) and Didymos (c, d) gravity" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">How the drops ended, as a share of the drops at each impact speed (a, c; 144 drops per bar) and impact angle from vertical (b, d; 180 drops per bar), for Dimorphos (a, b) and Didymos (c, d) gravity. Flew off includes the drops recorded as leaving the free patch.</figcaption>
+<img src="figures/results/bed1/outcomes.webp" alt="Share of drops that flew off against impact speed v_in, one line per impact angle θ_in from vertical, for Dimorphos (a) and Didymos (b) gravity" loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">Share of drops that flew off against impact speed v<sub>in</sub>, one line per impact angle θ<sub>in</sub> from vertical, for Dimorphos (a) and Didymos (b) gravity. Each point is 36 drops: 9 landing spots and 4 craft poses. The other drops came to rest or were captured; a few reached the 300 s time limit or never touched. Flew off includes the drops recorded as leaving the free patch.</figcaption>
 </figure>
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed1/outcome_map.webp" alt="Share of drops that flew off (a, c) and stayed, meaning came to rest or were captured (b, d), for each impact speed and angle" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">Share of drops that flew off (a, c) and stayed, meaning came to rest or were captured (b, d), for each impact speed and angle. Top row Dimorphos, bottom row Didymos. Each cell is 36 drops.</figcaption>
+<img src="figures/results/bed1/exit_speed.webp" alt="Speed leaving the surface v_out against impact speed v_in for every drop that flew off, colored by impact angle θ_in, for Dimorphos (a) and Didymos (b) gravity; impact speeds are spread a little sideways so the points do not overlap" loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">Speed leaving the surface v<sub>out</sub> against impact speed v<sub>in</sub> for every drop that flew off, colored by impact angle θ<sub>in</sub>, for Dimorphos (a) and Didymos (b) gravity; impact speeds are spread a little sideways so the points do not overlap. (c) Share of the Dimorphos drops leaving faster than the escape speed v<sub>esc</sub> from near Dimorphos's surface, which ranges from 3.3 to 6.5 cm/s over the surface; each point is 144 drops.</figcaption>
 </figure>
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed1/what_matters.webp" alt="Share of the spread in the results explained by each setting taken alone (the between-group share of the variance): (a) whether the drop flew off; (b) the speed ratio of the drops that flew off." loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">Share of the spread in the results explained by each setting taken alone (the between-group share of the variance): (a) whether the drop flew off; (b) the speed ratio of the drops that flew off.</figcaption>
+<img src="figures/results/bed1/vout_vin.webp" alt="Speed leaving the surface over impact speed, v_out/v_in, for every drop that flew off, against impact angle θ_in from vertical, for Dimorphos (a) and Didymos (b) gravity" loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">Speed leaving the surface over impact speed, v<sub>out</sub>/v<sub>in</sub>, for every drop that flew off, against impact angle θ<sub>in</sub> from vertical, for Dimorphos (a) and Didymos (b) gravity. Points are colored by craft pose and shifted a little sideways by pose; lines join each pose's medians. All impact speeds together: impact speed explains under 2 % of the variance of v<sub>out</sub>/v<sub>in</sub> (see the next figure).</figcaption>
 </figure>
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed1/bounce_ratio.webp" alt="Speed ratio (speed leaving the surface divided by impact speed) of the drops that flew off, against impact speed (a, c) and impact angle (b, d)" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">Speed ratio (speed leaving the surface divided by impact speed) of the drops that flew off, against impact speed (a, c) and impact angle (b, d). Boxes span the middle half of the drops, the line is the median and the whiskers reach 1.5 times the box height.</figcaption>
+<img src="figures/results/bed1/what_matters.webp" alt="Share of the variance of each result explained by each setting on its own (η², the between-group share of the variance): (a) whether a drop flew off, counted as 1 or 0; (b) v_out/v_in of the drops that flew off" loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">Share of the variance of each result explained by each setting on its own (η², the between-group share of the variance): (a) whether a drop flew off, counted as 1 or 0; (b) v<sub>out</sub>/v<sub>in</sub> of the drops that flew off. Settings: impact speed v<sub>in</sub>, impact angle θ<sub>in</sub>, craft pose and landing spot.</figcaption>
 </figure>
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed1/ratio_by_pose.webp" alt="Median speed ratio of the drops that flew off, for each impact speed, angle and craft pose" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">Median speed ratio of the drops that flew off, for each impact speed, angle and craft pose. Top row Dimorphos, bottom row Didymos. Each cell holds at most 9 drops; white cells had none that flew off.</figcaption>
+<img src="figures/results/bed1/exit_direction.webp" alt="Direction of the exit velocity for every drop that flew off, against impact angle θ_in, Dimorphos and Didymos gravity shifted a little sideways" loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">Direction of the exit velocity for every drop that flew off, against impact angle θ<sub>in</sub>, Dimorphos and Didymos gravity shifted a little sideways. (a) Elevation α<sub>out</sub> above the local horizontal; lines join the medians. (b) Azimuth ψ<sub>out</sub> from the incoming horizontal direction: 0° carries on forward, ±180° comes back. Straight-down drops (θ<sub>in</sub> = 0°) have no incoming horizontal direction, so their ψ<sub>out</sub> is measured from the bed's x axis.</figcaption>
 </figure>
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed1/exit_speed.webp" alt="Speed leaving the surface of every drop that flew off, against impact speed, for Dimorphos (a) and Didymos (b)" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">Speed leaving the surface of every drop that flew off, against impact speed, for Dimorphos (a) and Didymos (b). The gray band in (a) is the speed needed to escape Dimorphos from near its surface, 3.3 to 6.5 cm/s. (c) Share of Dimorphos drops leaving faster than the lower and upper edge of that band.</figcaption>
+<img src="figures/results/bed1/spin.webp" alt="Spin leaving the surface ω_out (magnitude of the craft&#x27;s angular velocity) against impact speed v_in for every drop that flew off, for Dimorphos (a) and Didymos (b) gravity" loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">Spin leaving the surface ω<sub>out</sub> (magnitude of the craft's angular velocity) against impact speed v<sub>in</sub> for every drop that flew off, for Dimorphos (a) and Didymos (b) gravity. Points are colored by craft pose and shifted a little sideways by pose; lines join each pose's medians.</figcaption>
 </figure>
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed1/exit_direction.webp" alt="Which way the craft leaves, both gravities, drops that flew off" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">Which way the craft leaves, both gravities, drops that flew off. (a) Height of the exit path above the horizontal against impact angle; the line in each shape is the median. (b) Direction relative to the approach: 0° carries on forward and ±180° comes back.</figcaption>
-</figure>
-
-<figure style="margin:1.4em 0">
-<img src="figures/results/bed1/spin_energy.webp" alt="Median spin leaving the surface (a, b) and share of the mechanical energy kept (c, d) against impact speed, one line per craft pose, for the drops that flew off." loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">Median spin leaving the surface (a, b) and share of the mechanical energy kept (c, d) against impact speed, one line per craft pose, for the drops that flew off.</figcaption>
-</figure>
-
-<figure style="margin:1.4em 0">
-<img src="figures/results/bed1/contact.webp" alt="How the craft meets the ground" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">How the craft meets the ground. Median number of separate touches (a) and seconds from first to last touch (b) against impact speed on Dimorphos, one line per outcome; a point needs at least 5 drops. (c) Which part of the craft touched first, for each pose, both gravities.</figcaption>
-</figure>
-
-<figure style="margin:1.4em 0">
-<img src="figures/results/bed1/by_spot.webp" alt="The nine landing spots, 0.3 m apart, laid out as on the bed, 80 drops each" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">The nine landing spots, 0.3 m apart, laid out as on the bed, 80 drops each. Share of drops that flew off (a, c) and median speed ratio of those drops (b, d). Top row Dimorphos, bottom row Didymos.</figcaption>
-</figure>
-
-<figure style="margin:1.4em 0">
-<img src="figures/results/bed1/gravity_scaling.webp" alt="The same drops at both gravities, with Didymos at twice Dimorphos&#x27;s speed so that the two match in scaled terms" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">The same drops at both gravities, with Didymos at twice Dimorphos's speed so that the two match in scaled terms. Each gravity uses its own pour of the bed. (a) Speed ratio of the pairs that flew off both times, with the line of equal values. (b) Number of pairs with each combination of outcomes.</figcaption>
-</figure>
-
-<figure style="margin:1.4em 0">
-<img src="figures/results/bed1/travel_and_time.webp" alt="Share of drops at or below (a) the sideways distance from the aim point to the craft&#x27;s last touch and (b) the simulated time to the end of the drop, one curve per outcome, both gravities." loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">Share of drops at or below (a) the sideways distance from the aim point to the craft's last touch and (b) the simulated time to the end of the drop, one curve per outcome, both gravities.</figcaption>
-</figure>
-
-<figure style="margin:1.4em 0">
-<img src="figures/results/bed1/health.webp" alt="(a) Result of each drop&#x27;s quality check" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">(a) Result of each drop's quality check. (b) Computer time per drop on one core, by outcome: boxes span the middle half, the line is the median and the whiskers reach 1.5 times the box width.</figcaption>
+<img src="figures/results/bed1/gravity_scaling.webp" alt="The same drops at both gravities, with Didymos at twice Dimorphos&#x27;s speed so that the Froude number Fr = v_in/√(gL) matches (g the gravity, L = 36.6 cm the craft&#x27;s length)" loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">The same drops at both gravities, with Didymos at twice Dimorphos's speed so that the Froude number Fr = v<sub>in</sub>/√(gL) matches (g the gravity, L = 36.6 cm the craft's length). Each gravity uses its own pour of the bed. (a) v<sub>out</sub>/v<sub>in</sub> of the pairs that flew off both times; the line marks equal values. (b) Share of drops that flew off against Fr; each point is 144 drops.</figcaption>
 </figure>
 
 ## How big the beds need to be
@@ -102,8 +72,8 @@ Boulders 20–70 cm long, 720 drops at each gravity: 5 speeds, 4 angles, 4 craft
 A drop only simulates the free patch and a thin frozen ring around it. Time per drop follows the number of grains in the patch: it grows as grains to the power 1.52, so halving the grains makes each step 2.9 times faster.
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed_size/cost_law.webp" alt="Computer time per step against the number of grains simulated, for every production drop of more than 500 steps" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">Computer time per step against the number of grains simulated, for every production drop of more than 500 steps. The dashed line is a power-law fit.</figcaption>
+<img src="figures/results/bed_size/cost_law.webp" alt="Wall time per time step on one core against the number of grains simulated N, for every production drop of more than 500 steps; the line is the power-law fit, given in the legend." loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">Wall time per time step on one core against the number of grains simulated N, for every production drop of more than 500 steps; the line is the power-law fit, given in the legend.</figcaption>
 </figure>
 
 **Footprint (now 4 m × 4 m): no effect on drop time.** The bed outside the patch is left out of the drop. The footprint only affects settling, which takes 1.4 hours for stones, and the check of where a craft lands next.
@@ -121,20 +91,20 @@ A drop only simulates the free patch and a thin frozen ring around it. Time per 
 Cut short means the run would have stopped at the patch edge before its real end. At 1.0 m, 104 of the 1,437 bed 1 drops would be cut, and 19 of those leave faster than 5 cm/s.
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed_size/patch_size.webp" alt="(a) Share of drops that a smaller free patch would cut short, from replaying each recorded path against a smaller circle, in addition to those that already leave today&#x27;s 1.2 m patch" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">(a) Share of drops that a smaller free patch would cut short, from replaying each recorded path against a smaller circle, in addition to those that already leave today's 1.2 m patch. (b) Time per drop on the stone bed relative to today, from the fitted cost, for three thicknesses of stones.</figcaption>
+<img src="figures/results/bed_size/patch_size.webp" alt="(a) Share of drops that a free patch of radius R would cut short, from replaying each recorded path against a smaller circle, in addition to those that already leave the 1.2 m patch" loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">(a) Share of drops that a free patch of radius R would cut short, from replaying each recorded path against a smaller circle, in addition to those that already leave the 1.2 m patch. (b) Time per drop t on the stone bed relative to t<sub>ref</sub>, the time with R = 1.2 m and 37 cm of stones, from the fitted cost law, for three stone thicknesses.</figcaption>
 </figure>
 
 **Thickness (now 37 cm on stones): about 30 cm.** The craft itself barely goes in: from its first touch to its lowest touch it travels a median of 3 cm and at most 10 cm on stones. The stones go deeper. In the median drop, 95% of the stones that moved at least 5 mm lie within 28 cm of the surface, and 33 cm in the deepest tenth of drops. Stones moving at least 2 cm reach 19 cm and 28 cm. At 25 cm the floor would replace a layer where about 1 stone in 10 still moves. At 30 cm it replaces the layer where about 1 in 30 does, as it does in today's bed.
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed_size/grain_reach.webp" alt="Share of the grains in each 20 cm ring around the aim point (a) and each 10 cm layer below the mean surface (b) that moved at least 5 mm during a drop" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">Share of the grains in each 20 cm ring around the aim point (a) and each 10 cm layer below the mean surface (b) that moved at least 5 mm during a drop. Each point is the median over all drops on that bed, 1,771 drops in all. Grains whose centers sit above the mean surface are left out of (b).</figcaption>
+<img src="figures/results/bed_size/grain_reach.webp" alt="Share of the grains that moved at least 5 mm during a drop, in each 20 cm ring around the aim point (a, r the distance from the aim point) and each 10 cm layer below the mean surface (b, z the depth)" loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">Share of the grains that moved at least 5 mm during a drop, in each 20 cm ring around the aim point (a, r the distance from the aim point) and each 10 cm layer below the mean surface (b, z the depth). Each point is the median over all drops on that bed, 1,771 drops in all. Grains whose centers sit above the mean surface are left out of (b).</figcaption>
 </figure>
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed_size/depth.webp" alt="Share of drops at or below a given depth, measured from the craft&#x27;s first touch to the lowest point it touched" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">Share of drops at or below a given depth, measured from the craft's first touch to the lowest point it touched. The beds are 67 cm (bed 1), 41 cm (bed 2) and 37 cm (bed 3) thick.</figcaption>
+<img src="figures/results/bed_size/depth.webp" alt="Cumulative share of drops against how far the craft sank: the depth from its first touch to the lowest point it touched" loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">Cumulative share of drops against how far the craft sank: the depth from its first touch to the lowest point it touched. The beds are 67 cm (bed 1), 41 cm (bed 2) and 37 cm (bed 3) thick.</figcaption>
 </figure>
 
 **What each choice costs.**
@@ -153,7 +123,7 @@ Going finer is expensive. Stones 25% smaller would mean 2.4 times the grains and
 
 Bed 2 was stopped on November 10. Under the same conditions at the center spot, the differences between beds are about the size of the differences between two spots on one bed.
 
-| Comparison, same drops | Same outcome | Change in speed ratio (median) |
+| Comparison, same drops | Same outcome | Median change in v<sub>out</sub>/v<sub>in</sub> |
 |---|---|---|
 | Bed 1 against bed 2 | 83% | 0.11 |
 | Bed 2 against bed 3 | 80% | 0.07 |
@@ -161,16 +131,11 @@ Bed 2 was stopped on November 10. Under the same conditions at the center spot, 
 | Two spots on bed 1, for reference | 82–85% | 0.09–0.14 |
 
 <figure style="margin:1.4em 0">
-<img src="figures/results/bed_size/beds_compare.webp" alt="The three beds under the same conditions, at the center landing spot" loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">The three beds under the same conditions, at the center landing spot. (a) How the drops ended. (b) Speed ratio of the drops that flew off; the line in each shape is the median.</figcaption>
+<img src="figures/results/bed_size/beds_compare.webp" alt="The three beds under the same conditions, at the center landing spot, both gravities together" loading="lazy" style="width:100%;background:#fff">
+<figcaption style="font-size:.9em;margin-top:.4em">The three beds under the same conditions, at the center landing spot, both gravities together. (a) Share of drops that flew off against the Froude number Fr = v<sub>in</sub>/√(gL) (g the gravity, L = 36.6 cm the craft's length), which puts the two gravities on one scale; each point is up to 32 drops. (b) v<sub>out</sub>/v<sub>in</sub> of the drops that flew off against impact angle θ<sub>in</sub>; points shifted a little sideways by bed, lines join each bed's medians.</figcaption>
 </figure>
 
 Dropping bed 2 does lose something. It is not a plain mix of the other two: a drop that hits a rock first flies off less often than on bare boulders (76% against 84%), and one that hits a stone first flies off more often than on the stone bed (88% against 71%). The paper could only bracket that case between the two remaining beds.
-
-<figure style="margin:1.4em 0">
-<img src="figures/results/bed_size/first_touch.webp" alt="How the drops ended, grouped by what the craft touched first: bed 1 on boulders, bed 2 on a rock or on a stone, bed 3 on stones." loading="lazy" style="width:100%;background:#fff">
-<figcaption style="font-size:.9em;margin-top:.4em">How the drops ended, grouped by what the craft touched first: bed 1 on boulders, bed 2 on a rock or on a stone, bed 3 on stones.</figcaption>
-</figure>
 
 ## What is still unknown
 
