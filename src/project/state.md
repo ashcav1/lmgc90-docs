@@ -16,6 +16,8 @@ Most of a drop's disk space was its ParaView frames, so each drop now keeps its 
 
 **Decided the same day: bed 2 stops, and bed 3 continues as it is** (37 cm of stones) with a 1.0 m free patch instead of 1.2 m, which makes each drop about 40% cheaper. Its 1,440 drops take about 18 days. The 83 bed 3 drops already made with the 1.2 m patch are kept as a check of the smaller patch. The reasons are on [Drop results](results.md): the footprint does not change the time of a drop, the patch can shrink to about 1.0 m, and beds 2 and 3 end the same way about as often as two spots on one bed do.
 
+**Bed 3 started again on 10 November, at 13:20 lab time,** at both gravities side by side on 8 and 7 cores. Bed 1's sets were checked first and are complete. The [impact plan workbook](plan.md#the-impact-plan) now also gives each finished drop's full state when it ended: velocity and spin vectors, and the attitude as a quaternion in the craft's own axes. That is the starting state for following the craft after it leaves the surface.
+
 **What the lab Mac was doing until then.** The drops in [the impact plan](plan.md#the-impact-plan), approved on 4 November: the drop test (done), then the rest of bed 1 at both gravities on all 15 cores. After that, beds 2 and 3 start side by side, 4 cores per set, with the drops at the center spot first and in a mixed order, so that by Monday each set has an even sample and a measured cost.
 
 **The first run of bed 1 only landed at the center spot.** A safety check that the patch fits between the landing spot and the walls used a stricter rule than the one that chose the 9 spots, so it refused the other 8: 160 of 1,440 drops ran, and 1,280 failed in seconds. The check is fixed. Running again keeps the 160 and does only the rest.

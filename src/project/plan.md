@@ -60,7 +60,7 @@ Steps 2, 4, 5 and 6 run by themselves on the lab Mac.
 
 ## The impact plan
 
-Approved on 4 November; on 10 November bed 2 was stopped and bed 3 given a 1.0 m free patch. `docs/Milani_impact_plan.xlsx` lists 2,920 drops, with the settings of each and a link to its GitHub folder, the gravity used for each body and a small picture of each bed. It is made from
+Approved on 4 November; on 10 November bed 2 was stopped and bed 3 given a 1.0 m free patch. `docs/Milani_impact_plan.xlsx` lists 2,920 drops, with the settings of each and a link to its GitHub folder, the gravity used for each body and a small picture of each bed. For each finished drop it also gives the outcome and the craft's full state when the drop ended: velocity and spin vectors, and the attitude as a quaternion in the craft's own axes, all in one frame (x along the incoming horizontal motion, z up out of the surface). That is the starting state for following the craft after it leaves the surface. It is made from
 `configs/impact_plan.toml` by `python3 lab.py impact-sheet`, which also pushes it to GitHub, and `python3 lab.py impact-campaigns` writes what the lab Mac runs from the same file.
 Each drop's records go to its own folder, `reports/labmac/drops/<set>_<bed>_<body>/<drop>/`.
 
