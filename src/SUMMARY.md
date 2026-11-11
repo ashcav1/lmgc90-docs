@@ -8,6 +8,7 @@
 - [The plan](project/plan.md)
 - [The beds](project/beds.md)
 - [Drop results](project/results.md)
+- [Parameters and their values](project/parameters.md)
 - [The drop reel](project/drop-reel.md)
 - [The bed library](project/library.md)
 - [How each number is computed](project/methods.md)

@@ -2,6 +2,8 @@
 
 _Updated November 10, 2026, when the drops stopped. Nothing here needed a new simulation._
 
+**Every parameter and its value** (friction, restitution, solver tolerance and limits, time steps, gravity, the craft, the beds, when a drop ends) is on [Parameters and their values](parameters.md).
+
 The drops stopped with 1,814 of the 4,360 planned drops finished. Bed 1 is complete, and beds 2 and 3 are barely started.
 
 **Decided November 10: bed 2 stops and bed 3 continues as it is,** 37 cm of stones, now with a 1.0 m free patch (bed 1 used 1.2 m). Its 1,440 drops take about 18 days on the lab Mac. The 83 bed 3 drops made with the 1.2 m patch are kept, and pair with the new ones at the center spot as a check of the smaller patch. Bed 2's 251 drops stay in the record.

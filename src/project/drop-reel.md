@@ -11,7 +11,7 @@ What you can do there:
   table. The filters on the left narrow everything at once and show how many
   drops each choice leaves.
 - **Overview**: a matrix of bed and craft against start conditions, each cell
-  the median [speed ratio](../glossary.md#speed-ratio-e) with its outcomes
+  the median [v<sub>out</sub>/v<sub>in</sub>](../glossary.md#speed-ratio-e) with its outcomes
   (click a cell to see those drops); an explorer that plots any two numbers
   against each other (click a point to open the drop); and a map of the
   landing spots seen from above.
