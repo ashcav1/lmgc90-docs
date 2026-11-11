@@ -8,8 +8,8 @@ LMGC90 treats every body as rigid and every contact as nonsmooth (contact dynami
 
 | Contact | Law | Friction μ | Normal restitution e<sub>n</sub> | Tangential restitution e<sub>t</sub> | Basis |
 |---|---|---|---|---|---|
-| Grain–grain and grain–floor | RST_CLB | 0.6 | 0.5 | 0 | μ: 0.55 fits the DART impact (range 0.4–0.7, Raducan et al. 2024); 0.64 from the shapes of Dimorphos's boulders (Robin et al. 2024). e<sub>n</sub>: the usual choice in simulations of landers on regolith (Thuillet et al. 2018), range 0.3–0.7 |
-| Craft–grain and craft–floor | RST_CLB | 0.5 | 0.5 | 0 | Provisional: aluminum frame on rock. MASCOT's measured bounces on Ryugu (0.3–0.6, Brisset et al. 2020) are the check still to make |
+| Grain–grain and grain–floor | RST_CLB | 0.6 | 0.5 | 0 | μ: DART fit 0.55, range 0.4–0.7 (Raducan et al. 2024); boulder shapes 0.64 (Robin et al. 2024). e<sub>n</sub>: usual value in lander simulations (Thuillet et al. 2018) |
+| Craft–grain and craft–floor | RST_CLB | 0.5 | 0.5 | 0 | Provisional; still to check against MASCOT's bounces on Ryugu (Brisset et al. 2020) |
 
 | Parameter | Value | Note |
 |---|---|---|
