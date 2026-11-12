@@ -1,6 +1,6 @@
 # Where things stand
 
-_Written 11 November 2026. The tables are regenerated from what the lab Mac pushes
+_Written 12 November 2026. The tables are regenerated from what the lab Mac pushes
 to GitHub._
 
 **The short version.** We simulate Hera's [Milani](../glossary.md#milani) CubeSat
@@ -9,6 +9,8 @@ landing on ground like [Dimorphos](../glossary.md#dimorphos)'s and
 settle [six standard beds](beds.md), run [the same drops](results.md) on each, and compare.
 
 {{#include generated/status.md}}
+
+**12 November: bed 3 is stopped for good, and the lab Mac is cleaned up.** Bed 3 ended with 174 drops on the 1.0 m patch: 97 at Dimorphos's gravity and 77 at Didymos's. That includes all 80 drops at the center spot at Dimorphos's gravity and 76 of the 80 at Didymos's, which are the ones the [drop reel](drop-reel.md) shows. Every drop's results are on GitHub. Every drop that flew off at Dimorphos's gravity was checked for whether the craft would touch the bed again: 27 were confirmed as recorded, 10 come down again beyond the patch, and 1 comes down just past its edge. The same check at Didymos's gravity was stopped part way. The clean-up freed 17 GB, and the lab Mac has 3,024 GB free. Nothing runs on it until the next study is decided.
 
 **10 November: the drops are stopped while we decide the beds.** 1,814 of the 4,360 planned drops are done, which is 42% of the drops but only about 10% of the planned computing. The drop test and bed 1 are complete; bed 2 has 251 of its 1,440 drops and bed 3 has 83 of its 1,440. No drop failed.
 

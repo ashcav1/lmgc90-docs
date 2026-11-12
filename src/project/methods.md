@@ -1,6 +1,6 @@
 # How each number is computed
 
-Every number in the [drop reel](../drops/index.html) and the run log, defined: what it is, why it can be trusted (or where it cannot), and the code that computes it. File and line refer to the project's code repository at the time this page was generated (2026-11-11 06:51); the excerpts are copied from that code, not paraphrased.
+Every number in the [drop reel](../drops/index.html) and the run log, defined: what it is, why it can be trusted (or where it cannot), and the code that computes it. File and line refer to the project's code repository at the time this page was generated (2026-11-12 14:00); the excerpts are copied from that code, not paraphrased.
 
 ## The craft model
 

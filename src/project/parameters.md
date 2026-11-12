@@ -68,8 +68,8 @@ Bed 2 has the same s as bed 3, so its drops used the same time steps and search 
 | Bed 2, Didymos | 144 | 96 | 0.3% | 2.5% |
 | Bed 3 (1.2 m patch), Dimorphos | 48 | 222 | 0.4% | 3.3% |
 | Bed 3 (1.2 m patch), Didymos | 35 | 216 | 0.3% | 2.6% |
-| Bed 3 (1.0 m patch), Dimorphos | 36 | 152 | 0.5% | 1.8% |
-| Bed 3 (1.0 m patch), Didymos | 28 | 122 | 0.3% | 1.0% |
+| Bed 3 (1.0 m patch), Dimorphos | 97 | 162 | 0.4% | 3.9% |
+| Bed 3 (1.0 m patch), Didymos | 77 | 111 | 0.2% | 2.6% |
 
 ## Gravity and the two bodies
 
