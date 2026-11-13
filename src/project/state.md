@@ -1,6 +1,6 @@
 # Where things stand
 
-_Written 12 November 2026. The tables are regenerated from what the lab Mac pushes
+_Written 13 November 2026. The tables are regenerated from what the lab Mac pushes
 to GitHub._
 
 **The short version.** We simulate Hera's [Milani](../glossary.md#milani) CubeSat
@@ -9,6 +9,14 @@ landing on ground like [Dimorphos](../glossary.md#dimorphos)'s and
 settle [six standard beds](beds.md), run [the same drops](results.md) on each, and compare.
 
 {{#include generated/status.md}}
+
+**13 November: the next study is boulder impacts, and its trial runs are done.** A boulder hits a settled bed, and every grain the impact throws out is recorded for the lookup table that GUBAS (the binary-asteroid code) will use. The design is `hera/DESIGN.md` in the repository. Five trial impacts of a 25 cm boulder ran overnight on beds 3 and 1:
+
+- The grains that leave the free patch were the same with half the time step and with a patch 1.5 times wider, within a few percent in speed and direction. Only the slow grains that hop and fall back changed.
+- At 40 cm/s the free patch was too small: nearly all of it was thrown.
+- A run lasts much longer than expected. A grain thrown just hard enough to count stays in the air for about 3 minutes in Dimorphos's gravity, so the main runs need a shorter ending rule before they start.
+
+A 2 m × 2 m trial piece of the mixed bed settled in 10 hours, but in bands: it was poured as alternating layers of boulders and small stones, and its surface came out 98% small stones. The ten beds for the study are now designed: two main beds and eight variants, each 5 m × 5 m and about 1.2 m deep. The mixed bed is now poured with its boulders and small stones together, a few centimeters at a time, which spreads the boulders evenly through it. The beds take about 4 to 8 days to settle side by side.
 
 **12 November: bed 3 is stopped for good, and the lab Mac is cleaned up.** Bed 3 ended with 174 drops on the 1.0 m patch: 97 at Dimorphos's gravity and 77 at Didymos's. That includes all 80 drops at the center spot at Dimorphos's gravity and 76 of the 80 at Didymos's, which are the ones the [drop reel](drop-reel.md) shows. Every drop's results are on GitHub. Every drop that flew off at Dimorphos's gravity was checked for whether the craft would touch the bed again: 27 were confirmed as recorded, 10 come down again beyond the patch, and 1 comes down just past its edge. The same check at Didymos's gravity was stopped part way. The clean-up freed 17 GB, and the lab Mac has 3,024 GB free. Nothing runs on it until the next study is decided.
 
