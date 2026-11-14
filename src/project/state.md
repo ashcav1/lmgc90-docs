@@ -13,7 +13,7 @@ settle [six standard beds](beds.md), run [the same drops](results.md) on each, a
 **13 November: the next study is boulder impacts, and its trial runs are done.** A boulder hits a settled bed, and every grain the impact throws out is recorded for the lookup table that GUBAS (the binary-asteroid code) will use. The design is `hera/DESIGN.md` in the repository. Five trial impacts of a 25 cm boulder ran overnight on beds 3 and 1:
 
 - The grains that leave the free patch were the same with half the time step and with a patch 1.5 times wider, within a few percent in speed and direction. Only the slow grains that hop and fall back changed.
-- At 40 cm/s the free patch was too small: nearly all of it was thrown.
+- At 40 cm/s the free patch was too small: 145 of its 938 small stones were thrown, 39 of them from its outer edge, and 44 landed beyond it.
 - A run lasts much longer than expected. A grain thrown just hard enough to count stays in the air for about 3 minutes in Dimorphos's gravity, so the main runs need a shorter ending rule before they start.
 
 A 2 m × 2 m trial piece of the mixed bed settled in 10 hours, but in bands: it was poured as alternating layers of boulders and small stones, and its surface came out 98% small stones. The ten beds for the study are now designed: two main beds and eight variants, each 5 m × 5 m and about 1.2 m deep. The mixed bed is now poured with its boulders and small stones together, a few centimeters at a time, which spreads the boulders evenly through it. The beds take about 4 to 8 days to settle side by side.
