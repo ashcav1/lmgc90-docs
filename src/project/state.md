@@ -1,6 +1,6 @@
 # Where things stand
 
-_Written 13 November 2026. The tables are regenerated from what the lab Mac pushes
+_Written 18 November 2026. The tables are regenerated from what the lab Mac pushes
 to GitHub._
 
 **The short version.** We simulate Hera's [Milani](../glossary.md#milani) CubeSat
@@ -9,6 +9,15 @@ landing on ground like [Dimorphos](../glossary.md#dimorphos)'s and
 settle [six standard beds](beds.md), run [the same drops](results.md) on each, and compare.
 
 {{#include generated/status.md}}
+
+**18 November: the boulder-impact campaign is ready to start on the lab Mac, as one queue.** One command settles the ten new beds (and a small check piece) and runs every impact: an impact starts by itself as soon as its bed is settled and a processor core is free. The plan holds 47 impacts:
+
+- **20 start at once**, on the three beds that already exist, with a 25 cm boulder at 2.5 to 40 cm/s. They give a first table in about two days. Two of those beds are shallow, so these results are a first look.
+- **27 wait for the new beds**: a 50 cm boulder at 2.5, 5, 10, 20 and 40 cm/s on the two main beds, straight-down and glancing impacts, a 25 cm boulder on deep small stones, and the same reference impact on each of the eight variant beds.
+
+A run now ends once nothing still in it could throw a grain farther than about four boulder lengths. The trial runs followed every small hop until it landed, which made them 3 to 8 times longer than the grains that matter need. Replayed on the trial records, the shorter rule loses only slow hops. The first run of the campaign repeats a trial run under the new rule to check that.
+
+The lab Mac pushes a progress page every 2 hours and each run's records as it finishes. It also rewrites a workbook, `reports/labmac/hera/Hera_impact_plan.xlsx` in the repository, that lists every bed and every impact, where each stands, and each finished run's results. The beds take about 4 to 8 days to settle. Most impacts take under a day and a half; the 20 and 40 cm/s impacts with the 50 cm boulder take about 3 to 8 days each.
 
 **13 November: the next study is boulder impacts, and its trial runs are done.** A boulder hits a settled bed, and every grain the impact throws out is recorded for the lookup table that GUBAS (the binary-asteroid code) will use. The design is `hera/DESIGN.md` in the repository. Five trial impacts of a 25 cm boulder ran overnight on beds 3 and 1:
 
